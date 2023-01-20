@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Project from "@/components/Project";
+import ProjectItem from "@/components/ProjectItem";
 
 export default function HomePage() {
   return (
@@ -8,7 +8,7 @@ export default function HomePage() {
         <H1>Your Projects</H1>
       </header>
       <main>
-        <Project />
+        <ProjectItem />
       </main>
     </>
   );

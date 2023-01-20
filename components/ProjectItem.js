@@ -3,7 +3,7 @@ import { titles } from "../lib/data.json";
 import { v4 as uuidv4 } from "uuid";
 import ToolsIcon from "../public/tools.svg";
 
-export default function Project() {
+export default function ProjectItem() {
   return (
     <Ul>
       {titles.map((title) => (
