@@ -1,3 +1,18 @@
+import { titles } from "../lib/data.json";
+
 export default function HomePage() {
-  return <h1>Hello from Next.js</h1>;
+  return (
+    <>
+      <header>
+        <h1>Your Projects</h1>
+      </header>
+      <main>
+        <ul>
+          {titles.map((title) => (
+            <li key={crypto.randomUUID()}>{title.title}</li>
+          ))}
+        </ul>
+      </main>
+    </>
+  );
 }
