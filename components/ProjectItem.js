@@ -29,4 +29,5 @@ const Li = styled.li`
 const StyledToolsIcon = styled(ToolsIcon)`
   width: 25px;
   height: 25px;
+  position: relative;
 `;
