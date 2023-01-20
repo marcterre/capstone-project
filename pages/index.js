@@ -10,14 +10,14 @@ export default function HomePage() {
         <H1>Your Projects</H1>
       </header>
       <main>
-        <ul>
+        <Ul>
           {titles.map((title) => (
-            <li key={uuidv4()}>
+            <Li key={uuidv4()}>
               <StyledToolsIcon />
               {title.name}
-            </li>
+            </Li>
           ))}
-        </ul>
+        </Ul>
       </main>
     </>
   );
@@ -28,7 +28,17 @@ const H1 = styled.h1`
   top: 0;
 `;
 
+const Ul = styled.ul`
+  list-style: none;
+`;
+
+const Li = styled.li`
+  border: 1px solid black;
+  width: 80vw;
+  margin: 10px;
+`;
+
 const StyledToolsIcon = styled(ToolsIcon)`
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 `;
