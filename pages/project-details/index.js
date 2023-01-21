@@ -1,5 +1,7 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import Example from "@/public/Example.png";
+import Image from "next/image";
 
 export default function ProjectDetails() {
   const router = useRouter();
@@ -14,9 +16,15 @@ export default function ProjectDetails() {
           <h2>Description</h2>
           <p>Lorem ipsum...</p>
         </section>
-        <section>
+        <SketchSection>
           <h2>Your sketch</h2>
-        </section>
+          <Image
+            src={Example}
+            alt="Beispiel Bild eines Tisches"
+            width="150"
+            height="auto"
+          ></Image>
+        </SketchSection>
         <Button type="button" onClick={() => router.push("/")}>
           Go back
         </Button>
@@ -37,4 +45,10 @@ const Button = styled.button`
   position: fixed;
   bottom: 20px;
   left: 20px;
+`;
+
+const SketchSection = styled.section`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
