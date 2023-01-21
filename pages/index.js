@@ -17,4 +17,5 @@ export default function HomePage() {
 const H1 = styled.h1`
   position: relative;
   top: 0;
+  margin: 10px;
 `;
