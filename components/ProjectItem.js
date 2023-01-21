@@ -29,7 +29,7 @@ const Ul = styled.ul`
 const Li = styled.li`
   border: 1px solid black;
   width: 80vw;
-  margin: 10px;
+  margin: 10px 0;
 `;
 
 const StyledToolsIcon = styled(ToolsIcon)`

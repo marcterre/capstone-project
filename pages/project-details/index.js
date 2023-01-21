@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import styled from "styled-components";
 
 export default function ProjectDetails() {
   const router = useRouter();
@@ -6,9 +7,9 @@ export default function ProjectDetails() {
   return (
     <>
       <header>
-        <h1>Project 1</h1>
+        <H1>Project 1</H1>
       </header>
-      <main>
+      <Main>
         <section>
           <h2>Description</h2>
           <p>Lorem ipsum...</p>
@@ -19,7 +20,15 @@ export default function ProjectDetails() {
         <button type="button" onClick={() => router.push("/")}>
           Go back
         </button>
-      </main>
+      </Main>
     </>
   );
 }
+
+const H1 = styled.h1`
+  margin: 10px;
+`;
+
+const Main = styled.main`
+  margin: 0px 10px;
+`;
