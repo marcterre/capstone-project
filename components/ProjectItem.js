@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { titles } from "../lib/data.json";
 import { v4 as uuidv4 } from "uuid";
+import Link from "next/link";
+
 import ToolsIcon from "../public/tools.svg";
 
 export default function ProjectItem() {
@@ -8,8 +10,12 @@ export default function ProjectItem() {
     <Ul>
       {titles.map((title) => (
         <Li key={uuidv4()}>
-          <StyledToolsIcon />
-          {title.name}
+          <Link href="/project-details">
+            <div>
+              <StyledToolsIcon />
+              {title.name}
+            </div>
+          </Link>
         </Li>
       ))}
     </Ul>
