@@ -20,7 +20,7 @@ export default function ProjectDetails() {
           <h2>Your sketch</h2>
           <Image
             src={Example}
-            alt="Beispiel Bild eines Tisches"
+            alt="Example picture of a table"
             width="150"
             height="auto"
           ></Image>
