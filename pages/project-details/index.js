@@ -8,9 +8,9 @@ export default function ProjectDetails() {
 
   return (
     <>
-      <header>
+      <Header>
         <H1>Project 1</H1>
-      </header>
+      </Header>
       <Main>
         <section>
           <h2>Description</h2>
@@ -33,12 +33,18 @@ export default function ProjectDetails() {
   );
 }
 
+const Header = styled.header`
+  position: fixed;
+  top: 0px;
+`;
+
 const H1 = styled.h1`
   margin: 10px;
 `;
 
 const Main = styled.main`
-  margin: 0px 10px;
+  margin: 70px 10px;
+  position: relative;
 `;
 
 const Button = styled.button`
