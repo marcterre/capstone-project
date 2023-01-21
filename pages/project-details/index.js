@@ -17,9 +17,9 @@ export default function ProjectDetails() {
         <section>
           <h2>Your sketch</h2>
         </section>
-        <button type="button" onClick={() => router.push("/")}>
+        <Button type="button" onClick={() => router.push("/")}>
           Go back
-        </button>
+        </Button>
       </Main>
     </>
   );
@@ -31,4 +31,10 @@ const H1 = styled.h1`
 
 const Main = styled.main`
   margin: 0px 10px;
+`;
+
+const Button = styled.button`
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
 `;
