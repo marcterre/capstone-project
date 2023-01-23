@@ -1,7 +1,10 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
 export default function CreateNewProject({ addNewProject }) {
+  const router = useRouter();
+
   function handleSubmit(event) {
     event.preventDefault();
 

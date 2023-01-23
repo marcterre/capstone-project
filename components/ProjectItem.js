@@ -13,10 +13,10 @@ export default function ProjectItem() {
     <Ul>
       {globalProjects.map((project) => (
         <Li key={uuidv4()}>
-          <Link href="/project-details">
+          <Link href={`/project-details/${project.slug}`}>
             <div>
               <StyledToolsIcon />
-              {project.name}
+              {project.projectName}
             </div>
           </Link>
         </Li>

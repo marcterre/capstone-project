@@ -3,6 +3,7 @@ import GlobalStyle from "@/styles";
 import Head from "next/head";
 import { useState } from "react";
 import { createContext } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export const myProjectsContext = createContext();
 
@@ -14,6 +15,7 @@ export default function App({ Component, pageProps }) {
       {
         ...newProject,
         id: uuidv4(),
+        slug: newProject.projectName,
       },
       ...oldProjects,
     ]);
