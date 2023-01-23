@@ -1,8 +1,13 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 export default function CreateNewProject() {
+  const [onSubmit, setOnSubmit] = useState(false);
+
   function handleSubmit(event) {
     event.preventDefault();
+    setOnSubmit(!onSubmit);
+    console.log("submitted");
   }
   return (
     <>
@@ -17,6 +22,7 @@ export default function CreateNewProject() {
           <textarea id="projectDescription" name="projectDescription" />
           <label htmlFor="projectSketch">Add your sketch:</label>
           <input type="text" name="projectSketch" id="projectSketch" />
+          {onSubmit ? <SubmittedText>submitted</SubmittedText> : null}
           <Button type="submit">Save</Button>
         </Form>
       </main>
@@ -40,4 +46,8 @@ const Form = styled.form`
   display: grid;
   padding: 5vw;
   gap: 1vh;
+`;
+
+const SubmittedText = styled.p`
+  text-align: center;
 `;
