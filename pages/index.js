@@ -12,12 +12,11 @@ export default function HomePage() {
         <H1>Your Projects</H1>
       </header>
       <main>
-        {currentProject ? (
+        <ProjectItem />
+        {currentProject ? null : (
           <EmptyProjectPage>
             Click + in ne navigation below to create a new project
           </EmptyProjectPage>
-        ) : (
-          <ProjectItem />
         )}
       </main>
     </>
