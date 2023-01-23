@@ -18,23 +18,23 @@ export default function ProjectDetails() {
     return <h1>404</h1>;
   }
 
-  const { projectName, projectDescription, projectSketch } = currentProject;
+  const { name, description, sketch } = currentProject;
 
   return (
     <>
       <Header>
-        <H1>{projectName}</H1>
+        <H1>{name}</H1>
       </Header>
       <Main>
         <section>
           <h2>Description</h2>
-          <p>{projectDescription}</p>
+          <p>{description}</p>
         </section>
         <SketchSection>
           <h2>Your sketch</h2>
-          {projectSketch ? (
+          {sketch ? (
             <Image
-              src={projectSketch}
+              src={sketch}
               alt="Example picture of a table"
               width="150"
               height="150"

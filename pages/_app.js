@@ -15,7 +15,7 @@ export default function App({ Component, pageProps }) {
       {
         ...newProject,
         id: uuidv4(),
-        slug: newProject.projectName,
+        slug: newProject.name,
       },
       ...oldProjects,
     ]);

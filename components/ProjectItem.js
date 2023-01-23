@@ -16,7 +16,7 @@ export default function ProjectItem() {
           <Link href={`/project-details/${project.slug}`}>
             <div>
               <StyledToolsIcon />
-              {project.projectName}
+              {project.name}
             </div>
           </Link>
         </Li>
