@@ -6,6 +6,8 @@ import { useContext } from "react";
 export default function HomePage() {
   const currentProject = useContext(myProjectsContext);
 
+  console.log(currentProject);
+
   return (
     <>
       <header>
@@ -13,11 +15,6 @@ export default function HomePage() {
       </header>
       <main>
         <ProjectItem />
-        {currentProject ? null : (
-          <EmptyProjectPage>
-            Click + in ne navigation below to create a new project
-          </EmptyProjectPage>
-        )}
       </main>
     </>
   );
