@@ -8,16 +8,12 @@ export default function Navigation() {
     <Ul>
       <li>
         <Link href="/">
-          <div>
-            <IconHome />
-          </div>
+          <IconHome />
         </Link>
       </li>
       <li>
         <Link href="/create-new-project">
-          <div>
-            <IconAdd />
-          </div>
+          <IconAdd />
         </Link>
       </li>
     </Ul>
