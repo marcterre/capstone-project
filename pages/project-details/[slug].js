@@ -32,16 +32,17 @@ export default function ProjectDetails() {
         </section>
         <SketchSection>
           <h2>Your sketch</h2>
-          <Image
-            src={projectSketch}
-            alt="Example picture of a table"
-            width="150"
-            height="auto"
-          ></Image>
+          {projectSketch ? (
+            <Image
+              src={projectSketch}
+              alt="Example picture of a table"
+              width="150"
+              height="150"
+            ></Image>
+          ) : (
+            <p>no sketch here</p>
+          )}
         </SketchSection>
-        <Button type="button" onClick={() => router.push("/")}>
-          Go back
-        </Button>
       </Main>
     </>
   );
