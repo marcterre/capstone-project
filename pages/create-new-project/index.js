@@ -1,13 +1,15 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function CreateNewProject() {
-  const [onSubmit, setOnSubmit] = useState(false);
-
+export default function CreateNewProject({ addNewProject }) {
   function handleSubmit(event) {
     event.preventDefault();
-    setOnSubmit(!onSubmit);
-    console.log("submitted");
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    addNewProject(data);
+    router.push("/");
   }
   return (
     <>
@@ -22,7 +24,6 @@ export default function CreateNewProject() {
           <textarea id="projectDescription" name="projectDescription" />
           <label htmlFor="projectSketch">Add your sketch:</label>
           <input type="text" name="projectSketch" id="projectSketch" />
-          {onSubmit ? <SubmittedText>submitted</SubmittedText> : null}
           <Button type="submit">Save</Button>
         </Form>
       </main>
