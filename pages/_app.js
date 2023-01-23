@@ -4,7 +4,7 @@ import Head from "next/head";
 import { useState } from "react";
 import { createContext } from "react";
 
-export const myProjectContext = createContext();
+export const myProjectsContext = createContext();
 
 export default function App({ Component, pageProps }) {
   const [projects, setProjects] = useState([]);
@@ -21,14 +21,14 @@ export default function App({ Component, pageProps }) {
 
   return (
     <>
-      <myProjectContext.Provider value={projects}>
+      <myProjectsContext.Provider value={projects}>
         <GlobalStyle />
         <Head>
           <title>Capstone Project</title>
         </Head>
         <Component {...pageProps} addNewProject={addNewProject} />
         <Navigation />
-      </myProjectContext.Provider>
+      </myProjectsContext.Provider>
     </>
   );
 }
