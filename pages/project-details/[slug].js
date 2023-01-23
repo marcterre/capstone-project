@@ -62,14 +62,12 @@ const Main = styled.main`
   position: relative;
 `;
 
-const Button = styled.button`
-  position: fixed;
-  bottom: 100px;
-  left: 20px;
-`;
-
 const SketchSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
+`;
+
+const StyledImage = styled(Image)`
+  border: 1px solid black;
 `;

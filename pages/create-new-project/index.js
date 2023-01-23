@@ -50,7 +50,3 @@ const Form = styled.form`
   padding: 5vw;
   gap: 1vh;
 `;
-
-const SubmittedText = styled.p`
-  text-align: center;
-`;
