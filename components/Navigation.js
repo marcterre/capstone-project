@@ -14,7 +14,7 @@ export default function Navigation() {
         </Link>
       </li>
       <li>
-        <Link href="/">
+        <Link href="/create-new-project">
           <div>
             <IconAdd />
           </div>
@@ -27,8 +27,11 @@ export default function Navigation() {
 const Ul = styled.ul`
   position: fixed;
   bottom: 0px;
+  left: 0px;
   width: 100vw;
   display: flex;
   justify-content: space-evenly;
   list-style: none;
+  padding: 0px;
+  margin: 0px;
 `;

@@ -49,7 +49,7 @@ const Main = styled.main`
 
 const Button = styled.button`
   position: fixed;
-  bottom: 20px;
+  bottom: 100px;
   left: 20px;
 `;
 
