@@ -1,25 +1,39 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import Example from "@/public/Example.png";
 import Image from "next/image";
+import { myProjectsContext } from "../_app";
+import { useContext } from "react";
 
 export default function ProjectDetails() {
+  const globalProjects = useContext(myProjectsContext);
+
   const router = useRouter();
+  const { slug } = router.query;
+
+  const currentProject = globalProjects.find(
+    (project) => project.slug === slug
+  );
+
+  if (!currentProject) {
+    return <h1>404</h1>;
+  }
+
+  const { projectName, projectDescription, projectSketch } = currentProject;
 
   return (
     <>
       <Header>
-        <H1>Project 1</H1>
+        <H1>{projectName}</H1>
       </Header>
       <Main>
         <section>
           <h2>Description</h2>
-          <p>Lorem ipsum...</p>
+          <p>{projectDescription}</p>
         </section>
         <SketchSection>
           <h2>Your sketch</h2>
           <Image
-            src={Example}
+            src={projectSketch}
             alt="Example picture of a table"
             width="150"
             height="auto"
