@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
 import { myProjectsContext } from "@/pages/_app";
 import { useContext } from "react";
@@ -12,7 +11,7 @@ export default function ProjectItem() {
   return (
     <Ul>
       {globalProjects.map((project) => (
-        <Li key={uuidv4()}>
+        <Li key={project.id}>
           <Link href={`/project-details/${project.slug}`}>
             <div>
               <StyledToolsIcon />

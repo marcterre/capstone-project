@@ -1,7 +1,7 @@
 import Navigation from "@/components/Navigation";
 import GlobalStyle from "@/styles";
 import Head from "next/head";
-import { createContext, useState } from "react";
+import { createContext } from "react";
 import { v4 as uuidv4 } from "uuid";
 import useLocalStorageState from "use-local-storage-state";
 
