@@ -1,13 +1,13 @@
-import { useRouter } from "next/router";
+import { useState } from "react";
 import styled from "styled-components";
 
 export default function AddNewView() {
-  const router = useRouter();
+  const [submitText, setSubmitText] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    router.back();
+    setSubmitText(!submitText);
   }
 
   return (
@@ -23,6 +23,7 @@ export default function AddNewView() {
           <textarea id="description" name="description" />
           <label htmlFor="sketch">Add your sketch:</label>
           <input type="text" name="sketch" id="sketch" />
+          {submitText ? <p>Submitted</p> : null}
           <Button type="submit">Save</Button>
         </Form>
       </main>
