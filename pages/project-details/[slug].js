@@ -41,12 +41,14 @@ export default function ProjectDetails() {
               height="150"
             ></Image>
           ) : (
-            <p>no sketch here</p>
+            <NoSketchText>no sketch here</NoSketchText>
           )}
         </SketchSection>
         <section>
           <h2>Views</h2>
-          <Link href="/project-details/add-new-view">add more views</Link>
+          <ViewLink href="/project-details/add-new-view">
+            add more views
+          </ViewLink>
         </section>
       </Main>
     </>
@@ -73,6 +75,16 @@ const SketchSection = styled.section`
   justify-content: space-between;
 `;
 
-const StyledImage = styled(Image)`
+const ViewLink = styled(Link)`
+  background-color: lightgrey;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+`;
+
+const NoSketchText = styled.p`
   border: 1px solid black;
+  width: 150px;
+  padding: 5px;
+  text-align: center;
 `;
