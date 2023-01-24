@@ -1,19 +1,22 @@
 import styled from "styled-components";
-import { titles } from "../lib/data.json";
 import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
+import { myProjectsContext } from "@/pages/_app";
+import { useContext } from "react";
 
 import ToolsIcon from "../public/tools.svg";
 
 export default function ProjectItem() {
+  const globalProjects = useContext(myProjectsContext);
+
   return (
     <Ul>
-      {titles.map((title) => (
+      {globalProjects.map((project) => (
         <Li key={uuidv4()}>
-          <Link href="/project-details">
+          <Link href={`/project-details/${project.slug}`}>
             <div>
               <StyledToolsIcon />
-              {title.name}
+              {project.name}
             </div>
           </Link>
         </Li>

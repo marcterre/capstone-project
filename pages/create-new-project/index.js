@@ -1,13 +1,17 @@
-import { useState } from "react";
 import styled from "styled-components";
+import { useRouter } from "next/router";
 
-export default function CreateNewProject() {
-  const [onSubmit, setOnSubmit] = useState(false);
+export default function CreateNewProject({ addNewProject }) {
+  const router = useRouter();
 
   function handleSubmit(event) {
     event.preventDefault();
-    setOnSubmit(!onSubmit);
-    console.log("submitted");
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    addNewProject(data);
+    router.push("/");
   }
   return (
     <>
@@ -16,13 +20,12 @@ export default function CreateNewProject() {
       </header>
       <main>
         <Form onSubmit={handleSubmit}>
-          <label htmlFor="projectName">Name:</label>
-          <input id="projectName" name="projectName" type="text" />
-          <label htmlFor="projectDescription">Description:</label>
-          <textarea id="projectDescription" name="projectDescription" />
-          <label htmlFor="projectSketch">Add your sketch:</label>
-          <input type="text" name="projectSketch" id="projectSketch" />
-          {onSubmit ? <SubmittedText>submitted</SubmittedText> : null}
+          <label htmlFor="name">Name:</label>
+          <input id="name" name="name" type="text" />
+          <label htmlFor="description">Description:</label>
+          <textarea id="description" name="description" />
+          <label htmlFor="sketch">Add your sketch:</label>
+          <input type="text" name="sketch" id="sketch" />
           <Button type="submit">Save</Button>
         </Form>
       </main>
@@ -46,8 +49,4 @@ const Form = styled.form`
   display: grid;
   padding: 5vw;
   gap: 1vh;
-`;
-
-const SubmittedText = styled.p`
-  text-align: center;
 `;

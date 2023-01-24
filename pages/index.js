@@ -2,6 +2,8 @@ import styled from "styled-components";
 import ProjectItem from "@/components/ProjectItem";
 
 export default function HomePage() {
+  console.log(ProjectItem);
+
   return (
     <>
       <header>
