@@ -27,7 +27,8 @@ const Ul = styled.ul`
   padding: 0px;
   align-content: center;
   text-align: center;
-  gap: 20px;
+  gap: 10px;
+  margin-top: 20px;
 `;
 
 const Li = styled.li`

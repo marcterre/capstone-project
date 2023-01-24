@@ -1,5 +1,4 @@
 import { useRouter } from "next/router";
-import { useState } from "react";
 import styled from "styled-components";
 
 export default function AddNewView({ addNewView }) {
@@ -12,6 +11,7 @@ export default function AddNewView({ addNewView }) {
     const data = Object.fromEntries(formData);
 
     addNewView(data);
+    router.back();
   }
 
   return (

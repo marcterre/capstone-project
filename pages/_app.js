@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }) {
     defaultValue: [],
   });
 
-  const [views, setViews] = useState([]);
+  const [views, setViews] = useLocalStorageState("views", { defaultValue: [] });
 
   function addNewProject(newProject) {
     setProjects((oldProjects) => [
