@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { myProjectsContext } from "../_app";
 import { useContext } from "react";
+import Link from "next/link";
 
 export default function ProjectDetails() {
   const globalProjects = useContext(myProjectsContext);
@@ -43,6 +44,10 @@ export default function ProjectDetails() {
             <p>no sketch here</p>
           )}
         </SketchSection>
+        <section>
+          <h2>Views</h2>
+          <Link href="/project-details/add-new-view">add more views</Link>
+        </section>
       </Main>
     </>
   );
