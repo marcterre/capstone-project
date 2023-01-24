@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { myProjectsContext } from "../_app";
 import { useContext } from "react";
+import Link from "next/link";
 
 export default function ProjectDetails() {
   const globalProjects = useContext(myProjectsContext);
@@ -40,9 +41,15 @@ export default function ProjectDetails() {
               height="150"
             ></Image>
           ) : (
-            <p>no sketch here</p>
+            <NoSketchText>no sketch here</NoSketchText>
           )}
         </SketchSection>
+        <section>
+          <h2>Views</h2>
+          <ViewLink href="/project-details/add-new-view">
+            add more views
+          </ViewLink>
+        </section>
       </Main>
     </>
   );
@@ -68,6 +75,16 @@ const SketchSection = styled.section`
   justify-content: space-between;
 `;
 
-const StyledImage = styled(Image)`
+const ViewLink = styled(Link)`
+  background-color: lightgrey;
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+`;
+
+const NoSketchText = styled.p`
   border: 1px solid black;
+  width: 150px;
+  padding: 5px;
+  text-align: center;
 `;
