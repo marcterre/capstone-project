@@ -1,14 +1,10 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { myViewsContext } from "@/pages/_app";
-import { useContext } from "react";
 
-export default function ViewItem() {
-  const globalViews = useContext(myViewsContext);
-
+export default function ViewItem({ views }) {
   return (
     <List>
-      {globalViews.map((view) => (
+      {views.map((view) => (
         <ListItem key={view.id}>
           <Link href={`/project-details/view-details/${view.slug}`}>
             {view.name}

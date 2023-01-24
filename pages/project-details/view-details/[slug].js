@@ -5,19 +5,19 @@ import { useContext } from "react";
 import Link from "next/link";
 import { myViewsContext } from "@/pages/_app";
 
-export default function ViewDetails() {
-  const globalViews = useContext(myViewsContext);
+export default function ViewDetails({ views }) {
+  // const globalViews = useContext(myViewsContext);
 
   const router = useRouter();
   const { slug } = router.query;
 
-  const currentView = globalViews.find((view) => view.slug === slug);
+  const currentView = views.find((view) => view.slug === slug);
 
   if (!currentView) {
     return (
       <>
         <h1>404</h1>
-        <Link src="/">Go back to your projects</Link>
+        <Link href="/">Go back to your projects</Link>
       </>
     );
   }

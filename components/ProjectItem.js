@@ -1,16 +1,12 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { myProjectsContext } from "@/pages/_app";
-import { useContext } from "react";
 
 import ToolsIcon from "../public/tools.svg";
 
-export default function ProjectItem() {
-  const globalProjects = useContext(myProjectsContext);
-
+export default function ProjectItem({ projects }) {
   return (
     <List>
-      {globalProjects.map((project) => (
+      {projects.map((project) => (
         <ListItem key={project.id}>
           <Link href={`/project-details/${project.slug}`}>
             <div>

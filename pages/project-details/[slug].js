@@ -1,26 +1,20 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Image from "next/image";
-import { myProjectsContext } from "../_app";
-import { useContext } from "react";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
 
-export default function ProjectDetails() {
-  const globalProjects = useContext(myProjectsContext);
-
+export default function ProjectDetails({ views, projects }) {
   const router = useRouter();
   const { slug } = router.query;
 
-  const currentProject = globalProjects.find(
-    (project) => project.slug === slug
-  );
+  const currentProject = projects.find((project) => project.slug === slug);
 
   if (!currentProject) {
     return (
       <>
         <h1>404</h1>
-        <Link src="/">Go back to your projects</Link>;
+        <Link href="/">Go back to your projects</Link>;
       </>
     );
   }
@@ -55,7 +49,7 @@ export default function ProjectDetails() {
           <ViewLink href="/project-details/add-new-view">
             add more views
           </ViewLink>
-          <ViewItem />
+          <ViewItem views={views} />
         </section>
       </Main>
     </>
