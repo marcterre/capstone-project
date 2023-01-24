@@ -5,7 +5,7 @@ import IconHome from "@/public/iconHome.svg";
 
 export default function Navigation() {
   return (
-    <Ul>
+    <List>
       <li>
         <Link href="/">
           <IconHome />
@@ -16,11 +16,11 @@ export default function Navigation() {
           <IconAdd />
         </Link>
       </li>
-    </Ul>
+    </List>
   );
 }
 
-const Ul = styled.ul`
+const List = styled.ul`
   position: fixed;
   bottom: 0px;
   left: 0px;

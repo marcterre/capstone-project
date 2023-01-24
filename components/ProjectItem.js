@@ -9,26 +9,26 @@ export default function ProjectItem() {
   const globalProjects = useContext(myProjectsContext);
 
   return (
-    <Ul>
+    <List>
       {globalProjects.map((project) => (
-        <Li key={project.id}>
+        <ListItem key={project.id}>
           <Link href={`/project-details/${project.slug}`}>
             <div>
               <StyledToolsIcon />
               {project.name}
             </div>
           </Link>
-        </Li>
+        </ListItem>
       ))}
-    </Ul>
+    </List>
   );
 }
 
-const Ul = styled.ul`
+const List = styled.ul`
   list-style: none;
 `;
 
-const Li = styled.li`
+const ListItem = styled.li`
   border: 1px solid black;
   width: 80vw;
   margin: 10px 0;

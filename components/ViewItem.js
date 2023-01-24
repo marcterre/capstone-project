@@ -7,19 +7,19 @@ export default function ViewItem() {
   const globalViews = useContext(myViewsContext);
 
   return (
-    <Ul>
+    <List>
       {globalViews.map((view) => (
-        <Li key={view.id}>
+        <ListItem key={view.id}>
           <Link href={`/project-details/view-details/${view.slug}`}>
             {view.name}
           </Link>
-        </Li>
+        </ListItem>
       ))}
-    </Ul>
+    </List>
   );
 }
 
-const Ul = styled.ul`
+const List = styled.ul`
   list-style: none;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -30,7 +30,7 @@ const Ul = styled.ul`
   margin-top: 20px;
 `;
 
-const Li = styled.li`
+const ListItem = styled.li`
   padding: 10px;
   background-color: lightgrey;
 `;

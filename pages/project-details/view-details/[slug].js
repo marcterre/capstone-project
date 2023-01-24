@@ -14,7 +14,12 @@ export default function ViewDetails() {
   const currentView = globalViews.find((view) => view.slug === slug);
 
   if (!currentView) {
-    return <h1>404</h1>;
+    return (
+      <>
+        <h1>404</h1>
+        <Link src="/">Go back to your projects</Link>
+      </>
+    );
   }
 
   const { name, description, sketch } = currentView;
@@ -22,7 +27,7 @@ export default function ViewDetails() {
   return (
     <>
       <Header>
-        <H1>{name}</H1>
+        <Title>{name}</Title>
       </Header>
       <Main>
         <section>
@@ -55,7 +60,7 @@ const Header = styled.header`
   top: 0px;
 `;
 
-const H1 = styled.h1`
+const Title = styled.h1`
   margin: 10px;
 `;
 

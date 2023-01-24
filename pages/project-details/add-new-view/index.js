@@ -17,7 +17,7 @@ export default function AddNewView({ addNewView }) {
   return (
     <>
       <header>
-        <H1>Add a new view</H1>
+        <Title>Add a new view</Title>
       </header>
       <main>
         <form onSubmit={handleSubmit}>
@@ -41,7 +41,7 @@ export default function AddNewView({ addNewView }) {
   );
 }
 
-const H1 = styled.h1`
+const Title = styled.h1`
   margin: 10px;
 `;
 

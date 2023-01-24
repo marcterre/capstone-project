@@ -16,7 +16,7 @@ export default function CreateNewProject({ addNewProject }) {
   return (
     <>
       <header>
-        <H1>Create a new project</H1>
+        <Title>Create a new project</Title>
       </header>
       <main>
         <Form onSubmit={handleSubmit}>
@@ -33,7 +33,7 @@ export default function CreateNewProject({ addNewProject }) {
   );
 }
 
-const H1 = styled.h1`
+const Title = styled.h1`
   margin: 10px;
 `;
 
