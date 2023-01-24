@@ -4,6 +4,7 @@ import Image from "next/image";
 import { myProjectsContext } from "../_app";
 import { useContext } from "react";
 import Link from "next/link";
+import ViewItem from "@/components/ViewItem";
 
 export default function ProjectDetails() {
   const globalProjects = useContext(myProjectsContext);
@@ -49,6 +50,7 @@ export default function ProjectDetails() {
           <ViewLink href="/project-details/add-new-view">
             add more views
           </ViewLink>
+          <ViewItem />
         </section>
       </Main>
     </>
