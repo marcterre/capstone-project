@@ -35,7 +35,7 @@ export default function ProjectDetails() {
           {sketch ? (
             <Image
               src={sketch}
-              alt="Example picture of a table"
+              alt="here should be a sketch of your project"
               width="150"
               height="150"
             ></Image>
