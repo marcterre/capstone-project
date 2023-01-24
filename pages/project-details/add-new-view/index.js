@@ -2,15 +2,16 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
 
-export default function AddNewView() {
-  const [submitText, setSubmitText] = useState(false);
-
+export default function AddNewView({ addNewView }) {
   const router = useRouter();
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    setSubmitText(!submitText);
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    addNewView(data);
   }
 
   return (
@@ -28,7 +29,6 @@ export default function AddNewView() {
             <label htmlFor="sketch">Add your sketch:</label>
             <input type="text" name="sketch" id="sketch" />
           </LabelWrapper>
-          {submitText ? <p>Submitted</p> : null}
           <ButtonWrapper>
             <Button type="button" onClick={() => router.back()}>
               Cancel
