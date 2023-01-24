@@ -21,7 +21,7 @@ export default function CreateNewProject({ addNewProject }) {
       <main>
         <Form onSubmit={handleSubmit}>
           <label htmlFor="name">Name:</label>
-          <input id="name" name="name" type="text" />
+          <input id="name" name="name" type="text" required />
           <label htmlFor="description">Description:</label>
           <textarea id="description" name="description" />
           <label htmlFor="sketch">Add your sketch:</label>
