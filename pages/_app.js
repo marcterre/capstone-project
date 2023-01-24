@@ -4,11 +4,14 @@ import Head from "next/head";
 import { useState } from "react";
 import { createContext } from "react";
 import { v4 as uuidv4 } from "uuid";
+import useLocalStorageState from "use-local-storage-state";
 
 export const myProjectsContext = createContext();
 
 export default function App({ Component, pageProps }) {
-  const [projects, setProjects] = useState([]);
+  const [projects, setProjects] = useLocalStorageState("projects", {
+    defaultValue: [],
+  });
 
   function addNewProject(newProject) {
     setProjects((oldProjects) => [
