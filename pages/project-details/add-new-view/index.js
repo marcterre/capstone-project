@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export default function AddNewView({ addNewView }) {
   const router = useRouter();
-
   function handleSubmit(event) {
     event.preventDefault();
 

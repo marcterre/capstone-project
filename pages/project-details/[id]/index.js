@@ -2,8 +2,14 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
+import { useRouter } from "next/router";
 
-export default function ProjectDetails({ views, projects, currentProject }) {
+export default function ProjectDetails({ views, projects }) {
+  const router = useRouter();
+  const { id } = router.query;
+
+  const currentProject = projects.find((project) => project.id === id);
+
   if (!currentProject) {
     return (
       <>
