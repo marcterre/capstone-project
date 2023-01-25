@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
-  const { slug } = router.query;
+  const { id } = router.query;
 
   const [projects, setProjects] = useLocalStorageState("projects", {
     defaultValue: [],
@@ -15,14 +15,13 @@ export default function App({ Component, pageProps }) {
 
   const [views, setViews] = useLocalStorageState("views", { defaultValue: [] });
 
-  const currentProject = projects.find((project) => project.slug === slug);
+  const currentProject = projects.find((project) => project.id === id);
 
   function addNewProject(newProject) {
     setProjects((oldProjects) => [
       {
         ...newProject,
         id: uuidv4(),
-        slug: newProject.name,
       },
       ...oldProjects,
     ]);
@@ -32,8 +31,8 @@ export default function App({ Component, pageProps }) {
     setViews((oldViews) => [
       {
         ...newView,
-        id: uuidv4(),
-        viewSlug: newView.name,
+        viewId: uuidv4(),
+        projectId: currentProject.id,
       },
       ...oldViews,
     ]);

@@ -1,13 +1,17 @@
 import styled from "styled-components";
 import Link from "next/link";
 
+// const newArray = views.filter((view) => view);
+
+// console.log(`current project: ${currentProject.id}`);
+// console.log(newArray);
 export default function ViewItem({ views, currentProject }) {
   return (
     <List>
-      {views.map(({ id, name, viewSlug }) => (
-        <ListItem key={id}>
+      {views.map(({ name, viewId }) => (
+        <ListItem key={viewId}>
           <Link
-            href={`/project-details/${currentProject.slug}/view-details/${viewSlug}`}
+            href={`/project-details/${currentProject.id}/view-details/${viewId}`}
           >
             <div>{name}</div>
           </Link>

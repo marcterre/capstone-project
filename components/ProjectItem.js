@@ -8,9 +8,9 @@ export default function ProjectItem({ projects }) {
   return (
     <List>
       {projects.map((project) => (
-        <ListItem key={uuidv4()}>
+        <ListItem key={project.id}>
           <Link
-            href={`/project-details/${project.slug}`}
+            href={`/project-details/${project.id}`}
             onClick={() => console.log(project.id)}
           >
             <div>
