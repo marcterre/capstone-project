@@ -4,8 +4,6 @@ import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
 
 export default function ProjectDetails({ views, projects, currentProject }) {
-  // const { name, description, sketch } = currentProject;
-
   if (!currentProject) {
     return (
       <>

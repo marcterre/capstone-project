@@ -1,18 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function ViewItem({ views, currentProject }) {
-  console.log(views);
-
-  const router = useRouter();
-
-  const [filteredViews] = views.filter(({ viewSlug }) =>
-    viewSlug.includes(currentProject.name)
-  );
-
-  console.log(filteredViews);
-
   return (
     <List>
       {views.map(({ id, name, viewSlug }) => (
@@ -20,7 +9,7 @@ export default function ViewItem({ views, currentProject }) {
           <Link
             href={`/project-details/${currentProject.slug}/view-details/${viewSlug}`}
           >
-            {name}
+            <div>{name}</div>
           </Link>
         </ListItem>
       ))}
