@@ -1,13 +1,26 @@
 import styled from "styled-components";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
-export default function ViewItem({ views }) {
+export default function ViewItem({ views, currentProject }) {
+  console.log(views);
+
+  const router = useRouter();
+
+  const [filteredViews] = views.filter(({ viewSlug }) =>
+    viewSlug.includes(currentProject.name)
+  );
+
+  console.log(filteredViews);
+
   return (
     <List>
-      {views.map((view) => (
-        <ListItem key={view.id}>
-          <Link href={`/project-details/view-details/${view.slug}`}>
-            {view.name}
+      {views.map(({ id, name, viewSlug }) => (
+        <ListItem key={id}>
+          <Link
+            href={`/project-details/${currentProject.slug}/view-details/${viewSlug}`}
+          >
+            {name}
           </Link>
         </ListItem>
       ))}

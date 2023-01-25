@@ -23,11 +23,17 @@ export default function AddNewView({ addNewView }) {
         <form onSubmit={handleSubmit}>
           <LabelWrapper>
             <label htmlFor="name">Name:</label>
-            <input id="name" name="name" type="text" required />
+            <Input
+              id="name"
+              name="name"
+              type="text"
+              pattern="^[a-zA-Z0-9][a-zA-Z0-9_. ]{1,20}"
+              required
+            />
             <label htmlFor="description">Description:</label>
             <textarea id="description" name="description" />
             <label htmlFor="sketch">Add your sketch:</label>
-            <input type="text" name="sketch" id="sketch" />
+            <Input type="text" name="sketch" id="sketch" />
           </LabelWrapper>
           <ButtonWrapper>
             <Button type="button" onClick={() => router.back()}>
@@ -62,4 +68,8 @@ const ButtonWrapper = styled.div`
 const Button = styled.button`
   width: 100px;
   height: 30px;
+`;
+
+const Input = styled.input`
+  overflow: scroll;
 `;

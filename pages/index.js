@@ -5,7 +5,7 @@ export default function HomePage({ projects }) {
   return (
     <>
       <header>
-        <H1>Your Projects</H1>
+        <Title>Your Projects</Title>
       </header>
       <main>
         <ProjectItem projects={projects} />
@@ -14,7 +14,7 @@ export default function HomePage({ projects }) {
   );
 }
 
-const H1 = styled.h1`
+const Title = styled.h1`
   position: relative;
   top: 0;
   margin: 10px;

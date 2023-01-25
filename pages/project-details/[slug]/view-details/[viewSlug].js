@@ -2,24 +2,23 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
-import ViewItem from "@/components/ViewItem";
 
-export default function ProjectDetails({ views, projects }) {
+export default function ViewDetails({ views }) {
   const router = useRouter();
-  const { slug } = router.query;
+  const { viewSlug } = router.query;
 
-  const currentProject = projects.find((project) => project.slug === slug);
+  const currentView = views.find((view) => view.viewSlug === viewSlug);
 
-  if (!currentProject) {
+  if (!currentView) {
     return (
       <>
         <h1>404</h1>
-        <Link href="/">Go back to your projects</Link>;
+        <Link href="/">Go back to your projects</Link>
       </>
     );
   }
 
-  const { name, description, sketch } = currentProject;
+  const { name, description, sketch } = currentView;
 
   return (
     <>
@@ -44,13 +43,9 @@ export default function ProjectDetails({ views, projects }) {
             <NoSketchText>no sketch here</NoSketchText>
           )}
         </SketchSection>
-        <section>
-          <h2>Views</h2>
-          <ViewLink href="/project-details/add-new-view">
-            add more views
-          </ViewLink>
-          <ViewItem views={views} />
-        </section>
+        <button type="button" onClick={() => router.back()}>
+          go back
+        </button>
       </Main>
     </>
   );
@@ -74,13 +69,6 @@ const SketchSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
-
-const ViewLink = styled(Link)`
-  background-color: lightgrey;
-  text-decoration: none;
-  color: black;
-  padding: 10px;
 `;
 
 const NoSketchText = styled.p`
