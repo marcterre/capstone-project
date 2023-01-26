@@ -1,17 +1,26 @@
 import SettingsIcon from "@/public/settings.svg";
 import styled from "styled-components";
 import DeleteButton from "./DeleteButton";
-import { useState } from "react";
 
-export default function SettingsButton({ setEntries, id }) {
-  const [popUpSettings, setPopUpSettings] = useState(false);
-
+export default function SettingsButton({
+  setEntries,
+  id,
+  toggleModalDeleteButton,
+  handlePopUpSettings,
+  popUpSettings,
+}) {
   return (
     <SettingsWrapper>
-      <Button onClick={() => setPopUpSettings(!popUpSettings)}>
+      <Button onClick={() => handlePopUpSettings()}>
         <StyledSettingsIcon />
       </Button>
-      {popUpSettings ? <DeleteButton setEntries={setEntries} id={id} /> : null}
+      {popUpSettings ? (
+        <DeleteButton
+          toggleModalDeleteButton={toggleModalDeleteButton}
+          setEntries={setEntries}
+          id={id}
+        />
+      ) : null}
     </SettingsWrapper>
   );
 }

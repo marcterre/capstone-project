@@ -2,13 +2,14 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
-import SettingsButton from "@/components/SettingsButton";
+import PopUpWindow from "@/components/PopUpWindow";
 
 export default function ProjectDetails({
   views,
   projects,
   currentProject,
   setProjects,
+  setViews,
 }) {
   if (!currentProject) {
     return (
@@ -35,7 +36,7 @@ export default function ProjectDetails({
             <NoSketchText>no sketch here</NoSketchText>
           )}
         </TitleWrapper>
-        <SettingsButton setEntries={setProjects} id={currentProject.id} />
+        <PopUpWindow setEntries={setProjects} currentId={currentProject.id} />
       </Header>
       <Main>
         {currentProject.description ? (
@@ -53,6 +54,7 @@ export default function ProjectDetails({
             views={views.filter((view) => view.projectId === currentProject.id)}
             projects={projects}
             currentProject={currentProject}
+            setViews={setViews}
           />
         </section>
       </Main>

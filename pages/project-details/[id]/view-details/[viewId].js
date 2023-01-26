@@ -2,10 +2,13 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
+import ModalDeleteButton from "@/components/ModalDeleteButton";
+import { useState } from "react";
 
-export default function ViewDetails({ views }) {
+export default function ViewDetails({ views, setViews }) {
   const router = useRouter();
   const { viewId } = router.query;
+  const [showModalDelete, setShowModalDelete] = useState(false);
 
   const currentView = views.find((view) => view.viewId === viewId);
 
@@ -38,6 +41,12 @@ export default function ViewDetails({ views }) {
         </TitleWrapper>
       </Header>
       <Main>
+        <ModalDeleteButton
+          showModalDelete={showModalDelete}
+          setShowModalDelete={setShowModalDelete}
+          currentProject={currentView}
+          setEntries={setViews}
+        />
         {description ? (
           <DescriptionSection>
             <Subtitle>Description</Subtitle>
