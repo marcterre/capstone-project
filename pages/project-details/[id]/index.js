@@ -2,14 +2,8 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
-import { useRouter } from "next/router";
 
 export default function ProjectDetails({ views, projects, currentProject }) {
-  // const router = useRouter();
-  // const { id } = router.query;
-
-  // const currentProject = projects.find((project) => project.id === id);
-
   if (!currentProject) {
     return (
       <>
@@ -45,12 +39,11 @@ export default function ProjectDetails({ views, projects, currentProject }) {
         ) : null}
         <section>
           <h2>Views</h2>
-          <ViewLink href="/project-details/add-new-view">
+          <ViewLink href={`/project-details/${currentProject.id}/add-new-view`}>
             add more views
           </ViewLink>
           <ViewItem
-            // views={views.filter((view) => view.projectId === currentProject.id)}
-            views={views}
+            views={views.filter((view) => view.projectId === currentProject.id)}
             projects={projects}
             currentProject={currentProject}
           />
@@ -78,7 +71,7 @@ const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
+  padding: 10px 20px;
 `;
 
 const Header = styled.header`

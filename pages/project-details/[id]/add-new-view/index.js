@@ -1,23 +1,23 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
-// import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
-export default function AddNewView({ addNewView }) {
+export default function AddNewView({ setViews, currentProject }) {
   const router = useRouter();
   const [count, setCount] = useState(0);
   const [countDescr, setCountDescr] = useState(0);
 
-  // function addNewView(newView) {
-  //   setViews((oldViews) => [
-  //     {
-  //       ...newView,
-  //       viewId: uuidv4(),
-  //       projectId: currentProject.id,
-  //     },
-  //     ...oldViews,
-  //   ]);
-  // }
+  function addNewView(newView) {
+    setViews((oldViews) => [
+      {
+        ...newView,
+        viewId: uuidv4(),
+        projectId: currentProject.id,
+      },
+      ...oldViews,
+    ]);
+  }
 
   function handleSubmit(event) {
     event.preventDefault();

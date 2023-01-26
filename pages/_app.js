@@ -10,11 +10,17 @@ export default function App({ Component, pageProps }) {
   const { id } = router.query;
 
   const [projects, setProjects] = useLocalStorageState("projects", {
-    defaultValue: [],
+    defaultValue: [
+      {
+        name: "Table",
+        description: "This is a tabel",
+        id: uuidv4(),
+        views: [{ name: "front" }],
+      },
+    ],
   });
 
   const [views, setViews] = useLocalStorageState("views", { defaultValue: [] });
-
   const currentProject = projects.find((project) => project.id === id);
 
   function addNewProject(newProject) {
@@ -27,15 +33,15 @@ export default function App({ Component, pageProps }) {
     ]);
   }
 
-  function addNewView(newView) {
-    setViews((oldViews) => [
-      {
-        ...newView,
-        viewId: uuidv4(),
-      },
-      ...oldViews,
-    ]);
-  }
+  // function addNewView(newView) {
+  //   views((oldViews) => [
+  //     {
+  //       ...newView,
+  //       viewId: uuidv4(),
+  //     },
+  //     ...oldViews,
+  //   ]);
+  // }
 
   return (
     <>
@@ -48,7 +54,8 @@ export default function App({ Component, pageProps }) {
         addNewProject={addNewProject}
         views={views}
         projects={projects}
-        addNewView={addNewView}
+        setViews={setViews}
+        // addNewView={addNewView}
         currentProject={currentProject}
       />
       <Navigation />
