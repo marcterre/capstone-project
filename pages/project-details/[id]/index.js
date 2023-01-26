@@ -2,9 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
-import DeleteButton from "@/components/DeleteButton";
 import SettingsButton from "@/components/SettingsButton";
-import { useState } from "react";
 
 export default function ProjectDetails({
   views,
@@ -12,8 +10,6 @@ export default function ProjectDetails({
   currentProject,
   setProjects,
 }) {
-  const [popUpSettings, setPopUpSettings] = useState(false);
-
   if (!currentProject) {
     return (
       <>
@@ -39,12 +35,7 @@ export default function ProjectDetails({
             <NoSketchText>no sketch here</NoSketchText>
           )}
         </TitleWrapper>
-        <SettingsWrapper>
-          <SettingsButton
-            handlePopUp={() => setPopUpSettings(!popUpSettings)}
-          />
-          {popUpSettings ? <DeleteButton /> : null}
-        </SettingsWrapper>
+        <SettingsButton setEntries={setProjects} id={currentProject.id} />
       </Header>
       <Main>
         {currentProject.description ? (
@@ -68,14 +59,6 @@ export default function ProjectDetails({
     </>
   );
 }
-
-const SettingsWrapper = styled.div`
-  justify-self: end;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  padding: 10px 10px 0 0;
-`;
 
 const StyledImage = styled(Image)`
   object-fit: cover;
