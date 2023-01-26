@@ -1,41 +1,54 @@
 import styled from "styled-components";
-import { v4 as uuidv4 } from "uuid";
 import Link from "next/link";
-import { myProjectsContext } from "@/pages/_app";
-import { useContext } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 import ToolsIcon from "../public/tools.svg";
 
-export default function ProjectItem() {
-  const globalProjects = useContext(myProjectsContext);
-
+export default function ProjectItem({ projects }) {
   return (
-    <Ul>
-      {globalProjects.map((project) => (
-        <Li key={uuidv4()}>
-          <Link href={`/project-details/${project.slug}`}>
-            <div>
+    <List>
+      {projects.map((project) => (
+        <ListItem key={project.id}>
+          <StyledLink
+            href={`/project-details/${project.id}`}
+            onClick={() => console.log(project.id)}
+          >
+            <Wrapper>
               <StyledToolsIcon />
               {project.name}
-            </div>
-          </Link>
-        </Li>
+            </Wrapper>
+          </StyledLink>
+        </ListItem>
       ))}
-    </Ul>
+    </List>
   );
 }
 
-const Ul = styled.ul`
+const List = styled.ul`
   list-style: none;
+  margin: 0;
+  padding: 0 5vw;
 `;
 
-const Li = styled.li`
-  border: 1px solid black;
-  width: 80vw;
+const ListItem = styled.li`
+  overflow: hidden;
   margin: 10px 0;
 `;
 
 const StyledToolsIcon = styled(ToolsIcon)`
   width: 25px;
   height: 25px;
+  min-width: 25px;
+  min-height: 25px;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid black;
 `;
