@@ -3,6 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
 import DeleteButton from "@/components/DeleteButton";
+import SettingsButton from "@/components/SettingsButton";
+import { useState } from "react";
 
 export default function ProjectDetails({
   views,
@@ -10,6 +12,8 @@ export default function ProjectDetails({
   currentProject,
   setProjects,
 }) {
+  const [popUpSettings, setPopUpSettings] = useState(false);
+
   if (!currentProject) {
     return (
       <>
@@ -35,7 +39,12 @@ export default function ProjectDetails({
             <NoSketchText>no sketch here</NoSketchText>
           )}
         </TitleWrapper>
-        <DeleteButton setEntries={setProjects} id={currentProject.id} />
+        <SettingsWrapper>
+          <SettingsButton
+            handlePopUp={() => setPopUpSettings(!popUpSettings)}
+          />
+          {popUpSettings ? <DeleteButton /> : null}
+        </SettingsWrapper>
       </Header>
       <Main>
         {currentProject.description ? (
@@ -60,6 +69,14 @@ export default function ProjectDetails({
   );
 }
 
+const SettingsWrapper = styled.div`
+  justify-self: end;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 10px 10px 0 0;
+`;
+
 const StyledImage = styled(Image)`
   object-fit: cover;
 `;
@@ -78,11 +95,13 @@ const TitleWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 0 20px;
+  order: 1;
 `;
 
 const Header = styled.header`
   width: 100vw;
+  display: grid;
 `;
 
 const Title = styled.h1`
