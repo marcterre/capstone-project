@@ -26,11 +26,16 @@ export default function AddNewView({ addNewView }) {
               id="name"
               name="name"
               type="text"
-              pattern="^[a-zA-Z0-9-][a-zA-Z0-9_. ]{1,20}"
+              pattern="^[a-zA-Z0-9öÖäÄüÜ][a-zA-Z0-9_. ß]{1,30}"
               required
             />
             <label htmlFor="description">Description:</label>
-            <textarea id="description" name="description" />
+            <textarea
+              id="description"
+              name="description"
+              placeholder="100 letters allowed"
+              maxLength={100}
+            />
             <label htmlFor="sketch">Add your sketch:</label>
             <Input type="text" name="sketch" id="sketch" />
           </LabelWrapper>
