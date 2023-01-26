@@ -2,8 +2,14 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
+import DeleteButton from "@/components/DeleteButton";
 
-export default function ProjectDetails({ views, projects, currentProject }) {
+export default function ProjectDetails({
+  views,
+  projects,
+  currentProject,
+  setProjects,
+}) {
   if (!currentProject) {
     return (
       <>
@@ -29,6 +35,7 @@ export default function ProjectDetails({ views, projects, currentProject }) {
             <NoSketchText>no sketch here</NoSketchText>
           )}
         </TitleWrapper>
+        <DeleteButton setEntries={setProjects} id={currentProject.id} />
       </Header>
       <Main>
         {currentProject.description ? (

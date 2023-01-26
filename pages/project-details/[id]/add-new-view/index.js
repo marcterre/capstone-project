@@ -42,7 +42,7 @@ export default function AddNewView({ setViews, currentProject }) {
               id="name"
               name="name"
               type="text"
-              pattern="^[a-zA-Z0-9öÖäÄüÜ][a-zA-Z0-9_. ß]{1,30}"
+              pattern="^[a-zA-Z0-9öÖäÄüÜöÖ][a-zA-Z0-9_. ß]{1,30}"
               maxLength="30"
               onChange={(event) => setCount(event.target.value.length)}
               required

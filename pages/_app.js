@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }) {
         views={views}
         projects={projects}
         setViews={setViews}
-        // addNewView={addNewView}
+        setProjects={setProjects}
         currentProject={currentProject}
       />
       <Navigation />
