@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
 import PopUpWindow from "@/components/PopUpWindow";
+import DetailsHeader from "@/components/Header";
 
 export default function ProjectDetails({
   views,
@@ -20,29 +21,21 @@ export default function ProjectDetails({
     );
   }
 
+  const { name, description, sketch } = currentProject;
+
   return (
     <>
-      <Header>
-        <TitleWrapper>
-          <Title>{currentProject.name}</Title>
-          {currentProject.sketch ? (
-            <StyledImage
-              src={currentProject.sketch}
-              alt={`here should be a sketch of your project`}
-              width="100"
-              height="100"
-            />
-          ) : (
-            <NoSketchText>no sketch here</NoSketchText>
-          )}
-        </TitleWrapper>
-        <PopUpWindow setEntries={setProjects} currentId={currentProject.id} />
-      </Header>
+      <DetailsHeader
+        name={name}
+        sketch={sketch}
+        setEntries={setProjects}
+        currentId={currentProject.id}
+      />
       <Main>
-        {currentProject.description ? (
+        {description ? (
           <DescriptionSection>
             <Subtitle>Description</Subtitle>
-            <DescriptionText>{currentProject.description}</DescriptionText>
+            <DescriptionText>{description}</DescriptionText>
           </DescriptionSection>
         ) : null}
         <section>
@@ -62,10 +55,6 @@ export default function ProjectDetails({
   );
 }
 
-const StyledImage = styled(Image)`
-  object-fit: cover;
-`;
-
 const DescriptionText = styled.p`
   overflow: scroll;
   overflow-wrap: break-word;
@@ -74,27 +63,6 @@ const DescriptionText = styled.p`
 
 const DescriptionSection = styled.section`
   height: 20vh;
-`;
-
-const TitleWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  order: 1;
-`;
-
-const Header = styled.header`
-  width: 100vw;
-  display: grid;
-`;
-
-const Title = styled.h1`
-  margin: 10px;
-  overflow-wrap: break-word;
-  overflow: hidden;
-  font-size: 1.5em;
-  width: 50vw;
 `;
 
 const Subtitle = styled.h2`
@@ -110,12 +78,4 @@ const ViewLink = styled(Link)`
   text-decoration: none;
   color: black;
   padding: 10px;
-`;
-
-const NoSketchText = styled.p`
-  border: 1px solid black;
-  width: 100px;
-  height: 100px;
-  padding: 5px;
-  text-align: center;
 `;

@@ -30,7 +30,7 @@ const SettingsWrapper = styled.div`
   display: flex;
   flex-direction: row-reverse;
   align-items: center;
-  padding: 10px 10px 0 0;
+  padding: 10px 10px;
 `;
 
 const StyledSettingsIcon = styled(SettingsIcon)`

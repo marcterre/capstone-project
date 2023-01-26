@@ -25,7 +25,7 @@ export default function ModalDeleteButton({
 
   function handleDelete(id) {
     setEntries((oldEntries) => oldEntries.filter((entry) => entry.id !== id));
-    router.push("/");
+    router.back();
   }
 
   const modalContent = showModalDelete ? (
