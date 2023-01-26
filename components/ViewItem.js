@@ -25,7 +25,7 @@ const List = styled.ul`
   list-style: none;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  padding: 0px;
+  padding: 0;
   align-content: center;
   text-align: center;
   gap: 10px;

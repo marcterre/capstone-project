@@ -26,7 +26,7 @@ export default function AddNewView({ addNewView }) {
               id="name"
               name="name"
               type="text"
-              pattern="^[a-zA-Z0-9][a-zA-Z0-9_. ]{1,20}"
+              pattern="^[a-zA-Z0-9-][a-zA-Z0-9_. ]{1,20}"
               required
             />
             <label htmlFor="description">Description:</label>

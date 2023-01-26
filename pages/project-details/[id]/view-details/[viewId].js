@@ -23,26 +23,25 @@ export default function ViewDetails({ views }) {
   return (
     <>
       <Header>
-        <Title>{name}</Title>
-      </Header>
-      <Main>
-        <section>
-          <h2>Description</h2>
-          <p>{description}</p>
-        </section>
-        <SketchSection>
-          <h2>Your sketch</h2>
+        <TitleWrapper>
+          <Title>{name}</Title>
           {sketch ? (
             <Image
               src={sketch}
-              alt="here should be a sketch of your project"
-              width="150"
-              height="150"
+              alt={`here should be a sketch of ${name}`}
+              width="100"
+              height="100"
             ></Image>
           ) : (
             <NoSketchText>no sketch here</NoSketchText>
           )}
-        </SketchSection>
+        </TitleWrapper>
+      </Header>
+      <Main>
+        <section>
+          <Subtitle>Description</Subtitle>
+          <p>{description}</p>
+        </section>
         <button type="button" onClick={() => router.back()}>
           go back
         </button>
@@ -52,8 +51,8 @@ export default function ViewDetails({ views }) {
 }
 
 const Header = styled.header`
-  position: fixed;
-  top: 0px;
+  width: 100vw;
+  display: grid;
 `;
 
 const Title = styled.h1`
@@ -61,19 +60,23 @@ const Title = styled.h1`
 `;
 
 const Main = styled.main`
-  margin: 70px 10px;
-  position: relative;
-`;
-
-const SketchSection = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  margin: 0 10px;
 `;
 
 const NoSketchText = styled.p`
   border: 1px solid black;
-  width: 150px;
+  width: 100px;
+  height: 100px;
   padding: 5px;
   text-align: center;
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
+const Subtitle = styled.h2`
+  margin: 0;
 `;

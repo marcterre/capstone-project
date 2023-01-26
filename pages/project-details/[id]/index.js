@@ -2,8 +2,14 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
+import { useRouter } from "next/router";
 
-export default function ProjectDetails({ views, projects, currentProject }) {
+export default function ProjectDetails({ views, projects }) {
+  const router = useRouter();
+  const { id } = router.query;
+
+  const currentProject = projects.find((project) => project.id === id);
+
   if (!currentProject) {
     return (
       <>
@@ -16,33 +22,33 @@ export default function ProjectDetails({ views, projects, currentProject }) {
   return (
     <>
       <Header>
-        <Title>{currentProject.name}</Title>
-      </Header>
-      <Main>
-        <section>
-          <h2>Description</h2>
-          <p>{currentProject.description}</p>
-        </section>
-        <SketchSection>
-          <h2>Your sketch</h2>
+        <TitleWrapper>
+          <Title>{currentProject.name}</Title>
           {currentProject.sketch ? (
             <Image
               src={currentProject.sketch}
-              alt="here should be a sketch of your project"
-              width="150"
-              height="150"
-            ></Image>
+              alt={`here should be a sketch of ${currentProject.sketch}`}
+              width="100"
+              height="100"
+            />
           ) : (
             <NoSketchText>no sketch here</NoSketchText>
           )}
-        </SketchSection>
+        </TitleWrapper>
+      </Header>
+      <Main>
+        <section>
+          <Subtitle>Description</Subtitle>
+          <p>{currentProject.description}</p>
+        </section>
         <section>
           <h2>Views</h2>
           <ViewLink href="/project-details/add-new-view">
             add more views
           </ViewLink>
           <ViewItem
-            views={views.filter((view) => view.projectId === currentProject.id)}
+            // views={views.filter((view) => view.projectId === currentProject.id)}
+            views={views}
             projects={projects}
             currentProject={currentProject}
           />
@@ -52,24 +58,27 @@ export default function ProjectDetails({ views, projects, currentProject }) {
   );
 }
 
+const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+`;
+
 const Header = styled.header`
-  position: fixed;
-  top: 0px;
+  width: 100vw;
+  display: grid;
 `;
 
 const Title = styled.h1`
   margin: 10px;
 `;
 
-const Main = styled.main`
-  margin: 70px 10px;
-  position: relative;
+const Subtitle = styled.h2`
+  margin: 0;
 `;
 
-const SketchSection = styled.section`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+const Main = styled.main`
+  margin: 0 10px;
 `;
 
 const ViewLink = styled(Link)`
@@ -81,7 +90,8 @@ const ViewLink = styled(Link)`
 
 const NoSketchText = styled.p`
   border: 1px solid black;
-  width: 150px;
+  width: 100px;
+  height: 100px;
   padding: 5px;
   text-align: center;
 `;

@@ -25,11 +25,15 @@ export default function CreateNewProject({ addNewProject }) {
             id="name"
             name="name"
             type="text"
-            pattern="^[a-zA-Z0-9][a-zA-Z0-9_. ]{1,20}"
+            pattern="^[a-zA-Z0-9][a-zA-Z0-9_. ß]{1,30}"
             required
           />
           <label htmlFor="description">Description:</label>
-          <textarea id="description" name="description" />
+          <textarea
+            id="description"
+            name="description"
+            pattern="^[a-zA-Z0-9][a-zA-Z0-9_. ß]{1,}"
+          />
           <label htmlFor="sketch">Add your sketch:</label>
           <Input type="text" name="sketch" id="sketch" />
           <Button type="submit">Save</Button>
