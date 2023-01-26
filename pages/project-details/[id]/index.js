@@ -37,10 +37,12 @@ export default function ProjectDetails({ views, projects }) {
         </TitleWrapper>
       </Header>
       <Main>
-        <section>
-          <Subtitle>Description</Subtitle>
-          <p>{currentProject.description}</p>
-        </section>
+        {currentProject.description ? (
+          <section>
+            <Subtitle>Description</Subtitle>
+            <DescriptionText>{currentProject.description}</DescriptionText>
+          </section>
+        ) : null}
         <section>
           <h2>Views</h2>
           <ViewLink href="/project-details/add-new-view">
@@ -57,6 +59,10 @@ export default function ProjectDetails({ views, projects }) {
     </>
   );
 }
+
+const DescriptionText = styled.p`
+  overflow: auto;
+`;
 
 const TitleWrapper = styled.div`
   display: flex;
