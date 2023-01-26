@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
-import DetailsHeader from "@/components/Header";
+import DetailsHeader from "@/components/DetailsHeader";
 
 export default function ViewDetails({ views, setViews }) {
   const router = useRouter();
@@ -27,6 +27,7 @@ export default function ViewDetails({ views, setViews }) {
         sketch={sketch}
         setEntries={setViews}
         currentId={currentView.id}
+        Entry="view"
       />
       <Main>
         {description ? (

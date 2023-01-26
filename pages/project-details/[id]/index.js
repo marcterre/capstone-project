@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
-import DetailsHeader from "@/components/Header";
+import DetailsHeader from "@/components/DetailsHeader";
 
 export default function ProjectDetails({
   views,
@@ -28,6 +28,7 @@ export default function ProjectDetails({
         sketch={sketch}
         setEntries={setProjects}
         currentId={currentProject.id}
+        Entry="project"
       />
       <Main>
         {description ? (

@@ -2,7 +2,13 @@ import styled from "styled-components";
 import Image from "next/image";
 import PopUpWindow from "./PopUpWindow";
 
-export default function DetailsHeader({ name, sketch, setEntries, currentId }) {
+export default function DetailsHeader({
+  name,
+  sketch,
+  setEntries,
+  currentId,
+  Entry,
+}) {
   return (
     <>
       <Header>
@@ -19,7 +25,11 @@ export default function DetailsHeader({ name, sketch, setEntries, currentId }) {
             <NoSketchText>no sketch here</NoSketchText>
           )}
         </TitleWrapper>
-        <PopUpWindow setEntries={setEntries} currentId={currentId} />
+        <PopUpWindow
+          setEntries={setEntries}
+          currentId={currentId}
+          Entry={Entry}
+        />
       </Header>
     </>
   );

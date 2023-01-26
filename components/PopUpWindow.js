@@ -2,7 +2,7 @@ import ModalDeleteButton from "./ModalDeleteButton";
 import SettingsButton from "./SettingsButton";
 import { useState } from "react";
 
-export default function PopUpWindow({ setEntries, currentId }) {
+export default function PopUpWindow({ setEntries, currentId, Entry }) {
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [popUpSettings, setPopUpSettings] = useState(false);
 
@@ -21,6 +21,7 @@ export default function PopUpWindow({ setEntries, currentId }) {
         currentId={currentId}
         setEntries={setEntries}
         setPopUpSettings={setPopUpSettings}
+        Entry={Entry}
       />
     </>
   );

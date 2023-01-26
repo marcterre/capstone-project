@@ -9,6 +9,7 @@ export default function ModalDeleteButton({
   currentId,
   setEntries,
   setPopUpSettings,
+  Entry,
 }) {
   const [isBrowser, setIsBrowser] = useState(false);
   const router = useRouter();
@@ -32,7 +33,7 @@ export default function ModalDeleteButton({
     <Overlay>
       <StyledModal>
         <Header></Header>
-        <h2>Do you really want to delete your project?</h2>
+        <h2>Do you really want to delete your {Entry}?</h2>
         <StyledBody>
           <StyledButton onClick={(event) => handleClose(event)}>
             No
