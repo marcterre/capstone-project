@@ -4,11 +4,11 @@ import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
 import { useRouter } from "next/router";
 
-export default function ProjectDetails({ views, projects }) {
-  const router = useRouter();
-  const { id } = router.query;
+export default function ProjectDetails({ views, projects, currentProject }) {
+  // const router = useRouter();
+  // const { id } = router.query;
 
-  const currentProject = projects.find((project) => project.id === id);
+  // const currentProject = projects.find((project) => project.id === id);
 
   if (!currentProject) {
     return (
@@ -25,9 +25,9 @@ export default function ProjectDetails({ views, projects }) {
         <TitleWrapper>
           <Title>{currentProject.name}</Title>
           {currentProject.sketch ? (
-            <Image
+            <StyledImage
               src={currentProject.sketch}
-              alt={`here should be a sketch of ${currentProject.sketch}`}
+              alt={`here should be a sketch of your project`}
               width="100"
               height="100"
             />
@@ -38,10 +38,10 @@ export default function ProjectDetails({ views, projects }) {
       </Header>
       <Main>
         {currentProject.description ? (
-          <section>
+          <DescriptionSection>
             <Subtitle>Description</Subtitle>
             <DescriptionText>{currentProject.description}</DescriptionText>
-          </section>
+          </DescriptionSection>
         ) : null}
         <section>
           <h2>Views</h2>
@@ -60,23 +60,37 @@ export default function ProjectDetails({ views, projects }) {
   );
 }
 
+const StyledImage = styled(Image)`
+  object-fit: cover;
+`;
+
 const DescriptionText = styled.p`
-  overflow: auto;
+  overflow: scroll;
+  overflow-wrap: break-word;
+  padding: 10px;
+`;
+
+const DescriptionSection = styled.section`
+  height: 20vh;
 `;
 
 const TitleWrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
 `;
 
 const Header = styled.header`
   width: 100vw;
-  display: grid;
 `;
 
 const Title = styled.h1`
   margin: 10px;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  font-size: 1.5em;
+  width: 50vw;
 `;
 
 const Subtitle = styled.h2`

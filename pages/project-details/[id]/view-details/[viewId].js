@@ -26,22 +26,25 @@ export default function ViewDetails({ views }) {
         <TitleWrapper>
           <Title>{name}</Title>
           {sketch ? (
-            <Image
+            <StyledImage
               src={sketch}
-              alt={`here should be a sketch of ${name}`}
+              alt={`here should be a sketch of your view`}
               width="100"
               height="100"
-            ></Image>
+            />
           ) : (
             <NoSketchText>no sketch here</NoSketchText>
           )}
         </TitleWrapper>
       </Header>
       <Main>
-        <section>
-          <Subtitle>Description</Subtitle>
-          <p>{description}</p>
-        </section>
+        {description ? (
+          <DescriptionSection>
+            <Subtitle>Description</Subtitle>
+            <DescriptionText>{description}</DescriptionText>
+          </DescriptionSection>
+        ) : null}
+
         <button type="button" onClick={() => router.back()}>
           go back
         </button>
@@ -50,13 +53,31 @@ export default function ViewDetails({ views }) {
   );
 }
 
+const StyledImage = styled(Image)`
+  object-fit: cover;
+`;
+
+const DescriptionText = styled.p`
+  overflow: scroll;
+  overflow-wrap: break-word;
+  padding: 10px;
+`;
+
+const DescriptionSection = styled.section`
+  height: 20vh;
+`;
+
 const Header = styled.header`
   width: 100vw;
-  display: grid;
+  padding-top: 20px;
 `;
 
 const Title = styled.h1`
   margin: 10px;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  font-size: 1.5em;
+  width: 50vw;
 `;
 
 const Main = styled.main`
@@ -73,8 +94,9 @@ const NoSketchText = styled.p`
 
 const TitleWrapper = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 20px;
 `;
 
 const Subtitle = styled.h2`

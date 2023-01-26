@@ -9,13 +9,13 @@ export default function ViewItem({ views, currentProject }) {
   return (
     <List>
       {views.map(({ name, viewId }) => (
-        <ListItem key={viewId}>
-          <Link
+        <li key={viewId}>
+          <StyledLink
             href={`/project-details/${currentProject.id}/view-details/${viewId}`}
           >
-            <div>{name}</div>
-          </Link>
-        </ListItem>
+            <Wrapper>{name}</Wrapper>
+          </StyledLink>
+        </li>
       ))}
     </List>
   );
@@ -26,13 +26,21 @@ const List = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding: 0;
-  align-content: center;
   text-align: center;
   gap: 10px;
-  margin-top: 20px;
 `;
 
-const ListItem = styled.li`
+const Wrapper = styled.div`
   padding: 10px;
   background-color: lightgrey;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  width: 40vw;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  /* text-overflow: ellipsis;
+  overflow: hidden; */
 `;

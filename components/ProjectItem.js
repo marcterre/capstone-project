@@ -9,15 +9,15 @@ export default function ProjectItem({ projects }) {
     <List>
       {projects.map((project) => (
         <ListItem key={project.id}>
-          <Link
+          <StyledLink
             href={`/project-details/${project.id}`}
             onClick={() => console.log(project.id)}
           >
-            <div>
+            <Wrapper>
               <StyledToolsIcon />
               {project.name}
-            </div>
-          </Link>
+            </Wrapper>
+          </StyledLink>
         </ListItem>
       ))}
     </List>
@@ -26,15 +26,29 @@ export default function ProjectItem({ projects }) {
 
 const List = styled.ul`
   list-style: none;
+  margin: 0;
+  padding: 0 5vw;
 `;
 
 const ListItem = styled.li`
-  border: 1px solid black;
-  width: 80vw;
+  overflow: hidden;
   margin: 10px 0;
 `;
 
 const StyledToolsIcon = styled(ToolsIcon)`
   width: 25px;
   height: 25px;
+  min-width: 25px;
+  min-height: 25px;
+`;
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+`;
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border: 1px solid black;
 `;
