@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import Image from "next/image";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
-import PopUpWindow from "@/components/PopUpWindow";
 import DetailsHeader from "@/components/Header";
 
 export default function ProjectDetails({
@@ -38,8 +36,8 @@ export default function ProjectDetails({
             <DescriptionText>{description}</DescriptionText>
           </DescriptionSection>
         ) : null}
-        <section>
-          <h2>Views</h2>
+        <ViewsSection>
+          <Subtitle>Views</Subtitle>
           <ViewLink href={`/project-details/${currentProject.id}/add-new-view`}>
             add more views
           </ViewLink>
@@ -49,7 +47,7 @@ export default function ProjectDetails({
             currentProject={currentProject}
             setViews={setViews}
           />
-        </section>
+        </ViewsSection>
       </Main>
     </>
   );
@@ -61,8 +59,13 @@ const DescriptionText = styled.p`
   padding: 10px;
 `;
 
+const ViewsSection = styled.section`
+  display: grid;
+  gap: 10px;
+`;
+
 const DescriptionSection = styled.section`
-  height: 20vh;
+  display: grid;
 `;
 
 const Subtitle = styled.h2`

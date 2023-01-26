@@ -1,21 +1,17 @@
 import styled from "styled-components";
 import Link from "next/link";
 
-// const newArray = views.filter((view) => view);
-
-// console.log(`current project: ${currentProject.id}`);
-// console.log(newArray);
 export default function ViewItem({ views, currentProject }) {
   return (
     <List>
       {views.map(({ name, viewId }) => (
-        <li key={viewId}>
+        <ListItem key={viewId}>
           <StyledLink
             href={`/project-details/${currentProject.id}/view-details/${viewId}`}
           >
             <Wrapper>{name}</Wrapper>
           </StyledLink>
-        </li>
+        </ListItem>
       ))}
     </List>
   );
@@ -26,8 +22,14 @@ const List = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding: 0;
+  margin: 0;
   text-align: center;
   gap: 10px;
+`;
+
+const ListItem = styled.li`
+  padding: 0;
+  justify-self: center;
 `;
 
 const Wrapper = styled.div`
@@ -41,6 +43,4 @@ const Wrapper = styled.div`
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
-  /* text-overflow: ellipsis;
-  overflow: hidden; */
 `;
