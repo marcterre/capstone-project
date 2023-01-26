@@ -10,14 +10,7 @@ export default function App({ Component, pageProps }) {
   const { id } = router.query;
 
   const [projects, setProjects] = useLocalStorageState("projects", {
-    defaultValue: [
-      {
-        name: "Table",
-        description: "This is a tabel",
-        id: uuidv4(),
-        views: [{ name: "front" }],
-      },
-    ],
+    defaultValue: [],
   });
 
   const [views, setViews] = useLocalStorageState("views", { defaultValue: [] });
@@ -32,16 +25,6 @@ export default function App({ Component, pageProps }) {
       ...oldProjects,
     ]);
   }
-
-  // function addNewView(newView) {
-  //   views((oldViews) => [
-  //     {
-  //       ...newView,
-  //       viewId: uuidv4(),
-  //     },
-  //     ...oldViews,
-  //   ]);
-  // }
 
   return (
     <>
