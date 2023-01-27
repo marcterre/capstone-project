@@ -14,6 +14,7 @@ export default function App({ Component, pageProps }) {
   });
 
   const [views, setViews] = useLocalStorageState("views", { defaultValue: [] });
+
   const currentProject = projects.find((project) => project.id === id);
 
   function addNewProject(newProject) {

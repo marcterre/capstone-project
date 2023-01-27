@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import PopUpWindow from "./PopUpWindow";
+import ModalDelete from "./ModalDelete";
 
 export default function DetailsHeader({
   name,
@@ -10,28 +10,28 @@ export default function DetailsHeader({
   Entry,
 }) {
   return (
-    <>
-      <Header>
-        <TitleWrapper>
-          <Title>{name}</Title>
-          {sketch ? (
-            <StyledImage
-              src={sketch}
-              alt={`here should be a sketch of your view`}
-              width="100"
-              height="100"
-            />
-          ) : (
+    <Header>
+      <TitleWrapper>
+        <Title>{name}</Title>
+        {sketch ? (
+          <StyledImage
+            src={sketch}
+            alt={`here should be a sketch of your view`}
+            width="100"
+            height="100"
+          />
+        ) : (
+          <NoSketchTextWrapper>
             <NoSketchText>no sketch here</NoSketchText>
-          )}
-        </TitleWrapper>
-        <PopUpWindow
-          setEntries={setEntries}
-          currentId={currentId}
-          Entry={Entry}
-        />
-      </Header>
-    </>
+          </NoSketchTextWrapper>
+        )}
+      </TitleWrapper>
+      <ModalDelete
+        setEntries={setEntries}
+        currentId={currentId}
+        Entry={Entry}
+      />
+    </Header>
   );
 }
 
@@ -57,12 +57,15 @@ const Title = styled.h1`
 `;
 
 const NoSketchText = styled.p`
-  border: 1px solid black;
-  width: 100px;
-  height: 100px;
   padding: 5px;
   text-align: center;
   margin: 0;
+`;
+
+const NoSketchTextWrapper = styled.div`
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
 `;
 
 const StyledImage = styled(Image)`

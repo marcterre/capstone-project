@@ -1,10 +1,8 @@
 import SettingsIcon from "@/public/settings.svg";
 import styled from "styled-components";
-import DeleteButton from "./DeleteButton";
+import BinIcon from "@/public/binIcon.svg";
 
 export default function SettingsButton({
-  setEntries,
-  id,
   toggleModalDeleteButton,
   handlePopUpSettings,
   popUpSettings,
@@ -15,11 +13,9 @@ export default function SettingsButton({
         <StyledSettingsIcon />
       </Button>
       {popUpSettings ? (
-        <DeleteButton
-          toggleModalDeleteButton={toggleModalDeleteButton}
-          setEntries={setEntries}
-          id={id}
-        />
+        <Button onClick={() => toggleModalDeleteButton()}>
+          <StyledBinIcon />
+        </Button>
       ) : null}
     </SettingsWrapper>
   );
@@ -42,4 +38,9 @@ const Button = styled.button`
   background: none;
   border: none;
   justify-self: end;
+`;
+
+const StyledBinIcon = styled(BinIcon)`
+  width: 36px;
+  height: 36px;
 `;
