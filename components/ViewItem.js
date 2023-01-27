@@ -9,7 +9,7 @@ export default function ViewItem({ views, currentProject }) {
           <StyledLink
             href={`/project-details/${currentProject.id}/view-details/${viewId}`}
           >
-            <Wrapper>{name}</Wrapper>
+            {name}
           </StyledLink>
         </ListItem>
       ))}
@@ -28,19 +28,15 @@ const List = styled.ul`
 `;
 
 const ListItem = styled.li`
-  padding: 0;
-  justify-self: center;
-`;
-
-const Wrapper = styled.div`
   padding: 10px;
-  background-color: lightgrey;
-  overflow-wrap: break-word;
-  overflow: hidden;
-  width: 40vw;
+  justify-self: center;
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
+  background-color: lightgray;
+  padding: 10px 50px;
+  overflow: hidden;
+  overflow-wrap: break-word;
 `;

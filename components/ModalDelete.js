@@ -30,7 +30,7 @@ export default function ModalDelete({ currentId, setEntries, Entry }) {
         popUpSettings={popUpSettings}
       />
       <Modal show={showModalDelete}>
-        <StyledBody>
+        <FlexWrapper>
           <h2>Do you really want to delete your {Entry}?</h2>
           <Wrapper>
             <StyledButton onClick={(event) => handleClose(event)}>
@@ -40,15 +40,14 @@ export default function ModalDelete({ currentId, setEntries, Entry }) {
               Yes
             </StyledButton>
           </Wrapper>
-        </StyledBody>
+        </FlexWrapper>
       </Modal>
     </>
   );
 }
 
 const StyledButton = styled.button`
-  width: 100px;
-  height: 50px;
+  padding: 10px 20px;
   font-size: 1.2em;
   background: none;
   border: 1px solid black;
@@ -58,7 +57,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const StyledBody = styled.body`
+const FlexWrapper = styled.div`
   background-color: rgb(250, 250, 250);
   width: 95vw;
   height: 30vh;

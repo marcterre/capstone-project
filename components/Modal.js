@@ -25,8 +25,7 @@ export default function Modal({ show, onClose, children }) {
 
 const StyledModalOverlay = styled.div`
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
   height: 100%;
   display: flex;
