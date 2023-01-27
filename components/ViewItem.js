@@ -4,12 +4,13 @@ import Link from "next/link";
 export default function ViewItem({ views, currentProject }) {
   return (
     <List>
-      {views.map(({ name, viewId }) => (
-        <ListItem key={viewId}>
+      {views.map((view) => (
+        <ListItem key={view.id}>
           <StyledLink
-            href={`/project-details/${currentProject.id}/view-details/${viewId}`}
+            href={`/project-details/${currentProject.id}/view-details/${view.id}`}
+            onClick={() => console.log(view.id)}
           >
-            {name}
+            {view.name}
           </StyledLink>
         </ListItem>
       ))}

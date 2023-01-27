@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import styled from "styled-components";
 
-export default function Modal({ show, onClose, children }) {
+export default function Modal({ show, children }) {
   const [isBrowser, setIsBrowser] = useState(false);
 
   useEffect(() => {

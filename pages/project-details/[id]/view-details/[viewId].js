@@ -7,7 +7,7 @@ export default function ViewDetails({ views, setViews }) {
   const router = useRouter();
   const { viewId } = router.query;
 
-  const currentView = views.find((view) => view.viewId === viewId);
+  const currentView = views.find((view) => view.id === viewId);
 
   if (!currentView) {
     return (

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import BinIcon from "@/public/binIcon.svg";
 
 export default function SettingsButton({
-  toggleModalDeleteButton,
+  handleToggleModalDelete,
   handlePopUpSettings,
   popUpSettings,
 }) {
@@ -13,7 +13,7 @@ export default function SettingsButton({
         <StyledSettingsIcon />
       </Button>
       {popUpSettings ? (
-        <Button onClick={() => toggleModalDeleteButton()}>
+        <Button onClick={() => handleToggleModalDelete()}>
           <StyledBinIcon />
         </Button>
       ) : null}

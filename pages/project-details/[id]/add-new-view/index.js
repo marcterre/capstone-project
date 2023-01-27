@@ -12,7 +12,7 @@ export default function AddNewView({ setViews, currentProject }) {
     setViews((oldViews) => [
       {
         ...newView,
-        viewId: uuidv4(),
+        id: uuidv4(),
         projectId: currentProject.id,
       },
       ...oldViews,

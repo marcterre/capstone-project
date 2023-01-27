@@ -25,8 +25,7 @@ export default function ModalDelete({ currentId, setEntries, Entry }) {
       <SettingsButton
         handlePopUpSettings={() => setPopUpSettings(!popUpSettings)}
         setEntries={setEntries}
-        id={currentId}
-        toggleModalDeleteButton={() => setShowModalDelete(!showModalDelete)}
+        handleToggleModalDelete={() => setShowModalDelete(!showModalDelete)}
         popUpSettings={popUpSettings}
       />
       <Modal show={showModalDelete}>
