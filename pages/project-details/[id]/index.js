@@ -28,7 +28,7 @@ export default function ProjectDetails({
         sketch={sketch}
         setEntries={setProjects}
         currentId={currentProject.id}
-        Entry="project"
+        entry="project"
       />
       <Main>
         {description ? (

@@ -1,13 +1,16 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Modal from "./Modal";
-import SettingsButton from "./SettingsButton";
-import { useState } from "react";
 
-export default function ModalDelete({ currentId, setEntries, Entry }) {
+export default function ModalDelete({
+  currentId,
+  setEntries,
+  entry,
+  setPopUpSettings,
+  setShowModalDelete,
+  showModalDelete,
+}) {
   const router = useRouter();
-  const [showModalDelete, setShowModalDelete] = useState(false);
-  const [popUpSettings, setPopUpSettings] = useState(false);
 
   function handleClose(event) {
     event.preventDefault();
@@ -21,27 +24,19 @@ export default function ModalDelete({ currentId, setEntries, Entry }) {
   }
 
   return (
-    <>
-      <SettingsButton
-        handlePopUpSettings={() => setPopUpSettings(!popUpSettings)}
-        setEntries={setEntries}
-        handleToggleModalDelete={() => setShowModalDelete(!showModalDelete)}
-        popUpSettings={popUpSettings}
-      />
-      <Modal show={showModalDelete}>
-        <FlexWrapper>
-          <h2>Do you really want to delete your {Entry}?</h2>
-          <Wrapper>
-            <StyledButton onClick={(event) => handleClose(event)}>
-              No
-            </StyledButton>
-            <StyledButton onClick={() => handleDelete(currentId)}>
-              Yes
-            </StyledButton>
-          </Wrapper>
-        </FlexWrapper>
-      </Modal>
-    </>
+    <Modal show={showModalDelete}>
+      <GridWrapper>
+        <h2>Do you really want to delete your {entry}?</h2>
+        <Wrapper>
+          <StyledButton onClick={(event) => handleClose(event)}>
+            No
+          </StyledButton>
+          <StyledButton onClick={() => handleDelete(currentId)}>
+            Yes
+          </StyledButton>
+        </Wrapper>
+      </GridWrapper>
+    </Modal>
   );
 }
 
@@ -56,7 +51,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const FlexWrapper = styled.div`
+const GridWrapper = styled.div`
   background-color: rgb(250, 250, 250);
   width: 95vw;
   height: 30vh;

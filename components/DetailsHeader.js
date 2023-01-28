@@ -1,14 +1,24 @@
 import styled from "styled-components";
 import Image from "next/image";
-import ModalDelete from "./ModalDelete";
+// import ModalDelete from "./ModalDelete";
+import SettingsButton from "./SettingsButton";
+import { useState } from "react";
+import dynamic from "next/dynamic";
+
+const DynamicModalDelete = dynamic(() => import("../components/ModalDelete"), {
+  loading: () => "Loading...",
+});
 
 export default function DetailsHeader({
   name,
   sketch,
   setEntries,
   currentId,
-  Entry,
+  entry,
 }) {
+  const [popUpSettings, setPopUpSettings] = useState(false);
+  const [showModalDelete, setShowModalDelete] = useState(false);
+
   return (
     <Header>
       <TitleWrapper>
@@ -26,10 +36,19 @@ export default function DetailsHeader({
           </NoSketchTextWrapper>
         )}
       </TitleWrapper>
-      <ModalDelete
+      <SettingsButton
+        handlePopUpSettings={() => setPopUpSettings(!popUpSettings)}
+        setEntries={setEntries}
+        handleToggleModalDelete={() => setShowModalDelete(!showModalDelete)}
+        popUpSettings={popUpSettings}
+      />
+      <DynamicModalDelete
         setEntries={setEntries}
         currentId={currentId}
-        Entry={Entry}
+        entry={entry}
+        setPopUpSettings={setPopUpSettings}
+        showModalDelete={showModalDelete}
+        setShowModalDelete={setShowModalDelete}
       />
     </Header>
   );

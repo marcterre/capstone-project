@@ -27,7 +27,7 @@ export default function ViewDetails({ views, setViews }) {
         sketch={sketch}
         setEntries={setViews}
         currentId={currentView.id}
-        Entry="view"
+        entry="view"
       />
       <Main>
         {description ? (

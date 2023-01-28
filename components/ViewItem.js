@@ -8,7 +8,6 @@ export default function ViewItem({ views, currentProject }) {
         <ListItem key={view.id}>
           <StyledLink
             href={`/project-details/${currentProject.id}/view-details/${view.id}`}
-            onClick={() => console.log(view.id)}
           >
             {view.name}
           </StyledLink>
