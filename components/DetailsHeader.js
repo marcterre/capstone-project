@@ -16,10 +16,6 @@ export default function DetailsHeader({ name, sketch, entry, handleDelete }) {
     setPopUpSettings(false);
   }
 
-  function handleShowModalDelete() {
-    setShowModalDelete(!showModalDelete);
-  }
-
   return (
     <Header>
       <TitleWrapper>
@@ -39,7 +35,7 @@ export default function DetailsHeader({ name, sketch, entry, handleDelete }) {
       </TitleWrapper>
       <SettingsButton
         handlePopUpSettings={() => setPopUpSettings(!popUpSettings)}
-        handleToggleModalDelete={handleShowModalDelete}
+        handleToggleModalDelete={() => setShowModalDelete(!showModalDelete)}
         popUpSettings={popUpSettings}
       />
       <DynamicModalDelete

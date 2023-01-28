@@ -44,7 +44,6 @@ export default function ProjectDetails({
             views={views.filter((view) => view.projectId === currentProject.id)}
             projects={projects}
             currentProject={currentProject}
-            setViews={setViews}
           />
         </ViewsSection>
       </Main>
