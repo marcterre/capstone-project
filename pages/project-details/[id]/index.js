@@ -7,8 +7,7 @@ export default function ProjectDetails({
   views,
   projects,
   currentProject,
-  setProjects,
-  setViews,
+  handleDeleteProject,
 }) {
   if (!currentProject) {
     return (
@@ -26,8 +25,7 @@ export default function ProjectDetails({
       <DetailsHeader
         name={name}
         sketch={sketch}
-        setEntries={setProjects}
-        currentId={currentProject.id}
+        handleDelete={() => handleDeleteProject(currentProject.id)}
         entry="project"
       />
       <Main>
@@ -55,7 +53,7 @@ export default function ProjectDetails({
 }
 
 const DescriptionText = styled.p`
-  overflow: scroll;
+  overflow: hidden;
   overflow-wrap: break-word;
   padding: 10px;
 `;

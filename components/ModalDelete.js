@@ -1,39 +1,19 @@
-import { useRouter } from "next/router";
 import styled from "styled-components";
 import Modal from "./Modal";
 
 export default function ModalDelete({
-  currentId,
-  setEntries,
   entry,
-  setPopUpSettings,
-  setShowModalDelete,
   showModalDelete,
+  handleClose,
+  handleDelete,
 }) {
-  const router = useRouter();
-
-  function handleClose(event) {
-    event.preventDefault();
-    setShowModalDelete(false);
-    setPopUpSettings(false);
-  }
-
-  function handleDelete(id) {
-    setEntries((oldEntries) => oldEntries.filter((entry) => entry.id !== id));
-    router.back();
-  }
-
   return (
     <Modal show={showModalDelete}>
       <GridWrapper>
         <h2>Do you really want to delete your {entry}?</h2>
         <Wrapper>
-          <StyledButton onClick={(event) => handleClose(event)}>
-            No
-          </StyledButton>
-          <StyledButton onClick={() => handleDelete(currentId)}>
-            Yes
-          </StyledButton>
+          <StyledButton onClick={handleClose}>No</StyledButton>
+          <StyledButton onClick={handleDelete}>Yes</StyledButton>
         </Wrapper>
       </GridWrapper>
     </Modal>

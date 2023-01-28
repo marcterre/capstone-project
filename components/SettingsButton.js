@@ -9,7 +9,7 @@ export default function SettingsButton({
 }) {
   return (
     <SettingsWrapper>
-      <Button onClick={() => handlePopUpSettings()}>
+      <Button onClick={handlePopUpSettings}>
         <StyledSettingsIcon />
       </Button>
       {popUpSettings ? (

@@ -3,11 +3,8 @@ import styled from "styled-components";
 import Link from "next/link";
 import DetailsHeader from "@/components/DetailsHeader";
 
-export default function ViewDetails({ views, setViews }) {
+export default function ViewDetails({ currentView, handleDeleteView }) {
   const router = useRouter();
-  const { viewId } = router.query;
-
-  const currentView = views.find((view) => view.id === viewId);
 
   if (!currentView) {
     return (
@@ -25,9 +22,8 @@ export default function ViewDetails({ views, setViews }) {
       <DetailsHeader
         name={name}
         sketch={sketch}
-        setEntries={setViews}
-        currentId={currentView.id}
         entry="view"
+        handleDelete={() => handleDeleteView(currentView.id)}
       />
       <Main>
         {description ? (

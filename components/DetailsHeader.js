@@ -1,23 +1,24 @@
 import styled from "styled-components";
 import Image from "next/image";
-// import ModalDelete from "./ModalDelete";
 import SettingsButton from "./SettingsButton";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 
-const DynamicModalDelete = dynamic(() => import("../components/ModalDelete"), {
-  loading: () => "Loading...",
-});
+const DynamicModalDelete = dynamic(() => import("../components/ModalDelete"));
 
-export default function DetailsHeader({
-  name,
-  sketch,
-  setEntries,
-  currentId,
-  entry,
-}) {
+export default function DetailsHeader({ name, sketch, entry, handleDelete }) {
   const [popUpSettings, setPopUpSettings] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
+
+  function handleClose(event) {
+    event.preventDefault();
+    setShowModalDelete(false);
+    setPopUpSettings(false);
+  }
+
+  function handleShowModalDelete() {
+    setShowModalDelete(!showModalDelete);
+  }
 
   return (
     <Header>
@@ -38,17 +39,14 @@ export default function DetailsHeader({
       </TitleWrapper>
       <SettingsButton
         handlePopUpSettings={() => setPopUpSettings(!popUpSettings)}
-        setEntries={setEntries}
-        handleToggleModalDelete={() => setShowModalDelete(!showModalDelete)}
+        handleToggleModalDelete={handleShowModalDelete}
         popUpSettings={popUpSettings}
       />
       <DynamicModalDelete
-        setEntries={setEntries}
-        currentId={currentId}
+        handleClose={handleClose}
         entry={entry}
-        setPopUpSettings={setPopUpSettings}
         showModalDelete={showModalDelete}
-        setShowModalDelete={setShowModalDelete}
+        handleDelete={handleDelete}
       />
     </Header>
   );

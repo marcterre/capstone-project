@@ -3,21 +3,10 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
-export default function AddNewView({ setViews, currentProject }) {
+export default function AddNewView({ addNewView }) {
   const router = useRouter();
   const [count, setCount] = useState(0);
   const [countDescr, setCountDescr] = useState(0);
-
-  function addNewView(newView) {
-    setViews((oldViews) => [
-      {
-        ...newView,
-        id: uuidv4(),
-        projectId: currentProject.id,
-      },
-      ...oldViews,
-    ]);
-  }
 
   function handleSubmit(event) {
     event.preventDefault();
