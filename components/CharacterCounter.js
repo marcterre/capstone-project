@@ -6,7 +6,7 @@ export default function CharacterCounter({ maxLength, counter }) {
       {counter < maxLength && counter >= 0 ? (
         <CounterLetters> {maxLength - counter} characters left</CounterLetters>
       ) : (
-        <CounterLetters>no letters left</CounterLetters>
+        <CounterLetters>no characters left</CounterLetters>
       )}
     </Wrapper>
   );

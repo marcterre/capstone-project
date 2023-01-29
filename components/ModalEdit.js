@@ -1,4 +1,3 @@
-import { Router } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
 import CharacterCounter from "./CharacterCounter";
