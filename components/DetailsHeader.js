@@ -13,6 +13,7 @@ export default function DetailsHeader({
   entry,
   handleDelete,
   currentEntry,
+  handleDetailsChanges,
 }) {
   const [popUpSettings, setPopUpSettings] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
@@ -26,6 +27,12 @@ export default function DetailsHeader({
     if (showModalEdit) {
       setShowModalEdit(false);
     }
+    setPopUpSettings(false);
+  }
+
+  function handleChanges(event) {
+    handleDetailsChanges(event);
+    setShowModalEdit(false);
     setPopUpSettings(false);
   }
 
@@ -62,6 +69,7 @@ export default function DetailsHeader({
         showModalEdit={showModalEdit}
         currentEntry={currentEntry}
         handleClose={handleClose}
+        handleChanges={handleChanges}
       />
     </Header>
   );

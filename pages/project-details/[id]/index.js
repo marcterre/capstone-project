@@ -8,6 +8,7 @@ export default function ProjectDetails({
   projects,
   currentProject,
   handleDeleteProject,
+  handleProjectDetailsChange,
 }) {
   if (!currentProject) {
     return (
@@ -28,6 +29,7 @@ export default function ProjectDetails({
         handleDelete={() => handleDeleteProject(currentProject.id)}
         entry="project"
         currentEntry={currentProject}
+        handleDetailsChanges={handleProjectDetailsChange}
       />
       <Main>
         {description ? (

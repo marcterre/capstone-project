@@ -6,13 +6,14 @@ export default function ModalDelete({
   currentEntry,
   showModalEdit,
   handleClose,
+  handleChanges,
 }) {
   const [name, setName] = useState(currentEntry.name);
   const [description, setDescription] = useState(currentEntry.description);
 
   return (
     <Modal show={showModalEdit}>
-      <Form>
+      <Form onSubmit={handleChanges}>
         <Wrapper>
           <input
             type="text"
