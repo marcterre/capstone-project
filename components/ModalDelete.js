@@ -4,8 +4,8 @@ import Modal from "./Modal";
 export default function ModalDelete({
   entry,
   showModalDelete,
-  handleClose,
   handleDelete,
+  handleClose,
 }) {
   return (
     <Modal show={showModalDelete}>

@@ -2,7 +2,11 @@ import { useState } from "react";
 import styled from "styled-components";
 import Modal from "./Modal";
 
-export default function ModalDelete({ currentEntry, showModalEdit }) {
+export default function ModalDelete({
+  currentEntry,
+  showModalEdit,
+  handleClose,
+}) {
   const [name, setName] = useState(currentEntry.name);
   const [description, setDescription] = useState(currentEntry.description);
 
@@ -30,10 +34,7 @@ export default function ModalDelete({ currentEntry, showModalEdit }) {
           />
         </Wrapper>
         <ButtonWrapper>
-          <StyledButton
-            type="button"
-            //   onClick={handleClose}
-          >
+          <StyledButton type="button" onClick={handleClose}>
             Cancel
           </StyledButton>
           <StyledButton type="submit">Save changes</StyledButton>

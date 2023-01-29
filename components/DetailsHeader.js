@@ -20,7 +20,12 @@ export default function DetailsHeader({
 
   function handleClose(event) {
     event.preventDefault();
-    setShowModalDelete(false);
+    if (showModalDelete) {
+      setShowModalDelete(false);
+    }
+    if (showModalEdit) {
+      setShowModalEdit(false);
+    }
     setPopUpSettings(false);
   }
 
@@ -48,14 +53,15 @@ export default function DetailsHeader({
         popUpSettings={popUpSettings}
       />
       <DynamicModalDelete
-        handleClose={handleClose}
         entry={entry}
         showModalDelete={showModalDelete}
         handleDelete={handleDelete}
+        handleClose={handleClose}
       />
       <DynamicModalEdit
         showModalEdit={showModalEdit}
         currentEntry={currentEntry}
+        handleClose={handleClose}
       />
     </Header>
   );
