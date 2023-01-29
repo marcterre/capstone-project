@@ -18,7 +18,7 @@ export default function AddNewView({ addNewView }) {
   return (
     <>
       <header>
-        <Title>Add a new view</Title>
+        <Title>Add a new project view</Title>
       </header>
       <main>
         <Form handleSubmit={handleSubmit} />

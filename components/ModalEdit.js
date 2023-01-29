@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import CharacterCounter from "./CharacterCounter";
 import Modal from "./Modal";
 
 export default function ModalDelete({
@@ -8,13 +9,16 @@ export default function ModalDelete({
   handleClose,
   handleChanges,
 }) {
+  const [count, setCount] = useState(0);
+  const [countDescr, setCountDescr] = useState(0);
+
   const [name, setName] = useState(currentEntry.name);
   const [description, setDescription] = useState(currentEntry.description);
 
   return (
     <Modal show={showModalEdit}>
       <Form onSubmit={handleChanges}>
-        <Wrapper>
+        <GridWrapper>
           <input
             type="text"
             name="name"
@@ -22,8 +26,10 @@ export default function ModalDelete({
             onChange={(event) => {
               setName(event.target.value);
             }}
+            maxLength="30"
             required
           />
+          <CharacterCounter maxLength={30} counter={count} />
           <input
             type="text"
             name="description"
@@ -33,7 +39,8 @@ export default function ModalDelete({
               setDescription(event.target.value);
             }}
           />
-        </Wrapper>
+          <CharacterCounter maxLength={100} counter={count} />
+        </GridWrapper>
         <ButtonWrapper>
           <StyledButton type="button" onClick={handleClose}>
             Cancel
@@ -48,21 +55,20 @@ export default function ModalDelete({
 const Form = styled.form`
   background-color: rgb(250, 250, 250);
   width: 95vw;
-  height: 70vh;
+  height: 50vh;
+  display: grid;
 `;
 
-const Wrapper = styled.div`
+const GridWrapper = styled.div`
   display: grid;
-  height: 50%;
-  padding: 50px 10px;
-  gap: 40px;
+  padding: 50px 10px 0 10px;
+  gap: 5px;
 `;
 
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
-  position: relative;
-  bottom: 0;
+  align-self: center;
 `;
 
 const StyledButton = styled.button`

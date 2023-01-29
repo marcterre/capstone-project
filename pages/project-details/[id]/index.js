@@ -39,9 +39,9 @@ export default function ProjectDetails({
           </DescriptionSection>
         ) : null}
         <ViewsSection>
-          <Subtitle>Views</Subtitle>
+          <Subtitle>Project views</Subtitle>
           <ViewLink href={`/project-details/${currentProject.id}/add-new-view`}>
-            add more views
+            add more project views
           </ViewLink>
           <ViewItem
             views={views.filter((view) => view.projectId === currentProject.id)}
