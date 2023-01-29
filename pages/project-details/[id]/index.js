@@ -1,9 +1,14 @@
 import styled from "styled-components";
-import Image from "next/image";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
+import DetailsHeader from "@/components/DetailsHeader";
 
-export default function ProjectDetails({ views, projects, currentProject }) {
+export default function ProjectDetails({
+  views,
+  projects,
+  currentProject,
+  handleDeleteProject,
+}) {
   if (!currentProject) {
     return (
       <>
@@ -13,32 +18,25 @@ export default function ProjectDetails({ views, projects, currentProject }) {
     );
   }
 
+  const { name, description, sketch } = currentProject;
+
   return (
     <>
-      <Header>
-        <TitleWrapper>
-          <Title>{currentProject.name}</Title>
-          {currentProject.sketch ? (
-            <StyledImage
-              src={currentProject.sketch}
-              alt={`here should be a sketch of your project`}
-              width="100"
-              height="100"
-            />
-          ) : (
-            <NoSketchText>no sketch here</NoSketchText>
-          )}
-        </TitleWrapper>
-      </Header>
+      <DetailsHeader
+        name={name}
+        sketch={sketch}
+        handleDelete={() => handleDeleteProject(currentProject.id)}
+        entry="project"
+      />
       <Main>
-        {currentProject.description ? (
+        {description ? (
           <DescriptionSection>
             <Subtitle>Description</Subtitle>
-            <DescriptionText>{currentProject.description}</DescriptionText>
+            <DescriptionText>{description}</DescriptionText>
           </DescriptionSection>
         ) : null}
-        <section>
-          <h2>Views</h2>
+        <ViewsSection>
+          <Subtitle>Views</Subtitle>
           <ViewLink href={`/project-details/${currentProject.id}/add-new-view`}>
             add more views
           </ViewLink>
@@ -47,43 +45,25 @@ export default function ProjectDetails({ views, projects, currentProject }) {
             projects={projects}
             currentProject={currentProject}
           />
-        </section>
+        </ViewsSection>
       </Main>
     </>
   );
 }
 
-const StyledImage = styled(Image)`
-  object-fit: cover;
-`;
-
 const DescriptionText = styled.p`
-  overflow: scroll;
+  overflow: hidden;
   overflow-wrap: break-word;
   padding: 10px;
 `;
 
+const ViewsSection = styled.section`
+  display: grid;
+  gap: 10px;
+`;
+
 const DescriptionSection = styled.section`
-  height: 20vh;
-`;
-
-const TitleWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-`;
-
-const Header = styled.header`
-  width: 100vw;
-`;
-
-const Title = styled.h1`
-  margin: 10px;
-  overflow-wrap: break-word;
-  overflow: hidden;
-  font-size: 1.5em;
-  width: 50vw;
+  display: grid;
 `;
 
 const Subtitle = styled.h2`
@@ -99,12 +79,4 @@ const ViewLink = styled(Link)`
   text-decoration: none;
   color: black;
   padding: 10px;
-`;
-
-const NoSketchText = styled.p`
-  border: 1px solid black;
-  width: 100px;
-  height: 100px;
-  padding: 5px;
-  text-align: center;
 `;

@@ -28,7 +28,7 @@ export default function CreateNewProject({ addNewProject }) {
             id="name"
             name="name"
             type="text"
-            pattern="^[a-zA-Z0-9öÖäÄüÜ][a-zA-Z0-9_. ß]{1,}"
+            pattern="^[a-zA-Z0-9äÄüÜöÖ][a-zA-Z0-9_. ß]{1,}"
             maxLength="30"
             onChange={(event) => setCount(event.target.value.length)}
             required

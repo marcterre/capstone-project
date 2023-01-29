@@ -1,13 +1,10 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import Image from "next/image";
 import Link from "next/link";
+import DetailsHeader from "@/components/DetailsHeader";
 
-export default function ViewDetails({ views }) {
+export default function ViewDetails({ currentView, handleDeleteView }) {
   const router = useRouter();
-  const { viewId } = router.query;
-
-  const currentView = views.find((view) => view.viewId === viewId);
 
   if (!currentView) {
     return (
@@ -22,21 +19,12 @@ export default function ViewDetails({ views }) {
 
   return (
     <>
-      <Header>
-        <TitleWrapper>
-          <Title>{name}</Title>
-          {sketch ? (
-            <StyledImage
-              src={sketch}
-              alt={`here should be a sketch of your view`}
-              width="100"
-              height="100"
-            />
-          ) : (
-            <NoSketchText>no sketch here</NoSketchText>
-          )}
-        </TitleWrapper>
-      </Header>
+      <DetailsHeader
+        name={name}
+        sketch={sketch}
+        entry="view"
+        handleDelete={() => handleDeleteView(currentView.id)}
+      />
       <Main>
         {description ? (
           <DescriptionSection>
@@ -53,10 +41,6 @@ export default function ViewDetails({ views }) {
   );
 }
 
-const StyledImage = styled(Image)`
-  object-fit: cover;
-`;
-
 const DescriptionText = styled.p`
   overflow: scroll;
   overflow-wrap: break-word;
@@ -67,36 +51,8 @@ const DescriptionSection = styled.section`
   height: 20vh;
 `;
 
-const Header = styled.header`
-  width: 100vw;
-  padding-top: 20px;
-`;
-
-const Title = styled.h1`
-  margin: 10px;
-  overflow-wrap: break-word;
-  overflow: hidden;
-  font-size: 1.5em;
-  width: 50vw;
-`;
-
 const Main = styled.main`
   margin: 0 10px;
-`;
-
-const NoSketchText = styled.p`
-  border: 1px solid black;
-  width: 100px;
-  height: 100px;
-  padding: 5px;
-  text-align: center;
-`;
-
-const TitleWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
 `;
 
 const Subtitle = styled.h2`

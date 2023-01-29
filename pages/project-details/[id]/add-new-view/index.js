@@ -3,21 +3,10 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 
-export default function AddNewView({ setViews, currentProject }) {
+export default function AddNewView({ addNewView }) {
   const router = useRouter();
   const [count, setCount] = useState(0);
   const [countDescr, setCountDescr] = useState(0);
-
-  function addNewView(newView) {
-    setViews((oldViews) => [
-      {
-        ...newView,
-        viewId: uuidv4(),
-        projectId: currentProject.id,
-      },
-      ...oldViews,
-    ]);
-  }
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -42,7 +31,7 @@ export default function AddNewView({ setViews, currentProject }) {
               id="name"
               name="name"
               type="text"
-              pattern="^[a-zA-Z0-9öÖäÄüÜ][a-zA-Z0-9_. ß]{1,30}"
+              pattern="^[a-zA-Z0-9öÖäÄüÜöÖ][a-zA-Z0-9_. ß]{1,30}"
               maxLength="30"
               onChange={(event) => setCount(event.target.value.length)}
               required

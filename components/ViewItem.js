@@ -1,21 +1,17 @@
 import styled from "styled-components";
 import Link from "next/link";
 
-// const newArray = views.filter((view) => view);
-
-// console.log(`current project: ${currentProject.id}`);
-// console.log(newArray);
 export default function ViewItem({ views, currentProject }) {
   return (
     <List>
-      {views.map(({ name, viewId }) => (
-        <li key={viewId}>
+      {views.map((view) => (
+        <ListItem key={view.id}>
           <StyledLink
-            href={`/project-details/${currentProject.id}/view-details/${viewId}`}
+            href={`/project-details/${currentProject.id}/view-details/${view.id}`}
           >
-            <Wrapper>{name}</Wrapper>
+            <Wrapper>{view.name} </Wrapper>
           </StyledLink>
-        </li>
+        </ListItem>
       ))}
     </List>
   );
@@ -26,21 +22,26 @@ const List = styled.ul`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   padding: 0;
+  margin: 0;
   text-align: center;
-  gap: 10px;
+  gap: 5px;
 `;
 
-const Wrapper = styled.div`
-  padding: 10px;
-  background-color: lightgrey;
-  overflow-wrap: break-word;
-  overflow: hidden;
-  width: 40vw;
+const ListItem = styled.li`
+  padding: 5px;
+  justify-self: center;
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
-  /* text-overflow: ellipsis;
-  overflow: hidden; */
+`;
+
+const Wrapper = styled.div`
+  background-color: lightgray;
+  padding: 15px 20px;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 40vw;
 `;

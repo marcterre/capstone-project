@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Link from "next/link";
-import { v4 as uuidv4 } from "uuid";
 
 import ToolsIcon from "../public/tools.svg";
 
@@ -9,10 +8,7 @@ export default function ProjectItem({ projects }) {
     <List>
       {projects.map((project) => (
         <ListItem key={project.id}>
-          <StyledLink
-            href={`/project-details/${project.id}`}
-            onClick={() => console.log(project.id)}
-          >
+          <StyledLink href={`/project-details/${project.id}`}>
             <Wrapper>
               <StyledToolsIcon />
               {project.name}
