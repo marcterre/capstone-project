@@ -1,3 +1,4 @@
+import { Router } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
 import CharacterCounter from "./CharacterCounter";
@@ -9,8 +10,8 @@ export default function ModalDelete({
   handleClose,
   handleChanges,
 }) {
-  const [count, setCount] = useState(0);
-  const [countDescr, setCountDescr] = useState(0);
+  const [count, setCount] = useState(currentEntry.name.length);
+  const [countDescr, setCountDescr] = useState(currentEntry.name.length);
 
   const [name, setName] = useState(currentEntry.name);
   const [description, setDescription] = useState(currentEntry.description);
@@ -24,6 +25,7 @@ export default function ModalDelete({
             name="name"
             value={name}
             onChange={(event) => {
+              setCount(event.target.value.length);
               setName(event.target.value);
             }}
             maxLength="30"
@@ -36,10 +38,12 @@ export default function ModalDelete({
             value={description}
             placeholder={"Enter a description"}
             onChange={(event) => {
+              setCountDescr(event.target.value.length);
               setDescription(event.target.value);
             }}
+            maxLength="100"
           />
-          <CharacterCounter maxLength={100} counter={count} />
+          <CharacterCounter maxLength={100} counter={countDescr} />
         </GridWrapper>
         <ButtonWrapper>
           <StyledButton type="button" onClick={handleClose}>

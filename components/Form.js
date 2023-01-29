@@ -9,7 +9,7 @@ export default function Form({ handleSubmit }) {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <label htmlFor="name">Name:</label>
-      <Input
+      <input
         id="name"
         name="name"
         type="text"
@@ -28,26 +28,21 @@ export default function Form({ handleSubmit }) {
       />
       <CharacterCounter maxLength={100} counter={countDescr} />
       <label htmlFor="sketch">Add your sketch:</label>
-      <Input type="text" name="sketch" id="sketch" />
+      <input type="text" name="sketch" id="sketch" />
       <Button type="submit">Save</Button>
     </StyledForm>
   );
 }
 
 const Button = styled.button`
-  position: fixed;
-  bottom: 70px;
-  right: 30px;
-  width: 100px;
-  height: 30px;
+  width: 150px;
+  height: 40px;
+  justify-self: flex-end;
+  margin: 10px 0;
 `;
 
 const StyledForm = styled.form`
   display: grid;
-  padding: 5vw;
-  gap: 1vh;
-`;
-
-const Input = styled.input`
-  overflow: hidden;
+  padding: 5vw 5vw 0 5vw;
+  gap: 5px;
 `;
