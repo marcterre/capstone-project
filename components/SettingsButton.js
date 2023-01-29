@@ -1,6 +1,7 @@
 import SettingsIcon from "@/public/settings.svg";
 import styled from "styled-components";
 import BinIcon from "@/public/binIcon.svg";
+import PencilIcon from "@/public/pencil.svg";
 
 export default function SettingsButton({
   handleToggleModalDelete,
@@ -13,9 +14,14 @@ export default function SettingsButton({
         <StyledSettingsIcon />
       </Button>
       {popUpSettings ? (
-        <Button onClick={() => handleToggleModalDelete()}>
-          <StyledBinIcon />
-        </Button>
+        <>
+          <Button onClick={() => handleToggleModalDelete()}>
+            <StyledBinIcon />
+          </Button>
+          <Button>
+            <StyledPencilIcon />
+          </Button>
+        </>
       ) : null}
     </SettingsWrapper>
   );
@@ -41,6 +47,11 @@ const Button = styled.button`
 `;
 
 const StyledBinIcon = styled(BinIcon)`
+  width: 36px;
+  height: 36px;
+`;
+
+const StyledPencilIcon = styled(PencilIcon)`
   width: 36px;
   height: 36px;
 `;
