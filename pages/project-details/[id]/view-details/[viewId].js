@@ -20,6 +20,7 @@ export default function ViewDetails({ currentView, handleDeleteView }) {
   return (
     <>
       <DetailsHeader
+        currentEntry={currentView}
         name={name}
         sketch={sketch}
         entry="view"

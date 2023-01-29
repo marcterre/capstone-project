@@ -27,6 +27,7 @@ export default function ProjectDetails({
         sketch={sketch}
         handleDelete={() => handleDeleteProject(currentProject.id)}
         entry="project"
+        currentEntry={currentProject}
       />
       <Main>
         {description ? (

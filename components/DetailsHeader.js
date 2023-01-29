@@ -5,10 +5,18 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 
 const DynamicModalDelete = dynamic(() => import("../components/ModalDelete"));
+const DynamicModalEdit = dynamic(() => import("../components/ModalEdit"));
 
-export default function DetailsHeader({ name, sketch, entry, handleDelete }) {
+export default function DetailsHeader({
+  name,
+  sketch,
+  entry,
+  handleDelete,
+  currentEntry,
+}) {
   const [popUpSettings, setPopUpSettings] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
+  const [showModalEdit, setShowModalEdit] = useState(false);
 
   function handleClose(event) {
     event.preventDefault();
@@ -36,6 +44,7 @@ export default function DetailsHeader({ name, sketch, entry, handleDelete }) {
       <SettingsButton
         handlePopUpSettings={() => setPopUpSettings(!popUpSettings)}
         handleToggleModalDelete={() => setShowModalDelete(!showModalDelete)}
+        handleToggleModalEdit={() => setShowModalEdit(!showModalEdit)}
         popUpSettings={popUpSettings}
       />
       <DynamicModalDelete
@@ -43,6 +52,10 @@ export default function DetailsHeader({ name, sketch, entry, handleDelete }) {
         entry={entry}
         showModalDelete={showModalDelete}
         handleDelete={handleDelete}
+      />
+      <DynamicModalEdit
+        showModalEdit={showModalEdit}
+        currentEntry={currentEntry}
       />
     </Header>
   );

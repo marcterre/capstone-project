@@ -5,6 +5,7 @@ import PencilIcon from "@/public/pencil.svg";
 
 export default function SettingsButton({
   handleToggleModalDelete,
+  handleToggleModalEdit,
   handlePopUpSettings,
   popUpSettings,
 }) {
@@ -18,7 +19,7 @@ export default function SettingsButton({
           <Button onClick={() => handleToggleModalDelete()}>
             <StyledBinIcon />
           </Button>
-          <Button>
+          <Button onClick={() => handleToggleModalEdit()}>
             <StyledPencilIcon />
           </Button>
         </>
