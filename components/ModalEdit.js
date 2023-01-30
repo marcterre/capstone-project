@@ -10,7 +10,9 @@ export default function ModalDelete({
   handleChanges,
 }) {
   const [count, setCount] = useState(currentEntry.name.length);
-  const [countDescr, setCountDescr] = useState(currentEntry.name.length);
+  const [countDescription, setCountDescription] = useState(
+    currentEntry.name.length
+  );
 
   const [name, setName] = useState(currentEntry.name);
   const [description, setDescription] = useState(currentEntry.description);
@@ -37,12 +39,12 @@ export default function ModalDelete({
             value={description}
             placeholder={"Enter a description"}
             onChange={(event) => {
-              setCountDescr(event.target.value.length);
+              setCountDescription(event.target.value.length);
               setDescription(event.target.value);
             }}
             maxLength="100"
           />
-          <CharacterCounter maxLength={100} counter={countDescr} />
+          <CharacterCounter maxLength={100} counter={countDescription} />
         </GridWrapper>
         <ButtonWrapper>
           <StyledButton type="button" onClick={handleClose}>
@@ -57,14 +59,14 @@ export default function ModalDelete({
 
 const Form = styled.form`
   background-color: rgb(250, 250, 250);
+  padding: 20px 0;
   width: 95vw;
-  height: 50vh;
   display: grid;
 `;
 
 const GridWrapper = styled.div`
   display: grid;
-  padding: 50px 10px 0 10px;
+  padding: 20px 10px;
   gap: 5px;
 `;
 
@@ -72,11 +74,11 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-self: center;
+  padding: 20px;
 `;
 
 const StyledButton = styled.button`
-  width: 150px;
-  height: 40px;
+  padding: 10px;
   font-size: 1.2em;
   background: none;
   border: 1px solid black;

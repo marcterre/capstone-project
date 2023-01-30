@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import Image from "next/image";
-import SettingsButton from "./SettingsButton";
+// import SettingsButton from "./SettingsButton";
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import SettingsIcon from "@/public/settings.svg";
+import BinIcon from "@/public/binIcon.svg";
+import PencilIcon from "@/public/pencil.svg";
 
-const DynamicModalDelete = dynamic(() => import("../components/ModalDelete"));
-const DynamicModalEdit = dynamic(() => import("../components/ModalEdit"));
+const ModalDelete = dynamic(() => import("../components/ModalDelete"));
+const ModalEdit = dynamic(() => import("../components/ModalEdit"));
 
 export default function DetailsHeader({
   name,
@@ -18,17 +21,6 @@ export default function DetailsHeader({
   const [popUpSettings, setPopUpSettings] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
-
-  function handleClose(event) {
-    event.preventDefault();
-    if (showModalDelete) {
-      setShowModalDelete(false);
-    }
-    if (showModalEdit) {
-      setShowModalEdit(false);
-    }
-    setPopUpSettings(false);
-  }
 
   function handleChanges(event) {
     handleDetailsChanges(event);
@@ -53,27 +45,71 @@ export default function DetailsHeader({
           </NoSketchTextWrapper>
         )}
       </TitleWrapper>
-      <SettingsButton
-        handlePopUpSettings={() => setPopUpSettings(!popUpSettings)}
-        handleToggleModalDelete={() => setShowModalDelete(!showModalDelete)}
-        handleToggleModalEdit={() => setShowModalEdit(!showModalEdit)}
-        popUpSettings={popUpSettings}
-      />
-      <DynamicModalDelete
+      <SettingsWrapper>
+        <Button onClick={() => setPopUpSettings(!popUpSettings)}>
+          <StyledSettingsIcon />
+        </Button>
+        {popUpSettings ? (
+          <>
+            <Button onClick={() => setShowModalDelete(!showModalDelete)}>
+              <StyledBinIcon />
+            </Button>
+            <Button onClick={() => setShowModalEdit(!showModalEdit)}>
+              <StyledPencilIcon />
+            </Button>
+          </>
+        ) : null}
+      </SettingsWrapper>
+      <ModalDelete
         entry={entry}
         showModalDelete={showModalDelete}
         handleDelete={handleDelete}
-        handleClose={handleClose}
+        handleClose={() => {
+          setShowModalDelete(false);
+          setPopUpSettings(false);
+        }}
       />
-      <DynamicModalEdit
+      <ModalEdit
         showModalEdit={showModalEdit}
         currentEntry={currentEntry}
-        handleClose={handleClose}
+        handleClose={() => {
+          setShowModalEdit(false);
+          setPopUpSettings(false);
+        }}
         handleChanges={handleChanges}
       />
     </Header>
   );
 }
+
+const SettingsWrapper = styled.div`
+  justify-self: end;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  padding: 10px 10px;
+`;
+
+const StyledSettingsIcon = styled(SettingsIcon)`
+  width: 36px;
+  height: 36px;
+`;
+
+const Button = styled.button`
+  background: none;
+  border: none;
+  justify-self: end;
+`;
+
+const StyledBinIcon = styled(BinIcon)`
+  width: 36px;
+  height: 36px;
+`;
+
+const StyledPencilIcon = styled(PencilIcon)`
+  width: 36px;
+  height: 36px;
+`;
 
 const Header = styled.header`
   width: 100vw;

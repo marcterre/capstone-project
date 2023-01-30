@@ -4,7 +4,7 @@ import CharacterCounter from "./CharacterCounter";
 
 export default function Form({ handleSubmit }) {
   const [count, setCount] = useState(0);
-  const [countDescr, setCountDescr] = useState(0);
+  const [countDescription, setCountDescription] = useState(0);
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -13,7 +13,7 @@ export default function Form({ handleSubmit }) {
         id="name"
         name="name"
         type="text"
-        patter="^[a-zA-Z0-9äüöÄÜÖ][a-zA-Z0-9-_ äüöÄÜÖß.] {1,}"
+        pattern="^[a-zA-Z0-9äüöÄÜÖ][a-zA-Z0-9-_ äüöÄÜÖß.] {1,}"
         maxLength="30"
         onChange={(event) => setCount(event.target.value.length)}
         required
@@ -24,9 +24,9 @@ export default function Form({ handleSubmit }) {
         id="description"
         name="description"
         maxLength="100"
-        onChange={(event) => setCountDescr(event.target.value.length)}
+        onChange={(event) => setCountDescription(event.target.value.length)}
       />
-      <CharacterCounter maxLength={100} counter={countDescr} />
+      <CharacterCounter maxLength={100} counter={countDescription} />
       <label htmlFor="sketch">Add your sketch:</label>
       <input type="text" name="sketch" id="sketch" />
       <Button type="submit">Save</Button>
