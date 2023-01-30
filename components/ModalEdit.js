@@ -25,6 +25,7 @@ export default function ModalDelete({
             type="text"
             name="name"
             value={name}
+            pattern="^[a-zA-Z0-9äüöÄÜÖ][a-zA-Z0-9-_ äüöÄÜÖß.]{1,}"
             onChange={(event) => {
               setCount(event.target.value.length);
               setName(event.target.value);

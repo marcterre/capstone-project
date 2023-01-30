@@ -13,7 +13,7 @@ export default function Form({ handleSubmit }) {
         id="name"
         name="name"
         type="text"
-        pattern="^[a-zA-Z0-9äüöÄÜÖ][a-zA-Z0-9-_ äüöÄÜÖß.] {1,}"
+        pattern="^[a-zA-Z0-9äüöÄÜÖ][a-zA-Z0-9-_ äüöÄÜÖß.]{1,}"
         maxLength="30"
         onChange={(event) => setCount(event.target.value.length)}
         required
