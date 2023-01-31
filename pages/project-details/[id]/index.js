@@ -10,7 +10,6 @@ export default function ProjectDetails({
   currentProject,
   handleDeleteProject,
   handleProjectDetailsChange,
-  handleImageChange,
 }) {
   const [projects, setProjects] = useAtom(projectsAtom);
 
@@ -22,6 +21,7 @@ export default function ProjectDetails({
       </>
     );
   }
+  console.log(currentProject.image.url);
 
   async function handleImageChangeProjects(event) {
     event.preventDefault();
@@ -42,11 +42,11 @@ export default function ProjectDetails({
       alt: "",
     };
 
-    setProjects(
+    setProjects(() =>
       projects.map((project) =>
         project.image.id === currentProject.image.id
           ? { ...project, image: { ...newImage } }
-          : project.image
+          : { ...project }
       )
     );
   }

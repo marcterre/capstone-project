@@ -5,6 +5,8 @@ import dynamic from "next/dynamic";
 import SettingsIcon from "@/public/settings.svg";
 import BinIcon from "@/public/binIcon.svg";
 import PencilIcon from "@/public/pencil.svg";
+import { useAtom } from "jotai";
+import { showModalSketchAtom } from "@/lib/atom.js";
 
 const ModalDelete = dynamic(() => import("../components/ModalDelete"));
 const ModalEdit = dynamic(() => import("../components/ModalEdit"));
@@ -22,7 +24,7 @@ export default function DetailsHeader({
   const [popUpSettings, setPopUpSettings] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
-  const [showModalSketch, setShowModalSketch] = useState(false);
+  const [showModalSketch, setShowModalSketch] = useAtom(showModalSketchAtom);
 
   function handleChanges(event) {
     handleDetailsChanges(event);
@@ -87,7 +89,7 @@ export default function DetailsHeader({
         image={image}
         handleClose={() => setShowModalSketch(false)}
         currentEntry={currentEntry}
-        handleImageChange={() => handleImageChange()}
+        handleImageChange={(event) => handleImageChange(event)}
       />
     </Header>
   );

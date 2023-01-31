@@ -1,15 +1,21 @@
 import styled from "styled-components";
 import { useRouter } from "next/router";
 import Form from "@/components/Form";
+import { useAtom } from "jotai";
+import { statusUploadAtom } from "@/lib/atom";
 
 export default function CreateNewProject({ addNewProject }) {
   const router = useRouter();
+  const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
 
   async function handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
+
+    setStatusUpload("Loading...");
+
     const response = await fetch("/api/upload", {
       method: "post",
       body: formData,
@@ -29,6 +35,7 @@ export default function CreateNewProject({ addNewProject }) {
     };
 
     addNewProject(newData);
+    setStatusUpload("");
     router.push("/");
   }
 

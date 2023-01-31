@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import { useState } from "react";
 import CharacterCounter from "./CharacterCounter";
+import { useAtom } from "jotai";
+import { statusUploadAtom } from "@/lib/atom";
 
 export default function Form({ handleSubmit }) {
   const [count, setCount] = useState(0);
   const [countDescription, setCountDescription] = useState(0);
+  const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -13,7 +16,7 @@ export default function Form({ handleSubmit }) {
         id="name"
         name="name"
         type="text"
-        pattern="^[a-zA-Z0-9äüöÄÜÖ][a-zA-Z0-9-_ äüöÄÜÖß.]{1,}"
+        pattern="^[a-zA-Z0-9äüöÄÜÖ][a-zA-Z0-9-_ äüöÄÜÖß.`'´]{1,}"
         maxLength="30"
         onChange={(event) => setCount(event.target.value.length)}
         required
@@ -30,6 +33,7 @@ export default function Form({ handleSubmit }) {
       <label htmlFor="image">Add your sketch:</label>
       <input type="file" name="imageFile" id="image" />
       <Button type="submit">Save</Button>
+      <p>{statusUpload}</p>
     </StyledForm>
   );
 }

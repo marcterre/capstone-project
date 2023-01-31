@@ -11,7 +11,6 @@ export default function ViewDetails({
   handleViewDetailsChange,
 }) {
   const router = useRouter();
-
   const [views, setViews] = useAtom(viewsAtom);
 
   if (!currentView) {
@@ -46,7 +45,7 @@ export default function ViewDetails({
       views.map((view) =>
         view.image.id === currentView.image.id
           ? { ...view, image: { ...newImage } }
-          : view.image
+          : { ...view }
       )
     );
   }
