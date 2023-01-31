@@ -3,13 +3,18 @@ import Modal from "./Modal";
 import Image from "next/image";
 import PencilIcon from "@/public/pencil.svg";
 import { useState } from "react";
+import { useAtom } from "jotai";
+import { projectsAtom, viewsAtom } from "@/lib/atom";
 
 export default function ModalDelete({
   image,
   showModalSketch,
   handleClose,
+  currentEntry,
   handleImageChange,
 }) {
+  const [views, setViews] = useAtom(viewsAtom);
+
   const [editImage, setEditImage] = useState(false);
 
   return (

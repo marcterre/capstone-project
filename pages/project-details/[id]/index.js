@@ -2,21 +2,52 @@ import styled from "styled-components";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
 import DetailsHeader from "@/components/DetailsHeader";
+import { useAtom } from "jotai";
+import { projectsAtom } from "@/lib/atom";
 
 export default function ProjectDetails({
   views,
-  projects,
   currentProject,
   handleDeleteProject,
   handleProjectDetailsChange,
   handleImageChange,
 }) {
+  const [projects, setProjects] = useAtom(projectsAtom);
+
   if (!currentProject) {
     return (
       <>
         <h1>404</h1>
         <Link href="/">Go back to your projects</Link>
       </>
+    );
+  }
+
+  async function handleImageChangeProjects(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const response = await fetch("/api/upload", {
+      method: "post",
+      body: formData,
+    });
+
+    const imageData = await response.json();
+
+    const newImage = {
+      id: imageData.public_id,
+      url: imageData.secure_url,
+      width: imageData.width,
+      height: imageData.height,
+      alt: "",
+    };
+
+    setProjects(
+      projects.map((project) =>
+        project.image.id === currentProject.image.id
+          ? { ...project, image: { ...newImage } }
+          : project.image
+      )
     );
   }
 
@@ -31,7 +62,7 @@ export default function ProjectDetails({
         entry="project"
         currentEntry={currentProject}
         handleDetailsChanges={handleProjectDetailsChange}
-        handleImageChange={handleImageChange}
+        handleImageChange={handleImageChangeProjects}
       />
       <Main>
         {description ? (

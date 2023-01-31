@@ -86,7 +86,8 @@ export default function DetailsHeader({
         showModalSketch={showModalSketch}
         image={image}
         handleClose={() => setShowModalSketch(false)}
-        handleImageChange={handleImageChange}
+        currentEntry={currentEntry}
+        handleImageChange={() => handleImageChange()}
       />
     </Header>
   );
