@@ -40,7 +40,7 @@ export default function ModalDelete({
         ) : (
           <TextWrapper>
             <p>
-              You can add a new image by clicking the <br /> <UploadIcon />{" "}
+              You can add a new image by clicking the <br /> <UploadIcon />
               <br /> below
             </p>
           </TextWrapper>

@@ -8,10 +8,7 @@ export default function ProjectItem({ projects }) {
     <List>
       {projects.map((project) => (
         <ListItem key={project.id}>
-          <StyledLink
-            href={`/project-details/${project.id}`}
-            onClick={() => console.log(project.id)}
-          >
+          <StyledLink href={`/project-details/${project.id}`}>
             <Wrapper>
               <StyledToolsIcon />
               {project.name}

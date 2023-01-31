@@ -24,8 +24,6 @@ export default function ProjectDetails({
     );
   }
 
-  console.log("current project:" + currentProject.image.id);
-
   function handleDeleteImageProjects(id) {
     setProjects(
       projects.map((project) =>

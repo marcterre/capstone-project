@@ -163,12 +163,6 @@ const NoSketchText = styled.p`
   margin: 0;
 `;
 
-const NoSketchTextWrapper = styled.div`
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-`;
-
 const ImageButton = styled.button`
   width: 100px;
   height: 100px;
