@@ -50,6 +50,32 @@ export default function App({ Component, pageProps }) {
     ]);
   }
 
+  function handleProjectDetailsChange(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    setProjects(
+      projects.map((entry) =>
+        entry.id === currentProject.id ? { ...entry, ...data } : entry
+      )
+    );
+  }
+
+  function handleViewDetailsChange(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+
+    setViews(
+      views.map((entry) =>
+        entry.id === currentView.id ? { ...entry, ...data } : entry
+      )
+    );
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -58,6 +84,8 @@ export default function App({ Component, pageProps }) {
       </Head>
       <Component
         {...pageProps}
+        handleProjectDetailsChange={handleProjectDetailsChange}
+        handleViewDetailsChange={handleViewDetailsChange}
         addNewView={addNewView}
         handleDeleteProject={handleDeleteProject}
         handleDeleteView={handleDeleteView}

@@ -24,7 +24,6 @@ const List = styled.ul`
   padding: 0;
   margin: 0;
   text-align: center;
-  gap: 5px;
 `;
 
 const ListItem = styled.li`
@@ -39,7 +38,7 @@ const StyledLink = styled(Link)`
 
 const Wrapper = styled.div`
   background-color: lightgray;
-  padding: 15px 20px;
+  padding: 10px;
   white-space: wrap;
   overflow: hidden;
   text-overflow: ellipsis;

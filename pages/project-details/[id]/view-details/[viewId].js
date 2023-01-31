@@ -3,7 +3,11 @@ import styled from "styled-components";
 import Link from "next/link";
 import DetailsHeader from "@/components/DetailsHeader";
 
-export default function ViewDetails({ currentView, handleDeleteView }) {
+export default function ViewDetails({
+  currentView,
+  handleDeleteView,
+  handleViewDetailsChange,
+}) {
   const router = useRouter();
 
   if (!currentView) {
@@ -20,10 +24,12 @@ export default function ViewDetails({ currentView, handleDeleteView }) {
   return (
     <>
       <DetailsHeader
+        currentEntry={currentView}
         name={name}
         sketch={sketch}
         entry="view"
         handleDelete={() => handleDeleteView(currentView.id)}
+        handleDetailsChanges={handleViewDetailsChange}
       />
       <Main>
         {description ? (
