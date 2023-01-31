@@ -3,6 +3,8 @@ import Modal from "./Modal";
 import Image from "next/image";
 import PencilIcon from "@/public/pencil.svg";
 import { useState } from "react";
+import { useAtom } from "jotai";
+import { statusUploadAtom } from "@/lib/atom";
 
 export default function ModalDelete({
   image,
@@ -11,14 +13,15 @@ export default function ModalDelete({
   handleImageChange,
 }) {
   const [editImage, setEditImage] = useState(false);
+  const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
 
   return (
     <Modal show={showModalSketch}>
       <GridWrapper>
-        <Wrapper>
+        <TitleWrapper>
           <h1>Your Sketch</h1>
           <StyledButton onClick={handleClose}>Close</StyledButton>
-        </Wrapper>
+        </TitleWrapper>
         <StyledImage
           src={image.url}
           alt={image.alt}
@@ -31,8 +34,11 @@ export default function ModalDelete({
           </button>
           {editImage ? (
             <form onSubmit={handleImageChange}>
-              <input type="file" name="imageFile" />
-              <button>save</button>
+              <InputWrapper>
+                <p>{statusUpload}</p>
+                <input type="file" name="imageFile" />
+                <button>save</button>
+              </InputWrapper>
             </form>
           ) : null}
         </FormWrapper>
@@ -41,9 +47,15 @@ export default function ModalDelete({
   );
 }
 
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 const FormWrapper = styled.div`
   display: flex;
-  flex-direction: row-reverse;
+  height: 20vh;
+  flex-direction: column-reverse;
 `;
 
 const StyledPencilIcon = styled(PencilIcon)`
@@ -53,8 +65,8 @@ const StyledPencilIcon = styled(PencilIcon)`
 
 const StyledImage = styled(Image)`
   object-fit: contain;
-  max-width: 95vw;
-  max-height: 80vh;
+  width: 100vw;
+  height: 70vh;
 `;
 
 const StyledButton = styled.button`
@@ -72,7 +84,7 @@ const GridWrapper = styled.div`
   display: grid;
 `;
 
-const Wrapper = styled.div`
+const TitleWrapper = styled.div`
   max-height: 10vh;
   display: flex;
   justify-content: space-evenly;

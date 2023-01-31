@@ -3,7 +3,7 @@ import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
 import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
-import { projectsAtom } from "@/lib/atom";
+import { projectsAtom, statusUploadAtom } from "@/lib/atom";
 
 export default function ProjectDetails({
   views,
@@ -12,6 +12,7 @@ export default function ProjectDetails({
   handleProjectDetailsChange,
 }) {
   const [projects, setProjects] = useAtom(projectsAtom);
+  const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
 
   if (!currentProject) {
     return (
@@ -27,6 +28,9 @@ export default function ProjectDetails({
     event.preventDefault();
 
     const formData = new FormData(event.target);
+
+    setStatusUpload("Loading...");
+
     const response = await fetch("/api/upload", {
       method: "post",
       body: formData,
@@ -49,6 +53,8 @@ export default function ProjectDetails({
           : { ...project }
       )
     );
+
+    setStatusUpload("");
   }
 
   const { name, description, image } = currentProject;
