@@ -76,6 +76,35 @@ export default function App({ Component, pageProps }) {
     );
   }
 
+  async function handleImageChange(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+    const response = await fetch("/api/upload", {
+      method: "post",
+      body: formData,
+    });
+
+    const imageData = await response.json();
+
+    const newImage = {
+      id: imageData.public_id,
+      url: imageData.secure_url,
+      width: imageData.width,
+      height: imageData.height,
+      alt: "",
+    };
+
+    setProjects(
+      projects.map((project) =>
+        project.image.id === currentProject.image.id
+          ? { ...project.image, image: { ...newImage } }
+          : project.image
+      )
+    );
+    console.log("submitted");
+  }
+
   return (
     <>
       <GlobalStyle />
@@ -86,6 +115,7 @@ export default function App({ Component, pageProps }) {
         {...pageProps}
         handleProjectDetailsChange={handleProjectDetailsChange}
         handleViewDetailsChange={handleViewDetailsChange}
+        handleImageChange={handleImageChange}
         addNewView={addNewView}
         handleDeleteProject={handleDeleteProject}
         handleDeleteView={handleDeleteView}

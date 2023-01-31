@@ -19,14 +19,14 @@ export default function ViewDetails({
     );
   }
 
-  const { name, description, sketch } = currentView;
+  const { name, description, image } = currentView;
 
   return (
     <>
       <DetailsHeader
         currentEntry={currentView}
         name={name}
-        sketch={sketch}
+        image={image}
         entry="view"
         handleDelete={() => handleDeleteView(currentView.id)}
         handleDetailsChanges={handleViewDetailsChange}

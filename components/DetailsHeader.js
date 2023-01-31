@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Image from "next/image";
-// import SettingsButton from "./SettingsButton";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import SettingsIcon from "@/public/settings.svg";
@@ -9,6 +8,7 @@ import PencilIcon from "@/public/pencil.svg";
 
 const ModalDelete = dynamic(() => import("../components/ModalDelete"));
 const ModalEdit = dynamic(() => import("../components/ModalEdit"));
+const ModalSketch = dynamic(() => import("../components/ModalSketch"));
 
 export default function DetailsHeader({
   name,
@@ -17,10 +17,12 @@ export default function DetailsHeader({
   handleDelete,
   currentEntry,
   handleDetailsChanges,
+  handleImageChange,
 }) {
   const [popUpSettings, setPopUpSettings] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
+  const [showModalSketch, setShowModalSketch] = useState(false);
 
   function handleChanges(event) {
     handleDetailsChanges(event);
@@ -33,12 +35,14 @@ export default function DetailsHeader({
       <TitleWrapper>
         <Title>{name}</Title>
         {image ? (
-          <StyledImage
-            src={image.url}
-            alt={`here should be a sketch of your view`}
-            width="100"
-            height="100"
-          />
+          <ImageButton onClick={() => setShowModalSketch(!showModalSketch)}>
+            <Image
+              src={image.url}
+              alt={`here should be a sketch of your view`}
+              width="100"
+              height="100"
+            />
+          </ImageButton>
         ) : (
           <NoSketchTextWrapper>
             <NoSketchText>no sketch here</NoSketchText>
@@ -77,6 +81,12 @@ export default function DetailsHeader({
           setPopUpSettings(false);
         }}
         handleChanges={handleChanges}
+      />
+      <ModalSketch
+        showModalSketch={showModalSketch}
+        image={image}
+        handleClose={() => setShowModalSketch(false)}
+        handleImageChange={handleImageChange}
       />
     </Header>
   );
@@ -144,6 +154,11 @@ const NoSketchTextWrapper = styled.div`
   border: 1px solid black;
 `;
 
-const StyledImage = styled(Image)`
-  object-fit: cover;
+const ImageButton = styled.button`
+  border: none;
+  background: none;
+  cursor: pointer;
+  &:hover {
+    background-color: grey;
+  }
 `;

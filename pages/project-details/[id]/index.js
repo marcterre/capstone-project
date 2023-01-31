@@ -9,6 +9,7 @@ export default function ProjectDetails({
   currentProject,
   handleDeleteProject,
   handleProjectDetailsChange,
+  handleImageChange,
 }) {
   if (!currentProject) {
     return (
@@ -30,6 +31,7 @@ export default function ProjectDetails({
         entry="project"
         currentEntry={currentProject}
         handleDetailsChanges={handleProjectDetailsChange}
+        handleImageChange={handleImageChange}
       />
       <Main>
         {description ? (
