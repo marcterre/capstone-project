@@ -1,18 +1,19 @@
 import styled from "styled-components";
 import Modal from "./Modal";
 import Image from "next/image";
-import PencilIcon from "@/public/pencil.svg";
-import { useState } from "react";
+import UploadIcon from "@/public/upload.svg";
+import BinIcon from "@/public/binIcon.svg";
 import { useAtom } from "jotai";
-import { statusUploadAtom } from "@/lib/atom";
+import { statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 
 export default function ModalDelete({
   image,
   showModalSketch,
   handleClose,
   handleImageChange,
+  handleDeleteImage,
 }) {
-  const [editImage, setEditImage] = useState(false);
+  const [editImage, setEditImage] = useAtom(showEditImageAtom);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
 
   return (
@@ -20,24 +21,47 @@ export default function ModalDelete({
       <GridWrapper>
         <TitleWrapper>
           <h1>Your Sketch</h1>
-          <StyledButton onClick={handleClose}>Close</StyledButton>
+          <StyledButton
+            onClick={() => {
+              handleClose();
+              setEditImage(false);
+            }}
+          >
+            Close
+          </StyledButton>
         </TitleWrapper>
-        <StyledImage
-          src={image.url}
-          alt={image.alt}
-          width={image.width}
-          height={image.height}
-        />
+        {image.url ? (
+          <StyledImage
+            src={image.url}
+            alt={image.alt}
+            width={image.width}
+            height={image.height}
+          />
+        ) : (
+          <TextWrapper>
+            <p>
+              You can add a new image by clicking the <br /> <UploadIcon />{" "}
+              <br /> below
+            </p>
+          </TextWrapper>
+        )}
         <FormWrapper>
-          <button onClick={() => setEditImage(!editImage)}>
-            <StyledPencilIcon />
+          <button
+            onClick={() => {
+              setEditImage(!editImage);
+            }}
+          >
+            <StyledUploadIcon />
+          </button>
+          <button onClick={handleDeleteImage}>
+            <StyledBinIcon />
           </button>
           {editImage ? (
             <form onSubmit={handleImageChange}>
               <InputWrapper>
                 <p>{statusUpload}</p>
                 <input type="file" name="imageFile" />
-                <button>save</button>
+                <button>upload</button>
               </InputWrapper>
             </form>
           ) : null}
@@ -46,6 +70,11 @@ export default function ModalDelete({
     </Modal>
   );
 }
+
+const TextWrapper = styled.div`
+  padding: 10em 2em;
+  text-align: center;
+`;
 
 const InputWrapper = styled.div`
   display: flex;
@@ -58,7 +87,12 @@ const FormWrapper = styled.div`
   flex-direction: column-reverse;
 `;
 
-const StyledPencilIcon = styled(PencilIcon)`
+const StyledUploadIcon = styled(UploadIcon)`
+  width: 36px;
+  height: 36px;
+`;
+
+const StyledBinIcon = styled(BinIcon)`
   width: 36px;
   height: 36px;
 `;

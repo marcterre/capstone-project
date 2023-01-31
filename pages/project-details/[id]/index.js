@@ -3,7 +3,7 @@ import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
 import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
-import { projectsAtom, statusUploadAtom } from "@/lib/atom";
+import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 
 export default function ProjectDetails({
   views,
@@ -13,6 +13,7 @@ export default function ProjectDetails({
 }) {
   const [projects, setProjects] = useAtom(projectsAtom);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
+  const [editImage, setEditImage] = useAtom(showEditImageAtom);
 
   if (!currentProject) {
     return (
@@ -22,7 +23,21 @@ export default function ProjectDetails({
       </>
     );
   }
-  console.log(currentProject.image.url);
+
+  console.log("current project:" + currentProject.image.id);
+
+  function handleDeleteImageProjects(id) {
+    setProjects(
+      projects.map((project) =>
+        project.image.id === id
+          ? {
+              ...project,
+              image: [project.image].filter((image) => image.id !== id),
+            }
+          : project
+      )
+    );
+  }
 
   async function handleImageChangeProjects(event) {
     event.preventDefault();
@@ -55,6 +70,7 @@ export default function ProjectDetails({
     );
 
     setStatusUpload("");
+    setEditImage(false);
   }
 
   const { name, description, image } = currentProject;
@@ -69,6 +85,9 @@ export default function ProjectDetails({
         currentEntry={currentProject}
         handleDetailsChanges={handleProjectDetailsChange}
         handleImageChange={handleImageChangeProjects}
+        handleDeleteImage={() =>
+          handleDeleteImageProjects(currentProject.image.id)
+        }
       />
       <Main>
         {description ? (

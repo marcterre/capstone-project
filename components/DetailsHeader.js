@@ -20,6 +20,7 @@ export default function DetailsHeader({
   currentEntry,
   handleDetailsChanges,
   handleImageChange,
+  handleDeleteImage,
 }) {
   const [popUpSettings, setPopUpSettings] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
@@ -36,8 +37,12 @@ export default function DetailsHeader({
     <Header>
       <TitleWrapper>
         <Title>{name}</Title>
-        {image ? (
-          <ImageButton onClick={() => setShowModalSketch(!showModalSketch)}>
+        {image.url ? (
+          <ImageButton
+            onClick={() => {
+              setShowModalSketch(!showModalSketch);
+            }}
+          >
             <Image
               src={image.url}
               alt={`here should be a sketch of your view`}
@@ -46,9 +51,13 @@ export default function DetailsHeader({
             />
           </ImageButton>
         ) : (
-          <NoSketchTextWrapper>
-            <NoSketchText>no sketch here</NoSketchText>
-          </NoSketchTextWrapper>
+          <ImageButton
+            onClick={() => {
+              setShowModalSketch(!showModalSketch);
+            }}
+          >
+            <NoSketchText>click to add a sketch</NoSketchText>
+          </ImageButton>
         )}
       </TitleWrapper>
       <SettingsWrapper>
@@ -90,6 +99,9 @@ export default function DetailsHeader({
         handleClose={() => setShowModalSketch(false)}
         currentEntry={currentEntry}
         handleImageChange={(event) => handleImageChange(event)}
+        handleDeleteImage={() => {
+          handleDeleteImage();
+        }}
       />
     </Header>
   );
@@ -158,7 +170,9 @@ const NoSketchTextWrapper = styled.div`
 `;
 
 const ImageButton = styled.button`
-  border: none;
+  width: 100px;
+  height: 100px;
+  border: 1px solid black;
   background: none;
   cursor: pointer;
   &:hover {

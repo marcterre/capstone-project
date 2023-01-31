@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
-import { viewsAtom, statusUploadAtom } from "@/lib/atom";
+import { viewsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 
 export default function ViewDetails({
   currentView,
@@ -13,6 +13,7 @@ export default function ViewDetails({
   const router = useRouter();
   const [views, setViews] = useAtom(viewsAtom);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
+  const [editImage, setEditImage] = useAtom(showEditImageAtom);
 
   if (!currentView) {
     return (
@@ -20,6 +21,19 @@ export default function ViewDetails({
         <h1>404</h1>
         <Link href="/">Go back to your projects</Link>
       </>
+    );
+  }
+
+  function handleDeleteImageViews(id) {
+    setViews(
+      views.map((view) =>
+        view.image.id === id
+          ? {
+              ...view,
+              image: [view.image].filter((image) => image.id !== id),
+            }
+          : view
+      )
     );
   }
 
@@ -54,6 +68,7 @@ export default function ViewDetails({
     );
 
     setStatusUpload("");
+    setEditImage(false);
   }
 
   const { name, description, image } = currentView;
@@ -68,6 +83,7 @@ export default function ViewDetails({
         handleDelete={() => handleDeleteView(currentView.id)}
         handleDetailsChanges={handleViewDetailsChange}
         handleImageChange={handleImageChangeViews}
+        handleDeleteImage={() => handleDeleteImageViews(currentView.image.id)}
       />
       <Main>
         {description ? (
