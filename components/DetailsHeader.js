@@ -12,7 +12,7 @@ const ModalEdit = dynamic(() => import("../components/ModalEdit"));
 
 export default function DetailsHeader({
   name,
-  sketch,
+  image,
   entry,
   handleDelete,
   currentEntry,
@@ -32,9 +32,9 @@ export default function DetailsHeader({
     <Header>
       <TitleWrapper>
         <Title>{name}</Title>
-        {sketch ? (
+        {image ? (
           <StyledImage
-            src={sketch}
+            src={image.url}
             alt={`here should be a sketch of your view`}
             width="100"
             height="100"

@@ -19,13 +19,13 @@ export default function ProjectDetails({
     );
   }
 
-  const { name, description, sketch } = currentProject;
+  const { name, description, image } = currentProject;
 
   return (
     <>
       <DetailsHeader
         name={name}
-        sketch={sketch}
+        image={image}
         handleDelete={() => handleDeleteProject(currentProject.id)}
         entry="project"
         currentEntry={currentProject}

@@ -27,8 +27,8 @@ export default function Form({ handleSubmit }) {
         onChange={(event) => setCountDescription(event.target.value.length)}
       />
       <CharacterCounter maxLength={100} counter={countDescription} />
-      <label htmlFor="sketch">Add your sketch:</label>
-      <input type="text" name="sketch" id="sketch" />
+      <label htmlFor="image">Add your sketch:</label>
+      <input type="file" name="imageFile" id="image" />
       <Button type="submit">Save</Button>
     </StyledForm>
   );
