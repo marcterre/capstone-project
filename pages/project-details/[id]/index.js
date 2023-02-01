@@ -4,6 +4,7 @@ import ViewItem from "@/components/ViewItem";
 import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
 import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
+import Materiallist from "@/components/Materiallist";
 
 export default function ProjectDetails({
   views,
@@ -105,6 +106,7 @@ export default function ProjectDetails({
             currentProject={currentProject}
           />
         </ViewsSection>
+        <Materiallist />
       </Main>
     </>
   );
