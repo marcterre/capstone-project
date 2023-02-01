@@ -32,6 +32,7 @@ export default function CreateNewProject({ addNewProject }) {
         height: imageData.height,
         alt: "",
       },
+      dimension: {},
     };
 
     addNewProject(newData);

@@ -25,6 +25,7 @@ export default function Navigation() {
 }
 
 const List = styled.ul`
+  background-color: rgb(250, 250, 250);
   position: fixed;
   bottom: 0px;
   left: 0px;

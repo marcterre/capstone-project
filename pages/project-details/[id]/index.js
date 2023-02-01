@@ -72,6 +72,17 @@ export default function ProjectDetails({
     setEditImage(false);
   }
 
+  function addNewDimensionProject(newDimension) {
+    console.log(newDimension);
+    setProjects(() =>
+      projects.map((project) =>
+        project.dimension.id === currentProject.dimension.id
+          ? { ...project, dimension: { ...newDimension } }
+          : { ...project }
+      )
+    );
+  }
+
   const { name, description, image } = currentProject;
 
   return (
@@ -106,7 +117,11 @@ export default function ProjectDetails({
             currentProject={currentProject}
           />
         </ViewsSection>
-        <Materiallist />
+        <Materiallist
+          addNewDimension={addNewDimensionProject}
+          currentEntry={currentProject}
+          entries={projects}
+        />
       </Main>
     </>
   );
