@@ -31,12 +31,14 @@ export default function ModalDelete({
           </StyledButton>
         </TitleWrapper>
         {image.url ? (
-          <StyledImage
-            src={image.url}
-            alt={image.alt}
-            width={image.width}
-            height={image.height}
-          />
+          <>
+            <StyledImage
+              src={image.url}
+              alt={image.alt}
+              width={image.width}
+              height={image.height}
+            />
+          </>
         ) : (
           <TextWrapper>
             <p>
