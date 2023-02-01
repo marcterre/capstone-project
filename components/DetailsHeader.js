@@ -113,6 +113,8 @@ export default function DetailsHeader({
 const ButtonWrapper = styled.div`
   display: grid;
   border: 1px solid black;
+  width: 100px;
+  height: 100px;
 `;
 
 const SettingsWrapper = styled.div`
@@ -172,9 +174,9 @@ const NoSketchText = styled.p`
 `;
 
 const ImageButton = styled.button`
-  /* width: 100px;
+  width: 100px;
   height: 100px;
-  border: 1px solid black; */
+  border: 1px solid black;
   background: none;
   cursor: pointer;
   &:hover {
