@@ -31,7 +31,7 @@ export default function Form({ handleSubmit }) {
       />
       <CharacterCounter maxLength={100} counter={countDescription} />
       <label htmlFor="imageFile">Add your sketch:</label>
-      <input type="file" name="imageFile" id="imageFile" />
+      <input type="file" name="imageFile" id="imageFile" required />
       <Button type="submit">Save</Button>
       <p>{statusUpload}</p>
     </StyledForm>
