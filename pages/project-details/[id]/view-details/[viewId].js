@@ -2,6 +2,8 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 import Link from "next/link";
 import DetailsHeader from "@/components/DetailsHeader";
+import { useAtom } from "jotai";
+import { viewsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 
 export default function ViewDetails({
   currentView,
@@ -9,6 +11,9 @@ export default function ViewDetails({
   handleViewDetailsChange,
 }) {
   const router = useRouter();
+  const [views, setViews] = useAtom(viewsAtom);
+  const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
+  const [editImage, setEditImage] = useAtom(showEditImageAtom);
 
   if (!currentView) {
     return (
@@ -19,17 +24,66 @@ export default function ViewDetails({
     );
   }
 
-  const { name, description, sketch } = currentView;
+  function handleDeleteImageViews(id) {
+    setViews(
+      views.map((view) =>
+        view.image.id === id
+          ? {
+              ...view,
+              image: [view.image].filter((image) => image.id !== id),
+            }
+          : view
+      )
+    );
+  }
+
+  async function handleImageChangeViews(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    setStatusUpload("Loading...");
+
+    const response = await fetch("/api/upload", {
+      method: "post",
+      body: formData,
+    });
+
+    const imageData = await response.json();
+
+    const newImage = {
+      id: imageData.public_id,
+      url: imageData.secure_url,
+      width: imageData.width,
+      height: imageData.height,
+      alt: "",
+    };
+
+    setViews(
+      views.map((view) =>
+        view.image.id === currentView.image.id
+          ? { ...view, image: { ...newImage } }
+          : { ...view }
+      )
+    );
+
+    setStatusUpload("");
+    setEditImage(false);
+  }
+
+  const { name, description, image } = currentView;
 
   return (
     <>
       <DetailsHeader
         currentEntry={currentView}
         name={name}
-        sketch={sketch}
+        image={image}
         entry="view"
         handleDelete={() => handleDeleteView(currentView.id)}
         handleDetailsChanges={handleViewDetailsChange}
+        handleImageChange={handleImageChangeViews}
+        handleDeleteImage={() => handleDeleteImageViews(currentView.image.id)}
       />
       <Main>
         {description ? (

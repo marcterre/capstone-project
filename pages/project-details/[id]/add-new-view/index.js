@@ -1,17 +1,41 @@
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import Form from "@/components/Form";
+import { useAtom } from "jotai";
+import { statusUploadAtom } from "@/lib/atom";
 
 export default function AddNewView({ addNewView }) {
   const router = useRouter();
+  const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
 
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    addNewView(data);
+    setStatusUpload("Loading...");
+
+    const response = await fetch("/api/upload", {
+      method: "post",
+      body: formData,
+    });
+
+    const imageData = await response.json();
+
+    const newData = {
+      ...data,
+      image: {
+        id: imageData.public_id,
+        url: imageData.secure_url,
+        width: imageData.width,
+        height: imageData.height,
+        alt: "",
+      },
+    };
+
+    addNewView(newData);
+    setStatusUpload("");
     router.back();
   }
 

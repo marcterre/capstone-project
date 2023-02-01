@@ -2,17 +2,16 @@ import Navigation from "@/components/Navigation";
 import GlobalStyle from "@/styles";
 import Head from "next/head";
 import { v4 as uuidv4 } from "uuid";
-import useLocalStorageState from "use-local-storage-state";
 import { useRouter } from "next/router";
+import { useAtom } from "jotai";
+import { projectsAtom, viewsAtom } from "@/lib/atom";
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   const { id, viewId } = router.query;
 
-  const [projects, setProjects] = useLocalStorageState("projects", {
-    defaultValue: [],
-  });
-  const [views, setViews] = useLocalStorageState("views", { defaultValue: [] });
+  const [projects, setProjects] = useAtom(projectsAtom);
+  const [views, setViews] = useAtom(viewsAtom);
 
   const currentProject = projects.find((project) => project.id === id);
   const currentView = views.find((view) => view.id === viewId);

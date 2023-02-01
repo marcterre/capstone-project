@@ -2,14 +2,19 @@ import styled from "styled-components";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
 import DetailsHeader from "@/components/DetailsHeader";
+import { useAtom } from "jotai";
+import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 
 export default function ProjectDetails({
   views,
-  projects,
   currentProject,
   handleDeleteProject,
   handleProjectDetailsChange,
 }) {
+  const [projects, setProjects] = useAtom(projectsAtom);
+  const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
+  const [editImage, setEditImage] = useAtom(showEditImageAtom);
+
   if (!currentProject) {
     return (
       <>
@@ -19,17 +24,68 @@ export default function ProjectDetails({
     );
   }
 
-  const { name, description, sketch } = currentProject;
+  function handleDeleteImageProjects(id) {
+    setProjects(
+      projects.map((project) =>
+        project.image.id === id
+          ? {
+              ...project,
+              image: [project.image].filter((image) => image.id !== id),
+            }
+          : project
+      )
+    );
+  }
+
+  async function handleImageChangeProjects(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    setStatusUpload("Loading...");
+
+    const response = await fetch("/api/upload", {
+      method: "post",
+      body: formData,
+    });
+
+    const imageData = await response.json();
+
+    const newImage = {
+      id: imageData.public_id,
+      url: imageData.secure_url,
+      width: imageData.width,
+      height: imageData.height,
+      alt: "",
+    };
+
+    setProjects(() =>
+      projects.map((project) =>
+        project.image.id === currentProject.image.id
+          ? { ...project, image: { ...newImage } }
+          : { ...project }
+      )
+    );
+
+    setStatusUpload("");
+    setEditImage(false);
+  }
+
+  const { name, description, image } = currentProject;
 
   return (
     <>
       <DetailsHeader
         name={name}
-        sketch={sketch}
+        image={image}
         handleDelete={() => handleDeleteProject(currentProject.id)}
         entry="project"
         currentEntry={currentProject}
         handleDetailsChanges={handleProjectDetailsChange}
+        handleImageChange={handleImageChangeProjects}
+        handleDeleteImage={() =>
+          handleDeleteImageProjects(currentProject.image.id)
+        }
       />
       <Main>
         {description ? (

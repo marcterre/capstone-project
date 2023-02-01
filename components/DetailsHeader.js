@@ -1,26 +1,31 @@
 import styled from "styled-components";
 import Image from "next/image";
-// import SettingsButton from "./SettingsButton";
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import SettingsIcon from "@/public/settings.svg";
 import BinIcon from "@/public/binIcon.svg";
 import PencilIcon from "@/public/pencil.svg";
+import { useAtom } from "jotai";
+import { showModalSketchAtom } from "@/lib/atom.js";
 
 const ModalDelete = dynamic(() => import("../components/ModalDelete"));
 const ModalEdit = dynamic(() => import("../components/ModalEdit"));
+const ModalSketch = dynamic(() => import("../components/ModalSketch"));
 
 export default function DetailsHeader({
   name,
-  sketch,
+  image,
   entry,
   handleDelete,
   currentEntry,
   handleDetailsChanges,
+  handleImageChange,
+  handleDeleteImage,
 }) {
   const [popUpSettings, setPopUpSettings] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
+  const [showModalSketch, setShowModalSketch] = useAtom(showModalSketchAtom);
 
   function handleChanges(event) {
     handleDetailsChanges(event);
@@ -32,17 +37,30 @@ export default function DetailsHeader({
     <Header>
       <TitleWrapper>
         <Title>{name}</Title>
-        {sketch ? (
-          <StyledImage
-            src={sketch}
-            alt={`here should be a sketch of your view`}
-            width="100"
-            height="100"
-          />
+        {image.url ? (
+          <ImageWrapper>
+            <Image
+              src={image.url}
+              alt={`here should be a sketch of your view`}
+              width="100"
+              height="100"
+            />
+            <ImageButton
+              onClick={() => {
+                setShowModalSketch(!showModalSketch);
+              }}
+            >
+              Click me
+            </ImageButton>
+          </ImageWrapper>
         ) : (
-          <NoSketchTextWrapper>
-            <NoSketchText>no sketch here</NoSketchText>
-          </NoSketchTextWrapper>
+          <EmptyImageButton
+            onClick={() => {
+              setShowModalSketch(!showModalSketch);
+            }}
+          >
+            <NoSketchText>click to add a sketch</NoSketchText>
+          </EmptyImageButton>
         )}
       </TitleWrapper>
       <SettingsWrapper>
@@ -78,9 +96,31 @@ export default function DetailsHeader({
         }}
         handleChanges={handleChanges}
       />
+      <ModalSketch
+        showModalSketch={showModalSketch}
+        image={image}
+        handleClose={() => setShowModalSketch(false)}
+        currentEntry={currentEntry}
+        handleImageChange={(event) => handleImageChange(event)}
+        handleDeleteImage={() => {
+          handleDeleteImage();
+        }}
+      />
     </Header>
   );
 }
+
+const ImageButton = styled.button`
+  padding: 0;
+`;
+
+const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+`;
 
 const SettingsWrapper = styled.div`
   justify-self: end;
@@ -138,12 +178,13 @@ const NoSketchText = styled.p`
   margin: 0;
 `;
 
-const NoSketchTextWrapper = styled.div`
+const EmptyImageButton = styled.button`
   width: 100px;
   height: 100px;
   border: 1px solid black;
-`;
-
-const StyledImage = styled(Image)`
-  object-fit: cover;
+  background: none;
+  cursor: pointer;
+  &:hover {
+    background-color: grey;
+  }
 `;
