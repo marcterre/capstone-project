@@ -32,6 +32,7 @@ export default function AddNewView({ addNewView }) {
         height: imageData.height,
         alt: "",
       },
+      dimensions: [],
     };
 
     addNewView(newData);

@@ -15,7 +15,7 @@ export default function Materiallist({
     onSwiped: (eventData) => console.log("User Swiped!", eventData),
     trackMouse: true,
     swipeDuration: 5000,
-    preventScrollOnSwipe: true,
+    preventScrollOnSwipe: false,
   });
 
   function handleSubmit(event) {
@@ -54,7 +54,9 @@ export default function Materiallist({
             id="name"
             name="name"
             pattern="^[a-zA-Z0-9äüöÄÜÖ][a-zA-Z0-9-_ äüöÄÜÖß.`'´]{1,}"
-            maxLength={20}
+            maxLength={15}
+            placeholder="15 characters allowed"
+            required
           />
           <label htmlFor="material">material:</label>
           <input
@@ -62,16 +64,45 @@ export default function Materiallist({
             id="material"
             name="material"
             pattern="^[a-zA-Z0-9äüöÄÜÖ][a-zA-Z0-9-_ äüöÄÜÖß.`'´]{1,}"
-            maxLength={20}
+            maxLength={15}
+            placeholder="15 characters allowed"
           />
           <label htmlFor="width">width:</label>
-          <input type="text" id="width" name="width" />
+          <input
+            type="text"
+            id="width"
+            name="width"
+            pattern="^[0-9][0-9.,]{1,}"
+            maxLength={5}
+            placeholder="5 characters allowed"
+          />
           <label htmlFor="height">height:</label>
-          <input type="text" id="height" name="height" />
+          <input
+            type="text"
+            id="height"
+            name="height"
+            pattern="^[0-9][0-9.,]{1,}"
+            maxLength={5}
+            placeholder="5 characters allowed"
+          />
           <label htmlFor="depth">depth:</label>
-          <input type="text" id="depth" name="depth" />
+          <input
+            type="text"
+            id="depth"
+            name="depth"
+            pattern="^[0-9][0-9.,]{1,}"
+            maxLength={5}
+            placeholder="5 characters allowed"
+          />
           <label htmlFor="pieces">number of pieces:</label>
-          <input type="text" id="pieces" name="pieces" />
+          <input
+            type="text"
+            id="pieces"
+            name="pieces"
+            pattern="^[0-9][0-9.,]{1,}"
+            maxLength={3}
+            placeholder="3 characters allowed"
+          />
           <label htmlFor="unit">unit of measurement</label>
           <select id="unit" name="unit">
             <option value="mm">mm</option>
@@ -84,57 +115,81 @@ export default function Materiallist({
           <button>save</button>
         </Form>
       ) : null}
-      <Table>
-        <thead>
-          <TableRow>
-            <th>p</th>
-            <th>w</th>
-            <th>h</th>
-            <th>d</th>
-            <th>unit</th>
-          </TableRow>
-        </thead>
-        <tbody>
-          {currentEntry.dimensions
-            ? currentEntry.dimensions.map((dimension) => (
-                <Fragment key={dimension.id}>
-                  <TableRow>
-                    <td>{dimension.pieces}</td>
-                    <td>{dimension.width}</td>
-                    <td>{dimension.height}</td>
-                    <td>{dimension.depth}</td>
-                    <td>{dimension.unit}</td>
-                  </TableRow>
-                  <tr>
-                    <td>name: {dimension.name}</td>
-                  </tr>
-                  <tr>
-                    <td>material: {dimension.material}</td>
-                  </tr>
-                </Fragment>
-              ))
-            : null}
-        </tbody>
-      </Table>
+      <FlexWrapper>
+        <ListHeader>p</ListHeader>
+        <ListHeader>w</ListHeader>
+        <ListHeader>h</ListHeader>
+        <ListHeader>d</ListHeader>
+        <ListHeader>unit</ListHeader>
+      </FlexWrapper>
+      <List>
+        {currentEntry.dimensions
+          ? currentEntry.dimensions.map((dimension) => (
+              <li key={dimension.id}>
+                <StyledSubList>
+                  <FlexWrapper>
+                    <ListItems>
+                      {dimension.numberOfPieces
+                        ? dimension.numberOfPieces
+                        : "-"}
+                    </ListItems>
+                    <ListItems>
+                      {dimension.width ? dimension.width : "-"}
+                    </ListItems>
+                    <ListItems>
+                      {dimension.height ? dimension.height : "-"}
+                    </ListItems>
+                    <ListItems>
+                      {dimension.depth ? dimension.depth : "-"}
+                    </ListItems>
+                    <ListItems>
+                      {dimension.unit ? dimension.unit : "-"}
+                    </ListItems>
+                  </FlexWrapper>
+                  <div>
+                    <li>name: {dimension.name}</li>
+                    {dimension.material ? (
+                      <li>material: {dimension.material}</li>
+                    ) : null}
+                  </div>
+                </StyledSubList>
+              </li>
+            ))
+          : null}
+      </List>
     </>
   );
 }
 
-const TableRowWrapper = styled.div`
-  border: 1px solid black;
-  display: grid;
+const ListHeader = styled.h3`
+  padding: 0 0.5em;
+  margin: 0;
+  padding: 0.3em 0;
 `;
 
-const Table = styled.table`
-  display: grid;
-  width: 100%;
-  padding-bottom: 10em;
+const ListItems = styled.li`
+  justify-items: center;
 `;
 
-const TableRow = styled.tr`
+const List = styled.ul`
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  padding-bottom: 5em;
+`;
+
+const StyledSubList = styled.ul`
+  margin: 0 0 0.3em 0;
+  padding: 0;
+  list-style: none;
+  padding: 0.5em 0;
+  border: 0.1em solid black;
+`;
+
+const FlexWrapper = styled.div`
   display: flex;
+  width: 100%;
   justify-content: space-evenly;
-  border-bottom: 1px solid black;
 `;
 
 const Heading = styled.h2`

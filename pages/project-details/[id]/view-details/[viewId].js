@@ -4,6 +4,7 @@ import Link from "next/link";
 import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
 import { viewsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
+import Materiallist from "@/components/Materiallist";
 
 export default function ViewDetails({
   currentView,
@@ -70,6 +71,22 @@ export default function ViewDetails({
     setStatusUpload("");
     setEditImage(false);
   }
+  console.log(views);
+
+  function addNewDimensionView(id, newDimension) {
+    setViews(
+      views.map((view) => {
+        if (view.id === id) {
+          return {
+            ...view,
+            dimensions: [...view.dimensions, newDimension],
+          };
+        } else {
+          return view;
+        }
+      })
+    );
+  }
 
   const { name, description, image } = currentView;
 
@@ -92,7 +109,12 @@ export default function ViewDetails({
             <DescriptionText>{description}</DescriptionText>
           </DescriptionSection>
         ) : null}
-
+        <Materiallist
+          addNewDimension={addNewDimensionView}
+          projectId={currentView.id}
+          currentEntry={currentView}
+          entries={views}
+        />
         <button type="button" onClick={() => router.back()}>
           go back
         </button>
