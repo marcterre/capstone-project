@@ -5,6 +5,7 @@ import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
 import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import Materiallist from "@/components/Materiallist";
+import { useRouter } from "next/router";
 
 export default function ProjectDetails({
   views,
@@ -12,6 +13,9 @@ export default function ProjectDetails({
   handleDeleteProject,
   handleProjectDetailsChange,
 }) {
+  const router = useRouter();
+  const { id } = router.query;
+
   const [projects, setProjects] = useAtom(projectsAtom);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
   const [editImage, setEditImage] = useAtom(showEditImageAtom);
@@ -72,15 +76,21 @@ export default function ProjectDetails({
     setEditImage(false);
   }
 
-  function addNewDimensionProject(newDimension) {
+  function addNewDimensionProject(id, newDimension) {
     console.log(newDimension);
-    setProjects(() =>
-      projects.map((project) =>
-        project.dimension.id === currentProject.dimension.id
-          ? { ...project, dimension: { ...newDimension } }
-          : { ...project }
-      )
+    console.log(id);
+    setProjects(
+      projects.map((project) => {
+        if (project.id === id) {
+          return {
+            ...project,
+            dimensions: [...project.dimensions, newDimension],
+          };
+        }
+      })
     );
+
+    console.log(projects);
   }
 
   const { name, description, image } = currentProject;
@@ -119,6 +129,7 @@ export default function ProjectDetails({
         </ViewsSection>
         <Materiallist
           addNewDimension={addNewDimensionProject}
+          projectId={id}
           currentEntry={currentProject}
           entries={projects}
         />

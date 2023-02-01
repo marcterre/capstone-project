@@ -1,14 +1,23 @@
 import { projectsAtom } from "@/lib/atom";
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
+import { useSwipeable } from "react-swipeable";
 
 export default function Materiallist({
   addNewDimension,
-  currentEntry,
+  projectId,
   entries,
+  currentEntry,
 }) {
   const [showAddNewDimensions, setShowAddNewDimensions] = useState(false);
+
+  const handlers = useSwipeable({
+    onSwiped: (eventData) => console.log("User Swiped!", eventData),
+    trackMouse: true,
+    swipeDuration: 5000,
+    preventScrollOnSwipe: true,
+  });
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -16,20 +25,18 @@ export default function Materiallist({
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    // const newDimension = {
-    //   ...data,
-    //   dimension: {
-    //     name: data.name,
-    //     material: data.material,
-    //     width: data.width,
-    //     height: data.height,
-    //     depth: data.depth,
-    //     numberOfPieces: data.pieces,
-    //     unit: data.unit,
-    //     id: uuidv4(),
-    //   },
-    // };
-    addNewDimension(data);
+    const newDimension = {
+      name: data.name,
+      material: data.material,
+      width: data.width,
+      height: data.height,
+      depth: data.depth,
+      numberOfPieces: data.pieces,
+      unit: data.unit,
+      id: uuidv4(),
+    };
+
+    addNewDimension(projectId, newDimension);
   }
 
   return (
@@ -78,32 +85,72 @@ export default function Materiallist({
           <button>save</button>
         </Form>
       ) : null}
-      <table>
-        <tr>
-          <th>p</th>
-          <th>name</th>
-          <th>w</th>
-          <th>h</th>
-          <th>d</th>
-          <th>unit</th>
-        </tr>
-        {entries.map((entry) => (
-          <>
-            <tr key={entry.dimension.id}>
-              <td>{entry.dimension.pieces}</td>
-              <td>{entry.dimension.name}</td>
-              <td>{entry.dimension.width}</td>
-              <td>{entry.dimension.height}</td>
-              <td>{entry.dimension.depth}</td>
-              <td>{entry.dimension.unit}</td>
-            </tr>
-            <p>material: {entry.dimension.material}</p>
-          </>
-        ))}
-      </table>
+      <Table>
+        <thead>
+          <TR>
+            <TH>p</TH>
+            <TH>name</TH>
+            <TH>w</TH>
+            <TH>h</TH>
+            <TH>d</TH>
+            <TH>unit</TH>
+          </TR>
+        </thead>
+        <tbody>
+          {currentEntry.dimensions
+            ? currentEntry.dimensions.map((dimension) => (
+                <Fragment key={dimension.id}>
+                  <TR>
+                    <TD>{dimension.pieces}</TD>
+                    <TD>{dimension.width}</TD>
+                    <TD>{dimension.height}</TD>
+                    <TD>{dimension.depth}</TD>
+                    <TD>{dimension.unit}</TD>
+
+                    <td>name: {dimension.name}</td>
+                    <td>material: {dimension.material}</td>
+                  </TR>
+                </Fragment>
+              ))
+            : null}
+        </tbody>
+      </Table>
     </>
   );
 }
+
+const P = styled.p`
+  margin: 0;
+  padding: 0.2em;
+`;
+
+const Ul = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`;
+
+const Li = styled.li`
+  margin: 0;
+  border: 1px solid black;
+`;
+
+const Table = styled.table`
+  display: grid;
+  width: 100%;
+`;
+
+const TR = styled.tr`
+  justify-self: stretch;
+`;
+
+const TD = styled.td`
+  padding: 0.5em 1em;
+`;
+
+const TH = styled.th`
+  padding: 0 1em;
+`;
 
 const Heading = styled.h2`
   margin: 0;
