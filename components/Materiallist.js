@@ -7,7 +7,6 @@ import { useSwipeable } from "react-swipeable";
 export default function Materiallist({
   addNewDimension,
   projectId,
-  entries,
   currentEntry,
 }) {
   const [showAddNewDimensions, setShowAddNewDimensions] = useState(false);
@@ -87,29 +86,31 @@ export default function Materiallist({
       ) : null}
       <Table>
         <thead>
-          <TR>
-            <TH>p</TH>
-            <TH>name</TH>
-            <TH>w</TH>
-            <TH>h</TH>
-            <TH>d</TH>
-            <TH>unit</TH>
-          </TR>
+          <TableRow>
+            <th>p</th>
+            <th>w</th>
+            <th>h</th>
+            <th>d</th>
+            <th>unit</th>
+          </TableRow>
         </thead>
         <tbody>
           {currentEntry.dimensions
             ? currentEntry.dimensions.map((dimension) => (
                 <Fragment key={dimension.id}>
-                  <TR>
-                    <TD>{dimension.pieces}</TD>
-                    <TD>{dimension.width}</TD>
-                    <TD>{dimension.height}</TD>
-                    <TD>{dimension.depth}</TD>
-                    <TD>{dimension.unit}</TD>
-
+                  <TableRow>
+                    <td>{dimension.pieces}</td>
+                    <td>{dimension.width}</td>
+                    <td>{dimension.height}</td>
+                    <td>{dimension.depth}</td>
+                    <td>{dimension.unit}</td>
+                  </TableRow>
+                  <tr>
                     <td>name: {dimension.name}</td>
+                  </tr>
+                  <tr>
                     <td>material: {dimension.material}</td>
-                  </TR>
+                  </tr>
                 </Fragment>
               ))
             : null}
@@ -119,37 +120,21 @@ export default function Materiallist({
   );
 }
 
-const P = styled.p`
-  margin: 0;
-  padding: 0.2em;
-`;
-
-const Ul = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-`;
-
-const Li = styled.li`
-  margin: 0;
+const TableRowWrapper = styled.div`
   border: 1px solid black;
+  display: grid;
 `;
 
 const Table = styled.table`
   display: grid;
   width: 100%;
+  padding-bottom: 10em;
 `;
 
-const TR = styled.tr`
-  justify-self: stretch;
-`;
-
-const TD = styled.td`
-  padding: 0.5em 1em;
-`;
-
-const TH = styled.th`
-  padding: 0 1em;
+const TableRow = styled.tr`
+  display: flex;
+  justify-content: space-evenly;
+  border-bottom: 1px solid black;
 `;
 
 const Heading = styled.h2`
@@ -173,5 +158,4 @@ const Form = styled.form`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5em;
-  padding-bottom: 5em;
 `;

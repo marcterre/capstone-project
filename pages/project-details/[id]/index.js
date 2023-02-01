@@ -77,8 +77,6 @@ export default function ProjectDetails({
   }
 
   function addNewDimensionProject(id, newDimension) {
-    console.log(newDimension);
-    console.log(id);
     setProjects(
       projects.map((project) => {
         if (project.id === id) {
@@ -86,11 +84,11 @@ export default function ProjectDetails({
             ...project,
             dimensions: [...project.dimensions, newDimension],
           };
+        } else {
+          return project;
         }
       })
     );
-
-    console.log(projects);
   }
 
   const { name, description, image } = currentProject;
