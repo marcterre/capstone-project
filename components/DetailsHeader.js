@@ -38,7 +38,7 @@ export default function DetailsHeader({
       <TitleWrapper>
         <Title>{name}</Title>
         {image.url ? (
-          <ButtonWrapper>
+          <ImageWrapper>
             <Image
               src={image.url}
               alt={`here should be a sketch of your view`}
@@ -52,15 +52,15 @@ export default function DetailsHeader({
             >
               Click me
             </ImageButton>
-          </ButtonWrapper>
+          </ImageWrapper>
         ) : (
-          <ImageButton
+          <EmptyImageButton
             onClick={() => {
               setShowModalSketch(!showModalSketch);
             }}
           >
             <NoSketchText>click to add a sketch</NoSketchText>
-          </ImageButton>
+          </EmptyImageButton>
         )}
       </TitleWrapper>
       <SettingsWrapper>
@@ -110,8 +110,13 @@ export default function DetailsHeader({
   );
 }
 
-const ButtonWrapper = styled.div`
-  display: grid;
+const ImageButton = styled.button`
+  padding: 0;
+`;
+
+const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
   border: 1px solid black;
   width: 100px;
   height: 100px;
@@ -173,7 +178,7 @@ const NoSketchText = styled.p`
   margin: 0;
 `;
 
-const ImageButton = styled.button`
+const EmptyImageButton = styled.button`
   width: 100px;
   height: 100px;
   border: 1px solid black;
