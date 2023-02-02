@@ -92,7 +92,6 @@ export default function ProjectDetails({
   }
 
   function handleDimensionDeleteProjects(id) {
-    console.log(id);
     setProjects(
       projects.map((project) => {
         if (project.id === currentProject.id) {
