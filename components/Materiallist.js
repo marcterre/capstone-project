@@ -111,16 +111,17 @@ export default function Materiallist({
           <button>save</button>
         </Form>
       ) : null}
-      <FlexWrapper>
-        <ListHeader>p</ListHeader>
-        <ListHeader>w</ListHeader>
-        <ListHeader>h</ListHeader>
-        <ListHeader>d</ListHeader>
-        <ListHeader>unit</ListHeader>
-      </FlexWrapper>
-      <List>
-        {currentEntry.dimensions
-          ? currentEntry.dimensions.map((dimension) => (
+      {currentEntry.dimensions ? (
+        <>
+          <FlexWrapper>
+            <ListHeader>p</ListHeader>
+            <ListHeader>w</ListHeader>
+            <ListHeader>h</ListHeader>
+            <ListHeader>d</ListHeader>
+            <ListHeader>unit</ListHeader>
+          </FlexWrapper>
+          <List>
+            {currentEntry.dimensions.map((dimension) => (
               <li key={dimension.id}>
                 <SwipeToDeleteItem
                   handleDimensionDelete={() =>
@@ -152,9 +153,12 @@ export default function Materiallist({
                   </StyledSubList>
                 </SwipeToDeleteItem>
               </li>
-            ))
-          : null}
-      </List>
+            ))}
+          </List>
+        </>
+      ) : (
+        <p>its empty here</p>
+      )}
     </>
   );
 }

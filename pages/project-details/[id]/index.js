@@ -148,6 +148,7 @@ export default function ProjectDetails({
             currentEntry={currentProject}
             entries={projects}
             handleDimensionDelete={handleDimensionDeleteProjects}
+            projectId={id}
           />
         ) : null}
       </Main>
