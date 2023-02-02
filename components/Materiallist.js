@@ -111,54 +111,44 @@ export default function Materiallist({
           <button>save</button>
         </Form>
       ) : null}
-      {currentEntry.dimensions ? (
-        <>
-          <FlexWrapper>
-            <ListHeader>p</ListHeader>
-            <ListHeader>w</ListHeader>
-            <ListHeader>h</ListHeader>
-            <ListHeader>d</ListHeader>
-            <ListHeader>unit</ListHeader>
-          </FlexWrapper>
-          <List>
-            {currentEntry.dimensions.map((dimension) => (
-              <li key={dimension.id}>
-                <SwipeToDeleteItem
-                  handleDimensionDelete={() =>
-                    handleDimensionDelete(dimension.id)
-                  }
-                  dimensionId={dimension.id}
-                >
-                  <StyledSubList>
-                    <Wrapper>
-                      <ListItem>
-                        name: {dimension.name}
-                        <Tooltip>ᗏ Swipe left to delete</Tooltip>
-                      </ListItem>
-                      {dimension.material ? (
-                        <ListItem>material: {dimension.material}</ListItem>
-                      ) : null}
-                    </Wrapper>
-                    <FlexWrapper>
-                      <li>
-                        {dimension.numberOfPieces
-                          ? dimension.numberOfPieces
-                          : "-"}
-                      </li>
-                      <li>{dimension.width ? dimension.width : "-"}</li>
-                      <li>{dimension.height ? dimension.height : "-"}</li>
-                      <li>{dimension.depth ? dimension.depth : "-"}</li>
-                      <li>{dimension.unit ? dimension.unit : "-"}</li>
-                    </FlexWrapper>
-                  </StyledSubList>
-                </SwipeToDeleteItem>
-              </li>
-            ))}
-          </List>
-        </>
-      ) : (
-        <p>its empty here</p>
-      )}
+      <FlexWrapper>
+        <ListHeader>p</ListHeader>
+        <ListHeader>w</ListHeader>
+        <ListHeader>h</ListHeader>
+        <ListHeader>d</ListHeader>
+        <ListHeader>unit</ListHeader>
+      </FlexWrapper>
+      <List>
+        {currentEntry.dimensions.map((dimension) => (
+          <li key={dimension.id}>
+            <SwipeToDeleteItem
+              handleDimensionDelete={() => handleDimensionDelete(dimension.id)}
+              dimensionId={dimension.id}
+            >
+              <StyledSubList>
+                <Wrapper>
+                  <ListItem>
+                    name: {dimension.name}
+                    <Tooltip>ᗏ Swipe left to delete</Tooltip>
+                  </ListItem>
+                  {dimension.material ? (
+                    <ListItem>material: {dimension.material}</ListItem>
+                  ) : null}
+                </Wrapper>
+                <FlexWrapper>
+                  <li>
+                    {dimension.numberOfPieces ? dimension.numberOfPieces : "-"}
+                  </li>
+                  <li>{dimension.width ? dimension.width : "-"}</li>
+                  <li>{dimension.height ? dimension.height : "-"}</li>
+                  <li>{dimension.depth ? dimension.depth : "-"}</li>
+                  <li>{dimension.unit ? dimension.unit : "-"}</li>
+                </FlexWrapper>
+              </StyledSubList>
+            </SwipeToDeleteItem>
+          </li>
+        ))}
+      </List>
     </>
   );
 }
