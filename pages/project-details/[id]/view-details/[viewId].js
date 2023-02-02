@@ -87,7 +87,7 @@ export default function ViewDetails({
     );
   }
 
-  function handleDimensionDeleteViews(id) {
+  function handleMateriallistDeleteViews(id) {
     setViews(
       views.map((view) => {
         if (view.id === currentView.id) {
@@ -131,7 +131,7 @@ export default function ViewDetails({
             projectId={currentView.id}
             currentEntry={currentView}
             entries={views}
-            handleDimensionDelete={handleDimensionDeleteViews}
+            handleMateriallistDelete={handleMateriallistDeleteViews}
           />
         ) : null}
         <Button type="button" onClick={() => router.back()}>

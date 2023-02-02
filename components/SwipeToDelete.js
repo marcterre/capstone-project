@@ -1,10 +1,13 @@
 import SwipeToDelete from "react-swipe-to-delete-ios";
 import BinIcon from "@/public/binIcon.svg";
 
-export default function SwipeToDeleteItem({ children, handleDimensionDelete }) {
+export default function SwipeToDeleteItem({
+  children,
+  handleMateriallistDelete,
+}) {
   return (
     <SwipeToDelete
-      onDelete={handleDimensionDelete}
+      onDelete={handleMateriallistDelete}
       height={"auto"}
       deleteThreshold={75}
       showDeleteAction={true}

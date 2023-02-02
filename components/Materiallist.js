@@ -7,7 +7,7 @@ export default function Materiallist({
   addNewDimension,
   projectId,
   currentEntry,
-  handleDimensionDelete,
+  handleMateriallistDelete,
 }) {
   const [showAddNewDimensions, setShowAddNewDimensions] = useState(false);
 
@@ -65,8 +65,8 @@ export default function Materiallist({
           />
           <label htmlFor="width">width:</label>
           <input
-            type="number"
-            step="any"
+            type="text"
+            pattern="^[0-9][0-9.,]{1,}"
             id="width"
             name="width"
             maxLength={5}
@@ -74,8 +74,8 @@ export default function Materiallist({
           />
           <label htmlFor="height">height:</label>
           <input
-            type="number"
-            step="any"
+            type="text"
+            pattern="^[0-9][0-9.,]{1,}"
             id="height"
             name="height"
             maxLength={5}
@@ -83,8 +83,8 @@ export default function Materiallist({
           />
           <label htmlFor="depth">depth:</label>
           <input
-            type="number"
-            step="any"
+            type="text"
+            pattern="^[0-9][0-9.,]{1,}"
             id="depth"
             name="depth"
             maxLength={5}
@@ -92,7 +92,8 @@ export default function Materiallist({
           />
           <label htmlFor="pieces">number of pieces:</label>
           <input
-            type="number"
+            type="text"
+            pattern="^[0-9][0-9.,]{1,}"
             id="pieces"
             name="pieces"
             maxLength={3}
@@ -121,7 +122,9 @@ export default function Materiallist({
         {currentEntry.dimensions.map((dimension) => (
           <li key={dimension.id}>
             <SwipeToDeleteItem
-              handleDimensionDelete={() => handleDimensionDelete(dimension.id)}
+              handleMateriallistDelete={() =>
+                handleMateriallistDelete(dimension.id)
+              }
               dimensionId={dimension.id}
             >
               <StyledSubList>

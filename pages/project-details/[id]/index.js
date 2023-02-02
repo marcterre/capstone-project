@@ -91,7 +91,7 @@ export default function ProjectDetails({
     );
   }
 
-  function handleDimensionDeleteProjects(id) {
+  function handleMateriallistDeleteProjects(id) {
     setProjects(
       projects.map((project) => {
         if (project.id === currentProject.id) {
@@ -147,7 +147,7 @@ export default function ProjectDetails({
             addNewDimension={addNewDimensionProject}
             currentEntry={currentProject}
             entries={projects}
-            handleDimensionDelete={handleDimensionDeleteProjects}
+            handleMateriallistDelete={handleMateriallistDeleteProjects}
             projectId={id}
           />
         ) : null}
