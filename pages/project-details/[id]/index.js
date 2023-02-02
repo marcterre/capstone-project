@@ -91,6 +91,24 @@ export default function ProjectDetails({
     );
   }
 
+  function handleDimensionDeleteProjects(id) {
+    console.log(id);
+    setProjects(
+      projects.map((project) => {
+        if (project.dimensions.id === id) {
+          return {
+            ...project,
+            dimensions: [project.dimensions].filter(
+              (dimension) => dimension.id !== id
+            ),
+          };
+        } else {
+          return project;
+        }
+      })
+    );
+  }
+
   const { name, description, image } = currentProject;
 
   return (
@@ -125,12 +143,15 @@ export default function ProjectDetails({
             currentProject={currentProject}
           />
         </ViewsSection>
-        <Materiallist
-          addNewDimension={addNewDimensionProject}
-          projectId={id}
-          currentEntry={currentProject}
-          entries={projects}
-        />
+        {currentProject.dimensions ? (
+          <Materiallist
+            addNewDimension={addNewDimensionProject}
+            projectId={id}
+            currentEntry={currentProject}
+            entries={projects}
+            handleDimensionDelete={handleDimensionDeleteProjects}
+          />
+        ) : null}
       </Main>
     </>
   );

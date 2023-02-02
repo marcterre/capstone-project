@@ -1,22 +1,17 @@
-import { projectsAtom } from "@/lib/atom";
 import { Fragment, useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import { useSwipeable } from "react-swipeable";
+import BinIcon from "@/public/binIcon.svg";
+import SwipeToDeleteItem from "./SwipeToDelete";
 
 export default function Materiallist({
   addNewDimension,
   projectId,
   currentEntry,
+  handleDimensionDelete,
 }) {
   const [showAddNewDimensions, setShowAddNewDimensions] = useState(false);
-
-  const handlers = useSwipeable({
-    onSwiped: (eventData) => console.log("User Swiped!", eventData),
-    trackMouse: true,
-    swipeDuration: 5000,
-    preventScrollOnSwipe: false,
-  });
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -36,15 +31,18 @@ export default function Materiallist({
     };
 
     addNewDimension(projectId, newDimension);
+    event.target.reset();
   }
 
   return (
     <>
       <Heading>Materiallist</Heading>
       <ButtonWrapper>
-        <Button onClick={() => setShowAddNewDimensions(!showAddNewDimensions)}>
+        <AddNewButton
+          onClick={() => setShowAddNewDimensions(!showAddNewDimensions)}
+        >
           {showAddNewDimensions ? "click to fold" : "add new dimensions"}
-        </Button>
+        </AddNewButton>
       </ButtonWrapper>
       {showAddNewDimensions ? (
         <Form onSubmit={handleSubmit}>
@@ -126,33 +124,44 @@ export default function Materiallist({
         {currentEntry.dimensions
           ? currentEntry.dimensions.map((dimension) => (
               <li key={dimension.id}>
-                <StyledSubList>
-                  <FlexWrapper>
-                    <ListItems>
-                      {dimension.numberOfPieces
-                        ? dimension.numberOfPieces
-                        : "-"}
-                    </ListItems>
-                    <ListItems>
-                      {dimension.width ? dimension.width : "-"}
-                    </ListItems>
-                    <ListItems>
-                      {dimension.height ? dimension.height : "-"}
-                    </ListItems>
-                    <ListItems>
-                      {dimension.depth ? dimension.depth : "-"}
-                    </ListItems>
-                    <ListItems>
-                      {dimension.unit ? dimension.unit : "-"}
-                    </ListItems>
-                  </FlexWrapper>
-                  <div>
-                    <li>name: {dimension.name}</li>
-                    {dimension.material ? (
-                      <li>material: {dimension.material}</li>
-                    ) : null}
-                  </div>
-                </StyledSubList>
+                <SwipeToDeleteItem
+                  handleDimensionDelete={() =>
+                    handleDimensionDelete(dimension.id)
+                  }
+                >
+                  <StyledSubList>
+                    <Wrapper>
+                      <div>
+                        <li>name: {dimension.name}</li>
+                        {dimension.material ? (
+                          <li>material: {dimension.material}</li>
+                        ) : null}
+                      </div>
+                      <DeleteButton>
+                        <BinIcon width={36} height={36} />
+                      </DeleteButton>
+                    </Wrapper>
+                    <FlexWrapper>
+                      <ListItems>
+                        {dimension.numberOfPieces
+                          ? dimension.numberOfPieces
+                          : "-"}
+                      </ListItems>
+                      <ListItems>
+                        {dimension.width ? dimension.width : "-"}
+                      </ListItems>
+                      <ListItems>
+                        {dimension.height ? dimension.height : "-"}
+                      </ListItems>
+                      <ListItems>
+                        {dimension.depth ? dimension.depth : "-"}
+                      </ListItems>
+                      <ListItems>
+                        {dimension.unit ? dimension.unit : "-"}
+                      </ListItems>
+                    </FlexWrapper>
+                  </StyledSubList>
+                </SwipeToDeleteItem>
               </li>
             ))
           : null}
@@ -160,6 +169,19 @@ export default function Materiallist({
     </>
   );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const DeleteButton = styled.button`
+  background: none;
+  border: none;
+  &:hover {
+    background-color: lightblue;
+  }
+`;
 
 const ListHeader = styled.h3`
   padding: 0 0.5em;
@@ -179,10 +201,13 @@ const List = styled.ul`
 `;
 
 const StyledSubList = styled.ul`
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 0.5em;
   margin: 0 0 0.3em 0;
   padding: 0;
   list-style: none;
-  padding: 0.5em 0;
+  padding: 0.3em;
   border: 0.1em solid black;
 `;
 
@@ -204,7 +229,7 @@ const ButtonWrapper = styled.div`
   padding: 0.5em;
 `;
 
-const Button = styled.button`
+const AddNewButton = styled.button`
   width: 90vw;
   padding: 0.3em;
 `;

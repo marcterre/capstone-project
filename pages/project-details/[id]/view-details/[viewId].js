@@ -71,7 +71,6 @@ export default function ViewDetails({
     setStatusUpload("");
     setEditImage(false);
   }
-  console.log(views);
 
   function addNewDimensionView(id, newDimension) {
     setViews(
