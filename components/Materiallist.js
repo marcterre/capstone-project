@@ -126,6 +126,7 @@ export default function Materiallist({
                   handleDimensionDelete={() =>
                     handleDimensionDelete(dimension.id)
                   }
+                  dimensionId={dimension.id}
                 >
                   <StyledSubList>
                     <Wrapper>
@@ -230,4 +231,5 @@ const Form = styled.form`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5em;
+  padding-bottom: 2em;
 `;

@@ -87,6 +87,23 @@ export default function ViewDetails({
     );
   }
 
+  function handleDimensionDeleteViews(id) {
+    setViews(
+      views.map((view) => {
+        if (view.id === currentView.id) {
+          return {
+            ...view,
+            dimensions: view.dimensions.filter(
+              (dimension) => dimension.id !== id
+            ),
+          };
+        } else {
+          return view;
+        }
+      })
+    );
+  }
+
   const { name, description, image } = currentView;
 
   return (
@@ -113,6 +130,7 @@ export default function ViewDetails({
           projectId={currentView.id}
           currentEntry={currentView}
           entries={views}
+          handleDimensionDelete={handleDimensionDeleteViews}
         />
         <Button type="button" onClick={() => router.back()}>
           go back

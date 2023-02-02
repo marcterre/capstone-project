@@ -95,10 +95,10 @@ export default function ProjectDetails({
     console.log(id);
     setProjects(
       projects.map((project) => {
-        if (project.dimensions.id === id) {
+        if (project.id === currentProject.id) {
           return {
             ...project,
-            dimensions: [project.dimensions].filter(
+            dimensions: project.dimensions.filter(
               (dimension) => dimension.id !== id
             ),
           };
@@ -146,7 +146,6 @@ export default function ProjectDetails({
         {currentProject.dimensions ? (
           <Materiallist
             addNewDimension={addNewDimensionProject}
-            projectId={id}
             currentEntry={currentProject}
             entries={projects}
             handleDimensionDelete={handleDimensionDeleteProjects}
