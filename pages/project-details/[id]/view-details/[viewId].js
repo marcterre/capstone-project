@@ -114,13 +114,20 @@ export default function ViewDetails({
           currentEntry={currentView}
           entries={views}
         />
-        <button type="button" onClick={() => router.back()}>
+        <Button type="button" onClick={() => router.back()}>
           go back
-        </button>
+        </Button>
       </Main>
     </>
   );
 }
+
+const Button = styled.button`
+  position: fixed;
+  right: 1em;
+  bottom: 5em;
+  padding: 1em;
+`;
 
 const DescriptionText = styled.p`
   overflow: scroll;
@@ -129,7 +136,7 @@ const DescriptionText = styled.p`
 `;
 
 const DescriptionSection = styled.section`
-  height: 20vh;
+  height: auto;
 `;
 
 const Main = styled.main`

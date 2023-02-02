@@ -1,15 +1,18 @@
 import SwipeToDelete from "react-swipe-to-delete-ios";
+import BinIcon from "@/public/binIcon.svg";
+import styled from "styled-components";
 
 export default function SwipeToDeleteItem({ children, handleDimensionDelete }) {
   return (
     <SwipeToDelete
-      onDelete={handleDimensionDelete} // required
-      height={100} // required
-      // optional
-      transitionDuration={250} // default
-      deleteWidth={75} // default
-      deleteText="Delete" // default
-      rtl={false} // default
+      onDelete={handleDimensionDelete}
+      height={"auto"}
+      deleteThreshold={75}
+      showDeleteAction={true}
+      transitionDuration={250}
+      deleteWidth={75}
+      deleteText={<BinIcon width={36} height={36} />}
+      rtl={false}
     >
       {children}
     </SwipeToDelete>

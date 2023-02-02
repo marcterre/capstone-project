@@ -131,34 +131,24 @@ export default function Materiallist({
                 >
                   <StyledSubList>
                     <Wrapper>
-                      <div>
-                        <li>name: {dimension.name}</li>
-                        {dimension.material ? (
-                          <li>material: {dimension.material}</li>
-                        ) : null}
-                      </div>
-                      <DeleteButton>
-                        <BinIcon width={36} height={36} />
-                      </DeleteButton>
+                      <ListItem>
+                        name: {dimension.name}
+                        <Tooltip>ᗏ Swipe left to delete</Tooltip>
+                      </ListItem>
+                      {dimension.material ? (
+                        <ListItem>material: {dimension.material}</ListItem>
+                      ) : null}
                     </Wrapper>
                     <FlexWrapper>
-                      <ListItems>
+                      <li>
                         {dimension.numberOfPieces
                           ? dimension.numberOfPieces
                           : "-"}
-                      </ListItems>
-                      <ListItems>
-                        {dimension.width ? dimension.width : "-"}
-                      </ListItems>
-                      <ListItems>
-                        {dimension.height ? dimension.height : "-"}
-                      </ListItems>
-                      <ListItems>
-                        {dimension.depth ? dimension.depth : "-"}
-                      </ListItems>
-                      <ListItems>
-                        {dimension.unit ? dimension.unit : "-"}
-                      </ListItems>
+                      </li>
+                      <li>{dimension.width ? dimension.width : "-"}</li>
+                      <li>{dimension.height ? dimension.height : "-"}</li>
+                      <li>{dimension.depth ? dimension.depth : "-"}</li>
+                      <li>{dimension.unit ? dimension.unit : "-"}</li>
                     </FlexWrapper>
                   </StyledSubList>
                 </SwipeToDeleteItem>
@@ -170,27 +160,20 @@ export default function Materiallist({
   );
 }
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
+const Tooltip = styled.span`
+  visibility: hidden;
+  text-align: end;
+  font-size: 0.8em;
 `;
 
-const DeleteButton = styled.button`
-  background: none;
-  border: none;
-  &:hover {
-    background-color: lightblue;
-  }
+const Wrapper = styled.div`
+  display: grid;
 `;
 
 const ListHeader = styled.h3`
   padding: 0 0.5em;
   margin: 0;
   padding: 0.3em 0;
-`;
-
-const ListItems = styled.li`
-  justify-items: center;
 `;
 
 const List = styled.ul`
@@ -204,11 +187,23 @@ const StyledSubList = styled.ul`
   display: flex;
   flex-direction: column-reverse;
   gap: 0.5em;
-  margin: 0 0 0.3em 0;
-  padding: 0;
   list-style: none;
-  padding: 0.3em;
+  padding: 0;
   border: 0.1em solid black;
+  background-color: white;
+  &:hover ${Tooltip} {
+    visibility: visible;
+  }
+  &:hover {
+    background-color: lightgreen;
+  }
+`;
+
+const ListItem = styled.li`
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.2em;
 `;
 
 const FlexWrapper = styled.div`
@@ -230,8 +225,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const AddNewButton = styled.button`
-  width: 90vw;
-  padding: 0.3em;
+  padding: 0.3em 7em;
 `;
 
 const Form = styled.form`
