@@ -139,7 +139,9 @@ export default function Materiallist({
                 </Wrapper>
                 <FlexWrapper>
                   <li>
-                    {dimension.numberOfPieces ? dimension.numberOfPieces : "-"}
+                    {dimension.numberOfPieces
+                      ? `${dimension.numberOfPieces}x`
+                      : "-"}
                   </li>
                   <li>{dimension.width ? dimension.width : "-"}</li>
                   <li>{dimension.height ? dimension.height : "-"}</li>
