@@ -125,13 +125,15 @@ export default function ViewDetails({
             <DescriptionText>{description}</DescriptionText>
           </DescriptionSection>
         ) : null}
-        <Materiallist
-          addNewDimension={addNewDimensionView}
-          projectId={currentView.id}
-          currentEntry={currentView}
-          entries={views}
-          handleDimensionDelete={handleDimensionDeleteViews}
-        />
+        {currentView.dimensions ? (
+          <Materiallist
+            addNewDimension={addNewDimensionView}
+            projectId={currentView.id}
+            currentEntry={currentView}
+            entries={views}
+            handleDimensionDelete={handleDimensionDeleteViews}
+          />
+        ) : null}
         <Button type="button" onClick={() => router.back()}>
           go back
         </Button>

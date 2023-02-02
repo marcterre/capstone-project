@@ -65,37 +65,36 @@ export default function Materiallist({
           />
           <label htmlFor="width">width:</label>
           <input
-            type="text"
+            type="number"
+            step="any"
             id="width"
             name="width"
-            pattern="^[0-9][0-9.,]{1,}"
             maxLength={5}
             placeholder="5 characters allowed"
           />
           <label htmlFor="height">height:</label>
           <input
-            type="text"
+            type="number"
+            step="any"
             id="height"
             name="height"
-            pattern="^[0-9][0-9.,]{1,}"
             maxLength={5}
             placeholder="5 characters allowed"
           />
           <label htmlFor="depth">depth:</label>
           <input
-            type="text"
+            type="number"
+            step="any"
             id="depth"
             name="depth"
-            pattern="^[0-9][0-9.,]{1,}"
             maxLength={5}
             placeholder="5 characters allowed"
           />
           <label htmlFor="pieces">number of pieces:</label>
           <input
-            type="text"
+            type="number"
             id="pieces"
             name="pieces"
-            pattern="^[0-9][0-9.,]{1,}"
             maxLength={3}
             placeholder="3 characters allowed"
           />

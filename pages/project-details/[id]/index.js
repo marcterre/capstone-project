@@ -151,13 +151,6 @@ export default function ProjectDetails({
             projectId={id}
           />
         ) : null}
-        {/* <ul>
-          {views.map((view) => (
-            <li key={view.dimensions.id}>
-              <p>{view.name}</p>
-            </li>
-          ))}
-        </ul> */}
       </Main>
     </>
   );
