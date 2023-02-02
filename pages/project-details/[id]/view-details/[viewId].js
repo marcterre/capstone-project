@@ -72,7 +72,7 @@ export default function ViewDetails({
     setEditImage(false);
   }
 
-  function addNewDimensionView(id, newDimension) {
+  function addNewMaterialView(id, newDimension) {
     setViews(
       views.map((view) => {
         if (view.id === id) {
@@ -127,7 +127,7 @@ export default function ViewDetails({
         ) : null}
         {currentView.dimensions ? (
           <Materiallist
-            addNewDimension={addNewDimensionView}
+            addNewMaterial={addNewMaterialView}
             projectId={currentView.id}
             currentEntry={currentView}
             entries={views}

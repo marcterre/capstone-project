@@ -4,12 +4,12 @@ import { v4 as uuidv4 } from "uuid";
 import SwipeToDeleteItem from "./SwipeToDelete";
 
 export default function Materiallist({
-  addNewDimension,
+  addNewMaterial,
   projectId,
   currentEntry,
   handleMateriallistDelete,
 }) {
-  const [showAddNewDimensions, setShowAddNewDimensions] = useState(false);
+  const [showAddNewMaterial, setShowAddNewMaterial] = useState(false);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -28,7 +28,7 @@ export default function Materiallist({
       id: uuidv4(),
     };
 
-    addNewDimension(projectId, newDimension);
+    addNewMaterial(projectId, newDimension);
     event.target.reset();
   }
 
@@ -37,12 +37,12 @@ export default function Materiallist({
       <Heading>Materiallist</Heading>
       <ButtonWrapper>
         <AddNewButton
-          onClick={() => setShowAddNewDimensions(!showAddNewDimensions)}
+          onClick={() => setShowAddNewMaterial(!showAddNewMaterial)}
         >
-          {showAddNewDimensions ? "click to fold" : "add new dimensions"}
+          {showAddNewMaterial ? "click to fold" : "add new dimensions"}
         </AddNewButton>
       </ButtonWrapper>
-      {showAddNewDimensions ? (
+      {showAddNewMaterial ? (
         <Form onSubmit={handleSubmit}>
           <label htmlFor="name">name:</label>
           <input

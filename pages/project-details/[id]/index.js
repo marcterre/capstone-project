@@ -76,7 +76,7 @@ export default function ProjectDetails({
     setEditImage(false);
   }
 
-  function addNewDimensionProject(id, newDimension) {
+  function addNewMaterialProject(id, newDimension) {
     setProjects(
       projects.map((project) => {
         if (project.id === id) {
@@ -144,7 +144,7 @@ export default function ProjectDetails({
         </ViewsSection>
         {currentProject.dimensions ? (
           <Materiallist
-            addNewDimension={addNewDimensionProject}
+            addNewMaterial={addNewMaterialProject}
             currentEntry={currentProject}
             entries={projects}
             handleMateriallistDelete={handleMateriallistDeleteProjects}
