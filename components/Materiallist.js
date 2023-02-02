@@ -1,8 +1,6 @@
-import { Fragment, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
-import { useSwipeable } from "react-swipeable";
-import BinIcon from "@/public/binIcon.svg";
 import SwipeToDeleteItem from "./SwipeToDelete";
 
 export default function Materiallist({

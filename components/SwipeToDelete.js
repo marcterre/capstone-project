@@ -1,6 +1,5 @@
 import SwipeToDelete from "react-swipe-to-delete-ios";
 import BinIcon from "@/public/binIcon.svg";
-import styled from "styled-components";
 
 export default function SwipeToDeleteItem({ children, handleDimensionDelete }) {
   return (
