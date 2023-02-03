@@ -3,9 +3,8 @@ import styled from "styled-components";
 import { v4 as uuidv4 } from "uuid";
 import SwipeToDeleteItem from "./SwipeToDelete";
 
-export default function Materiallist({
+export default function MaterialList({
   addNewMaterial,
-  projectId,
   currentEntry,
   handleMateriallistDelete,
 }) {
@@ -28,7 +27,7 @@ export default function Materiallist({
       id: uuidv4(),
     };
 
-    addNewMaterial(projectId, newDimension);
+    addNewMaterial(newDimension);
     event.target.reset();
   }
 
@@ -65,38 +64,41 @@ export default function Materiallist({
           />
           <label htmlFor="width">width:</label>
           <input
-            type="text"
-            pattern="^[0-9][0-9.,]{1,}"
+            type="number"
             id="width"
+            step={0.01}
             name="width"
-            maxLength={5}
+            max={10000}
             placeholder="5 characters allowed"
           />
           <label htmlFor="height">height:</label>
           <input
-            type="text"
+            type="number"
             pattern="^[0-9][0-9.,]{1,}"
             id="height"
+            step={0.01}
             name="height"
-            maxLength={5}
+            max={10000}
             placeholder="5 characters allowed"
           />
           <label htmlFor="depth">depth:</label>
           <input
-            type="text"
+            type="number"
             pattern="^[0-9][0-9.,]{1,}"
             id="depth"
             name="depth"
-            maxLength={5}
+            step={0.01}
+            max={10000}
             placeholder="5 characters allowed"
           />
           <label htmlFor="pieces">number of pieces:</label>
           <input
             type="text"
-            pattern="^[0-9][0-9.,]{1,}"
+            pattern="^[0-9][0-9.,]"
             id="pieces"
             name="pieces"
-            maxLength={3}
+            step={0.01}
+            max={10000}
             placeholder="3 characters allowed"
           />
           <label htmlFor="unit">unit of measurement</label>

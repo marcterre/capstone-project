@@ -4,7 +4,7 @@ import ViewItem from "@/components/ViewItem";
 import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
 import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
-import Materiallist from "@/components/Materiallist";
+import MaterialList from "@/components/MaterialList";
 import { useRouter } from "next/router";
 
 export default function ProjectDetails({
@@ -76,7 +76,7 @@ export default function ProjectDetails({
     setEditImage(false);
   }
 
-  function addNewMaterialProject(id, newDimension) {
+  function addNewMaterialProject(newDimension) {
     setProjects(
       projects.map((project) => {
         if (project.id === id) {
@@ -143,12 +143,11 @@ export default function ProjectDetails({
           />
         </ViewsSection>
         {currentProject.dimensions ? (
-          <Materiallist
+          <MaterialList
             addNewMaterial={addNewMaterialProject}
             currentEntry={currentProject}
             entries={projects}
             handleMateriallistDelete={handleMateriallistDeleteProjects}
-            projectId={id}
           />
         ) : null}
       </Main>

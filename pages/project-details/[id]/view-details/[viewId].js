@@ -4,7 +4,7 @@ import Link from "next/link";
 import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
 import { viewsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
-import Materiallist from "@/components/Materiallist";
+import MaterialList from "@/components/MaterialList";
 
 export default function ViewDetails({
   currentView,
@@ -12,6 +12,7 @@ export default function ViewDetails({
   handleViewDetailsChange,
 }) {
   const router = useRouter();
+  const { viewId } = router.query;
   const [views, setViews] = useAtom(viewsAtom);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
   const [editImage, setEditImage] = useAtom(showEditImageAtom);
@@ -72,10 +73,10 @@ export default function ViewDetails({
     setEditImage(false);
   }
 
-  function addNewMaterialView(id, newDimension) {
+  function addNewMaterialView(newDimension) {
     setViews(
       views.map((view) => {
-        if (view.id === id) {
+        if (view.id === viewId) {
           return {
             ...view,
             dimensions: [...view.dimensions, newDimension],
@@ -126,9 +127,8 @@ export default function ViewDetails({
           </DescriptionSection>
         ) : null}
         {currentView.dimensions ? (
-          <Materiallist
+          <MaterialList
             addNewMaterial={addNewMaterialView}
-            projectId={currentView.id}
             currentEntry={currentView}
             entries={views}
             handleMateriallistDelete={handleMateriallistDeleteViews}

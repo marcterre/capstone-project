@@ -27,12 +27,12 @@ export default function Navigation() {
 const List = styled.ul`
   background-color: rgb(250, 250, 250);
   position: fixed;
-  bottom: 0px;
-  left: 0px;
+  bottom: 0;
+  left: 0;
   width: 100vw;
   display: flex;
   justify-content: space-evenly;
   list-style: none;
-  padding: 0px;
-  margin: 0px;
+  padding: 0;
+  margin: 0;
 `;
