@@ -125,12 +125,12 @@ export default function ProjectDetails({
         }
       />
       <Main>
-        {description ? (
+        {description && (
           <DescriptionSection>
             <Subtitle>Description</Subtitle>
             <DescriptionText>{description}</DescriptionText>
           </DescriptionSection>
-        ) : null}
+        )}
         <ViewsSection>
           <Subtitle>Project views</Subtitle>
           <ViewLink href={`/project-details/${currentProject.id}/add-new-view`}>
@@ -142,14 +142,14 @@ export default function ProjectDetails({
             currentProject={currentProject}
           />
         </ViewsSection>
-        {currentProject.dimensions ? (
+        {currentProject.dimensions && (
           <MaterialList
             addNewMaterial={addNewMaterialProject}
             currentEntry={currentProject}
             entries={projects}
             handleMateriallistDelete={handleMateriallistDeleteProjects}
           />
-        ) : null}
+        )}
       </Main>
     </>
   );

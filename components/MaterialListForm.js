@@ -57,7 +57,7 @@ export default function MaterialListForm({ addNewMaterial }) {
             id="width"
             step={0.01}
             name="width"
-            max={10000}
+            max={99999}
             placeholder="5 characters allowed"
           />
           <label htmlFor="height">height:</label>
@@ -67,7 +67,7 @@ export default function MaterialListForm({ addNewMaterial }) {
             id="height"
             step={0.01}
             name="height"
-            max={10000}
+            max={99999}
             placeholder="5 characters allowed"
           />
           <label htmlFor="depth">depth:</label>
@@ -77,7 +77,7 @@ export default function MaterialListForm({ addNewMaterial }) {
             id="depth"
             name="depth"
             step={0.01}
-            max={10000}
+            max={99999}
             placeholder="5 characters allowed"
           />
           <label htmlFor="pieces">number of pieces:</label>
@@ -87,7 +87,7 @@ export default function MaterialListForm({ addNewMaterial }) {
             id="numberOfPieces"
             name="numberOfPieces"
             step={0.01}
-            max={10000}
+            max={99999}
             placeholder="3 characters allowed"
           />
           <label htmlFor="unit">unit of measurement</label>

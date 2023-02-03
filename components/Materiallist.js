@@ -90,15 +90,19 @@ const StyledList = styled.ul`
   }
 `;
 
-const StyledSubListDimensions = styled.li`
+const StyledSubListDimensions = styled.ul`
   list-style: none;
   display: flex;
   justify-content: space-evenly;
+  padding: 0;
+  margin: 0;
 `;
 
-const StyledSubList = styled.li`
+const StyledSubList = styled.ul`
   display: flex;
   flex-direction: column;
+  padding: 0;
+  margin: 0;
 `;
 
 const ListItem = styled.li`

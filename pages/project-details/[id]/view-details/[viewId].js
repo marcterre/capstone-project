@@ -120,20 +120,20 @@ export default function ViewDetails({
         handleDeleteImage={() => handleDeleteImageViews(currentView.image.id)}
       />
       <Main>
-        {description ? (
+        {description && (
           <DescriptionSection>
             <Subtitle>Description</Subtitle>
             <DescriptionText>{description}</DescriptionText>
           </DescriptionSection>
-        ) : null}
-        {currentView.dimensions ? (
+        )}
+        {currentView.dimensions && (
           <MaterialList
             addNewMaterial={addNewMaterialView}
             currentEntry={currentView}
             entries={views}
             handleMateriallistDelete={handleMateriallistDeleteViews}
           />
-        ) : null}
+        )}
         <Button type="button" onClick={() => router.back()}>
           go back
         </Button>
