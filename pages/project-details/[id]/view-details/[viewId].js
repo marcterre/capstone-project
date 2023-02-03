@@ -4,7 +4,7 @@ import Link from "next/link";
 import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
 import { viewsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
-import MaterialList from "@/components/MaterialList";
+import MaterialList from "@/components/Materiallist";
 
 export default function ViewDetails({
   currentView,

@@ -4,7 +4,7 @@ import ViewItem from "@/components/ViewItem";
 import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
 import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
-import MaterialList from "@/components/MaterialList";
+import MaterialList from "@/components/Materiallist";
 import { useRouter } from "next/router";
 
 export default function ProjectDetails({
