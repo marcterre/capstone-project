@@ -59,7 +59,7 @@ export default function MaterialList({
 const Tooltip = styled.span`
   visibility: hidden;
   text-align: end;
-  font-size: 0.8em;
+  font-size: 0.7em;
 `;
 
 const Wrapper = styled.div`
