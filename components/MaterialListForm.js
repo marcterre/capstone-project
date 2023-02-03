@@ -12,13 +12,7 @@ export default function MaterialListForm({ addNewMaterial }) {
     const data = Object.fromEntries(formData);
 
     const newDimension = {
-      name: data.name,
-      material: data.material,
-      width: data.width,
-      height: data.height,
-      depth: data.depth,
-      numberOfPieces: data.pieces,
-      unit: data.unit,
+      ...data,
       id: uuidv4(),
     };
 
@@ -36,7 +30,7 @@ export default function MaterialListForm({ addNewMaterial }) {
           {showAddNewMaterial ? "click to fold" : "add new dimensions"}
         </AddNewButton>
       </ButtonWrapper>
-      {showAddNewMaterial ? (
+      {showAddNewMaterial && (
         <Form onSubmit={handleSubmit}>
           <label htmlFor="name">name:</label>
           <input
@@ -90,8 +84,8 @@ export default function MaterialListForm({ addNewMaterial }) {
           <input
             type="text"
             pattern="^[0-9][0-9.,]"
-            id="pieces"
-            name="pieces"
+            id="numberOfPieces"
+            name="numberOfPieces"
             step={0.01}
             max={10000}
             placeholder="3 characters allowed"
@@ -107,7 +101,7 @@ export default function MaterialListForm({ addNewMaterial }) {
           </select>
           <button>save</button>
         </Form>
-      ) : null}
+      )}
     </>
   );
 }

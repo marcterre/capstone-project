@@ -10,13 +10,13 @@ export default function MaterialList({
   return (
     <>
       <MaterialListForm addNewMaterial={addNewMaterial} />
-      <FlexWrapper>
+      <FlexList>
         <ListHeader>p</ListHeader>
         <ListHeader>w</ListHeader>
         <ListHeader>h</ListHeader>
         <ListHeader>d</ListHeader>
         <ListHeader>unit</ListHeader>
-      </FlexWrapper>
+      </FlexList>
       <List>
         {currentEntry.dimensions.map((dimension) => (
           <li key={dimension.id}>
@@ -24,19 +24,18 @@ export default function MaterialList({
               handleMateriallistDelete={() =>
                 handleMateriallistDelete(dimension.id)
               }
-              dimensionId={dimension.id}
             >
-              <StyledSubList>
-                <Wrapper>
+              <StyledList>
+                <StyledSubList>
                   <ListItem>
                     name: {dimension.name}
                     <Tooltip>ᗏ Swipe left to delete</Tooltip>
                   </ListItem>
-                  {dimension.material ? (
+                  {dimension.material && (
                     <ListItem>material: {dimension.material}</ListItem>
-                  ) : null}
-                </Wrapper>
-                <FlexWrapper>
+                  )}
+                </StyledSubList>
+                <StyledSubListDimensions>
                   <li>
                     {dimension.numberOfPieces
                       ? `${dimension.numberOfPieces}x`
@@ -46,8 +45,8 @@ export default function MaterialList({
                   <li>{dimension.height ? dimension.height : "-"}</li>
                   <li>{dimension.depth ? dimension.depth : "-"}</li>
                   <li>{dimension.unit ? dimension.unit : "-"}</li>
-                </FlexWrapper>
-              </StyledSubList>
+                </StyledSubListDimensions>
+              </StyledList>
             </SwipeToDeleteItem>
           </li>
         ))}
@@ -62,11 +61,7 @@ const Tooltip = styled.span`
   font-size: 0.7em;
 `;
 
-const Wrapper = styled.div`
-  display: grid;
-`;
-
-const ListHeader = styled.h3`
+const ListHeader = styled.li`
   padding: 0 0.5em;
   margin: 0;
   padding: 0.3em 0;
@@ -79,7 +74,7 @@ const List = styled.ul`
   padding-bottom: 5em;
 `;
 
-const StyledSubList = styled.ul`
+const StyledList = styled.ul`
   display: flex;
   flex-direction: column-reverse;
   gap: 0.5em;
@@ -95,6 +90,17 @@ const StyledSubList = styled.ul`
   }
 `;
 
+const StyledSubListDimensions = styled.li`
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+const StyledSubList = styled.li`
+  display: flex;
+  flex-direction: column;
+`;
+
 const ListItem = styled.li`
   display: flex;
   justify-content: space-between;
@@ -102,8 +108,10 @@ const ListItem = styled.li`
   padding: 0.2em;
 `;
 
-const FlexWrapper = styled.div`
+const FlexList = styled.ul`
+  padding: 0;
+  margin: 0;
   display: flex;
-  width: 100%;
   justify-content: space-evenly;
+  list-style: none;
 `;
