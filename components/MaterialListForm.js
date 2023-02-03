@@ -107,8 +107,8 @@ export default function MaterialListForm({ addNewMaterial }) {
 }
 
 const Heading = styled.h2`
-  margin: 0;
   padding: 0.3em;
+  margin: 0;
 `;
 
 const ButtonWrapper = styled.div`
