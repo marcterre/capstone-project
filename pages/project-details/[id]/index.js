@@ -4,6 +4,8 @@ import ViewItem from "@/components/ViewItem";
 import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
 import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
+import MaterialList from "@/components/Materiallist";
+import { useRouter } from "next/router";
 
 export default function ProjectDetails({
   views,
@@ -11,6 +13,9 @@ export default function ProjectDetails({
   handleDeleteProject,
   handleProjectDetailsChange,
 }) {
+  const router = useRouter();
+  const { id } = router.query;
+
   const [projects, setProjects] = useAtom(projectsAtom);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
   const [editImage, setEditImage] = useAtom(showEditImageAtom);
@@ -71,6 +76,38 @@ export default function ProjectDetails({
     setEditImage(false);
   }
 
+  function addNewMaterialProject(newDimension) {
+    setProjects(
+      projects.map((project) => {
+        if (project.id === id) {
+          return {
+            ...project,
+            dimensions: [...project.dimensions, newDimension],
+          };
+        } else {
+          return project;
+        }
+      })
+    );
+  }
+
+  function handleMateriallistDeleteProjects(id) {
+    setProjects(
+      projects.map((project) => {
+        if (project.id === currentProject.id) {
+          return {
+            ...project,
+            dimensions: project.dimensions.filter(
+              (dimension) => dimension.id !== id
+            ),
+          };
+        } else {
+          return project;
+        }
+      })
+    );
+  }
+
   const { name, description, image } = currentProject;
 
   return (
@@ -88,12 +125,12 @@ export default function ProjectDetails({
         }
       />
       <Main>
-        {description ? (
+        {description && (
           <DescriptionSection>
             <Subtitle>Description</Subtitle>
             <DescriptionText>{description}</DescriptionText>
           </DescriptionSection>
-        ) : null}
+        )}
         <ViewsSection>
           <Subtitle>Project views</Subtitle>
           <ViewLink href={`/project-details/${currentProject.id}/add-new-view`}>
@@ -105,6 +142,14 @@ export default function ProjectDetails({
             currentProject={currentProject}
           />
         </ViewsSection>
+        {currentProject.dimensions && (
+          <MaterialList
+            addNewMaterial={addNewMaterialProject}
+            currentEntry={currentProject}
+            entries={projects}
+            handleMateriallistDelete={handleMateriallistDeleteProjects}
+          />
+        )}
       </Main>
     </>
   );

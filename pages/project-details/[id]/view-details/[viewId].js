@@ -4,6 +4,7 @@ import Link from "next/link";
 import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
 import { viewsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
+import MaterialList from "@/components/Materiallist";
 
 export default function ViewDetails({
   currentView,
@@ -11,6 +12,7 @@ export default function ViewDetails({
   handleViewDetailsChange,
 }) {
   const router = useRouter();
+  const { viewId } = router.query;
   const [views, setViews] = useAtom(viewsAtom);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
   const [editImage, setEditImage] = useAtom(showEditImageAtom);
@@ -71,6 +73,38 @@ export default function ViewDetails({
     setEditImage(false);
   }
 
+  function addNewMaterialView(newDimension) {
+    setViews(
+      views.map((view) => {
+        if (view.id === viewId) {
+          return {
+            ...view,
+            dimensions: [...view.dimensions, newDimension],
+          };
+        } else {
+          return view;
+        }
+      })
+    );
+  }
+
+  function handleMateriallistDeleteViews(id) {
+    setViews(
+      views.map((view) => {
+        if (view.id === currentView.id) {
+          return {
+            ...view,
+            dimensions: view.dimensions.filter(
+              (dimension) => dimension.id !== id
+            ),
+          };
+        } else {
+          return view;
+        }
+      })
+    );
+  }
+
   const { name, description, image } = currentView;
 
   return (
@@ -86,20 +120,34 @@ export default function ViewDetails({
         handleDeleteImage={() => handleDeleteImageViews(currentView.image.id)}
       />
       <Main>
-        {description ? (
+        {description && (
           <DescriptionSection>
             <Subtitle>Description</Subtitle>
             <DescriptionText>{description}</DescriptionText>
           </DescriptionSection>
-        ) : null}
-
-        <button type="button" onClick={() => router.back()}>
+        )}
+        {currentView.dimensions && (
+          <MaterialList
+            addNewMaterial={addNewMaterialView}
+            currentEntry={currentView}
+            entries={views}
+            handleMateriallistDelete={handleMateriallistDeleteViews}
+          />
+        )}
+        <Button type="button" onClick={() => router.back()}>
           go back
-        </button>
+        </Button>
       </Main>
     </>
   );
 }
+
+const Button = styled.button`
+  position: fixed;
+  right: 1em;
+  bottom: 5em;
+  padding: 1em;
+`;
 
 const DescriptionText = styled.p`
   overflow: scroll;
@@ -108,7 +156,7 @@ const DescriptionText = styled.p`
 `;
 
 const DescriptionSection = styled.section`
-  height: 20vh;
+  height: auto;
 `;
 
 const Main = styled.main`
