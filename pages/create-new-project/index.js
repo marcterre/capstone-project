@@ -33,6 +33,7 @@ export default function CreateNewProject({ addNewProject }) {
         alt: "",
       },
       dimensions: [],
+      isActive: true,
     };
 
     addNewProject(newData);
