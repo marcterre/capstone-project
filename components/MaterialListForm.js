@@ -82,8 +82,8 @@ export default function MaterialListForm({ addNewMaterial }) {
           />
           <label htmlFor="pieces">number of pieces:</label>
           <input
-            type="text"
-            pattern="^[0-9][0-9.,]"
+            type="number"
+            pattern="^[0-9][0-9.,]{1,}"
             id="numberOfPieces"
             name="numberOfPieces"
             step={0.01}
