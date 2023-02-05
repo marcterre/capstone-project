@@ -6,7 +6,7 @@ import { useAtom } from "jotai";
 import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import MaterialList from "@/components/Materiallist";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function ProjectDetails({
   views,
@@ -20,7 +20,6 @@ export default function ProjectDetails({
   const [projects, setProjects] = useAtom(projectsAtom);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
   const [editImage, setEditImage] = useAtom(showEditImageAtom);
-  const [activeStatus, setActiveStatus] = useState("");
 
   if (!currentProject) {
     return (
@@ -156,7 +155,6 @@ export default function ProjectDetails({
         >
           {currentProject.isActive ? "active" : "inactive"}
         </Button>
-        <p>{activeStatus}</p>
         {description && (
           <DescriptionSection>
             <Subtitle>Description</Subtitle>
