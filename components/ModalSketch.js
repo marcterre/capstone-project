@@ -62,7 +62,7 @@ export default function ModalDelete({
             <form onSubmit={handleImageChange}>
               <InputWrapper>
                 <p>{statusUpload}</p>
-                <input type="file" name="imageFile" />
+                <input type="file" name="imageFile" maxSize="10000" />
                 <button>upload</button>
               </InputWrapper>
             </form>
