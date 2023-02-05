@@ -6,6 +6,7 @@ import { useAtom } from "jotai";
 import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import MaterialList from "@/components/Materiallist";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 export default function ProjectDetails({
   views,
@@ -19,6 +20,7 @@ export default function ProjectDetails({
   const [projects, setProjects] = useAtom(projectsAtom);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
   const [editImage, setEditImage] = useAtom(showEditImageAtom);
+  const [activeStatus, setActiveStatus] = useState("");
 
   if (!currentProject) {
     return (
@@ -108,6 +110,29 @@ export default function ProjectDetails({
     );
   }
 
+  function toggleActiveStatus() {
+    setProjects(
+      projects.map((project) => {
+        if (project.id === currentProject.id) {
+          if (project.isActive) {
+            return {
+              ...project,
+              isActive: false,
+            };
+          }
+          if (!project.isActive) {
+            return {
+              ...project,
+              isActive: true,
+            };
+          }
+        } else {
+          return project;
+        }
+      })
+    );
+  }
+
   const { name, description, image } = currentProject;
 
   return (
@@ -125,6 +150,13 @@ export default function ProjectDetails({
         }
       />
       <Main>
+        <Button
+          onClick={toggleActiveStatus}
+          className={!currentProject.isActive ? "active" : ""}
+        >
+          {currentProject.isActive ? "active" : "inactive"}
+        </Button>
+        <p>{activeStatus}</p>
         {description && (
           <DescriptionSection>
             <Subtitle>Description</Subtitle>
@@ -154,6 +186,17 @@ export default function ProjectDetails({
     </>
   );
 }
+
+const Button = styled.button`
+  background-color: lightgreen;
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  &.active {
+    background-color: red;
+  }
+`;
 
 const DescriptionText = styled.p`
   overflow: hidden;

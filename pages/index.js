@@ -13,10 +13,25 @@ export default function HomePage({ projects }) {
         <Title>Your Projects</Title>
       </header>
       <main>
-        <h2>Active projects</h2>
-        <ProjectItem projects={filteredActiveProjects} />
-        <h2>Inactive projects</h2>
-        <ProjectItem projects={filteredInactiveProjects} />
+        {projects.length < 1 ? (
+          <p>click + below to add a new project</p>
+        ) : (
+          <>
+            {" "}
+            <h2>Active projects</h2>
+            {filteredActiveProjects < 1 ? (
+              <p>no active projects here</p>
+            ) : (
+              <ProjectItem projects={filteredActiveProjects} />
+            )}
+            <h2>Inactive projects</h2>
+            {filteredInactiveProjects < 1 ? (
+              <p>no inactive projects here</p>
+            ) : (
+              <ProjectItem projects={filteredInactiveProjects} />
+            )}
+          </>
+        )}
       </main>
     </>
   );
