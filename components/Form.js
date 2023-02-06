@@ -35,7 +35,7 @@ export default function Form({ handleSubmit }) {
         type="file"
         name="imageFile"
         id="imageFile"
-        maxSize="10000"
+        size={10000}
         required
       />
       <Button type="submit" disabled={statusUpload}>

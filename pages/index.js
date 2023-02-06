@@ -17,17 +17,16 @@ export default function HomePage({ projects }) {
           <p>click + below to add a new project</p>
         ) : (
           <>
-            {" "}
             <h2>Active projects</h2>
-            {filteredActiveProjects < 1 ? (
-              <p>no active projects here</p>
-            ) : (
+            {!filteredActiveProjects.length && <p>no active projects here</p>}
+            {filteredActiveProjects.length > 0 && (
               <ProjectItem projects={filteredActiveProjects} />
             )}
             <h2>Inactive projects</h2>
-            {filteredInactiveProjects < 1 ? (
+            {!filteredInactiveProjects.length && (
               <p>no inactive projects here</p>
-            ) : (
+            )}
+            {filteredInactiveProjects.length > 0 && (
               <ProjectItem projects={filteredInactiveProjects} />
             )}
           </>

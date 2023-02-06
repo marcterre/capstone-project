@@ -113,18 +113,10 @@ export default function ProjectDetails({
     setProjects(
       projects.map((project) => {
         if (project.id === currentProject.id) {
-          if (project.isActive) {
-            return {
-              ...project,
-              isActive: false,
-            };
-          }
-          if (!project.isActive) {
-            return {
-              ...project,
-              isActive: true,
-            };
-          }
+          return {
+            ...project,
+            isActive: !project.isActive,
+          };
         } else {
           return project;
         }
@@ -149,10 +141,7 @@ export default function ProjectDetails({
         }
       />
       <Main>
-        <Button
-          onClick={toggleActiveStatus}
-          className={!currentProject.isActive ? "inactive" : ""}
-        >
+        <Button onClick={toggleActiveStatus} isActive={currentProject.isActive}>
           {currentProject.isActive ? "active" : "inactive"}
         </Button>
         {description && (
@@ -186,14 +175,11 @@ export default function ProjectDetails({
 }
 
 const Button = styled.button`
-  background-color: lightgreen;
   padding: 0.5em 1em;
   border: none;
   border-radius: 0.5em;
   cursor: pointer;
-  &.inactive {
-    background-color: red;
-  }
+  background-color: ${({ isActive }) => (isActive ? "lightgreen" : "red")};
 `;
 
 const DescriptionText = styled.p`
