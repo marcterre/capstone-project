@@ -1,4 +1,7 @@
 import { createGlobalStyle } from "styled-components";
+import { Inter } from "@next/font/google";
+
+const inter = Inter({ subsets: ["latin"], weight: "400" });
 
 export default createGlobalStyle`
 :root{
@@ -24,5 +27,6 @@ export default createGlobalStyle`
     font-family: system-ui;
     padding: 0;
     background-color: var(--color-background);
+    font-family: ${inter.style.fontFamily};
   }
 `;
