@@ -90,7 +90,7 @@ export default function MaterialListForm({ addNewMaterial }) {
             id="numberOfPieces"
             name="numberOfPieces"
             max={99999}
-            min={0}
+            min={1}
             placeholder="3 characters allowed"
           />
           <label htmlFor="unit">unit of measurement</label>
