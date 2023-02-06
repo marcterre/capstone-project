@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
-import IconAdd from "@/public/iconAdd.svg";
-import IconHome from "@/public/iconHome.svg";
+import AddIcon from "@/public/icons/plus.svg";
+import HomeIcon from "@/public/icons/home.svg";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
 
@@ -9,30 +9,51 @@ export default function Navigation() {
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
 
   return (
-    <List>
-      <li>
-        <Link href="/" onClick={() => setStatusUpload("")}>
-          <IconHome />
-        </Link>
-      </li>
-      <li>
-        <Link href="/create-new-project">
-          <IconAdd />
-        </Link>
-      </li>
-    </List>
+    <StyledNavigation>
+      <List>
+        <li>
+          <Link href="/" onClick={() => setStatusUpload("")}>
+            <IconWrapper>
+              <HomeIcon />
+            </IconWrapper>
+          </Link>
+        </li>
+        <li>
+          <Link href="/create-new-project">
+            <IconWrapper>
+              <AddIcon />
+            </IconWrapper>
+          </Link>
+        </li>
+      </List>
+    </StyledNavigation>
   );
 }
 
+const StyledNavigation = styled.nav`
+  display: flex;
+  justify-content: center;
+`;
+
 const List = styled.ul`
-  background-color: rgb(250, 250, 250);
+  padding: 0.3em 3.5em;
+  margin: 0;
+  width: 95vw;
   position: fixed;
   bottom: 0;
-  left: 0;
-  width: 100vw;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  background-color: var(--color-darkblue);
   list-style: none;
-  padding: 0;
-  margin: 0;
+  border-radius: 2em 2em 0 0;
+`;
+
+const IconWrapper = styled.div`
+  display: flex;
+  width: 2.8em;
+  border-radius: 50%;
+  background-color: var(--color-buttons-yellow);
+  &:focus-within {
+    background-color: var(--color-background);
+  }
 `;

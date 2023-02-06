@@ -12,20 +12,20 @@ export default function ProjectItem({ projects }) {
     { name: "woodwork", svg: <SawIcon /> },
     { name: "metalwork", svg: <AnvilIcon /> },
     { name: "electricity", svg: <LightningIcon /> },
-    { name: "knitting-crocheting", svg: <SheepIcon /> },
+    { name: "knitting/crocheting", svg: <SheepIcon /> },
     { name: "stitching", svg: <ShirtIcon /> },
     { name: "other", svg: <StarIcon /> },
   ];
 
   return (
-    <List>
+    <LeadingList>
       {projects.map((project) => (
         <ListItem key={project.id}>
           <StyledLink href={`/project-details/${project.id}`}>
             <SubList>
               <List>
                 <ProjectName>{project.name}</ProjectName>
-                <ProjectCategory>{project.categories}</ProjectCategory>
+                <li>{project.categories}</li>
               </List>
               <List>
                 {categoryIcons.map(
@@ -41,7 +41,7 @@ export default function ProjectItem({ projects }) {
           </StyledLink>
         </ListItem>
       ))}
-    </List>
+    </LeadingList>
   );
 }
 
@@ -49,6 +49,15 @@ const List = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0 0.5em;
+`;
+
+const LeadingList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0 0.5em;
+  &:last-of-type {
+    margin-bottom: 5em;
+  }
 `;
 
 const ListItem = styled.li`
@@ -60,10 +69,8 @@ const ListItem = styled.li`
 `;
 
 const ProjectName = styled.li`
-  font-weight: 800;
+  font-weight: 700;
 `;
-
-const ProjectCategory = styled.li``;
 
 const SubList = styled.ul`
   display: flex;

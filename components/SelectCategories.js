@@ -12,7 +12,7 @@ export default function SelectCategories() {
             <option value="woodwork">woodwork</option>
             <option value="metalwork">metalwork</option>
             <option value="electricity">electricity</option>
-            <option value="knitting-crocheting">knitting/crocheting</option>
+            <option value="knitting/crocheting">knitting/crocheting</option>
             <option value="stitching">stitching</option>
             <option value="other">other</option>
           </select>

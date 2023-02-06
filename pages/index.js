@@ -16,7 +16,7 @@ export default function HomePage({ projects, currentProject }) {
         {projects.length < 1 && <p>click + below to add a new project</p>}
         {projects.length > 0 && (
           <>
-            <h2>Active projects</h2>
+            <Subtitle>Active projects</Subtitle>
             {filteredActiveProjects.length < 1 && (
               <p>no active projects here</p>
             )}
@@ -26,7 +26,7 @@ export default function HomePage({ projects, currentProject }) {
                 currentProject={currentProject}
               />
             )}
-            <h2>Inactive projects</h2>
+            <Subtitle>Inactive projects</Subtitle>
             {filteredInactiveProjects.length < 1 && (
               <p>no inactive projects here</p>
             )}
@@ -44,7 +44,13 @@ export default function HomePage({ projects, currentProject }) {
 }
 
 const Title = styled.h1`
-  position: relative;
-  top: 0;
-  margin: 10px;
+  margin: 0;
+  padding: 0.3em;
+  text-align: center;
+`;
+
+const Subtitle = styled.h2`
+  margin: 0;
+  padding: 1em 0 0.2em 0.5em;
+  font-size: 1.3em;
 `;
