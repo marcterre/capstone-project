@@ -6,6 +6,7 @@ import { useAtom } from "jotai";
 import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import MaterialList from "@/components/Materiallist";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 export default function ProjectDetails({
   views,
@@ -108,6 +109,21 @@ export default function ProjectDetails({
     );
   }
 
+  function toggleActiveStatus() {
+    setProjects(
+      projects.map((project) => {
+        if (project.id === currentProject.id) {
+          return {
+            ...project,
+            isActive: !project.isActive,
+          };
+        } else {
+          return project;
+        }
+      })
+    );
+  }
+
   const { name, description, image } = currentProject;
 
   return (
@@ -125,6 +141,13 @@ export default function ProjectDetails({
         }
       />
       <Main>
+        <Button
+          type="button"
+          onClick={toggleActiveStatus}
+          isActive={currentProject.isActive}
+        >
+          {currentProject.isActive ? "active" : "inactive"}
+        </Button>
         {description && (
           <DescriptionSection>
             <Subtitle>Description</Subtitle>
@@ -154,6 +177,14 @@ export default function ProjectDetails({
     </>
   );
 }
+
+const Button = styled.button`
+  padding: 0.5em 1em;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+  background-color: ${({ isActive }) => (isActive ? "lightgreen" : "red")};
+`;
 
 const DescriptionText = styled.p`
   overflow: hidden;

@@ -31,7 +31,13 @@ export default function Form({ handleSubmit }) {
       />
       <CharacterCounter maxLength={100} counter={countDescription} />
       <label htmlFor="imageFile">Add your sketch:</label>
-      <input type="file" name="imageFile" id="imageFile" required />
+      <input
+        type="file"
+        name="imageFile"
+        id="imageFile"
+        size={10000}
+        required
+      />
       <Button type="submit" disabled={statusUpload}>
         Save
       </Button>

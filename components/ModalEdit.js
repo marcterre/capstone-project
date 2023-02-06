@@ -21,7 +21,9 @@ export default function ModalDelete({
     <Modal show={showModalEdit}>
       <Form onSubmit={handleChanges}>
         <GridWrapper>
+          <label htmlFor="name">Name:</label>
           <input
+            id="name"
             type="text"
             name="name"
             value={name}
@@ -34,7 +36,9 @@ export default function ModalDelete({
             required
           />
           <CharacterCounter maxLength={30} counter={count} />
+          <label htmlFor="description">Description:</label>
           <input
+            id="description"
             type="text"
             name="description"
             value={description}
