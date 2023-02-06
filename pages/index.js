@@ -13,9 +13,8 @@ export default function HomePage({ projects }) {
         <Title>Your Projects</Title>
       </header>
       <main>
-        {projects.length < 1 ? (
-          <p>click + below to add a new project</p>
-        ) : (
+        {projects.length < 1 && <p>click + below to add a new project</p>}
+        {projects.length > 0 && (
           <>
             <h2>Active projects</h2>
             {!filteredActiveProjects.length && <p>no active projects here</p>}
