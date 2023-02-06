@@ -3,6 +3,7 @@ import { useState } from "react";
 import CharacterCounter from "./CharacterCounter";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
+import SelectCategories from "./SelectCategories";
 
 export default function Form({ handleSubmit }) {
   const [count, setCount] = useState(0);
@@ -30,6 +31,7 @@ export default function Form({ handleSubmit }) {
         onChange={(event) => setCountDescription(event.target.value.length)}
       />
       <CharacterCounter maxLength={100} counter={countDescription} />
+      <SelectCategories />
       <label htmlFor="imageFile">Add your sketch:</label>
       <input
         type="file"

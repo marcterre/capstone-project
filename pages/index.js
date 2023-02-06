@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ProjectItem from "@/components/ProjectItem";
 
-export default function HomePage({ projects }) {
+export default function HomePage({ projects, currentProject }) {
   const filteredActiveProjects = projects.filter((project) => project.isActive);
   const filteredInactiveProjects = projects.filter(
     (project) => !project.isActive
@@ -21,14 +21,20 @@ export default function HomePage({ projects }) {
               <p>no active projects here</p>
             )}
             {filteredActiveProjects.length > 0 && (
-              <ProjectItem projects={filteredActiveProjects} />
+              <ProjectItem
+                projects={filteredActiveProjects}
+                currentProject={currentProject}
+              />
             )}
             <h2>Inactive projects</h2>
             {filteredInactiveProjects.length < 1 && (
               <p>no inactive projects here</p>
             )}
             {filteredInactiveProjects.length > 0 && (
-              <ProjectItem projects={filteredInactiveProjects} />
+              <ProjectItem
+                projects={filteredInactiveProjects}
+                currentProject={currentProject}
+              />
             )}
           </>
         )}
