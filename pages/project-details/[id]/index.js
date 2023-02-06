@@ -151,7 +151,7 @@ export default function ProjectDetails({
       <Main>
         <Button
           onClick={toggleActiveStatus}
-          className={!currentProject.isActive ? "active" : ""}
+          className={!currentProject.isActive ? "inactive" : ""}
         >
           {currentProject.isActive ? "active" : "inactive"}
         </Button>
@@ -191,7 +191,7 @@ const Button = styled.button`
   border: none;
   border-radius: 0.5em;
   cursor: pointer;
-  &.active {
+  &.inactive {
     background-color: red;
   }
 `;
