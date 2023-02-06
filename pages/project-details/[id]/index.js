@@ -141,7 +141,11 @@ export default function ProjectDetails({
         }
       />
       <Main>
-        <Button onClick={toggleActiveStatus} isActive={currentProject.isActive}>
+        <Button
+          type="button"
+          onClick={toggleActiveStatus}
+          isActive={currentProject.isActive}
+        >
           {currentProject.isActive ? "active" : "inactive"}
         </Button>
         {description && (
