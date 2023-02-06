@@ -17,14 +17,14 @@ export default function HomePage({ projects }) {
         {projects.length > 0 && (
           <>
             <h2>Active projects</h2>
-            {filteredActiveProjects.length < 0 && (
+            {filteredActiveProjects.length < 1 && (
               <p>no active projects here</p>
             )}
             {filteredActiveProjects.length > 0 && (
               <ProjectItem projects={filteredActiveProjects} />
             )}
             <h2>Inactive projects</h2>
-            {filteredInactiveProjects.length < 0 && (
+            {filteredInactiveProjects.length < 1 && (
               <p>no inactive projects here</p>
             )}
             {filteredInactiveProjects.length > 0 && (
