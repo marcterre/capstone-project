@@ -4,11 +4,13 @@ import CharacterCounter from "./CharacterCounter";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
 import SelectCategories from "./SelectCategories";
+import { useRouter } from "next/router";
 
 export default function Form({ handleSubmit }) {
   const [count, setCount] = useState(0);
   const [countDescription, setCountDescription] = useState(0);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
+  const router = useRouter();
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -31,7 +33,7 @@ export default function Form({ handleSubmit }) {
         onChange={(event) => setCountDescription(event.target.value.length)}
       />
       <CharacterCounter maxLength={100} counter={countDescription} />
-      <SelectCategories />
+      {router.pathname === "/create-new-project" && <SelectCategories />}
       <label htmlFor="imageFile">Add your sketch:</label>
       <input
         type="file"

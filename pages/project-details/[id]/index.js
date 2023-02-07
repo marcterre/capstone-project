@@ -6,7 +6,7 @@ import { useAtom } from "jotai";
 import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import MaterialList from "@/components/Materiallist";
 import { useRouter } from "next/router";
-import { use, useState } from "react";
+import { useState } from "react";
 
 export default function ProjectDetails({
   views,
@@ -20,7 +20,7 @@ export default function ProjectDetails({
   const [projects, setProjects] = useAtom(projectsAtom);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
   const [editImage, setEditImage] = useAtom(showEditImageAtom);
-  const [onTab, setOnTab] = useState(true);
+  const [activeTabbar, setActiveTabbar] = useState(true);
 
   if (!currentProject) {
     return (
@@ -148,6 +148,9 @@ export default function ProjectDetails({
         >
           {currentProject.isActive ? "active" : "inactive"}
         </Button>
+        {currentProject.categories !== "none" && (
+          <CategoryTitle>category: {currentProject.categories}</CategoryTitle>
+        )}
       </DetailsHeader>
       <Main>
         {description && (
@@ -157,14 +160,18 @@ export default function ProjectDetails({
           </Section>
         )}
         <ButtonWrapper>
-          <ButtonTabbar onClick={() => setOnTab(true)}>
-            <TitleProjectViews onTab={onTab}>Project views</TitleProjectViews>
+          <ButtonTabbar onClick={() => setActiveTabbar(true)}>
+            <TitleProjectViews activeTabbar={activeTabbar}>
+              Project views
+            </TitleProjectViews>
           </ButtonTabbar>
-          <ButtonTabbar onClick={() => setOnTab(false)}>
-            <TitleMaterialList onTab={onTab}>Material list</TitleMaterialList>
+          <ButtonTabbar onClick={() => setActiveTabbar(false)}>
+            <TitleMaterialList activeTabbar={activeTabbar}>
+              Material list
+            </TitleMaterialList>
           </ButtonTabbar>
         </ButtonWrapper>
-        {onTab && (
+        {activeTabbar && (
           <Section>
             <ViewLink
               href={`/project-details/${currentProject.id}/add-new-view`}
@@ -180,7 +187,7 @@ export default function ProjectDetails({
             />
           </Section>
         )}
-        {!onTab && (
+        {!activeTabbar && (
           <MaterialList
             addNewMaterial={addNewMaterialProject}
             currentEntry={currentProject}
@@ -192,6 +199,14 @@ export default function ProjectDetails({
     </>
   );
 }
+
+const CategoryTitle = styled.p`
+  grid-column: 1 / span 2;
+  margin: 0;
+  padding: 0 0 1em 0;
+  font-size: 0.9em;
+  font-weight: 300;
+`;
 
 const ButtonWrapper = styled.div`
   display: flex;
@@ -242,13 +257,13 @@ const TitleProjectViews = styled.h2`
   margin: 0;
   font-weight: 600;
   padding: 0;
-  border-bottom: ${({ onTab }) => onTab && "0.2em solid black"};
+  border-bottom: ${({ activeTabbar }) => activeTabbar && "0.2em solid black"};
 `;
 const TitleMaterialList = styled.h2`
   margin: 0;
   font-weight: 600;
   padding: 0;
-  border-bottom: ${({ onTab }) => !onTab && "0.2em solid black"};
+  border-bottom: ${({ activeTabbar }) => !activeTabbar && "0.2em solid black"};
 `;
 
 const Main = styled.main`

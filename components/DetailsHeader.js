@@ -2,13 +2,14 @@ import styled from "styled-components";
 import Image from "next/image";
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import SettingsIcon from "@/public/icons/settings.svg";
 import BinIcon from "@/public/icons/bin.svg";
 import PencilIcon from "@/public/icons/pencil.svg";
 import BackIcon from "@/public/icons/back-arrow.svg";
 import UnlargeIcon from "@/public/icons/arrow-unlarge.svg";
+import IconX from "@/public/icons/alpha-x.svg";
+import SettingsIcon from "@/public/icons/settings.svg";
 import { useAtom } from "jotai";
-import { showModalSketchAtom } from "@/lib/atom.js";
+import { showModalSketchAtom, settingsIconAtom } from "@/lib/atom.js";
 import { useRouter } from "next/router";
 
 const ModalDelete = dynamic(() => import("../components/ModalDelete"));
@@ -31,11 +32,13 @@ export default function DetailsHeader({
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [showModalSketch, setShowModalSketch] = useAtom(showModalSketchAtom);
+  const [settingsIcon, setSettingsIcon] = useAtom(settingsIconAtom);
 
   function handleChanges(event) {
     handleDetailsChanges(event);
     setShowModalEdit(false);
     setPopUpSettings(false);
+    setSettingsIcon(<SettingsIcon />);
   }
 
   return (
@@ -43,7 +46,6 @@ export default function DetailsHeader({
       <TitleWrapper>
         <Title>{name}</Title>
         {children}
-        <CategoryTitle>category: {currentEntry.categories}</CategoryTitle>
       </TitleWrapper>
       {image.url ? (
         <>
@@ -56,10 +58,11 @@ export default function DetailsHeader({
         </>
       ) : (
         <EmptyImageWrapper>
-          <p>There has no sketch been added.</p>
+          <p>There has no sketch been added yet.</p>
         </EmptyImageWrapper>
       )}
       <ImageButton
+        type="button"
         onClick={() => {
           setShowModalSketch(!showModalSketch);
         }}
@@ -68,15 +71,28 @@ export default function DetailsHeader({
       </ImageButton>
       <ButtonWrapper>
         <SettingsWrapper>
-          <Button onClick={() => setPopUpSettings(!popUpSettings)}>
-            <SettingsButton />
+          <Button
+            type="button"
+            onClick={() => {
+              setPopUpSettings(!popUpSettings);
+              popUpSettings && setSettingsIcon(<SettingsIcon />);
+              !popUpSettings && setSettingsIcon(<IconX />);
+            }}
+          >
+            {settingsIcon}
           </Button>
           {popUpSettings && (
             <>
-              <Button onClick={() => setShowModalDelete(!showModalDelete)}>
+              <Button
+                type="button"
+                onClick={() => setShowModalDelete(!showModalDelete)}
+              >
                 <BinIcon />
               </Button>
-              <Button onClick={() => setShowModalEdit(!showModalEdit)}>
+              <Button
+                type="button"
+                onClick={() => setShowModalEdit(!showModalEdit)}
+              >
                 <PencilIcon />
               </Button>
             </>
@@ -93,6 +109,7 @@ export default function DetailsHeader({
         handleClose={() => {
           setShowModalDelete(false);
           setPopUpSettings(false);
+          setSettingsIcon(<SettingsIcon />);
         }}
       />
       <ModalEdit
@@ -101,6 +118,7 @@ export default function DetailsHeader({
         handleClose={() => {
           setShowModalEdit(false);
           setPopUpSettings(false);
+          setSettingsIcon(<SettingsIcon />);
         }}
         handleChanges={handleChanges}
       />
@@ -145,10 +163,6 @@ const StyledImage = styled(Image)`
   border-radius: 2em;
 `;
 
-const SettingsButton = styled(SettingsIcon)`
-  transform: rotate(90deg);
-`;
-
 const ButtonWrapper = styled.div`
   justify-self: end;
   display: flex;
@@ -173,6 +187,10 @@ const Button = styled.button`
   background-color: var(--color-buttons-yellow);
   fill: var(--color-icons-filling-black);
   border-radius: 50%;
+  &:active {
+    position: relative;
+    top: 1px;
+  }
 `;
 
 const Header = styled.header`
@@ -183,7 +201,7 @@ const Header = styled.header`
 const TitleWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: 0 1em;
+  padding: 0.5em 1em;
 `;
 
 const Title = styled.h1`
@@ -196,14 +214,6 @@ const Title = styled.h1`
   font-weight: 700;
   margin: 0;
   padding: 0 0 0.5em 0;
-`;
-
-const CategoryTitle = styled.p`
-  grid-column: 1 / span 2;
-  margin: 0;
-  padding: 0.5em 0 1em 0;
-  font-size: 0.9em;
-  font-weight: 300;
 `;
 
 const EmptyImageWrapper = styled.div`

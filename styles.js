@@ -17,6 +17,7 @@ export default createGlobalStyle`
 
 
   --border-darkblue: 0.2em solid var(--color-darkblue);
+
 }
 
   *,

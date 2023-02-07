@@ -134,20 +134,10 @@ export default function ViewDetails({
             handleMateriallistDelete={handleMateriallistDeleteViews}
           />
         )}
-        <Button type="button" onClick={() => router.back()}>
-          go back
-        </Button>
       </Main>
     </>
   );
 }
-
-const Button = styled.button`
-  position: fixed;
-  right: 1em;
-  bottom: 5em;
-  padding: 1em;
-`;
 
 const DescriptionText = styled.p`
   overflow: scroll;

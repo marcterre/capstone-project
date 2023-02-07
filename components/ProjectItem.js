@@ -6,9 +6,11 @@ import StarIcon from "@/public/icons/star.svg";
 import LightningIcon from "@/public/icons/lightning.svg";
 import SheepIcon from "@/public/icons/sheep.svg";
 import ShirtIcon from "@/public/icons/shirt.svg";
+import CircleMediumIcon from "@/public/icons/circle-medium.svg";
 
 export default function ProjectItem({ projects }) {
   const categoryIcons = [
+    { name: "none", svg: <CircleMediumIcon /> },
     { name: "woodwork", svg: <SawIcon /> },
     { name: "metalwork", svg: <AnvilIcon /> },
     { name: "electricity", svg: <LightningIcon /> },
@@ -25,7 +27,9 @@ export default function ProjectItem({ projects }) {
             <SubList>
               <List>
                 <ProjectName>{project.name}</ProjectName>
-                <CategoryTitle>{project.categories}</CategoryTitle>
+                {project.categories !== "none" && (
+                  <CategoryTitle>{project.categories}</CategoryTitle>
+                )}
               </List>
               <List>
                 {categoryIcons.map(
