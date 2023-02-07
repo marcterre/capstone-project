@@ -19,6 +19,7 @@ export default function DetailsHeader({
   name,
   image,
   entry,
+  children,
   handleDelete,
   currentEntry,
   handleDetailsChanges,
@@ -39,7 +40,11 @@ export default function DetailsHeader({
 
   return (
     <Header>
-      <Title>{name}</Title>
+      <TitleWrapper>
+        <Title>{name}</Title>
+        {children}
+        <CategoryTitle>catergory: {currentEntry.categories}</CategoryTitle>
+      </TitleWrapper>
       {image.url ? (
         <>
           <StyledImage
@@ -48,23 +53,19 @@ export default function DetailsHeader({
             width="350"
             height="160"
           />
-          <ImageButton
-            onClick={() => {
-              setShowModalSketch(!showModalSketch);
-            }}
-          >
-            <StyledUnlargeIcon />
-          </ImageButton>
         </>
       ) : (
-        <EmptyImageButton
-          onClick={() => {
-            setShowModalSketch(!showModalSketch);
-          }}
-        >
-          <NoSketchText>click to add a sketch</NoSketchText>
-        </EmptyImageButton>
+        <EmptyImageWrapper>
+          <p>There has no sketch been added.</p>
+        </EmptyImageWrapper>
       )}
+      <ImageButton
+        onClick={() => {
+          setShowModalSketch(!showModalSketch);
+        }}
+      >
+        <StyledUnlargeIcon />
+      </ImageButton>
       <ButtonWrapper>
         <SettingsWrapper>
           <Button onClick={() => setPopUpSettings(!popUpSettings)}>
@@ -125,18 +126,14 @@ const StyledUnlargeIcon = styled(UnlargeIcon)`
 const ImageButton = styled.button`
   display: flex;
   position: absolute;
-  right: 1.1rem;
-  top: 10.3rem;
-  padding: 0.1em;
+  right: 1.3rem;
+  top: 10.1rem;
   border: none;
-  border-radius: 50% 0 0 0;
+  border-radius: 50% 0 50% 0;
   cursor: pointer;
   background: none;
   background-color: rgb(250, 250, 250, 0.4);
   box-shadow: 0 0 0.8em 0.8em rgb(250, 250, 250, 0.4);
-  &:active {
-    background-color: var(--color-background);
-  }
 `;
 
 const StyledImage = styled(Image)`
@@ -184,33 +181,39 @@ const Header = styled.header`
 `;
 
 const TitleWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0 1em;
 `;
 
 const Title = styled.h1`
+  grid-row: 2;
+  grid-column: 1 / span 2;
   overflow-wrap: break-word;
   overflow: hidden;
+  align-self: stretch;
   font-size: 1.5em;
-  width: 50vw;
   margin: 0;
+  padding: 0 0 1em 0;
 `;
 
-const NoSketchText = styled.p`
-  padding: 5px;
-  text-align: center;
+const CategoryTitle = styled.p`
+  grid-column: 1 / span 2;
   margin: 0;
+  padding: 0.5em 0 1em 0;
+  font-size: 0.9em;
 `;
 
-const EmptyImageButton = styled.button`
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-  background: none;
-  cursor: pointer;
-  &:hover {
-    background-color: grey;
-  }
+const EmptyImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: fill;
+  border-radius: 2em;
+  align-self: center;
+  border: var(--border-darkblue);
+  background-color: var(--color-list-items-white);
+  border-radius: 2em;
+  width: 350px;
+  height: 160px;
 `;

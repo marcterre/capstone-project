@@ -139,8 +139,7 @@ export default function ProjectDetails({
         handleDeleteImage={() =>
           handleDeleteImageProjects(currentProject.image.id)
         }
-      />
-      <Main>
+      >
         <Button
           type="button"
           onClick={toggleActiveStatus}
@@ -148,6 +147,8 @@ export default function ProjectDetails({
         >
           {currentProject.isActive ? "active" : "inactive"}
         </Button>
+      </DetailsHeader>
+      <Main>
         {description && (
           <DescriptionSection>
             <Subtitle>Description</Subtitle>
@@ -179,9 +180,14 @@ export default function ProjectDetails({
 }
 
 const Button = styled.button`
-  padding: 0.5em 1em;
+  grid-row: 2;
+  grid-column: 3;
+  justify-self: flex-end;
+  align-self: flex-start;
+  width: 5rem;
+  padding: 0.5em;
   border: none;
-  border-radius: 0.5em;
+  border-radius: 2em;
   cursor: pointer;
   background-color: ${({ isActive }) => (isActive ? "lightgreen" : "red")};
 `;
