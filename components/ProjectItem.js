@@ -25,7 +25,7 @@ export default function ProjectItem({ projects }) {
             <SubList>
               <List>
                 <ProjectName>{project.name}</ProjectName>
-                <li>{project.categories}</li>
+                <CategoryTitle>{project.categories}</CategoryTitle>
               </List>
               <List>
                 {categoryIcons.map(
@@ -49,6 +49,8 @@ const List = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0 0.5em;
+  text-overflow: ellipsis;
+  overflow: hidden;
 `;
 
 const LeadingList = styled.ul`
@@ -58,7 +60,6 @@ const LeadingList = styled.ul`
 `;
 
 const ListItem = styled.li`
-  overflow: hidden;
   margin: 0.5em 0;
   border: var(--border-darkblue);
   background-color: var(--color-list-items-white);
@@ -66,7 +67,12 @@ const ListItem = styled.li`
 `;
 
 const ProjectName = styled.li`
-  font-weight: 700;
+  font-weight: 600;
+  width: 60vw;
+`;
+
+const CategoryTitle = styled.li`
+  font-weight: 300;
 `;
 
 const SubList = styled.ul`

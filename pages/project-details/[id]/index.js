@@ -150,12 +150,12 @@ export default function ProjectDetails({
       </DetailsHeader>
       <Main>
         {description && (
-          <DescriptionSection>
+          <Section>
             <Subtitle>Description</Subtitle>
             <DescriptionText>{description}</DescriptionText>
-          </DescriptionSection>
+          </Section>
         )}
-        <ViewsSection>
+        <Section>
           <Subtitle>Project views</Subtitle>
           <ViewLink href={`/project-details/${currentProject.id}/add-new-view`}>
             add more project views
@@ -165,7 +165,7 @@ export default function ProjectDetails({
             projects={projects}
             currentProject={currentProject}
           />
-        </ViewsSection>
+        </Section>
         {currentProject.dimensions && (
           <MaterialList
             addNewMaterial={addNewMaterialProject}
@@ -189,35 +189,39 @@ const Button = styled.button`
   border: none;
   border-radius: 2em;
   cursor: pointer;
-  background-color: ${({ isActive }) => (isActive ? "lightgreen" : "red")};
+  text-shadow: 1px 1px black;
+  color: var(--color-list-items-white);
+  background-color: ${({ isActive }) =>
+    isActive ? "var(--color-status-active)" : "var(--color-status-inactive)"};
 `;
 
 const DescriptionText = styled.p`
   overflow: hidden;
   overflow-wrap: break-word;
-  padding: 10px;
+  padding: 0 0.5em 0.5em 0.5em;
+  margin: 0;
 `;
 
-const ViewsSection = styled.section`
-  display: grid;
-  gap: 10px;
-`;
-
-const DescriptionSection = styled.section`
+const Section = styled.section`
   display: grid;
 `;
 
 const Subtitle = styled.h2`
   margin: 0;
+  font-weight: 600;
+  padding: 0 0 0.4em 0;
 `;
 
 const Main = styled.main`
-  margin: 0 10px;
+  margin: 0;
+  padding: 0 1em;
 `;
 
 const ViewLink = styled(Link)`
-  background-color: lightgrey;
+  background-color: var(--color-buttons-yellow);
   text-decoration: none;
+  border-radius: 2em;
   color: black;
-  padding: 10px;
+  padding: 0.5em;
+  text-align: center;
 `;

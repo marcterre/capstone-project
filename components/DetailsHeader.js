@@ -4,7 +4,7 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import SettingsIcon from "@/public/icons/settings.svg";
 import BinIcon from "@/public/icons/bin.svg";
-import PencilIcon from "@/public/pencil.svg";
+import PencilIcon from "@/public/icons/pencil.svg";
 import BackIcon from "@/public/icons/back-arrow.svg";
 import UnlargeIcon from "@/public/icons/arrow-unlarge.svg";
 import { useAtom } from "jotai";
@@ -193,8 +193,9 @@ const Title = styled.h1`
   overflow: hidden;
   align-self: stretch;
   font-size: 1.5em;
+  font-weight: 700;
   margin: 0;
-  padding: 0 0 1em 0;
+  padding: 0 0 0.5em 0;
 `;
 
 const CategoryTitle = styled.p`
@@ -202,6 +203,7 @@ const CategoryTitle = styled.p`
   margin: 0;
   padding: 0.5em 0 1em 0;
   font-size: 0.9em;
+  font-weight: 300;
 `;
 
 const EmptyImageWrapper = styled.div`

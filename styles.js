@@ -12,6 +12,8 @@ export default createGlobalStyle`
   --color-background: #C0C3CE;
   --color-project-active: #2C9E45;
   --color-project-inactive: #B20E0E;
+  --color-status-active: #55D940;
+  --color-status-inactive: #D94040;
 
 
   --border-darkblue: 0.2em solid var(--color-darkblue);
@@ -26,7 +28,7 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
-    padding: 0 0 2em 0;
+    padding: 0 0 3.5em 0;
     background-color: var(--color-background);
     font-family: ${inter.style.fontFamily};
   }

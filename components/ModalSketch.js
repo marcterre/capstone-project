@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Modal from "./Modal";
 import Image from "next/image";
 import UploadIcon from "@/public/upload.svg";
-import BinIcon from "@/public/binIcon.svg";
+import BinIcon from "@/public/icons/bin.svg";
 import { useAtom } from "jotai";
 import { statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 
