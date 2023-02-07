@@ -18,7 +18,7 @@ export default function HomePage({ projects, currentProject }) {
           <>
             <Subtitle>Active projects</Subtitle>
             {filteredActiveProjects.length < 1 && (
-              <p>no active projects here</p>
+              <StatusText>No active projects here.</StatusText>
             )}
             {filteredActiveProjects.length > 0 && (
               <ProjectItem
@@ -28,7 +28,7 @@ export default function HomePage({ projects, currentProject }) {
             )}
             <Subtitle>Inactive projects</Subtitle>
             {filteredInactiveProjects.length < 1 && (
-              <p>no inactive projects here</p>
+              <StatusText>No inactive projects here.</StatusText>
             )}
             {filteredInactiveProjects.length > 0 && (
               <ProjectItem
@@ -53,4 +53,8 @@ const Subtitle = styled.h2`
   margin: 0;
   padding: 1em 0 0.2em 0.5em;
   font-size: 1.3em;
+`;
+
+const StatusText = styled.p`
+  padding: 0 1em;
 `;

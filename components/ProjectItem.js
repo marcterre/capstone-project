@@ -55,9 +55,6 @@ const LeadingList = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0 0.5em;
-  &:last-of-type {
-    margin-bottom: 5em;
-  }
 `;
 
 const ListItem = styled.li`
