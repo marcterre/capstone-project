@@ -4,31 +4,49 @@ import AddIcon from "@/public/icons/plus.svg";
 import HomeIcon from "@/public/icons/home.svg";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
+import { useRouter } from "next/router";
 
 export default function Navigation() {
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
+  const router = useRouter();
 
   return (
     <StyledNavigation>
       <List>
         <li>
           <Link href="/" onClick={() => setStatusUpload("")}>
-            <IconWrapper>
-              <HomeIcon />
-            </IconWrapper>
+            <StyledHomeIcon isFocused={router.pathname} />
           </Link>
         </li>
         <li>
           <Link href="/create-new-project">
-            <IconWrapper>
-              <AddIcon />
-            </IconWrapper>
+            <StyledAddIcon isFocused={router.pathname} />
           </Link>
         </li>
       </List>
     </StyledNavigation>
   );
 }
+
+const StyledHomeIcon = styled(HomeIcon)`
+  display: flex;
+  width: 2.8em;
+  border-radius: 50%;
+  background-color: ${({ isFocused }) =>
+    isFocused === "/"
+      ? "var( --color-background)"
+      : "var(--color-buttons-yellow)"};
+`;
+
+const StyledAddIcon = styled(AddIcon)`
+  display: flex;
+  width: 2.8em;
+  border-radius: 50%;
+  background-color: ${({ isFocused }) =>
+    isFocused === "/create-new-project"
+      ? "var( --color-background)"
+      : "var(--color-buttons-yellow)"};
+`;
 
 const StyledNavigation = styled.nav`
   display: flex;
@@ -46,14 +64,4 @@ const List = styled.ul`
   background-color: var(--color-darkblue);
   list-style: none;
   border-radius: 2em 2em 0 0;
-`;
-
-const IconWrapper = styled.div`
-  display: flex;
-  width: 2.8em;
-  border-radius: 50%;
-  background-color: var(--color-buttons-yellow);
-  &:focus-within {
-    background-color: var(--color-background);
-  }
 `;

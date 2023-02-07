@@ -43,7 +43,7 @@ export default function DetailsHeader({
       <TitleWrapper>
         <Title>{name}</Title>
         {children}
-        <CategoryTitle>catergory: {currentEntry.categories}</CategoryTitle>
+        <CategoryTitle>category: {currentEntry.categories}</CategoryTitle>
       </TitleWrapper>
       {image.url ? (
         <>

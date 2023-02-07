@@ -6,7 +6,7 @@ import { useAtom } from "jotai";
 import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import MaterialList from "@/components/Materiallist";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { use, useState } from "react";
 
 export default function ProjectDetails({
   views,
@@ -20,6 +20,7 @@ export default function ProjectDetails({
   const [projects, setProjects] = useAtom(projectsAtom);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
   const [editImage, setEditImage] = useAtom(showEditImageAtom);
+  const [onTab, setOnTab] = useState(true);
 
   if (!currentProject) {
     return (
@@ -155,18 +156,31 @@ export default function ProjectDetails({
             <DescriptionText>{description}</DescriptionText>
           </Section>
         )}
-        <Section>
-          <Subtitle>Project views</Subtitle>
-          <ViewLink href={`/project-details/${currentProject.id}/add-new-view`}>
-            add more project views
-          </ViewLink>
-          <ViewItem
-            views={views.filter((view) => view.projectId === currentProject.id)}
-            projects={projects}
-            currentProject={currentProject}
-          />
-        </Section>
-        {currentProject.dimensions && (
+        <ButtonWrapper>
+          <ButtonTabbar onClick={() => setOnTab(true)}>
+            <TitleProjectViews onTab={onTab}>Project views</TitleProjectViews>
+          </ButtonTabbar>
+          <ButtonTabbar onClick={() => setOnTab(false)}>
+            <TitleMaterialList onTab={onTab}>Material list</TitleMaterialList>
+          </ButtonTabbar>
+        </ButtonWrapper>
+        {onTab && (
+          <Section>
+            <ViewLink
+              href={`/project-details/${currentProject.id}/add-new-view`}
+            >
+              add more project views
+            </ViewLink>
+            <ViewItem
+              views={views.filter(
+                (view) => view.projectId === currentProject.id
+              )}
+              projects={projects}
+              currentProject={currentProject}
+            />
+          </Section>
+        )}
+        {!onTab && (
           <MaterialList
             addNewMaterial={addNewMaterialProject}
             currentEntry={currentProject}
@@ -178,6 +192,18 @@ export default function ProjectDetails({
     </>
   );
 }
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const ButtonTabbar = styled.button`
+  background: none;
+  border: none;
+  padding-bottom: 1em;
+  cursor: pointer;
+`;
 
 const Button = styled.button`
   grid-row: 2;
@@ -210,6 +236,19 @@ const Subtitle = styled.h2`
   margin: 0;
   font-weight: 600;
   padding: 0 0 0.4em 0;
+`;
+
+const TitleProjectViews = styled.h2`
+  margin: 0;
+  font-weight: 600;
+  padding: 0;
+  border-bottom: ${({ onTab }) => onTab && "0.2em solid black"};
+`;
+const TitleMaterialList = styled.h2`
+  margin: 0;
+  font-weight: 600;
+  padding: 0;
+  border-bottom: ${({ onTab }) => !onTab && "0.2em solid black"};
 `;
 
 const Main = styled.main`

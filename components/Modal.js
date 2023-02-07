@@ -2,9 +2,9 @@ import ReactDOM from "react-dom";
 import styled from "styled-components";
 
 export default function Modal({ show, children }) {
-  const modalContent = show ? (
+  const modalContent = show && (
     <StyledModalOverlay>{children}</StyledModalOverlay>
-  ) : null;
+  );
 
   return ReactDOM.createPortal(
     modalContent,
