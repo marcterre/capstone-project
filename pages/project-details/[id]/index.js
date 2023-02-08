@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
 import DetailsHeader from "@/components/DetailsHeader";
@@ -159,18 +159,18 @@ export default function ProjectDetails({
             <DescriptionText>{description}</DescriptionText>
           </Section>
         )}
-        <ButtonWrapper>
+        <TabWrapper>
           <ButtonTabbar onClick={() => setActiveTabbar(true)}>
-            <TitleProjectViews activeTabbar={activeTabbar}>
+            <Subtitle activeTabbar={activeTabbar} variant="views">
               Project views
-            </TitleProjectViews>
+            </Subtitle>
           </ButtonTabbar>
           <ButtonTabbar onClick={() => setActiveTabbar(false)}>
-            <TitleMaterialList activeTabbar={activeTabbar}>
+            <Subtitle activeTabbar={activeTabbar} variant="material">
               Material list
-            </TitleMaterialList>
+            </Subtitle>
           </ButtonTabbar>
-        </ButtonWrapper>
+        </TabWrapper>
         {activeTabbar && (
           <Section>
             <ViewLink
@@ -204,13 +204,13 @@ const CategoryTitle = styled.p`
   grid-column: 1 / span 2;
   margin: 0;
   position: relative;
-  top: 8.7rem;
+  top: 5.8rem;
   padding: 0 0 1em 0;
   font-size: 0.9em;
   font-weight: 300;
 `;
 
-const ButtonWrapper = styled.div`
+const TabWrapper = styled.div`
   display: flex;
   justify-content: space-between;
 `;
@@ -224,7 +224,7 @@ const ButtonTabbar = styled.button`
 
 const Button = styled.button`
   position: relative;
-  top: 9.2rem;
+  top: 6rem;
   right: 1.5em;
   grid-row: 2;
   grid-column: 3;
@@ -252,23 +252,33 @@ const Section = styled.section`
   display: grid;
 `;
 
+// const Subtitle = styled.h2`
+//   margin: 0;
+//   font-weight: 600;
+//   padding: 0.5em 0;
+// `;
+
 const Subtitle = styled.h2`
   margin: 0;
   font-weight: 600;
-  padding: 0 0 0.4em 0;
-`;
+  padding: 0.7em 0;
+  font-size: 1.5em;
 
-const TitleProjectViews = styled.h2`
-  margin: 0;
-  font-weight: 600;
-  padding: 0;
-  border-bottom: ${({ activeTabbar }) => activeTabbar && "0.2em solid black"};
-`;
-const TitleMaterialList = styled.h2`
-  margin: 0;
-  font-weight: 600;
-  padding: 0;
-  border-bottom: ${({ activeTabbar }) => !activeTabbar && "0.2em solid black"};
+  ${({ variant }) =>
+    variant === "views" &&
+    css`
+      border-bottom: ${({ activeTabbar }) =>
+        activeTabbar && "0.2em solid black"};
+      padding-bottom: 0.2em;
+    `}
+
+  ${({ variant }) =>
+    variant === "material" &&
+    css`
+      border-bottom: ${({ activeTabbar }) =>
+        !activeTabbar && "0.2em solid black"};
+      padding-bottom: 0.2em;
+    `}
 `;
 
 const Main = styled.main`

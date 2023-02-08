@@ -7,6 +7,7 @@ import SelectCategories from "./SelectCategories";
 import { useRouter } from "next/router";
 import SaveIcon from "@/public/icons/save.svg";
 import CancelIcon from "@/public/icons/cancel.svg";
+import { StyledButton } from "./StyledComponents/StyledButton";
 
 export default function Form({ handleSubmit }) {
   const [count, setCount] = useState(0);
@@ -45,12 +46,16 @@ export default function Form({ handleSubmit }) {
         required
       />
       <ButtonWrapper>
-        <Button type="button" onClick={() => router.back()}>
+        <StyledButton
+          variant="cancel"
+          type="button"
+          onClick={() => router.back()}
+        >
           <StyledCancelIcon /> Cancel
-        </Button>
-        <Button type="submit" disabled={statusUpload}>
+        </StyledButton>
+        <StyledButton variant="submit" type="submit" disabled={statusUpload}>
           <StyledSaveIcon /> Save
-        </Button>
+        </StyledButton>
       </ButtonWrapper>
       <LoadingStatus>
         {statusUpload && <Spinner />}
@@ -71,19 +76,15 @@ const Label = styled.label`
   padding: 0.5em 0;
 `;
 
-const styledInputs = css`
+const styledFields = css`
   background-color: var(--color-list-items-white);
   border: none;
   border-radius: 2em;
   padding: 0.7em;
-  &:focus {
-    border-color: var(--color-buttons-yellow);
-  }
 `;
 
 const Input = styled.input`
-  ${styledInputs}
-  min-height: 5vh;
+  ${styledFields}
   &:last-of-type {
     border: none;
     background: none;
@@ -92,8 +93,9 @@ const Input = styled.input`
 `;
 
 const DescriptionTextarea = styled.textarea`
-  ${styledInputs}
+  ${styledFields}
   min-height: 10vh;
+  padding: 1em;
   resize: none;
 `;
 
@@ -116,30 +118,6 @@ const ButtonWrapper = styled.div`
   justify-content: space-evenly;
   position: relative;
   top: 3em;
-`;
-
-const Button = styled.button`
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  margin: 0;
-  border: none;
-  border-radius: 2em;
-  cursor: pointer;
-  &:active {
-    position: relative;
-    top: 1px;
-  }
-  &:last-of-type {
-    background-color: var(--color-buttons-yellow);
-    padding: 0.2em 3.5em;
-  }
-  &:first-of-type {
-    background-color: var(--color-list-items-white);
-    color: var(--color-project-inactive);
-    fill: var(--color-project-inactive);
-    padding: 0.2em 3em;
-  }
 `;
 
 const rotate360 = keyframes`

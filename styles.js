@@ -9,10 +9,10 @@ export default createGlobalStyle`
   --color-buttons-yellow: #F3BC09;
   --color-icons-filling-black: #000;
   --color-list-items-white: #FFFEFE;
-  --color-background: #C0C3CE;
+  --color-background: #CCD0DE;
   --color-project-active: #2C9E45;
   --color-project-inactive: #B20E0E;
-  --color-status-active: #55D940;
+  --color-status-active: #32A020;
   --color-status-inactive: #D94040;
 
 --border-yellow: 0.2em solid var(--color-buttons-yellow);

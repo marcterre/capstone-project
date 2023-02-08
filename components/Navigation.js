@@ -1,11 +1,10 @@
-import Link from "next/link";
 import styled from "styled-components";
 import AddIcon from "@/public/icons/plus.svg";
 import HomeIcon from "@/public/icons/home.svg";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { StyledLink } from "./StyledComponents/StyledLink";
 
 export default function Navigation() {
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
@@ -15,51 +14,28 @@ export default function Navigation() {
     <StyledNavigation>
       <List>
         <li>
-          <Link href="/" onClick={() => setStatusUpload("")}>
-            <HomeIconWrapper isFocused={router.pathname}>
-              <HomeIcon />
-            </HomeIconWrapper>
-          </Link>
+          <StyledLink
+            href="/"
+            onClick={() => setStatusUpload("")}
+            isfocused={router.pathname}
+            variant="home"
+          >
+            <HomeIcon />
+          </StyledLink>
         </li>
         <li>
-          <Link href="/create-new-project">
-            <AddIconWrapper isFocused={router.pathname}>
-              <AddIcon />
-            </AddIconWrapper>
-          </Link>
+          <StyledLink
+            href="/create-new-project"
+            isfocused={router.pathname}
+            variant="plus"
+          >
+            <AddIcon />
+          </StyledLink>
         </li>
       </List>
     </StyledNavigation>
   );
 }
-
-const HomeIconWrapper = styled.div`
-  display: flex;
-  width: 2.8em;
-  border-radius: 50%;
-  background-color: ${({ isFocused }) =>
-    isFocused === "/"
-      ? "var( --color-background)"
-      : "var(--color-buttons-yellow)"};
-  &:active {
-    position: relative;
-    top: 1px;
-  }
-`;
-
-const AddIconWrapper = styled.div`
-  display: flex;
-  width: 2.8em;
-  border-radius: 50%;
-  background-color: ${({ isFocused }) =>
-    isFocused === "/create-new-project"
-      ? "var( --color-background)"
-      : "var(--color-buttons-yellow)"};
-  &:active {
-    position: relative;
-    top: 1px;
-  }
-`;
 
 const StyledNavigation = styled.nav`
   display: flex;
