@@ -53,7 +53,7 @@ const Title = styled.h1`
 
 const Subtitle = styled.h2`
   margin: 0;
-  padding: 1em 0 0.2em 0.5em;
+  padding: 2em 0 0.2em 0.5em;
   font-size: 1.3em;
 `;
 

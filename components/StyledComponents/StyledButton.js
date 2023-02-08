@@ -8,6 +8,7 @@ export const StyledButton = styled.button`
   border: none;
   border-radius: 2em;
   cursor: pointer;
+  box-shadow: var(--box-shadow-black);
   &:active {
     position: relative;
     top: 1px;

@@ -204,7 +204,7 @@ const CategoryTitle = styled.p`
   grid-column: 1 / span 2;
   margin: 0;
   position: relative;
-  top: 5.8rem;
+  top: 6rem;
   padding: 0 0 1em 0;
   font-size: 0.9em;
   font-weight: 300;
@@ -236,6 +236,7 @@ const Button = styled.button`
   border-radius: 2em;
   cursor: pointer;
   text-shadow: 1px 1px black;
+  box-shadow: var(--box-shadow-black);
   color: var(--color-list-items-white);
   background-color: ${({ isActive }) =>
     isActive ? "var(--color-status-active)" : "var(--color-status-inactive)"};
@@ -251,12 +252,6 @@ const DescriptionText = styled.p`
 const Section = styled.section`
   display: grid;
 `;
-
-// const Subtitle = styled.h2`
-//   margin: 0;
-//   font-weight: 600;
-//   padding: 0.5em 0;
-// `;
 
 const Subtitle = styled.h2`
   margin: 0;
@@ -293,4 +288,5 @@ const ViewLink = styled(Link)`
   color: black;
   padding: 0.5em;
   text-align: center;
+  box-shadow: var(--box-shadow-black);
 `;

@@ -64,10 +64,10 @@ const LeadingList = styled.ul`
 `;
 
 const ListItem = styled.li`
-  margin: 0.5em 0;
-  border: var(--border-darkblue);
+  margin: 1em 0;
   background-color: var(--color-list-items-white);
   border-radius: 2em;
+  box-shadow: var(--box-shadow-darkblue);
 `;
 
 const ProjectName = styled.li`

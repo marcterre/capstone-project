@@ -157,7 +157,7 @@ const ImageButton = styled.button`
   width: 3.8em;
   height: 3.5em;
   position: relative;
-  top: 6.7em;
+  top: 6.6em;
   left: 24.4em;
   border: none;
   border-radius: 2em 0;
@@ -171,6 +171,7 @@ const ImageSection = css`
   left: 0;
   width: 100%;
   z-index: -1;
+  box-shadow: var(--box-shadow-black);
 `;
 
 const StyledImage = styled(Image)`
@@ -213,7 +214,7 @@ const Button = styled.button`
 const EmptyImageText = styled.p`
   ${ImageSection}
   height: 5em;
-  top: 5em;
+  top: 5.5em;
   text-align: center;
   border-bottom: var(--border-darkblue);
   border-radius: 0 0 2em 2em;

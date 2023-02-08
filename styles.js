@@ -9,15 +9,16 @@ export default createGlobalStyle`
   --color-buttons-yellow: #F3BC09;
   --color-icons-filling-black: #000;
   --color-list-items-white: #FFFEFE;
-  --color-background: #CCD0DE;
+  --color-background: #D9DDE9;
   --color-project-active: #2C9E45;
   --color-project-inactive: #B20E0E;
   --color-status-active: #32A020;
   --color-status-inactive: #D94040;
 
---border-yellow: 0.2em solid var(--color-buttons-yellow);
+  --border-yellow: 0.2em solid var(--color-buttons-yellow);
   --border-darkblue: 0.2em solid var(--color-darkblue);
-
+  --box-shadow-darkblue:  0 0.3em 0.5em 0 rgb(37, 93, 131, 0.8);
+  --box-shadow-black:  0 0.3em 0.5em 0 rgb(0, 0, 0, 0.3);
 }
 
   *,

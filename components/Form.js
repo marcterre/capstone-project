@@ -81,6 +81,7 @@ const styledFields = css`
   border: none;
   border-radius: 2em;
   padding: 0.7em;
+  box-shadow: var(--box-shadow-darkblue);
 `;
 
 const Input = styled.input`
@@ -89,6 +90,7 @@ const Input = styled.input`
     border: none;
     background: none;
     font-size: 0.9em;
+    box-shadow: none;
   }
 `;
 
