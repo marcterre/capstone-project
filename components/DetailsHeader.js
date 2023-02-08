@@ -156,7 +156,7 @@ const Title = styled.h1`
   font-size: 1.5em;
   font-weight: 700;
   margin: 0;
-  padding: 7em 0 0.5em 0;
+  padding: 6em 0 0.5em 0;
 `;
 
 const StyledUnlargeIcon = styled(UnlargeIcon)`

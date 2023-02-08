@@ -203,8 +203,8 @@ export default function ProjectDetails({
 const CategoryTitle = styled.p`
   grid-column: 1 / span 2;
   margin: 0;
-  position: absolute;
-  top: 11.5rem;
+  position: relative;
+  top: 8.7rem;
   padding: 0 0 1em 0;
   font-size: 0.9em;
   font-weight: 300;
@@ -223,8 +223,8 @@ const ButtonTabbar = styled.button`
 `;
 
 const Button = styled.button`
-  position: absolute;
-  top: 13.5rem;
+  position: relative;
+  top: 9.2rem;
   right: 1.5em;
   grid-row: 2;
   grid-column: 3;
