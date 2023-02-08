@@ -53,7 +53,7 @@ export default function DetailsHeader({
             src={image.url}
             alt={`here should be a sketch of your view`}
             width="350"
-            height="160"
+            height="180"
           />
         </>
       ) : (
@@ -144,7 +144,7 @@ const Header = styled.header`
 const TitleWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: 0.5em 1em;
+  padding: 0 0 0 1em;
 `;
 
 const Title = styled.h1`
@@ -156,7 +156,7 @@ const Title = styled.h1`
   font-size: 1.5em;
   font-weight: 700;
   margin: 0;
-  padding: 0 0 0.5em 0;
+  padding: 7em 0 0.5em 0;
 `;
 
 const StyledUnlargeIcon = styled(UnlargeIcon)`
@@ -167,8 +167,8 @@ const StyledUnlargeIcon = styled(UnlargeIcon)`
 const ImageButton = styled.button`
   display: flex;
   position: absolute;
-  right: 1.3rem;
-  top: 10.1rem;
+  right: 0.3rem;
+  top: 8.5rem;
   border: none;
   border-radius: 50% 0 50% 0;
   cursor: pointer;
@@ -178,12 +178,15 @@ const ImageButton = styled.button`
 `;
 
 const StyledImage = styled(Image)`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
   object-fit: fill;
-  border-radius: 2em;
   align-self: center;
-  border: var(--border-darkblue);
+  border-bottom: var(--border-darkblue);
   background-color: var(--color-list-items-white);
-  border-radius: 2em;
+  border-radius: 0 0 2em 2em;
 `;
 
 const ButtonWrapper = styled.div`
@@ -227,5 +230,5 @@ const EmptyImageWrapper = styled.div`
   background-color: var(--color-list-items-white);
   border-radius: 2em;
   width: 350px;
-  height: 160px;
+  height: 180px;
 `;
