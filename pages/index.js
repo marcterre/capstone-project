@@ -13,7 +13,9 @@ export default function HomePage({ projects, currentProject }) {
         <Title>Your Projects</Title>
       </header>
       <main>
-        {projects.length < 1 && <p>click + below to add a new project</p>}
+        {projects.length < 1 && (
+          <StatusText>click + below to add a new project</StatusText>
+        )}
         {projects.length > 0 && (
           <>
             <Subtitle>Active projects</Subtitle>
@@ -57,4 +59,7 @@ const Subtitle = styled.h2`
 
 const StatusText = styled.p`
   padding: 0 1em;
+  &:first-of-type {
+    text-align: center;
+  }
 `;

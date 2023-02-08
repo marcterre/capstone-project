@@ -59,51 +59,16 @@ export default function Form({ handleSubmit }) {
     </StyledForm>
   );
 }
-const rotate360 = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-`;
 
-const Spinner = styled.div`
-  animation: ${rotate360} 1s linear infinite;
-  border-top: 0.2em solid grey;
-  border-right: 0.2em solid grey;
-  border-bottom: 0.2em solid grey;
-  border-left: 0.3em solid black;
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-`;
-
-const LoadingStatus = styled.div`
-  display: flex;
-  gap: 1em;
+const StyledForm = styled.form`
+  display: grid;
   padding: 0 1em;
-  position: absolute;
-  bottom: 5em;
 `;
 
 const Label = styled.label`
   font-weight: 600;
   font-size: 1.2em;
   padding: 0.5em 0;
-`;
-
-const StyledSvg = css`
-  width: 2em;
-  height: 2em;
-`;
-
-const StyledSaveIcon = styled(SaveIcon)`
-  ${StyledSvg}
-`;
-
-const StyledCancelIcon = styled(CancelIcon)`
-  ${StyledSvg}
 `;
 
 const styledInputs = css`
@@ -129,6 +94,20 @@ const Input = styled.input`
 const DescriptionTextarea = styled.textarea`
   ${styledInputs}
   min-height: 10vh;
+  resize: none;
+`;
+
+const StyledSvg = css`
+  width: 2em;
+  height: 2em;
+`;
+
+const StyledSaveIcon = styled(SaveIcon)`
+  ${StyledSvg}
+`;
+
+const StyledCancelIcon = styled(CancelIcon)`
+  ${StyledSvg}
 `;
 
 const ButtonWrapper = styled.div`
@@ -163,7 +142,30 @@ const Button = styled.button`
   }
 `;
 
-const StyledForm = styled.form`
-  display: grid;
+const rotate360 = keyframes`
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  `;
+
+const Spinner = styled.div`
+  animation: ${rotate360} 1s linear infinite;
+  border-top: 0.2em solid grey;
+  border-right: 0.2em solid grey;
+  border-bottom: 0.2em solid grey;
+  border-left: 0.3em solid black;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
+`;
+
+const LoadingStatus = styled.div`
+  display: flex;
+  gap: 1em;
   padding: 0 1em;
+  position: absolute;
+  bottom: 5em;
 `;

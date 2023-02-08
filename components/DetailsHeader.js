@@ -136,6 +136,29 @@ export default function DetailsHeader({
   );
 }
 
+const Header = styled.header`
+  display: flex;
+  flex-direction: column-reverse;
+`;
+
+const TitleWrapper = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0.5em 1em;
+`;
+
+const Title = styled.h1`
+  grid-row: 2;
+  grid-column: 1 / span 2;
+  overflow-wrap: break-word;
+  overflow: hidden;
+  align-self: stretch;
+  font-size: 1.5em;
+  font-weight: 700;
+  margin: 0;
+  padding: 0 0 0.5em 0;
+`;
+
 const StyledUnlargeIcon = styled(UnlargeIcon)`
   width: 2.5em;
   height: 2.5em;
@@ -191,29 +214,6 @@ const Button = styled.button`
     position: relative;
     top: 1px;
   }
-`;
-
-const Header = styled.header`
-  display: flex;
-  flex-direction: column-reverse;
-`;
-
-const TitleWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 0.5em 1em;
-`;
-
-const Title = styled.h1`
-  grid-row: 2;
-  grid-column: 1 / span 2;
-  overflow-wrap: break-word;
-  overflow: hidden;
-  align-self: stretch;
-  font-size: 1.5em;
-  font-weight: 700;
-  margin: 0;
-  padding: 0 0 0.5em 0;
 `;
 
 const EmptyImageWrapper = styled.div`
