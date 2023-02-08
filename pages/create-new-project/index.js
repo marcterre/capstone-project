@@ -54,5 +54,7 @@ export default function CreateNewProject({ addNewProject }) {
 }
 
 const Title = styled.h1`
-  margin: 10px;
+  margin: 0;
+  padding: 0.5em;
+  text-align: center;
 `;

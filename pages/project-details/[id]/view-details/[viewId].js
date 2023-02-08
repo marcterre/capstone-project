@@ -44,7 +44,7 @@ export default function ViewDetails({
 
     const formData = new FormData(event.target);
 
-    setStatusUpload("Loading...");
+    setStatusUpload("Loading");
 
     const response = await fetch("/api/upload", {
       method: "post",

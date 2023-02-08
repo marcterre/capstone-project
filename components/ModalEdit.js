@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
 import CharacterCounter from "./CharacterCounter";
@@ -11,7 +10,6 @@ export default function ModalDelete({
   handleClose,
   handleChanges,
 }) {
-  const router = useRouter();
   const [count, setCount] = useState(currentEntry.name.length);
   const [countDescription, setCountDescription] = useState(
     currentEntry.name.length

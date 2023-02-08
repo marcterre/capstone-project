@@ -15,7 +15,7 @@ export default createGlobalStyle`
   --color-status-active: #55D940;
   --color-status-inactive: #D94040;
 
-
+--border-yellow: 0.2em solid var(--color-buttons-yellow);
   --border-darkblue: 0.2em solid var(--color-darkblue);
 
 }

@@ -49,7 +49,7 @@ export default function ProjectDetails({
 
     const formData = new FormData(event.target);
 
-    setStatusUpload("Loading...");
+    setStatusUpload("Loading");
 
     const response = await fetch("/api/upload", {
       method: "post",
