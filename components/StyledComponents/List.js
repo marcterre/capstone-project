@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const StyledList = styled.ul`
+export const List = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -8,9 +8,7 @@ export const StyledList = styled.ul`
   ${({ variant }) =>
     variant === "viewListItem" &&
     css`
-      background-color: lightgray;
-      padding: 10px;
-      white-space: wrap;
+      padding: 0 0.5em;
       overflow: hidden;
       text-overflow: ellipsis;
       width: 40vw;
@@ -20,15 +18,14 @@ export const StyledList = styled.ul`
     `}
 
   ${({ variant }) =>
-    variant === "views-outermost" &&
+    variant === "viewsOutermost" &&
     css`
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      text-align: center;
     `}
 
     ${({ variant }) =>
-    variant === "project-outermost" &&
+    variant === "projectOutermost" &&
     css`
       padding: 0 0.5em;
     `}
@@ -48,5 +45,12 @@ export const StyledList = styled.ul`
       justify-content: space-between;
       align-items: center;
       padding: 0.5em 1em;
+    `}
+
+    ${({ variant }) =>
+    variant === "icon" &&
+    css`
+      width: 1.5em;
+      height: 1.5em;
     `}
 `;

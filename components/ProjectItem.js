@@ -7,7 +7,9 @@ import LightningIcon from "@/public/icons/lightning.svg";
 import SheepIcon from "@/public/icons/sheep.svg";
 import ShirtIcon from "@/public/icons/shirt.svg";
 import CircleMediumIcon from "@/public/icons/circle-medium.svg";
-import { StyledList } from "./StyledComponents/StyledList";
+import { List } from "./StyledComponents/List";
+import { ListItem } from "./StyledComponents/ListItem";
+import { StyledLink } from "./StyledComponents/StyledLink";
 
 export default function ProjectItem({ projects }) {
   const categoryIcons = [
@@ -21,18 +23,18 @@ export default function ProjectItem({ projects }) {
   ];
 
   return (
-    <StyledList variant="project-outermost">
+    <List variant="projectOutermost">
       {projects.map((project) => (
-        <ListItem key={project.id}>
+        <ListItem key={project.id} variant="mainListItem">
           <StyledLink href={`/project-details/${project.id}`}>
-            <StyledList variant="projectSublist">
-              <StyledList variant="projectListItem">
+            <List variant="projectSublist">
+              <List variant="projectListItem">
                 <ProjectName>{project.name}</ProjectName>
                 {project.categories !== "none" && (
                   <CategoryTitle>{project.categories}</CategoryTitle>
                 )}
-              </StyledList>
-              <StyledList variant="projectListItem">
+              </List>
+              <List variant="projectListItem">
                 {categoryIcons.map(
                   (icon) =>
                     icon.name === project.categories && (
@@ -41,21 +43,14 @@ export default function ProjectItem({ projects }) {
                       </IconItem>
                     )
                 )}
-              </StyledList>
-            </StyledList>
+              </List>
+            </List>
           </StyledLink>
         </ListItem>
       ))}
-    </StyledList>
+    </List>
   );
 }
-
-const ListItem = styled.li`
-  margin: 1em 0;
-  background-color: var(--color-list-items-white);
-  border-radius: 2em;
-  box-shadow: var(--box-shadow-darkblue);
-`;
 
 const ProjectName = styled.li`
   font-weight: 600;
@@ -71,9 +66,4 @@ const IconItem = styled.li`
   height: 2em;
   fill: ${({ isActive }) =>
     isActive ? "var(--color-project-active)" : "var(--color-project-inactive)"};
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
 `;

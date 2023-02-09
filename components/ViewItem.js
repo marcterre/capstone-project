@@ -1,5 +1,3 @@
-import styled, { css } from "styled-components";
-import Link from "next/link";
 import FrontSideIcon from "@/public/icons/front-side.svg";
 import BackSideIcon from "@/public/icons/back-side.svg";
 import RightSideIcon from "@/public/icons/right-side.svg";
@@ -10,7 +8,11 @@ import ScissorIcon from "@/public/icons/scissors.svg";
 import MagnifierIcon from "@/public/icons/magnifier.svg";
 import CircleMediumIcon from "@/public/icons/circle-medium.svg";
 import StarIcon from "@/public/icons/star.svg";
-import { StyledList } from "./StyledComponents/StyledList";
+import { List } from "./StyledComponents/List";
+import { ListItem } from "./StyledComponents/ListItem";
+import styled from "styled-components";
+import Link from "next/link";
+import { StyledLink } from "./StyledComponents/StyledLink";
 
 export default function ViewItem({ views, currentProject }) {
   const viewSideIcons = [
@@ -26,41 +28,28 @@ export default function ViewItem({ views, currentProject }) {
     { name: "other", svg: <StarIcon /> },
   ];
   return (
-    <StyledList variant="views-outermost">
+    <List variant="viewsOutermost">
       {views.map((view) => (
-        <ListItem key={view.id}>
+        <ListItem key={view.id} variant="viewListItem">
           <StyledLink
             href={`/project-details/${currentProject.id}/view-details/${view.id}`}
           >
-            <StyledList variant="viewListItem">
-              <StyledList>
+            <List variant="viewListItem">
+              <List>
                 {viewSideIcons.map(
                   (icon) =>
                     icon.name === view.viewSide && (
-                      <SvgListItem key={icon.name}>{icon.svg}</SvgListItem>
+                      <List key={icon.name} variant="icon">
+                        {icon.svg}
+                      </List>
                     )
                 )}
-              </StyledList>
-              <StyledList> {view.name}</StyledList>
-            </StyledList>
+              </List>
+              <List> {view.name}</List>
+            </List>
           </StyledLink>
         </ListItem>
       ))}
-    </StyledList>
+    </List>
   );
 }
-
-const SvgListItem = styled.li`
-  width: 2em;
-  height: 2em;
-`;
-
-const ListItem = styled.li`
-  padding: 1.5em 0;
-  justify-self: center;
-`;
-
-const StyledLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-`;
