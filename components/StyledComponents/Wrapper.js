@@ -41,4 +41,10 @@ export const Wrapper = styled.div`
       display: grid;
       justify-content: stretch;
     `}
+
+    ${({ variant }) =>
+    variant === "deleteButtons" &&
+    css`
+      gap: 3em;
+    `}
 `;
