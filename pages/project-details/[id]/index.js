@@ -7,6 +7,8 @@ import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import MaterialList from "@/components/Materiallist";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { StyledSubtitle } from "@/components/StyledComponents/StyledSubtitle";
+import { StyledButton } from "@/components/StyledComponents/StyledButton";
 
 export default function ProjectDetails({
   views,
@@ -141,13 +143,14 @@ export default function ProjectDetails({
           handleDeleteImageProjects(currentProject.image.id)
         }
       >
-        <Button
+        <StyledButton
+          variant="status"
           type="button"
           onClick={toggleActiveStatus}
           isActive={currentProject.isActive}
         >
           {currentProject.isActive ? "active" : "inactive"}
-        </Button>
+        </StyledButton>
         {currentProject.categories !== "none" && (
           <CategoryTitle>category: {currentProject.categories}</CategoryTitle>
         )}
@@ -155,20 +158,20 @@ export default function ProjectDetails({
       <Main>
         {description && (
           <Section>
-            <Subtitle>Description</Subtitle>
+            <StyledSubtitle>Description</StyledSubtitle>
             <DescriptionText>{description}</DescriptionText>
           </Section>
         )}
         <TabWrapper>
           <ButtonTabbar onClick={() => setActiveTabbar(true)}>
-            <Subtitle activeTabbar={activeTabbar} variant="views">
+            <StyledSubtitle activeTabbar={activeTabbar} variant="views">
               Project views
-            </Subtitle>
+            </StyledSubtitle>
           </ButtonTabbar>
           <ButtonTabbar onClick={() => setActiveTabbar(false)}>
-            <Subtitle activeTabbar={activeTabbar} variant="material">
+            <StyledSubtitle activeTabbar={activeTabbar} variant="material">
               Material list
-            </Subtitle>
+            </StyledSubtitle>
           </ButtonTabbar>
         </TabWrapper>
         {activeTabbar && (
@@ -222,26 +225,6 @@ const ButtonTabbar = styled.button`
   cursor: pointer;
 `;
 
-const Button = styled.button`
-  position: relative;
-  top: 6rem;
-  right: 1.5em;
-  grid-row: 2;
-  grid-column: 3;
-  justify-self: flex-end;
-  align-self: flex-start;
-  width: 5rem;
-  padding: 0.5em;
-  border: none;
-  border-radius: 2em;
-  cursor: pointer;
-  text-shadow: 1px 1px black;
-  box-shadow: var(--box-shadow-black);
-  color: var(--color-list-items-white);
-  background-color: ${({ isActive }) =>
-    isActive ? "var(--color-status-active)" : "var(--color-status-inactive)"};
-`;
-
 const DescriptionText = styled.p`
   overflow: hidden;
   overflow-wrap: break-word;
@@ -251,29 +234,6 @@ const DescriptionText = styled.p`
 
 const Section = styled.section`
   display: grid;
-`;
-
-const Subtitle = styled.h2`
-  margin: 0;
-  font-weight: 600;
-  padding: 0.7em 0;
-  font-size: 1.5em;
-
-  ${({ variant }) =>
-    variant === "views" &&
-    css`
-      border-bottom: ${({ activeTabbar }) =>
-        activeTabbar && "0.2em solid black"};
-      padding-bottom: 0.2em;
-    `}
-
-  ${({ variant }) =>
-    variant === "material" &&
-    css`
-      border-bottom: ${({ activeTabbar }) =>
-        !activeTabbar && "0.2em solid black"};
-      padding-bottom: 0.2em;
-    `}
 `;
 
 const Main = styled.main`

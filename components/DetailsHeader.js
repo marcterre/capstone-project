@@ -12,6 +12,7 @@ import AddImageIcon from "@/public/icons/add-image.svg";
 import { useAtom } from "jotai";
 import { showModalSketchAtom, settingsIconAtom } from "@/lib/atom.js";
 import { useRouter } from "next/router";
+import { StyledButton } from "./StyledComponents/StyledButton";
 
 const ModalDelete = dynamic(() => import("../components/ModalDelete"));
 const ModalEdit = dynamic(() => import("../components/ModalEdit"));
@@ -45,27 +46,34 @@ export default function DetailsHeader({
   return (
     <header>
       <ButtonWrapper>
-        <Button type="button" onClick={() => router.back()}>
+        <StyledButton
+          variant="settings"
+          type="button"
+          onClick={() => router.back()}
+        >
           <BackIcon />
-        </Button>
+        </StyledButton>
         <SettingsWrapper>
           {popUpSettings && (
             <>
-              <Button
+              <StyledButton
+                variant="settings"
                 type="button"
                 onClick={() => setShowModalEdit(!showModalEdit)}
               >
                 <PencilIcon />
-              </Button>
-              <Button
+              </StyledButton>
+              <StyledButton
+                variant="settings"
                 type="button"
                 onClick={() => setShowModalDelete(!showModalDelete)}
               >
                 <BinIcon />
-              </Button>
+              </StyledButton>
             </>
           )}
-          <Button
+          <StyledButton
+            variant="settings"
             type="button"
             onClick={() => {
               setPopUpSettings(!popUpSettings);
@@ -74,17 +82,18 @@ export default function DetailsHeader({
             }}
           >
             {settingsIcon}
-          </Button>
+          </StyledButton>
         </SettingsWrapper>
       </ButtonWrapper>
-      <ImageButton
+      <StyledButton
+        variant="image"
         type="button"
         onClick={() => {
           setShowModalSketch(!showModalSketch);
         }}
       >
         {image.url ? <UnlargeIcon /> : <AddImageIcon />}
-      </ImageButton>
+      </StyledButton>
       {image.url ? (
         <>
           <StyledImage
@@ -153,18 +162,6 @@ const Title = styled.h1`
   padding: 4em 0 0.5em 0;
 `;
 
-const ImageButton = styled.button`
-  width: 3.8em;
-  height: 3.5em;
-  position: relative;
-  top: 6.6em;
-  left: 24.4em;
-  border: none;
-  border-radius: 2em 0;
-  cursor: pointer;
-  background-color: var(--color-background);
-`;
-
 const ImageSection = css`
   position: absolute;
   top: 0;
@@ -194,21 +191,6 @@ const SettingsWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 0.5em;
-`;
-
-const Button = styled.button`
-  width: 2.7em;
-  height: 2.7em;
-  display: flex;
-  border: none;
-  cursor: pointer;
-  background-color: var(--color-buttons-yellow);
-  fill: var(--color-icons-filling-black);
-  border-radius: 50%;
-  &:active {
-    position: relative;
-    top: 1px;
-  }
 `;
 
 const EmptyImageText = styled.p`
