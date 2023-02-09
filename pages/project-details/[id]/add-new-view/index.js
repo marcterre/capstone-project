@@ -45,26 +45,15 @@ export default function AddNewView({ addNewView }) {
       <header>
         <Title>Add a new project view</Title>
       </header>
-      <Main>
+      <main>
         <Form handleSubmit={handleSubmit} />
-        <Button onClick={() => router.back()}>Cancel</Button>
-      </Main>
+      </main>
     </>
   );
 }
 
 const Title = styled.h1`
-  margin: 10px;
-`;
-
-const Main = styled.main`
-  display: grid;
-`;
-
-const Button = styled.button`
-  width: 150px;
-  height: 40px;
-  position: absolute;
-  right: 5vw;
-  bottom: 100px;
+  margin: 0;
+  padding: 0.5em;
+  text-align: center;
 `;

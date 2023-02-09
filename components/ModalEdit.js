@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import CharacterCounter from "./CharacterCounter";
 import Modal from "./Modal";
+import SelectCategories from "./SelectCategories";
 
 export default function ModalDelete({
   currentEntry,
@@ -16,6 +17,7 @@ export default function ModalDelete({
 
   const [name, setName] = useState(currentEntry.name);
   const [description, setDescription] = useState(currentEntry.description);
+  const [category, setCategory] = useState(currentEntry.categories);
 
   return (
     <Modal show={showModalEdit}>
@@ -50,6 +52,9 @@ export default function ModalDelete({
             maxLength="100"
           />
           <CharacterCounter maxLength={100} counter={countDescription} />
+          <SelectCategories>
+            <option value={category}>{category}</option>
+          </SelectCategories>
         </GridWrapper>
         <ButtonWrapper>
           <StyledButton type="button" onClick={handleClose}>

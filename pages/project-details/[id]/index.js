@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
 import DetailsHeader from "@/components/DetailsHeader";
@@ -7,6 +7,9 @@ import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import MaterialList from "@/components/Materiallist";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import { StyledSubtitle } from "@/components/StyledComponents/StyledSubtitle";
+import { StyledButton } from "@/components/StyledComponents/StyledButton";
+import { Wrapper } from "@/components/StyledComponents/Wrapper";
 
 export default function ProjectDetails({
   views,
@@ -20,6 +23,7 @@ export default function ProjectDetails({
   const [projects, setProjects] = useAtom(projectsAtom);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
   const [editImage, setEditImage] = useAtom(showEditImageAtom);
+  const [activeTabbar, setActiveTabbar] = useState(true);
 
   if (!currentProject) {
     return (
@@ -48,7 +52,7 @@ export default function ProjectDetails({
 
     const formData = new FormData(event.target);
 
-    setStatusUpload("Loading...");
+    setStatusUpload("Loading");
 
     const response = await fetch("/api/upload", {
       method: "post",
@@ -139,33 +143,55 @@ export default function ProjectDetails({
         handleDeleteImage={() =>
           handleDeleteImageProjects(currentProject.image.id)
         }
-      />
-      <Main>
-        <Button
+      >
+        <StyledButton
+          variant="status"
           type="button"
           onClick={toggleActiveStatus}
           isActive={currentProject.isActive}
         >
           {currentProject.isActive ? "active" : "inactive"}
-        </Button>
-        {description && (
-          <DescriptionSection>
-            <Subtitle>Description</Subtitle>
-            <DescriptionText>{description}</DescriptionText>
-          </DescriptionSection>
+        </StyledButton>
+        {currentProject.categories !== "none" && (
+          <CategoryTitle>category: {currentProject.categories}</CategoryTitle>
         )}
-        <ViewsSection>
-          <Subtitle>Project views</Subtitle>
-          <ViewLink href={`/project-details/${currentProject.id}/add-new-view`}>
-            add more project views
-          </ViewLink>
-          <ViewItem
-            views={views.filter((view) => view.projectId === currentProject.id)}
-            projects={projects}
-            currentProject={currentProject}
-          />
-        </ViewsSection>
-        {currentProject.dimensions && (
+      </DetailsHeader>
+      <Main>
+        {description && (
+          <Section>
+            <StyledSubtitle>Description</StyledSubtitle>
+            <DescriptionText>{description}</DescriptionText>
+          </Section>
+        )}
+        <Wrapper>
+          <ButtonTabbar onClick={() => setActiveTabbar(true)}>
+            <StyledSubtitle activeTabbar={activeTabbar} variant="views">
+              Project views
+            </StyledSubtitle>
+          </ButtonTabbar>
+          <ButtonTabbar onClick={() => setActiveTabbar(false)}>
+            <StyledSubtitle activeTabbar={activeTabbar} variant="material">
+              Material list
+            </StyledSubtitle>
+          </ButtonTabbar>
+        </Wrapper>
+        {activeTabbar && (
+          <Section>
+            <ViewLink
+              href={`/project-details/${currentProject.id}/add-new-view`}
+            >
+              add more project views
+            </ViewLink>
+            <ViewItem
+              views={views.filter(
+                (view) => view.projectId === currentProject.id
+              )}
+              projects={projects}
+              currentProject={currentProject}
+            />
+          </Section>
+        )}
+        {!activeTabbar && (
           <MaterialList
             addNewMaterial={addNewMaterialProject}
             currentEntry={currentProject}
@@ -178,40 +204,45 @@ export default function ProjectDetails({
   );
 }
 
-const Button = styled.button`
-  padding: 0.5em 1em;
+const CategoryTitle = styled.p`
+  grid-column: 1 / span 2;
+  margin: 0;
+  position: relative;
+  top: 6.1rem;
+  padding: 0 0 1em 0;
+  font-size: 0.9em;
+  font-weight: 300;
+`;
+
+const ButtonTabbar = styled.button`
+  background: none;
   border: none;
-  border-radius: 0.5em;
+  padding-bottom: 1em;
   cursor: pointer;
-  background-color: ${({ isActive }) => (isActive ? "lightgreen" : "red")};
 `;
 
 const DescriptionText = styled.p`
   overflow: hidden;
   overflow-wrap: break-word;
-  padding: 10px;
-`;
-
-const ViewsSection = styled.section`
-  display: grid;
-  gap: 10px;
-`;
-
-const DescriptionSection = styled.section`
-  display: grid;
-`;
-
-const Subtitle = styled.h2`
+  padding: 0 0.5em 0.5em 0.5em;
   margin: 0;
 `;
 
+const Section = styled.section`
+  display: grid;
+`;
+
 const Main = styled.main`
-  margin: 0 10px;
+  margin: 0;
+  padding: 0 1em;
 `;
 
 const ViewLink = styled(Link)`
-  background-color: lightgrey;
+  background-color: var(--color-buttons-yellow);
   text-decoration: none;
+  border-radius: 2em;
   color: black;
-  padding: 10px;
+  padding: 0.5em;
+  text-align: center;
+  box-shadow: var(--box-shadow-black);
 `;

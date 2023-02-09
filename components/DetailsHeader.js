@@ -1,12 +1,19 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Image from "next/image";
 import { useState } from "react";
 import dynamic from "next/dynamic";
-import SettingsIcon from "@/public/settings.svg";
-import BinIcon from "@/public/binIcon.svg";
-import PencilIcon from "@/public/pencil.svg";
+import BinIcon from "@/public/icons/bin.svg";
+import PencilIcon from "@/public/icons/pencil.svg";
+import BackIcon from "@/public/icons/back-arrow.svg";
+import UnlargeIcon from "@/public/icons/arrow-unlarge.svg";
+import IconX from "@/public/icons/alpha-x.svg";
+import SettingsIcon from "@/public/icons/settings.svg";
+import AddImageIcon from "@/public/icons/add-image.svg";
 import { useAtom } from "jotai";
-import { showModalSketchAtom } from "@/lib/atom.js";
+import { showModalSketchAtom, settingsIconAtom } from "@/lib/atom.js";
+import { useRouter } from "next/router";
+import { StyledButton } from "./StyledComponents/StyledButton";
+import { Wrapper } from "./StyledComponents/Wrapper";
 
 const ModalDelete = dynamic(() => import("../components/ModalDelete"));
 const ModalEdit = dynamic(() => import("../components/ModalEdit"));
@@ -16,68 +23,94 @@ export default function DetailsHeader({
   name,
   image,
   entry,
+  children,
   handleDelete,
   currentEntry,
   handleDetailsChanges,
   handleImageChange,
   handleDeleteImage,
 }) {
+  const router = useRouter();
   const [popUpSettings, setPopUpSettings] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [showModalSketch, setShowModalSketch] = useAtom(showModalSketchAtom);
+  const [settingsIcon, setSettingsIcon] = useAtom(settingsIconAtom);
 
   function handleChanges(event) {
     handleDetailsChanges(event);
     setShowModalEdit(false);
     setPopUpSettings(false);
+    setSettingsIcon(<SettingsIcon />);
   }
 
   return (
-    <Header>
-      <TitleWrapper>
-        <Title>{name}</Title>
-        {image.url ? (
-          <ImageWrapper>
-            <Image
-              src={image.url}
-              alt={`here should be a sketch of your view`}
-              width="100"
-              height="100"
-            />
-            <ImageButton
-              onClick={() => {
-                setShowModalSketch(!showModalSketch);
-              }}
-            >
-              Click me
-            </ImageButton>
-          </ImageWrapper>
-        ) : (
-          <EmptyImageButton
+    <header>
+      <Wrapper variant="button">
+        <StyledButton
+          variant="settings"
+          type="button"
+          onClick={() => router.back()}
+        >
+          <BackIcon />
+        </StyledButton>
+        <Wrapper variant="settings">
+          {popUpSettings && (
+            <>
+              <StyledButton
+                variant="settings"
+                type="button"
+                onClick={() => setShowModalEdit(!showModalEdit)}
+              >
+                <PencilIcon />
+              </StyledButton>
+              <StyledButton
+                variant="settings"
+                type="button"
+                onClick={() => setShowModalDelete(!showModalDelete)}
+              >
+                <BinIcon />
+              </StyledButton>
+            </>
+          )}
+          <StyledButton
+            variant="settings"
+            type="button"
             onClick={() => {
-              setShowModalSketch(!showModalSketch);
+              setPopUpSettings(!popUpSettings);
+              popUpSettings && setSettingsIcon(<SettingsIcon />);
+              !popUpSettings && setSettingsIcon(<IconX />);
             }}
           >
-            <NoSketchText>click to add a sketch</NoSketchText>
-          </EmptyImageButton>
-        )}
+            {settingsIcon}
+          </StyledButton>
+        </Wrapper>
+      </Wrapper>
+      <StyledButton
+        variant="image"
+        type="button"
+        onClick={() => {
+          setShowModalSketch(!showModalSketch);
+        }}
+      >
+        {image.url ? <UnlargeIcon /> : <AddImageIcon />}
+      </StyledButton>
+      {image.url ? (
+        <>
+          <StyledImage
+            src={image.url}
+            alt={`here should be a sketch of your view`}
+            width="350"
+            height="180"
+          />
+        </>
+      ) : (
+        <EmptyImageText>There has no sketch been added yet.</EmptyImageText>
+      )}
+      <TitleWrapper>
+        <Title>{name}</Title>
+        {children}
       </TitleWrapper>
-      <SettingsWrapper>
-        <Button onClick={() => setPopUpSettings(!popUpSettings)}>
-          <StyledSettingsIcon />
-        </Button>
-        {popUpSettings ? (
-          <>
-            <Button onClick={() => setShowModalDelete(!showModalDelete)}>
-              <StyledBinIcon />
-            </Button>
-            <Button onClick={() => setShowModalEdit(!showModalEdit)}>
-              <StyledPencilIcon />
-            </Button>
-          </>
-        ) : null}
-      </SettingsWrapper>
       <ModalDelete
         entry={entry}
         showModalDelete={showModalDelete}
@@ -85,6 +118,7 @@ export default function DetailsHeader({
         handleClose={() => {
           setShowModalDelete(false);
           setPopUpSettings(false);
+          setSettingsIcon(<SettingsIcon />);
         }}
       />
       <ModalEdit
@@ -93,6 +127,7 @@ export default function DetailsHeader({
         handleClose={() => {
           setShowModalEdit(false);
           setPopUpSettings(false);
+          setSettingsIcon(<SettingsIcon />);
         }}
         handleChanges={handleChanges}
       />
@@ -106,85 +141,50 @@ export default function DetailsHeader({
           handleDeleteImage();
         }}
       />
-    </Header>
+    </header>
   );
 }
 
-const ImageButton = styled.button`
-  padding: 0;
-`;
-
-const ImageWrapper = styled.div`
-  display: flex;
-  flex-direction: row-reverse;
-  border: 1px solid black;
-  width: 100px;
-  height: 100px;
-`;
-
-const SettingsWrapper = styled.div`
-  justify-self: end;
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  padding: 10px 10px;
-`;
-
-const StyledSettingsIcon = styled(SettingsIcon)`
-  width: 36px;
-  height: 36px;
-`;
-
-const Button = styled.button`
-  background: none;
-  border: none;
-  justify-self: end;
-`;
-
-const StyledBinIcon = styled(BinIcon)`
-  width: 36px;
-  height: 36px;
-`;
-
-const StyledPencilIcon = styled(PencilIcon)`
-  width: 36px;
-  height: 36px;
-`;
-
-const Header = styled.header`
-  width: 100vw;
-  display: flex;
-  flex-direction: column-reverse;
-`;
-
 const TitleWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 0 0 0 1em;
 `;
 
 const Title = styled.h1`
+  grid-row: 2;
+  grid-column: 1 / span 2;
   overflow-wrap: break-word;
   overflow: hidden;
+  align-self: stretch;
   font-size: 1.5em;
-  width: 50vw;
+  font-weight: 700;
   margin: 0;
+  padding: 4em 0 0.5em 0;
 `;
 
-const NoSketchText = styled.p`
-  padding: 5px;
+const ImageSection = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
+  box-shadow: var(--box-shadow-black);
+`;
+
+const StyledImage = styled(Image)`
+  ${ImageSection}
+  object-fit: cover;
+  align-self: center;
+  background-color: var(--color-list-items-white);
+  border-radius: 0 0 2em 2em;
+`;
+
+const EmptyImageText = styled.p`
+  ${ImageSection}
+  height: 5em;
+  top: 5.5em;
   text-align: center;
-  margin: 0;
-`;
-
-const EmptyImageButton = styled.button`
-  width: 100px;
-  height: 100px;
-  border: 1px solid black;
-  background: none;
-  cursor: pointer;
-  &:hover {
-    background-color: grey;
-  }
+  border-bottom: var(--border-darkblue);
+  border-radius: 0 0 2em 2em;
 `;

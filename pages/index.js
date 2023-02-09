@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ProjectItem from "@/components/ProjectItem";
 
-export default function HomePage({ projects }) {
+export default function HomePage({ projects, currentProject }) {
   const filteredActiveProjects = projects.filter((project) => project.isActive);
   const filteredInactiveProjects = projects.filter(
     (project) => !project.isActive
@@ -13,22 +13,30 @@ export default function HomePage({ projects }) {
         <Title>Your Projects</Title>
       </header>
       <main>
-        {projects.length < 1 && <p>click + below to add a new project</p>}
+        {projects.length < 1 && (
+          <StatusText>click + below to add a new project</StatusText>
+        )}
         {projects.length > 0 && (
           <>
-            <h2>Active projects</h2>
+            <Subtitle>Active projects</Subtitle>
             {filteredActiveProjects.length < 1 && (
-              <p>no active projects here</p>
+              <StatusText>No active projects here.</StatusText>
             )}
             {filteredActiveProjects.length > 0 && (
-              <ProjectItem projects={filteredActiveProjects} />
+              <ProjectItem
+                projects={filteredActiveProjects}
+                currentProject={currentProject}
+              />
             )}
-            <h2>Inactive projects</h2>
+            <Subtitle>Inactive projects</Subtitle>
             {filteredInactiveProjects.length < 1 && (
-              <p>no inactive projects here</p>
+              <StatusText>No inactive projects here.</StatusText>
             )}
             {filteredInactiveProjects.length > 0 && (
-              <ProjectItem projects={filteredInactiveProjects} />
+              <ProjectItem
+                projects={filteredInactiveProjects}
+                currentProject={currentProject}
+              />
             )}
           </>
         )}
@@ -38,7 +46,20 @@ export default function HomePage({ projects }) {
 }
 
 const Title = styled.h1`
-  position: relative;
-  top: 0;
-  margin: 10px;
+  margin: 0;
+  padding: 0.3em;
+  text-align: center;
+`;
+
+const Subtitle = styled.h2`
+  margin: 0;
+  padding: 2em 0 0.2em 0.5em;
+  font-size: 1.3em;
+`;
+
+const StatusText = styled.p`
+  padding: 0 1em;
+  &:first-of-type {
+    text-align: center;
+  }
 `;

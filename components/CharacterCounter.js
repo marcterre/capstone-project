@@ -15,6 +15,7 @@ export default function CharacterCounter({ maxLength, counter }) {
 const CounterLetters = styled.p`
   font-size: 0.8em;
   margin: 0;
+  padding: 0.6em 0;
 `;
 
 const Wrapper = styled.div`

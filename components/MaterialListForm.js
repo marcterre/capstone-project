@@ -22,7 +22,6 @@ export default function MaterialListForm({ addNewMaterial }) {
 
   return (
     <>
-      <Heading>Materiallist</Heading>
       <ButtonWrapper>
         <AddNewButton
           onClick={() => setShowAddNewMaterial(!showAddNewMaterial)}
@@ -108,11 +107,6 @@ export default function MaterialListForm({ addNewMaterial }) {
     </>
   );
 }
-
-const Heading = styled.h2`
-  padding: 0.3em;
-  margin: 0;
-`;
 
 const ButtonWrapper = styled.div`
   display: flex;
