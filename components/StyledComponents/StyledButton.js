@@ -73,6 +73,7 @@ export const StyledButton = styled.button`
       top: 6.6em;
       left: 24.4em;
       border-radius: 2em 0;
+      box-shadow: none;
       background-color: var(--color-background);
       &:active {
         top: 6.7em;

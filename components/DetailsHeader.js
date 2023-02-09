@@ -13,6 +13,7 @@ import { useAtom } from "jotai";
 import { showModalSketchAtom, settingsIconAtom } from "@/lib/atom.js";
 import { useRouter } from "next/router";
 import { StyledButton } from "./StyledComponents/StyledButton";
+import { Wrapper } from "./StyledComponents/Wrapper";
 
 const ModalDelete = dynamic(() => import("../components/ModalDelete"));
 const ModalEdit = dynamic(() => import("../components/ModalEdit"));
@@ -45,7 +46,7 @@ export default function DetailsHeader({
 
   return (
     <header>
-      <ButtonWrapper>
+      <Wrapper variant="button">
         <StyledButton
           variant="settings"
           type="button"
@@ -53,7 +54,7 @@ export default function DetailsHeader({
         >
           <BackIcon />
         </StyledButton>
-        <SettingsWrapper>
+        <Wrapper variant="settings">
           {popUpSettings && (
             <>
               <StyledButton
@@ -83,8 +84,8 @@ export default function DetailsHeader({
           >
             {settingsIcon}
           </StyledButton>
-        </SettingsWrapper>
-      </ButtonWrapper>
+        </Wrapper>
+      </Wrapper>
       <StyledButton
         variant="image"
         type="button"
@@ -177,20 +178,6 @@ const StyledImage = styled(Image)`
   align-self: center;
   background-color: var(--color-list-items-white);
   border-radius: 0 0 2em 2em;
-`;
-
-const ButtonWrapper = styled.div`
-  justify-self: end;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0.3em;
-`;
-
-const SettingsWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  gap: 0.5em;
 `;
 
 const EmptyImageText = styled.p`

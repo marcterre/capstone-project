@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import { StyledSubtitle } from "@/components/StyledComponents/StyledSubtitle";
 import { StyledButton } from "@/components/StyledComponents/StyledButton";
+import { Wrapper } from "@/components/StyledComponents/Wrapper";
 
 export default function ProjectDetails({
   views,
@@ -162,7 +163,7 @@ export default function ProjectDetails({
             <DescriptionText>{description}</DescriptionText>
           </Section>
         )}
-        <TabWrapper>
+        <Wrapper>
           <ButtonTabbar onClick={() => setActiveTabbar(true)}>
             <StyledSubtitle activeTabbar={activeTabbar} variant="views">
               Project views
@@ -173,7 +174,7 @@ export default function ProjectDetails({
               Material list
             </StyledSubtitle>
           </ButtonTabbar>
-        </TabWrapper>
+        </Wrapper>
         {activeTabbar && (
           <Section>
             <ViewLink
@@ -207,15 +208,10 @@ const CategoryTitle = styled.p`
   grid-column: 1 / span 2;
   margin: 0;
   position: relative;
-  top: 6rem;
+  top: 6.1rem;
   padding: 0 0 1em 0;
   font-size: 0.9em;
   font-weight: 300;
-`;
-
-const TabWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;
 
 const ButtonTabbar = styled.button`
