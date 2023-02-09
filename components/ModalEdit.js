@@ -31,7 +31,7 @@ export default function ModalEdit({
     <Modal show={showModalEdit}>
       <Form onSubmit={handleChanges}>
         <Title>Edit your entries</Title>
-        <GridWrapper>
+        <Wrapper variant="grid">
           <label htmlFor="name">Name:</label>
           <StyledInput
             id="name"
@@ -70,7 +70,7 @@ export default function ModalEdit({
               <option>{currentEntry.viewSide}</option>
             </SelectViewSide>
           )}
-        </GridWrapper>
+        </Wrapper>
         <Wrapper variant="formSubmit">
           <StyledButton variant="cancel" type="button" onClick={handleClose}>
             Cancel
@@ -85,15 +85,11 @@ export default function ModalEdit({
 }
 
 const Form = styled.form`
-  background-color: rgb(250, 250, 250);
-  padding: 20px 0;
+  background-color: var(--color-background);
+  border-radius: 2em;
+  padding: 1em;
   width: 95vw;
-  height: 70vh;
+  height: 75vh;
   display: grid;
-`;
-
-const GridWrapper = styled.div`
-  display: grid;
-  padding: 20px 10px;
-  gap: 5px;
+  gap: 1em;
 `;

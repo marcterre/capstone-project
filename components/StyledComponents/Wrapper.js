@@ -34,4 +34,11 @@ export const Wrapper = styled.div`
       position: relative;
       top: 3em;
     `}
+
+    ${({ variant }) =>
+    variant === "grid" &&
+    css`
+      display: grid;
+      justify-content: stretch;
+    `}
 `;
