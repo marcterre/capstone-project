@@ -81,4 +81,12 @@ export const StyledButton = styled.button`
         top: 6.7em;
       }
     `}
+
+    ${({ variant }) =>
+    variant === "tabBar" &&
+    css`
+      padding-bottom: 1em;
+      background: none;
+      box-shadow: none;
+    `}
 `;

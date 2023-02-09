@@ -5,6 +5,8 @@ import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
 import { viewsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import MaterialList from "@/components/Materiallist";
+import { Subtitle } from "@/components/StyledComponents/Subtitle";
+import { StyledText } from "@/components/StyledComponents/StyledText";
 
 export default function ViewDetails({
   currentView,
@@ -120,15 +122,17 @@ export default function ViewDetails({
         handleDeleteImage={() => handleDeleteImageViews(currentView.image.id)}
       >
         {currentView.viewSide !== "none" && (
-          <CategoryTitle>view-side: {currentView.viewSide}</CategoryTitle>
+          <Subtitle variant="categories">
+            view-side: {currentView.viewSide}
+          </Subtitle>
         )}
       </DetailsHeader>
       <Main>
         {description && (
-          <DescriptionSection>
+          <>
             <Subtitle>Description</Subtitle>
-            <DescriptionText>{description}</DescriptionText>
-          </DescriptionSection>
+            <StyledText>{description}</StyledText>
+          </>
         )}
         {currentView.dimensions && (
           <MaterialList
@@ -143,30 +147,6 @@ export default function ViewDetails({
   );
 }
 
-const CategoryTitle = styled.p`
-  grid-column: 1 / span 2;
-  margin: 0;
-  position: relative;
-  top: 6.1rem;
-  padding: 0 0 1em 0;
-  font-size: 0.9em;
-  font-weight: 300;
-`;
-
-const DescriptionText = styled.p`
-  overflow: scroll;
-  overflow-wrap: break-word;
-  padding: 10px;
-`;
-
-const DescriptionSection = styled.section`
-  height: auto;
-`;
-
 const Main = styled.main`
-  margin: 0 10px;
-`;
-
-const Subtitle = styled.h2`
-  margin: 0;
+  margin: 0 1em;
 `;

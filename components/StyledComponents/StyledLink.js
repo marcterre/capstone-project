@@ -32,4 +32,14 @@ export const StyledLink = styled(Link)`
           ? "var( --color-background)"
           : "var(--color-buttons-yellow)"};
     `}
+
+    ${({ variant }) =>
+    variant === "addView" &&
+    css`
+      background-color: var(--color-buttons-yellow);
+      border-radius: 2em;
+      padding: 0.5em;
+      text-align: center;
+      box-shadow: var(--box-shadow-black);
+    `}
 `;
