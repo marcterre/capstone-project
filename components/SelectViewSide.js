@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export default function SelectViewSide() {
+export default function SelectViewSide({ children }) {
   const viewSides = [
     { name: "front" },
     { name: "back" },
@@ -16,6 +16,7 @@ export default function SelectViewSide() {
     <>
       <Label htmlFor="viewSide">Choose a view side</Label>
       <Select name="viewSide" id="viewSide">
+        {children}
         <option value="none">- select a category -</option>
         {viewSides.map((side) => (
           <option key={side.name} value={side.name}>

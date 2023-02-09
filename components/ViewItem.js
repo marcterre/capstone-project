@@ -10,8 +10,6 @@ import CircleMediumIcon from "@/public/icons/circle-medium.svg";
 import StarIcon from "@/public/icons/star.svg";
 import { List } from "./StyledComponents/List";
 import { ListItem } from "./StyledComponents/ListItem";
-import styled from "styled-components";
-import Link from "next/link";
 import { StyledLink } from "./StyledComponents/StyledLink";
 
 export default function ViewItem({ views, currentProject }) {
@@ -39,9 +37,9 @@ export default function ViewItem({ views, currentProject }) {
                 {viewSideIcons.map(
                   (icon) =>
                     icon.name === view.viewSide && (
-                      <List key={icon.name} variant="icon">
+                      <ListItem variant="icon" key={icon.name}>
                         {icon.svg}
-                      </List>
+                      </ListItem>
                     )
                 )}
               </List>

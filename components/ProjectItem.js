@@ -1,5 +1,3 @@
-import styled from "styled-components";
-import Link from "next/link";
 import SawIcon from "@/public/icons/saw.svg";
 import AnvilIcon from "@/public/icons/anvil.svg";
 import StarIcon from "@/public/icons/star.svg";
@@ -10,6 +8,7 @@ import CircleMediumIcon from "@/public/icons/circle-medium.svg";
 import { List } from "./StyledComponents/List";
 import { ListItem } from "./StyledComponents/ListItem";
 import { StyledLink } from "./StyledComponents/StyledLink";
+import styled from "styled-components";
 
 export default function ProjectItem({ projects }) {
   const categoryIcons = [

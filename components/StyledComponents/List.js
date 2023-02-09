@@ -22,6 +22,8 @@ export const List = styled.ul`
     css`
       display: grid;
       grid-template-columns: repeat(2, 1fr);
+      padding: 1em 0;
+      gap: 1em 0;
     `}
 
     ${({ variant }) =>
@@ -45,12 +47,5 @@ export const List = styled.ul`
       justify-content: space-between;
       align-items: center;
       padding: 0.5em 1em;
-    `}
-
-    ${({ variant }) =>
-    variant === "icon" &&
-    css`
-      width: 1.5em;
-      height: 1.5em;
     `}
 `;

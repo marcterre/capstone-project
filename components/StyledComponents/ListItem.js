@@ -17,4 +17,12 @@ export const ListItem = styled.li`
       padding: 1em 0;
       justify-self: center;
     `}
+
+    ${({ variant }) =>
+    variant === "icon" &&
+    css`
+      width: 1.5em;
+      height: 1.5em;
+      box-shadow: none;
+    `}
 `;

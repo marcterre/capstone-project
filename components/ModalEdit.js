@@ -56,9 +56,13 @@ export default function ModalEdit({
           />
           <CharacterCounter maxLength={100} counter={countDescription} />
           {!router.pathname.includes("view-details") ? (
-            <SelectCategories />
+            <SelectCategories>
+              <option>{currentEntry.categories}</option>
+            </SelectCategories>
           ) : (
-            <SelectViewSide />
+            <SelectViewSide>
+              <option>{currentEntry.viewSide}</option>
+            </SelectViewSide>
           )}
         </GridWrapper>
         <ButtonWrapper>

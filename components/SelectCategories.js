@@ -1,10 +1,11 @@
 import styled from "styled-components";
 
-export default function SelectCategories() {
+export default function SelectCategories({ children }) {
   return (
     <>
       <Label htmlFor="categories">Choose a catergory</Label>
       <Select name="categories" id="categories">
+        {children}
         <option value="none">- select a category -</option>
         <option value="woodwork">woodwork</option>
         <option value="metalwork">metalwork</option>
