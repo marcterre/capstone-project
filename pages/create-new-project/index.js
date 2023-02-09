@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { useRouter } from "next/router";
 import Form from "@/components/Form";
+import { useRouter } from "next/router";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
+import { Title } from "@/components/StyledComponents/Title";
 
 export default function CreateNewProject({ addNewProject }) {
   const router = useRouter();
@@ -52,9 +52,3 @@ export default function CreateNewProject({ addNewProject }) {
     </>
   );
 }
-
-const Title = styled.h1`
-  margin: 0;
-  padding: 0.5em;
-  text-align: center;
-`;

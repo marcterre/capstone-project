@@ -5,6 +5,9 @@ import CharacterCounter from "./CharacterCounter";
 import Modal from "./Modal";
 import SelectCategories from "./SelectCategories";
 import SelectViewSide from "./SelectViewSide";
+import { Wrapper } from "./StyledComponents/Wrapper";
+import { StyledButton } from "./StyledComponents/StyledButton";
+import { Title } from "./StyledComponents/Title";
 
 export default function ModalEdit({
   currentEntry,
@@ -25,6 +28,7 @@ export default function ModalEdit({
   return (
     <Modal show={showModalEdit}>
       <Form onSubmit={handleChanges}>
+        <Title>Edit your entries</Title>
         <GridWrapper>
           <label htmlFor="name">Name:</label>
           <input
@@ -65,12 +69,14 @@ export default function ModalEdit({
             </SelectViewSide>
           )}
         </GridWrapper>
-        <ButtonWrapper>
-          <StyledButton type="button" onClick={handleClose}>
+        <Wrapper variant="formSubmit">
+          <StyledButton variant="cancel" type="button" onClick={handleClose}>
             Cancel
           </StyledButton>
-          <StyledButton type="submit">Save changes</StyledButton>
-        </ButtonWrapper>
+          <StyledButton type="submit" variant="submit">
+            Save
+          </StyledButton>
+        </Wrapper>
       </Form>
     </Modal>
   );
@@ -80,6 +86,7 @@ const Form = styled.form`
   background-color: rgb(250, 250, 250);
   padding: 20px 0;
   width: 95vw;
+  height: 70vh;
   display: grid;
 `;
 
@@ -87,22 +94,4 @@ const GridWrapper = styled.div`
   display: grid;
   padding: 20px 10px;
   gap: 5px;
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-self: center;
-  padding: 20px;
-`;
-
-const StyledButton = styled.button`
-  padding: 10px;
-  font-size: 1.2em;
-  background: none;
-  border: 1px solid black;
-  border-radius: 5px;
-  &:hover {
-    background-color: lightblue;
-  }
 `;

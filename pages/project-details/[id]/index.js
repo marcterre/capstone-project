@@ -7,7 +7,7 @@ import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import MaterialList from "@/components/Materiallist";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { StyledSubtitle } from "@/components/StyledComponents/StyledSubtitle";
+import { Subtitle } from "@/components/StyledComponents/Subtitle";
 import { StyledButton } from "@/components/StyledComponents/StyledButton";
 import { Wrapper } from "@/components/StyledComponents/Wrapper";
 
@@ -159,20 +159,20 @@ export default function ProjectDetails({
       <Main>
         {description && (
           <Section>
-            <StyledSubtitle>Description</StyledSubtitle>
+            <Subtitle>Description</Subtitle>
             <DescriptionText>{description}</DescriptionText>
           </Section>
         )}
         <Wrapper>
           <ButtonTabbar onClick={() => setActiveTabbar(true)}>
-            <StyledSubtitle activeTabbar={activeTabbar} variant="views">
+            <Subtitle activeTabbar={activeTabbar} variant="views">
               Project views
-            </StyledSubtitle>
+            </Subtitle>
           </ButtonTabbar>
           <ButtonTabbar onClick={() => setActiveTabbar(false)}>
-            <StyledSubtitle activeTabbar={activeTabbar} variant="material">
+            <Subtitle activeTabbar={activeTabbar} variant="material">
               Material list
-            </StyledSubtitle>
+            </Subtitle>
           </ButtonTabbar>
         </Wrapper>
         {activeTabbar && (

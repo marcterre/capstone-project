@@ -9,6 +9,7 @@ import SaveIcon from "@/public/icons/save.svg";
 import CancelIcon from "@/public/icons/cancel.svg";
 import { StyledButton } from "./StyledComponents/StyledButton";
 import SelectViewSide from "./SelectViewSide";
+import { Wrapper } from "./StyledComponents/Wrapper";
 
 export default function Form({ handleSubmit }) {
   const [count, setCount] = useState(0);
@@ -48,7 +49,7 @@ export default function Form({ handleSubmit }) {
         size={10000}
         required
       />
-      <ButtonWrapper>
+      <Wrapper variant="formButtons">
         <StyledButton
           variant="cancel"
           type="button"
@@ -59,7 +60,7 @@ export default function Form({ handleSubmit }) {
         <StyledButton variant="submit" type="submit" disabled={statusUpload}>
           <StyledSaveIcon /> Save
         </StyledButton>
-      </ButtonWrapper>
+      </Wrapper>
       <LoadingStatus>
         {statusUpload && <Spinner />}
         {statusUpload}
@@ -115,14 +116,6 @@ const StyledSaveIcon = styled(SaveIcon)`
 
 const StyledCancelIcon = styled(CancelIcon)`
   ${StyledSvg}
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  gap: 1em;
-  justify-content: space-evenly;
-  position: relative;
-  top: 3em;
 `;
 
 const rotate360 = keyframes`

@@ -22,14 +22,16 @@ export const StyledButton = styled.button`
       background-color: var(--color-list-items-white);
       color: var(--color-project-inactive);
       fill: var(--color-project-inactive);
-      padding: 0 3em;
+      padding: 0.2em 2em;
+      font-size: 1em;
     `}
 
   ${({ variant }) =>
     variant === "submit" &&
     css`
       background-color: var(--color-buttons-yellow);
-      padding: 0 3.5em;
+      padding: 0.2em 2.5em;
+      font-size: 1em;
     `}
 
     ${({ variant }) =>

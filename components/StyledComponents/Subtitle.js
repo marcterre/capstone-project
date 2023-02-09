@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 
-export const StyledSubtitle = styled.h2`
+export const Subtitle = styled.h2`
   margin: 0;
   font-weight: 600;
   padding: 0.7em 0;
