@@ -73,7 +73,7 @@ export const StyledButton = styled.button`
       width: 3.8em;
       height: 3.5em;
       top: 6.6em;
-      left: 24.4em;
+      left: 24.3em;
       border-radius: 2em 0;
       box-shadow: none;
       background-color: var(--color-background);
@@ -88,5 +88,16 @@ export const StyledButton = styled.button`
       padding-bottom: 1em;
       background: none;
       box-shadow: none;
+    `}
+
+    ${({ variant }) =>
+    variant === "close" &&
+    css`
+      width: 2.7em;
+      height: 2.7em;
+      background-color: var(--color-list-items-white);
+      fill: var(--color-project-inactive);
+      outline: rgb(0, 0, 0, 0.2) solid 0.2em;
+      align-self: center;
     `}
 `;

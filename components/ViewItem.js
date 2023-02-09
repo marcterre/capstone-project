@@ -26,14 +26,14 @@ export default function ViewItem({ views, currentProject }) {
     { name: "other", svg: <StarIcon /> },
   ];
   return (
-    <List variant="viewsOutermost">
+    <List variant="outermost">
       {views.map((view) => (
-        <ListItem key={view.id} variant="viewListItem">
+        <ListItem key={view.id} variant="mainListItem">
           <StyledLink
             href={`/project-details/${currentProject.id}/view-details/${view.id}`}
           >
-            <List variant="viewListItem">
-              <List>
+            <List variant="viewSublist">
+              <List variant="listItem">
                 {viewSideIcons.map(
                   (icon) =>
                     icon.name === view.viewSide && (

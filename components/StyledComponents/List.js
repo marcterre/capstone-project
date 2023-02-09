@@ -6,34 +6,13 @@ export const List = styled.ul`
   padding: 0;
 
   ${({ variant }) =>
-    variant === "viewListItem" &&
+    variant === "outermost" &&
     css`
       padding: 0 0.5em;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      width: 40vw;
-      display: flex;
-      align-items: center;
-      gap: 0.2em;
     `}
 
   ${({ variant }) =>
-    variant === "viewsOutermost" &&
-    css`
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      padding: 1em 0;
-      gap: 1em 0;
-    `}
-
-    ${({ variant }) =>
-    variant === "projectOutermost" &&
-    css`
-      padding: 0 0.5em;
-    `}
-
-    ${({ variant }) =>
-    variant === "projectListItem" &&
+    variant === "listItem" &&
     css`
       padding: 0 0.5em;
       text-overflow: ellipsis;
@@ -41,11 +20,20 @@ export const List = styled.ul`
     `}
 
     ${({ variant }) =>
-    variant === "projectSublist" &&
+    variant === "sublist" &&
     css`
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0.5em 1em;
+    `}
+
+  ${({ variant }) =>
+    variant === "viewSublist" &&
+    css`
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 0.5em 0;
     `}
 `;

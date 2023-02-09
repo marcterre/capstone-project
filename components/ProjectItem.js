@@ -22,18 +22,18 @@ export default function ProjectItem({ projects }) {
   ];
 
   return (
-    <List variant="projectOutermost">
+    <List variant="outermost">
       {projects.map((project) => (
         <ListItem key={project.id} variant="mainListItem">
           <StyledLink href={`/project-details/${project.id}`}>
-            <List variant="projectSublist">
-              <List variant="projectListItem">
+            <List variant="sublist">
+              <List variant="listItem">
                 <ProjectName>{project.name}</ProjectName>
                 {project.categories !== "none" && (
                   <CategoryTitle>{project.categories}</CategoryTitle>
                 )}
               </List>
-              <List variant="projectListItem">
+              <List variant="listItem">
                 {categoryIcons.map(
                   (icon) =>
                     icon.name === project.categories && (

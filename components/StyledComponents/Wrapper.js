@@ -40,6 +40,7 @@ export const Wrapper = styled.div`
     css`
       display: grid;
       justify-content: stretch;
+      background-color: var(--color-background);
     `}
 
     ${({ variant }) =>

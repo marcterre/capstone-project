@@ -3,8 +3,11 @@ import Modal from "./Modal";
 import Image from "next/image";
 import UploadIcon from "@/public/upload.svg";
 import BinIcon from "@/public/icons/bin.svg";
+import CloseIcon from "@/public/icons/alpha-x.svg";
 import { useAtom } from "jotai";
 import { statusUploadAtom, showEditImageAtom } from "@/lib/atom";
+import { StyledButton } from "./StyledComponents/StyledButton";
+import { Wrapper } from "./StyledComponents/Wrapper";
 
 export default function ModalDelete({
   image,
@@ -18,18 +21,19 @@ export default function ModalDelete({
 
   return (
     <Modal show={showModalSketch}>
-      <GridWrapper>
-        <TitleWrapper>
+      <Wrapper variant="grid">
+        <Wrapper variant="formSubmit">
           <h1>Your Sketch</h1>
           <StyledButton
+            variant="close"
             onClick={() => {
               handleClose();
               setEditImage(false);
             }}
           >
-            Close
+            <CloseIcon />
           </StyledButton>
-        </TitleWrapper>
+        </Wrapper>
         {image.url ? (
           <>
             <StyledImage
@@ -47,28 +51,24 @@ export default function ModalDelete({
             </p>
           </TextWrapper>
         )}
-        <FormWrapper>
-          <button
-            onClick={() => {
-              setEditImage(!editImage);
-            }}
-          >
-            <StyledUploadIcon />
-          </button>
-          <button onClick={handleDeleteImage}>
-            <StyledBinIcon />
-          </button>
-          {editImage ? (
-            <form onSubmit={handleImageChange}>
-              <InputWrapper>
-                <p>{statusUpload}</p>
-                <input type="file" name="imageFile" size={10000} />
-                <button>upload</button>
-              </InputWrapper>
-            </form>
-          ) : null}
-        </FormWrapper>
-      </GridWrapper>
+        {editImage && (
+          <form onSubmit={handleImageChange}>
+            <p>{statusUpload}</p>
+            <input type="file" name="imageFile" size={10000} />
+            <button>upload</button>
+          </form>
+        )}
+        <button
+          onClick={() => {
+            setEditImage(!editImage);
+          }}
+        >
+          <StyledUploadIcon />
+        </button>
+        <button onClick={handleDeleteImage}>
+          <StyledBinIcon />
+        </button>
+      </Wrapper>
     </Modal>
   );
 }
@@ -76,17 +76,6 @@ export default function ModalDelete({
 const TextWrapper = styled.div`
   padding: 10em 2em;
   text-align: center;
-`;
-
-const InputWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const FormWrapper = styled.div`
-  display: flex;
-  height: 20vh;
-  flex-direction: column-reverse;
 `;
 
 const StyledUploadIcon = styled(UploadIcon)`
@@ -101,24 +90,14 @@ const StyledBinIcon = styled(BinIcon)`
 
 const StyledImage = styled(Image)`
   object-fit: contain;
-  width: 100vw;
+  width: 95vw;
   height: 70vh;
 `;
 
-const StyledButton = styled.button`
-  font-size: 1.2em;
-  background: none;
-  border: 1px solid black;
-  border-radius: 5px;
-  &:hover {
-    background-color: lightblue;
-  }
-`;
-
-const GridWrapper = styled.div`
-  background-color: rgb(250, 250, 250);
-  display: grid;
-`;
+// const Wrapper = styled.div`
+//   background-color: rgb(250, 250, 250);
+//   display: grid;
+// `;
 
 const TitleWrapper = styled.div`
   max-height: 10vh;

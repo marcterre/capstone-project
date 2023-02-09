@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
-import CharacterCounter from "./CharacterCounter";
 import Modal from "./Modal";
+import CharacterCounter from "./CharacterCounter";
 import SelectCategories from "./SelectCategories";
 import SelectViewSide from "./SelectViewSide";
 import { Wrapper } from "./StyledComponents/Wrapper";
