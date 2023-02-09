@@ -146,6 +146,6 @@ const LoadingStatus = styled.div`
   display: flex;
   gap: 1em;
   padding: 0 1em;
-  position: absolute;
-  bottom: 5em;
+  position: relative;
+  bottom: 1.2em;
 `;
