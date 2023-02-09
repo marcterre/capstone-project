@@ -1,15 +1,18 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
 import CharacterCounter from "./CharacterCounter";
 import Modal from "./Modal";
 import SelectCategories from "./SelectCategories";
+import SelectViewSide from "./SelectViewSide";
 
-export default function ModalDelete({
+export default function ModalEdit({
   currentEntry,
   showModalEdit,
   handleClose,
   handleChanges,
 }) {
+  const router = useRouter();
   const [count, setCount] = useState(currentEntry.name.length);
   const [countDescription, setCountDescription] = useState(
     currentEntry.name.length
@@ -52,9 +55,11 @@ export default function ModalDelete({
             maxLength="100"
           />
           <CharacterCounter maxLength={100} counter={countDescription} />
-          <SelectCategories>
-            <option value={category}>{category}</option>
-          </SelectCategories>
+          {!router.pathname.includes("view-details") ? (
+            <SelectCategories />
+          ) : (
+            <SelectViewSide />
+          )}
         </GridWrapper>
         <ButtonWrapper>
           <StyledButton type="button" onClick={handleClose}>

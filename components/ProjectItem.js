@@ -7,6 +7,7 @@ import LightningIcon from "@/public/icons/lightning.svg";
 import SheepIcon from "@/public/icons/sheep.svg";
 import ShirtIcon from "@/public/icons/shirt.svg";
 import CircleMediumIcon from "@/public/icons/circle-medium.svg";
+import { StyledList } from "./StyledComponents/StyledList";
 
 export default function ProjectItem({ projects }) {
   const categoryIcons = [
@@ -20,18 +21,18 @@ export default function ProjectItem({ projects }) {
   ];
 
   return (
-    <LeadingList>
+    <StyledList variant="project-outermost">
       {projects.map((project) => (
         <ListItem key={project.id}>
           <StyledLink href={`/project-details/${project.id}`}>
-            <SubList>
-              <List>
+            <StyledList variant="projectSublist">
+              <StyledList variant="projectListItem">
                 <ProjectName>{project.name}</ProjectName>
                 {project.categories !== "none" && (
                   <CategoryTitle>{project.categories}</CategoryTitle>
                 )}
-              </List>
-              <List>
+              </StyledList>
+              <StyledList variant="projectListItem">
                 {categoryIcons.map(
                   (icon) =>
                     icon.name === project.categories && (
@@ -40,28 +41,14 @@ export default function ProjectItem({ projects }) {
                       </IconItem>
                     )
                 )}
-              </List>
-            </SubList>
+              </StyledList>
+            </StyledList>
           </StyledLink>
         </ListItem>
       ))}
-    </LeadingList>
+    </StyledList>
   );
 }
-
-const List = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0 0.5em;
-  text-overflow: ellipsis;
-  overflow: hidden;
-`;
-
-const LeadingList = styled.ul`
-  list-style: none;
-  margin: 0;
-  padding: 0 0.5em;
-`;
 
 const ListItem = styled.li`
   margin: 1em 0;
@@ -77,13 +64,6 @@ const ProjectName = styled.li`
 
 const CategoryTitle = styled.li`
   font-weight: 300;
-`;
-
-const SubList = styled.ul`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5em 1em;
 `;
 
 const IconItem = styled.li`

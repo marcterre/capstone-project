@@ -8,12 +8,14 @@ import { useRouter } from "next/router";
 import SaveIcon from "@/public/icons/save.svg";
 import CancelIcon from "@/public/icons/cancel.svg";
 import { StyledButton } from "./StyledComponents/StyledButton";
+import SelectViewSide from "./SelectViewSide";
 
 export default function Form({ handleSubmit }) {
   const [count, setCount] = useState(0);
   const [countDescription, setCountDescription] = useState(0);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
   const router = useRouter();
+  const { id } = router;
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -37,6 +39,7 @@ export default function Form({ handleSubmit }) {
       />
       <CharacterCounter maxLength={100} counter={countDescription} />
       {router.pathname === "/create-new-project" && <SelectCategories />}
+      {router.pathname.includes("add-new-view") && <SelectViewSide />}
       <Label htmlFor="imageFile">Add your sketch:</Label>
       <Input
         type="file"

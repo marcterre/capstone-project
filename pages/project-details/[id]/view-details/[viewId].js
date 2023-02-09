@@ -118,7 +118,11 @@ export default function ViewDetails({
         handleDetailsChanges={handleViewDetailsChange}
         handleImageChange={handleImageChangeViews}
         handleDeleteImage={() => handleDeleteImageViews(currentView.image.id)}
-      />
+      >
+        {currentView.viewSide !== "none" && (
+          <CategoryTitle>view-side: {currentView.viewSide}</CategoryTitle>
+        )}
+      </DetailsHeader>
       <Main>
         {description && (
           <DescriptionSection>
@@ -138,6 +142,16 @@ export default function ViewDetails({
     </>
   );
 }
+
+const CategoryTitle = styled.p`
+  grid-column: 1 / span 2;
+  margin: 0;
+  position: relative;
+  top: 6.1rem;
+  padding: 0 0 1em 0;
+  font-size: 0.9em;
+  font-weight: 300;
+`;
 
 const DescriptionText = styled.p`
   overflow: scroll;
