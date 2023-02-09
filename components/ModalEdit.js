@@ -8,6 +8,8 @@ import SelectViewSide from "./SelectViewSide";
 import { Wrapper } from "./StyledComponents/Wrapper";
 import { StyledButton } from "./StyledComponents/StyledButton";
 import { Title } from "./StyledComponents/Title";
+import { StyledInput } from "./StyledComponents/StyledInput";
+import { StyledTextarea } from "./StyledComponents/StyledTextarea";
 
 export default function ModalEdit({
   currentEntry,
@@ -31,7 +33,7 @@ export default function ModalEdit({
         <Title>Edit your entries</Title>
         <GridWrapper>
           <label htmlFor="name">Name:</label>
-          <input
+          <StyledInput
             id="name"
             type="text"
             name="name"
@@ -46,7 +48,7 @@ export default function ModalEdit({
           />
           <CharacterCounter maxLength={30} counter={count} />
           <label htmlFor="description">Description:</label>
-          <input
+          <StyledTextarea
             id="description"
             type="text"
             name="description"

@@ -10,6 +10,8 @@ import CancelIcon from "@/public/icons/cancel.svg";
 import { StyledButton } from "./StyledComponents/StyledButton";
 import SelectViewSide from "./SelectViewSide";
 import { Wrapper } from "./StyledComponents/Wrapper";
+import { StyledInput } from "./StyledComponents/StyledInput";
+import { StyledTextarea } from "./StyledComponents/StyledTextarea";
 
 export default function Form({ handleSubmit }) {
   const [count, setCount] = useState(0);
@@ -21,7 +23,7 @@ export default function Form({ handleSubmit }) {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <Label htmlFor="name">Name:</Label>
-      <Input
+      <StyledInput
         id="name"
         name="name"
         type="text"
@@ -32,7 +34,7 @@ export default function Form({ handleSubmit }) {
       />
       <CharacterCounter maxLength={30} counter={count} />
       <Label htmlFor="description">Description:</Label>
-      <DescriptionTextarea
+      <StyledTextarea
         id="description"
         name="description"
         maxLength="100"
@@ -42,7 +44,8 @@ export default function Form({ handleSubmit }) {
       {router.pathname === "/create-new-project" && <SelectCategories />}
       {router.pathname.includes("add-new-view") && <SelectViewSide />}
       <Label htmlFor="imageFile">Add your sketch:</Label>
-      <Input
+      <StyledInput
+        variant="file"
         type="file"
         name="imageFile"
         id="imageFile"
@@ -78,31 +81,6 @@ const Label = styled.label`
   font-weight: 600;
   font-size: 1.2em;
   padding: 0.5em 0;
-`;
-
-const styledFields = css`
-  background-color: var(--color-list-items-white);
-  border: none;
-  border-radius: 2em;
-  padding: 0.7em;
-  box-shadow: var(--box-shadow-darkblue);
-`;
-
-const Input = styled.input`
-  ${styledFields}
-  &:last-of-type {
-    border: none;
-    background: none;
-    font-size: 0.9em;
-    box-shadow: none;
-  }
-`;
-
-const DescriptionTextarea = styled.textarea`
-  ${styledFields}
-  min-height: 10vh;
-  padding: 1em;
-  resize: none;
 `;
 
 const StyledSvg = css`
