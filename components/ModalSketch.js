@@ -28,7 +28,7 @@ export default function ModalDelete({
               setEditImage(false);
             }}
           >
-            <SvgIcon variant="aplhaX" />
+            <SvgIcon variant="aplhaX" width="30px" />
           </StyledButton>
         </Wrapper>
         {image.url ? (
@@ -61,10 +61,10 @@ export default function ModalDelete({
             setEditImage(!editImage);
           }}
         >
-          <SvgIcon variant="upload" />
+          <SvgIcon variant="upload" width="30px" />
         </button>
         <button onClick={handleDeleteImage}>
-          <SvgIcon variant="bin" />
+          <SvgIcon variant="bin" width="30px" />
         </button>
       </Wrapper>
     </Modal>
@@ -76,26 +76,11 @@ const TextWrapper = styled.div`
   text-align: center;
 `;
 
-// const StyledUploadIcon = styled(UploadIcon)`
-//   width: 36px;
-//   height: 36px;
-// `;
-
-// const StyledBinIcon = styled(BinIcon)`
-//   width: 36px;
-//   height: 36px;
-// `;
-
 const StyledImage = styled(Image)`
   object-fit: contain;
   width: 95vw;
   height: 70vh;
 `;
-
-// const Wrapper = styled.div`
-//   background-color: rgb(250, 250, 250);
-//   display: grid;
-// `;
 
 const TitleWrapper = styled.div`
   max-height: 10vh;
