@@ -1,13 +1,12 @@
-import styled, { css, keyframes } from "styled-components";
-import { useState } from "react";
 import CharacterCounter from "./CharacterCounter";
+import SelectCategories from "./SelectCategories";
+import SelectViewSide from "./SelectViewSide";
+import SvgIcon from "./SvgIcon";
+import styled, { keyframes } from "styled-components";
+import { useState } from "react";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
-import SelectCategories from "./SelectCategories";
 import { useRouter } from "next/router";
-import SaveIcon from "@/public/icons/save.svg";
-import CancelIcon from "@/public/icons/cancel.svg";
-import SelectViewSide from "./SelectViewSide";
 import {
   Wrapper,
   StyledInput,
@@ -20,7 +19,6 @@ export default function Form({ handleSubmit }) {
   const [countDescription, setCountDescription] = useState(0);
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
   const router = useRouter();
-  const { id } = router;
 
   return (
     <StyledForm onSubmit={handleSubmit}>
@@ -60,10 +58,10 @@ export default function Form({ handleSubmit }) {
           type="button"
           onClick={() => router.back()}
         >
-          <StyledCancelIcon /> Cancel
+          Cancel
         </StyledButton>
         <StyledButton variant="submit" type="submit" disabled={statusUpload}>
-          <StyledSaveIcon /> Save
+          Save
         </StyledButton>
       </Wrapper>
       <LoadingStatus>
@@ -85,18 +83,18 @@ const Label = styled.label`
   padding: 0.5em 0;
 `;
 
-const StyledSvg = css`
-  width: 2em;
-  height: 2em;
-`;
+// const StyledSvg = css`
+//   width: 2em;
+//   height: 2em;
+// `;
 
-const StyledSaveIcon = styled(SaveIcon)`
-  ${StyledSvg}
-`;
+// const StyledSaveIcon = styled(SaveIcon)`
+//   ${StyledSvg}
+// `;
 
-const StyledCancelIcon = styled(CancelIcon)`
-  ${StyledSvg}
-`;
+// const StyledCancelIcon = styled(CancelIcon)`
+//   ${StyledSvg}
+// `;
 
 const rotate360 = keyframes`
     from {

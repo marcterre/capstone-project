@@ -1,12 +1,10 @@
-import styled from "styled-components";
-import Modal from "./Modal";
-import Image from "next/image";
-import UploadIcon from "@/public/upload.svg";
-import BinIcon from "@/public/icons/bin.svg";
-import CloseIcon from "@/public/icons/alpha-x.svg";
 import { useAtom } from "jotai";
 import { statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import { StyledButton, Wrapper } from "./StyledComponents";
+import styled from "styled-components";
+import Modal from "./Modal";
+import Image from "next/image";
+import SvgIcon from "./SvgIcon";
 
 export default function ModalDelete({
   image,
@@ -30,7 +28,7 @@ export default function ModalDelete({
               setEditImage(false);
             }}
           >
-            <CloseIcon />
+            <SvgIcon variant="aplhaX" />
           </StyledButton>
         </Wrapper>
         {image.url ? (
@@ -45,7 +43,8 @@ export default function ModalDelete({
         ) : (
           <TextWrapper>
             <p>
-              You can add a new image by clicking the <br /> <UploadIcon />
+              You can add a new image by clicking the <br />{" "}
+              <SvgIcon variant="upload" />
               <br /> below
             </p>
           </TextWrapper>
@@ -62,10 +61,10 @@ export default function ModalDelete({
             setEditImage(!editImage);
           }}
         >
-          <StyledUploadIcon />
+          <SvgIcon variant="upload" />
         </button>
         <button onClick={handleDeleteImage}>
-          <StyledBinIcon />
+          <SvgIcon variant="bin" />
         </button>
       </Wrapper>
     </Modal>
@@ -77,15 +76,15 @@ const TextWrapper = styled.div`
   text-align: center;
 `;
 
-const StyledUploadIcon = styled(UploadIcon)`
-  width: 36px;
-  height: 36px;
-`;
+// const StyledUploadIcon = styled(UploadIcon)`
+//   width: 36px;
+//   height: 36px;
+// `;
 
-const StyledBinIcon = styled(BinIcon)`
-  width: 36px;
-  height: 36px;
-`;
+// const StyledBinIcon = styled(BinIcon)`
+//   width: 36px;
+//   height: 36px;
+// `;
 
 const StyledImage = styled(Image)`
   object-fit: contain;

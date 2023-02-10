@@ -1,27 +1,18 @@
-import FrontSideIcon from "@/public/icons/front-side.svg";
-import BackSideIcon from "@/public/icons/back-side.svg";
-import RightSideIcon from "@/public/icons/right-side.svg";
-import LeftSideIcon from "@/public/icons/left-side.svg";
-import TopSideIcon from "@/public/icons/top-side.svg";
-import BottomSideIcon from "@/public/icons/bottom-side.svg";
-import ScissorIcon from "@/public/icons/scissors.svg";
-import MagnifierIcon from "@/public/icons/magnifier.svg";
-import CircleMediumIcon from "@/public/icons/circle-medium.svg";
-import StarIcon from "@/public/icons/star.svg";
 import { List, ListItem, StyledLink } from "./StyledComponents";
+import SvgIcon from "./SvgIcon";
 
 export default function ViewItem({ views, currentProject }) {
   const viewSideIcons = [
-    { name: "none", svg: <CircleMediumIcon /> },
-    { name: "front", svg: <FrontSideIcon /> },
-    { name: "back", svg: <BackSideIcon /> },
-    { name: "left", svg: <LeftSideIcon /> },
-    { name: "right", svg: <RightSideIcon /> },
-    { name: "top", svg: <TopSideIcon /> },
-    { name: "bottom", svg: <BottomSideIcon /> },
-    { name: "cut", svg: <ScissorIcon /> },
-    { name: "detail", svg: <MagnifierIcon /> },
-    { name: "other", svg: <StarIcon /> },
+    { name: "none", svg: <SvgIcon variant="circleMedium" /> },
+    { name: "front", svg: <SvgIcon variant="frontSide" width="50px" /> },
+    { name: "back", svg: <SvgIcon variant="backSide" /> },
+    { name: "left", svg: <SvgIcon variant="leftSide" /> },
+    { name: "right", svg: <SvgIcon variant="rightSide" /> },
+    { name: "top", svg: <SvgIcon variant="topSide" /> },
+    { name: "bottom", svg: <SvgIcon variant="bottomSide" /> },
+    { name: "cut", svg: <SvgIcon variant="scissor" /> },
+    { name: "detail", svg: <SvgIcon variant="magnifier" /> },
+    { name: "other", svg: <SvgIcon variant="star" /> },
   ];
   return (
     <List variant="outermost">

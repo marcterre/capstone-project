@@ -197,6 +197,7 @@ export const StyledLink = styled(Link)`
     css`
       display: flex;
       width: 2.8em;
+      height: 2.8em;
       border-radius: 50%;
       background-color: ${({ isfocused }) =>
         isfocused === "/"
@@ -209,6 +210,7 @@ export const StyledLink = styled(Link)`
     css`
       display: flex;
       width: 2.8em;
+      height: 2.8em;
       border-radius: 50%;
       background-color: ${({ isfocused }) =>
         isfocused === "/create-new-project"
