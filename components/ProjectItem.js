@@ -5,10 +5,8 @@ import LightningIcon from "@/public/icons/lightning.svg";
 import SheepIcon from "@/public/icons/sheep.svg";
 import ShirtIcon from "@/public/icons/shirt.svg";
 import CircleMediumIcon from "@/public/icons/circle-medium.svg";
-import { List } from "./StyledComponents/List";
-import { ListItem } from "./StyledComponents/ListItem";
-import { StyledLink } from "./StyledComponents/StyledLink";
 import styled from "styled-components";
+import { List, ListItem, StyledLink } from "./StyledComponents";
 
 export default function ProjectItem({ projects }) {
   const categoryIcons = [

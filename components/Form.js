@@ -7,11 +7,13 @@ import SelectCategories from "./SelectCategories";
 import { useRouter } from "next/router";
 import SaveIcon from "@/public/icons/save.svg";
 import CancelIcon from "@/public/icons/cancel.svg";
-import { StyledButton } from "./StyledComponents/StyledButton";
 import SelectViewSide from "./SelectViewSide";
-import { Wrapper } from "./StyledComponents/Wrapper";
-import { StyledInput } from "./StyledComponents/StyledInput";
-import { StyledTextarea } from "./StyledComponents/StyledTextarea";
+import {
+  Wrapper,
+  StyledInput,
+  StyledTextarea,
+  StyledButton,
+} from "./StyledComponents";
 
 export default function Form({ handleSubmit }) {
   const [count, setCount] = useState(0);

@@ -1,18 +1,25 @@
 import styled from "styled-components";
 
 export default function SelectCategories({ children }) {
+  const categories = [
+    { name: "woodwork" },
+    { name: "metalwork" },
+    { name: "electricity" },
+    { name: "knitting/crocheting" },
+    { name: "stitching" },
+    { name: "other" },
+  ];
   return (
     <>
-      <Label htmlFor="categories">Choose a catergory</Label>
+      <Label htmlFor="categories">Choose a view side</Label>
       <Select name="categories" id="categories">
         {children}
         <option value="none">- select a category -</option>
-        <option value="woodwork">woodwork</option>
-        <option value="metalwork">metalwork</option>
-        <option value="electricity">electricity</option>
-        <option value="knitting/crocheting">knitting/crocheting</option>
-        <option value="stitching">stitching</option>
-        <option value="other">other</option>
+        {categories.map((category) => (
+          <option key={category.name} value={category.name}>
+            {category.name}
+          </option>
+        ))}
       </Select>
     </>
   );

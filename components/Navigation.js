@@ -4,7 +4,7 @@ import HomeIcon from "@/public/icons/home.svg";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
 import { useRouter } from "next/router";
-import { StyledLink } from "./StyledComponents/StyledLink";
+import { StyledLink } from "./StyledComponents";
 
 export default function Navigation() {
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);

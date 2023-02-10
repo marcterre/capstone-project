@@ -2,7 +2,7 @@ import Form from "@/components/Form";
 import { useRouter } from "next/router";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
-import { Title } from "@/components/StyledComponents/Title";
+import { Title } from "@/components/StyledComponents";
 
 export default function AddNewView({ addNewView }) {
   const router = useRouter();

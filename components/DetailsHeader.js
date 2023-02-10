@@ -12,8 +12,7 @@ import AddImageIcon from "@/public/icons/add-image.svg";
 import { useAtom } from "jotai";
 import { showModalSketchAtom, settingsIconAtom } from "@/lib/atom.js";
 import { useRouter } from "next/router";
-import { StyledButton } from "./StyledComponents/StyledButton";
-import { Wrapper } from "./StyledComponents/Wrapper";
+import { StyledButton, Wrapper } from "./StyledComponents";
 
 const ModalDelete = dynamic(() => import("../components/ModalDelete"));
 const ModalEdit = dynamic(() => import("../components/ModalEdit"));

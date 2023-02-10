@@ -5,8 +5,7 @@ import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
 import { viewsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import MaterialList from "@/components/Materiallist";
-import { Subtitle } from "@/components/StyledComponents/Subtitle";
-import { StyledText } from "@/components/StyledComponents/StyledText";
+import { Subtitle, StyledText } from "@/components/StyledComponents";
 
 export default function ViewDetails({
   currentView,

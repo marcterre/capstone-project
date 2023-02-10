@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Modal from "./Modal";
-import { Wrapper } from "./StyledComponents/Wrapper";
-import { StyledButton } from "./StyledComponents/StyledButton";
+import { Wrapper, StyledButton } from "./StyledComponents";
 
 export default function ModalDelete({
   entry,

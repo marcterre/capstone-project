@@ -5,11 +5,13 @@ import Modal from "./Modal";
 import CharacterCounter from "./CharacterCounter";
 import SelectCategories from "./SelectCategories";
 import SelectViewSide from "./SelectViewSide";
-import { Wrapper } from "./StyledComponents/Wrapper";
-import { StyledButton } from "./StyledComponents/StyledButton";
-import { Title } from "./StyledComponents/Title";
-import { StyledInput } from "./StyledComponents/StyledInput";
-import { StyledTextarea } from "./StyledComponents/StyledTextarea";
+import {
+  Wrapper,
+  StyledButton,
+  Title,
+  StyledInput,
+  StyledTextarea,
+} from "./StyledComponents";
 
 export default function ModalEdit({
   currentEntry,

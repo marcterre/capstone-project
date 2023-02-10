@@ -8,9 +8,7 @@ import ScissorIcon from "@/public/icons/scissors.svg";
 import MagnifierIcon from "@/public/icons/magnifier.svg";
 import CircleMediumIcon from "@/public/icons/circle-medium.svg";
 import StarIcon from "@/public/icons/star.svg";
-import { List } from "./StyledComponents/List";
-import { ListItem } from "./StyledComponents/ListItem";
-import { StyledLink } from "./StyledComponents/StyledLink";
+import { List, ListItem, StyledLink } from "./StyledComponents";
 
 export default function ViewItem({ views, currentProject }) {
   const viewSideIcons = [

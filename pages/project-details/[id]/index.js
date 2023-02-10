@@ -7,11 +7,13 @@ import { useAtom } from "jotai";
 import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { Subtitle } from "@/components/StyledComponents/Subtitle";
-import { StyledButton } from "@/components/StyledComponents/StyledButton";
-import { Wrapper } from "@/components/StyledComponents/Wrapper";
-import { StyledText } from "@/components/StyledComponents/StyledText";
-import { StyledLink } from "@/components/StyledComponents/StyledLink";
+import {
+  Subtitle,
+  StyledButton,
+  Wrapper,
+  StyledText,
+  StyledLink,
+} from "@/components/StyledComponents";
 
 export default function ProjectDetails({
   views,

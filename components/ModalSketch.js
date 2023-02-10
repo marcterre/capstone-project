@@ -6,8 +6,7 @@ import BinIcon from "@/public/icons/bin.svg";
 import CloseIcon from "@/public/icons/alpha-x.svg";
 import { useAtom } from "jotai";
 import { statusUploadAtom, showEditImageAtom } from "@/lib/atom";
-import { StyledButton } from "./StyledComponents/StyledButton";
-import { Wrapper } from "./StyledComponents/Wrapper";
+import { StyledButton, Wrapper } from "./StyledComponents";
 
 export default function ModalDelete({
   image,
