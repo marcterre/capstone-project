@@ -29,7 +29,11 @@ export default function ProjectItem({ projects }) {
                 {categoryIcons.map(
                   (icon) =>
                     icon.name === project.categories && (
-                      <IconItem key={icon.name} isActive={project.isActive}>
+                      <IconItem
+                        key={icon.name}
+                        isActive={project.isActive}
+                        aria-label={icon.name}
+                      >
                         {icon.svg}
                       </IconItem>
                     )

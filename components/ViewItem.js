@@ -26,7 +26,11 @@ export default function ViewItem({ views, currentProject }) {
                 {viewSideIcons.map(
                   (icon) =>
                     icon.name === view.viewSide && (
-                      <ListItem variant="icon" key={icon.name}>
+                      <ListItem
+                        variant="icon"
+                        key={icon.name}
+                        aria-label={icon.name}
+                      >
                         {icon.svg}
                       </ListItem>
                     )
