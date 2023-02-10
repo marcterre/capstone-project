@@ -1,22 +1,16 @@
-import SawIcon from "@/public/icons/saw.svg";
-import AnvilIcon from "@/public/icons/anvil.svg";
-import StarIcon from "@/public/icons/star.svg";
-import LightningIcon from "@/public/icons/lightning.svg";
-import SheepIcon from "@/public/icons/sheep.svg";
-import ShirtIcon from "@/public/icons/shirt.svg";
-import CircleMediumIcon from "@/public/icons/circle-medium.svg";
 import styled from "styled-components";
 import { List, ListItem, StyledLink } from "./StyledComponents";
+import SvgIcon from "./SvgIcon";
 
 export default function ProjectItem({ projects }) {
   const categoryIcons = [
-    { name: "none", svg: <CircleMediumIcon /> },
-    { name: "woodwork", svg: <SawIcon /> },
-    { name: "metalwork", svg: <AnvilIcon /> },
-    { name: "electricity", svg: <LightningIcon /> },
-    { name: "knitting/crocheting", svg: <SheepIcon /> },
-    { name: "stitching", svg: <ShirtIcon /> },
-    { name: "other", svg: <StarIcon /> },
+    { name: "none", svg: <SvgIcon variant="circleMedium" /> },
+    { name: "woodwork", svg: <SvgIcon variant="saw" /> },
+    { name: "metalwork", svg: <SvgIcon variant="anvil" /> },
+    { name: "electricity", svg: <SvgIcon variant="lightning" /> },
+    { name: "knitting/crocheting", svg: <SvgIcon variant="sheep" /> },
+    { name: "stitching", svg: <SvgIcon variant="shirt" /> },
+    { name: "other", svg: <SvgIcon variant="star" /> },
   ];
 
   return (
