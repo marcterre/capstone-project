@@ -19,7 +19,7 @@ export default function ModalDelete({
   return (
     <Modal show={showModalSketch}>
       <Wrapper variant="grid">
-        <Wrapper variant="formSubmit">
+        <Wrapper variant="contentEvenly">
           <h1>Your Sketch</h1>
           <StyledButton
             variant="close"
@@ -80,11 +80,4 @@ const StyledImage = styled(Image)`
   object-fit: contain;
   width: 95vw;
   height: 70vh;
-`;
-
-const TitleWrapper = styled.div`
-  max-height: 10vh;
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
 `;

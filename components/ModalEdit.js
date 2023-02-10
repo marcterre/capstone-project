@@ -73,7 +73,7 @@ export default function ModalEdit({
             </SelectViewSide>
           )}
         </Wrapper>
-        <Wrapper variant="formSubmit">
+        <Wrapper variant="contentEvenly">
           <StyledButton variant="cancel" type="button" onClick={handleClose}>
             Cancel
           </StyledButton>

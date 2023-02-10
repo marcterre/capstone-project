@@ -309,7 +309,7 @@ export const Wrapper = styled.div`
     `}
 
     ${({ variant }) =>
-    variant === "formSubmit" &&
+    variant === "contentEvenly" &&
     css`
       justify-content: space-evenly;
       align-self: center;
