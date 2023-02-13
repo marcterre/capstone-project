@@ -1,15 +1,25 @@
+import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
-import CharacterCounter from "./CharacterCounter";
 import Modal from "./Modal";
+import CharacterCounter from "./CharacterCounter";
 import SelectCategories from "./SelectCategories";
+import SelectViewSide from "./SelectViewSide";
+import {
+  Wrapper,
+  StyledButton,
+  Title,
+  StyledInput,
+  StyledTextarea,
+} from "./StyledComponents";
 
-export default function ModalDelete({
+export default function ModalEdit({
   currentEntry,
   showModalEdit,
   handleClose,
   handleChanges,
 }) {
+  const router = useRouter();
   const [count, setCount] = useState(currentEntry.name.length);
   const [countDescription, setCountDescription] = useState(
     currentEntry.name.length
@@ -22,9 +32,10 @@ export default function ModalDelete({
   return (
     <Modal show={showModalEdit}>
       <Form onSubmit={handleChanges}>
-        <GridWrapper>
+        <Title>Edit your entries</Title>
+        <Wrapper variant="grid">
           <label htmlFor="name">Name:</label>
-          <input
+          <StyledInput
             id="name"
             type="text"
             name="name"
@@ -39,7 +50,7 @@ export default function ModalDelete({
           />
           <CharacterCounter maxLength={30} counter={count} />
           <label htmlFor="description">Description:</label>
-          <input
+          <StyledTextarea
             id="description"
             type="text"
             name="description"
@@ -52,48 +63,35 @@ export default function ModalDelete({
             maxLength="100"
           />
           <CharacterCounter maxLength={100} counter={countDescription} />
-          <SelectCategories>
-            <option value={category}>{category}</option>
-          </SelectCategories>
-        </GridWrapper>
-        <ButtonWrapper>
-          <StyledButton type="button" onClick={handleClose}>
+          {!router.pathname.includes("view-details") ? (
+            <SelectCategories>
+              <option>{currentEntry.categories}</option>
+            </SelectCategories>
+          ) : (
+            <SelectViewSide>
+              <option>{currentEntry.viewSide}</option>
+            </SelectViewSide>
+          )}
+        </Wrapper>
+        <Wrapper variant="contentEvenly">
+          <StyledButton variant="cancel" type="button" onClick={handleClose}>
             Cancel
           </StyledButton>
-          <StyledButton type="submit">Save changes</StyledButton>
-        </ButtonWrapper>
+          <StyledButton type="submit" variant="submit">
+            Save
+          </StyledButton>
+        </Wrapper>
       </Form>
     </Modal>
   );
 }
 
 const Form = styled.form`
-  background-color: rgb(250, 250, 250);
-  padding: 20px 0;
+  background-color: var(--color-background);
+  border-radius: 2em;
+  padding: 1em;
   width: 95vw;
+  height: 75vh;
   display: grid;
-`;
-
-const GridWrapper = styled.div`
-  display: grid;
-  padding: 20px 10px;
-  gap: 5px;
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  align-self: center;
-  padding: 20px;
-`;
-
-const StyledButton = styled.button`
-  padding: 10px;
-  font-size: 1.2em;
-  background: none;
-  border: 1px solid black;
-  border-radius: 5px;
-  &:hover {
-    background-color: lightblue;
-  }
+  gap: 1em;
 `;

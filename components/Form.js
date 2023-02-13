@@ -1,13 +1,18 @@
-import styled, { css, keyframes } from "styled-components";
-import { useState } from "react";
 import CharacterCounter from "./CharacterCounter";
+import SelectCategories from "./SelectCategories";
+import SelectViewSide from "./SelectViewSide";
+import SvgIcon from "./SvgIcon";
+import styled, { keyframes } from "styled-components";
+import { useState } from "react";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
-import SelectCategories from "./SelectCategories";
 import { useRouter } from "next/router";
-import SaveIcon from "@/public/icons/save.svg";
-import CancelIcon from "@/public/icons/cancel.svg";
-import { StyledButton } from "./StyledComponents/StyledButton";
+import {
+  Wrapper,
+  StyledInput,
+  StyledTextarea,
+  StyledButton,
+} from "./StyledComponents";
 
 export default function Form({ handleSubmit }) {
   const [count, setCount] = useState(0);
@@ -18,7 +23,7 @@ export default function Form({ handleSubmit }) {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <Label htmlFor="name">Name:</Label>
-      <Input
+      <StyledInput
         id="name"
         name="name"
         type="text"
@@ -29,7 +34,7 @@ export default function Form({ handleSubmit }) {
       />
       <CharacterCounter maxLength={30} counter={count} />
       <Label htmlFor="description">Description:</Label>
-      <DescriptionTextarea
+      <StyledTextarea
         id="description"
         name="description"
         maxLength="100"
@@ -37,26 +42,28 @@ export default function Form({ handleSubmit }) {
       />
       <CharacterCounter maxLength={100} counter={countDescription} />
       {router.pathname === "/create-new-project" && <SelectCategories />}
+      {router.pathname.includes("add-new-view") && <SelectViewSide />}
       <Label htmlFor="imageFile">Add your sketch:</Label>
-      <Input
+      <StyledInput
+        variant="file"
         type="file"
         name="imageFile"
         id="imageFile"
         size={10000}
         required
       />
-      <ButtonWrapper>
+      <Wrapper variant="formButtons">
         <StyledButton
           variant="cancel"
           type="button"
           onClick={() => router.back()}
         >
-          <StyledCancelIcon /> Cancel
+          Cancel
         </StyledButton>
         <StyledButton variant="submit" type="submit" disabled={statusUpload}>
-          <StyledSaveIcon /> Save
+          Save
         </StyledButton>
-      </ButtonWrapper>
+      </Wrapper>
       <LoadingStatus>
         {statusUpload && <Spinner />}
         {statusUpload}
@@ -76,51 +83,18 @@ const Label = styled.label`
   padding: 0.5em 0;
 `;
 
-const styledFields = css`
-  background-color: var(--color-list-items-white);
-  border: none;
-  border-radius: 2em;
-  padding: 0.7em;
-  box-shadow: var(--box-shadow-darkblue);
-`;
+// const StyledSvg = css`
+//   width: 2em;
+//   height: 2em;
+// `;
 
-const Input = styled.input`
-  ${styledFields}
-  &:last-of-type {
-    border: none;
-    background: none;
-    font-size: 0.9em;
-    box-shadow: none;
-  }
-`;
+// const StyledSaveIcon = styled(SaveIcon)`
+//   ${StyledSvg}
+// `;
 
-const DescriptionTextarea = styled.textarea`
-  ${styledFields}
-  min-height: 10vh;
-  padding: 1em;
-  resize: none;
-`;
-
-const StyledSvg = css`
-  width: 2em;
-  height: 2em;
-`;
-
-const StyledSaveIcon = styled(SaveIcon)`
-  ${StyledSvg}
-`;
-
-const StyledCancelIcon = styled(CancelIcon)`
-  ${StyledSvg}
-`;
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  gap: 1em;
-  justify-content: space-evenly;
-  position: relative;
-  top: 3em;
-`;
+// const StyledCancelIcon = styled(CancelIcon)`
+//   ${StyledSvg}
+// `;
 
 const rotate360 = keyframes`
     from {

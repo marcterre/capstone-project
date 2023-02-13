@@ -1,15 +1,19 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import Link from "next/link";
 import ViewItem from "@/components/ViewItem";
 import DetailsHeader from "@/components/DetailsHeader";
+import MaterialList from "@/components/Materiallist";
 import { useAtom } from "jotai";
 import { projectsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
-import MaterialList from "@/components/Materiallist";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { StyledSubtitle } from "@/components/StyledComponents/StyledSubtitle";
-import { StyledButton } from "@/components/StyledComponents/StyledButton";
-import { Wrapper } from "@/components/StyledComponents/Wrapper";
+import {
+  Subtitle,
+  StyledButton,
+  Wrapper,
+  StyledText,
+  StyledLink,
+} from "@/components/StyledComponents";
 
 export default function ProjectDetails({
   views,
@@ -153,35 +157,38 @@ export default function ProjectDetails({
           {currentProject.isActive ? "active" : "inactive"}
         </StyledButton>
         {currentProject.categories !== "none" && (
-          <CategoryTitle>category: {currentProject.categories}</CategoryTitle>
+          <Subtitle variant="categories">
+            category: {currentProject.categories}
+          </Subtitle>
         )}
       </DetailsHeader>
       <Main>
         {description && (
-          <Section>
-            <StyledSubtitle>Description</StyledSubtitle>
-            <DescriptionText>{description}</DescriptionText>
-          </Section>
+          <>
+            <Subtitle>Description</Subtitle>
+            <StyledText>{description}</StyledText>
+          </>
         )}
         <Wrapper>
-          <ButtonTabbar onClick={() => setActiveTabbar(true)}>
-            <StyledSubtitle activeTabbar={activeTabbar} variant="views">
+          <StyledButton variant="tabBar" onClick={() => setActiveTabbar(true)}>
+            <Subtitle activeTabbar={activeTabbar} variant="views">
               Project views
-            </StyledSubtitle>
-          </ButtonTabbar>
-          <ButtonTabbar onClick={() => setActiveTabbar(false)}>
-            <StyledSubtitle activeTabbar={activeTabbar} variant="material">
+            </Subtitle>
+          </StyledButton>
+          <StyledButton variant="tabBar" onClick={() => setActiveTabbar(false)}>
+            <Subtitle activeTabbar={activeTabbar} variant="material">
               Material list
-            </StyledSubtitle>
-          </ButtonTabbar>
+            </Subtitle>
+          </StyledButton>
         </Wrapper>
         {activeTabbar && (
           <Section>
-            <ViewLink
+            <StyledLink
+              variant="addView"
               href={`/project-details/${currentProject.id}/add-new-view`}
             >
               add more project views
-            </ViewLink>
+            </StyledLink>
             <ViewItem
               views={views.filter(
                 (view) => view.projectId === currentProject.id
@@ -204,45 +211,10 @@ export default function ProjectDetails({
   );
 }
 
-const CategoryTitle = styled.p`
-  grid-column: 1 / span 2;
-  margin: 0;
-  position: relative;
-  top: 6.1rem;
-  padding: 0 0 1em 0;
-  font-size: 0.9em;
-  font-weight: 300;
-`;
-
-const ButtonTabbar = styled.button`
-  background: none;
-  border: none;
-  padding-bottom: 1em;
-  cursor: pointer;
-`;
-
-const DescriptionText = styled.p`
-  overflow: hidden;
-  overflow-wrap: break-word;
-  padding: 0 0.5em 0.5em 0.5em;
-  margin: 0;
-`;
-
 const Section = styled.section`
   display: grid;
 `;
 
 const Main = styled.main`
-  margin: 0;
   padding: 0 1em;
-`;
-
-const ViewLink = styled(Link)`
-  background-color: var(--color-buttons-yellow);
-  text-decoration: none;
-  border-radius: 2em;
-  color: black;
-  padding: 0.5em;
-  text-align: center;
-  box-shadow: var(--box-shadow-black);
 `;

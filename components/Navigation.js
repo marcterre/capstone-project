@@ -1,10 +1,9 @@
 import styled from "styled-components";
-import AddIcon from "@/public/icons/plus.svg";
-import HomeIcon from "@/public/icons/home.svg";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
 import { useRouter } from "next/router";
-import { StyledLink } from "./StyledComponents/StyledLink";
+import { StyledLink } from "./StyledComponents";
+import SvgIcon from "./SvgIcon";
 
 export default function Navigation() {
   const [statusUpload, setStatusUpload] = useAtom(statusUploadAtom);
@@ -20,7 +19,7 @@ export default function Navigation() {
             isfocused={router.pathname}
             variant="home"
           >
-            <HomeIcon />
+            <SvgIcon variant="home" />
           </StyledLink>
         </li>
         <li>
@@ -29,7 +28,7 @@ export default function Navigation() {
             isfocused={router.pathname}
             variant="plus"
           >
-            <AddIcon />
+            <SvgIcon variant="plus" />
           </StyledLink>
         </li>
       </List>

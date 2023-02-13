@@ -1,23 +1,26 @@
 import styled from "styled-components";
 
-export default function SelectCategories({ children }) {
-  const categories = [
-    { name: "woodwork" },
-    { name: "metalwork" },
-    { name: "electricity" },
-    { name: "knitting/crocheting" },
-    { name: "stitching" },
+export default function SelectViewSide({ children }) {
+  const viewSides = [
+    { name: "front" },
+    { name: "back" },
+    { name: "left" },
+    { name: "right" },
+    { name: "top" },
+    { name: "bottom" },
+    { name: "cut" },
+    { name: "detail" },
     { name: "other" },
   ];
   return (
     <>
-      <Label htmlFor="categories">Choose a view side</Label>
-      <Select name="categories" id="categories">
+      <Label htmlFor="viewSide">Choose a view side</Label>
+      <Select name="viewSide" id="viewSide">
         {children}
         <option value="none">- select a category -</option>
-        {categories.map((category) => (
-          <option key={category.name} value={category.name}>
-            {category.name}
+        {viewSides.map((side) => (
+          <option key={side.name} value={side.name}>
+            {side.name}
           </option>
         ))}
       </Select>

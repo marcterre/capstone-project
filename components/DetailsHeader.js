@@ -1,23 +1,22 @@
-import styled, { css } from "styled-components";
-import Image from "next/image";
 import { useState } from "react";
-import dynamic from "next/dynamic";
-import BinIcon from "@/public/icons/bin.svg";
-import PencilIcon from "@/public/icons/pencil.svg";
-import BackIcon from "@/public/icons/back-arrow.svg";
-import UnlargeIcon from "@/public/icons/arrow-unlarge.svg";
-import IconX from "@/public/icons/alpha-x.svg";
-import SettingsIcon from "@/public/icons/settings.svg";
-import AddImageIcon from "@/public/icons/add-image.svg";
 import { useAtom } from "jotai";
 import { showModalSketchAtom, settingsIconAtom } from "@/lib/atom.js";
 import { useRouter } from "next/router";
-import { StyledButton } from "./StyledComponents/StyledButton";
-import { Wrapper } from "./StyledComponents/Wrapper";
+import { StyledButton, Wrapper } from "./StyledComponents";
+import styled, { css } from "styled-components";
+import Image from "next/image";
+import dynamic from "next/dynamic";
+import SvgIcon from "./SvgIcon";
 
-const ModalDelete = dynamic(() => import("../components/ModalDelete"));
-const ModalEdit = dynamic(() => import("../components/ModalEdit"));
-const ModalSketch = dynamic(() => import("../components/ModalSketch"));
+const ModalDelete = dynamic(() => import("../components/ModalDelete"), {
+  ssr: false,
+});
+const ModalEdit = dynamic(() => import("../components/ModalEdit"), {
+  ssr: false,
+});
+const ModalSketch = dynamic(() => import("../components/ModalSketch"), {
+  ssr: false,
+});
 
 export default function DetailsHeader({
   name,
@@ -41,7 +40,7 @@ export default function DetailsHeader({
     handleDetailsChanges(event);
     setShowModalEdit(false);
     setPopUpSettings(false);
-    setSettingsIcon(<SettingsIcon />);
+    setSettingsIcon(<SvgIcon variant="settings" />);
   }
 
   return (
@@ -52,7 +51,7 @@ export default function DetailsHeader({
           type="button"
           onClick={() => router.back()}
         >
-          <BackIcon />
+          <SvgIcon variant="backArrow" />
         </StyledButton>
         <Wrapper variant="settings">
           {popUpSettings && (
@@ -62,14 +61,14 @@ export default function DetailsHeader({
                 type="button"
                 onClick={() => setShowModalEdit(!showModalEdit)}
               >
-                <PencilIcon />
+                <SvgIcon variant="pencil" />
               </StyledButton>
               <StyledButton
                 variant="settings"
                 type="button"
                 onClick={() => setShowModalDelete(!showModalDelete)}
               >
-                <BinIcon />
+                <SvgIcon variant="bin" />
               </StyledButton>
             </>
           )}
@@ -78,8 +77,8 @@ export default function DetailsHeader({
             type="button"
             onClick={() => {
               setPopUpSettings(!popUpSettings);
-              popUpSettings && setSettingsIcon(<SettingsIcon />);
-              !popUpSettings && setSettingsIcon(<IconX />);
+              popUpSettings && setSettingsIcon(<SvgIcon variant="settings" />);
+              !popUpSettings && setSettingsIcon(<SvgIcon variant="aplhaX" />);
             }}
           >
             {settingsIcon}
@@ -93,7 +92,11 @@ export default function DetailsHeader({
           setShowModalSketch(!showModalSketch);
         }}
       >
-        {image.url ? <UnlargeIcon /> : <AddImageIcon />}
+        {image.url ? (
+          <SvgIcon variant="arrowUnlarge" />
+        ) : (
+          <SvgIcon variant="addImage" />
+        )}
       </StyledButton>
       {image.url ? (
         <>
@@ -118,7 +121,7 @@ export default function DetailsHeader({
         handleClose={() => {
           setShowModalDelete(false);
           setPopUpSettings(false);
-          setSettingsIcon(<SettingsIcon />);
+          setSettingsIcon(<SvgIcon variant="settings" />);
         }}
       />
       <ModalEdit
@@ -127,7 +130,7 @@ export default function DetailsHeader({
         handleClose={() => {
           setShowModalEdit(false);
           setPopUpSettings(false);
-          setSettingsIcon(<SettingsIcon />);
+          setSettingsIcon(<SvgIcon variant="settings" />);
         }}
         handleChanges={handleChanges}
       />

@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 export default createGlobalStyle`
 :root{
   --color-darkblue: #255D83;
-  --color-buttons-yellow: #F3BC09;
+  --color-buttons-yellow: #E6AC15;
   --color-icons-filling-black: #000;
   --color-list-items-white: #FFFEFE;
   --color-background: #D9DDE9;

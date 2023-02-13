@@ -5,6 +5,7 @@ import DetailsHeader from "@/components/DetailsHeader";
 import { useAtom } from "jotai";
 import { viewsAtom, statusUploadAtom, showEditImageAtom } from "@/lib/atom";
 import MaterialList from "@/components/Materiallist";
+import { Subtitle, StyledText } from "@/components/StyledComponents";
 
 export default function ViewDetails({
   currentView,
@@ -118,13 +119,19 @@ export default function ViewDetails({
         handleDetailsChanges={handleViewDetailsChange}
         handleImageChange={handleImageChangeViews}
         handleDeleteImage={() => handleDeleteImageViews(currentView.image.id)}
-      />
+      >
+        {currentView.viewSide !== "none" && (
+          <Subtitle variant="categories">
+            view-side: {currentView.viewSide}
+          </Subtitle>
+        )}
+      </DetailsHeader>
       <Main>
         {description && (
-          <DescriptionSection>
+          <>
             <Subtitle>Description</Subtitle>
-            <DescriptionText>{description}</DescriptionText>
-          </DescriptionSection>
+            <StyledText>{description}</StyledText>
+          </>
         )}
         {currentView.dimensions && (
           <MaterialList
@@ -139,20 +146,6 @@ export default function ViewDetails({
   );
 }
 
-const DescriptionText = styled.p`
-  overflow: scroll;
-  overflow-wrap: break-word;
-  padding: 10px;
-`;
-
-const DescriptionSection = styled.section`
-  height: auto;
-`;
-
 const Main = styled.main`
-  margin: 0 10px;
-`;
-
-const Subtitle = styled.h2`
-  margin: 0;
+  margin: 0 1em;
 `;

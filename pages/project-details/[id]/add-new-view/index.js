@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
-import styled from "styled-components";
 import Form from "@/components/Form";
+import { useRouter } from "next/router";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
+import { Title } from "@/components/StyledComponents";
 
 export default function AddNewView({ addNewView }) {
   const router = useRouter();
@@ -51,9 +51,3 @@ export default function AddNewView({ addNewView }) {
     </>
   );
 }
-
-const Title = styled.h1`
-  margin: 0;
-  padding: 0.5em;
-  text-align: center;
-`;
