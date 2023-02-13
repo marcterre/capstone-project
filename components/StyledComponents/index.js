@@ -41,8 +41,8 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   background-color: var(--color-list-items-white);
-  border-radius: 0.5em;
-  box-shadow: var(--box-shadow-card);
+  border-radius: 1em;
+  box-shadow: var(--box-shadow-darkblue);
 
   ${({ variant }) =>
     variant === "mainListItem" &&
@@ -95,7 +95,7 @@ export const StyledButton = styled.button`
   ${({ variant }) =>
     variant === "submit" &&
     css`
-      background-color: var(--color-buttons-yellow);
+      background-color: var(--color-buttons);
       padding: 0.5em 2.5em;
       font-size: 1em;
     `}
@@ -105,7 +105,7 @@ export const StyledButton = styled.button`
     css`
       width: 2.7em;
       height: 2.7em;
-      background-color: var(--color-buttons-yellow);
+      background-color: var(--color-buttons);
       fill: var(--color-icons-filling-black);
       border-radius: 50%;
     `}
@@ -113,7 +113,7 @@ export const StyledButton = styled.button`
     ${({ variant }) =>
     variant === "status" &&
     css`
-      border-radius: 0.2em;
+      border-radius: 0.3em;
       grid-column: 1 / span 2;
       background: none;
       width: 100%;
@@ -170,7 +170,7 @@ export const StyledButton = styled.button`
 export const StyledInput = styled.input`
   background-color: var(--color-list-items-white);
   border: none;
-  border-radius: 2em;
+  border-radius: 1em;
   padding: 0.7em;
   box-shadow: var(--box-shadow-darkblue);
 
@@ -186,22 +186,20 @@ export const StyledInput = styled.input`
 export const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
-  &:active {
-    position: relative;
-    top: 1px;
-  }
 
   ${({ variant }) =>
     variant === "home" &&
     css`
       display: flex;
       width: 2.8em;
-      height: 2.8em;
       border-radius: 50%;
-      background-color: ${({ isfocused }) =>
-        isfocused === "/"
-          ? "var( --color-background)"
-          : "var(--color-buttons-yellow)"};
+      ${({ isfocused }) =>
+        isfocused === "/" &&
+        css`
+          position: relative;
+          top: -0.5em;
+          background-color: var(--color-buttons);
+        `};
     `}
 
   ${({ variant }) =>
@@ -209,20 +207,22 @@ export const StyledLink = styled(Link)`
     css`
       display: flex;
       width: 2.8em;
-      height: 2.8em;
       border-radius: 50%;
-      background-color: ${({ isfocused }) =>
-        isfocused === "/create-new-project"
-          ? "var( --color-background)"
-          : "var(--color-buttons-yellow)"};
+      ${({ isfocused }) =>
+        isfocused === "/create-new-project" &&
+        css`
+          position: relative;
+          top: -0.5em;
+          background-color: var(--color-buttons-yellow);
+        `};
     `}
 
     ${({ variant }) =>
     variant === "addView" &&
     css`
-      background-color: var(--color-buttons-yellow);
-      border-radius: 2em;
-      padding: 0.5em;
+      background-color: var(--color-buttons);
+      border-radius: 0.8em;
+      padding: 0.3em;
       text-align: center;
       box-shadow: var(--box-shadow-black);
     `}
@@ -241,7 +241,7 @@ export const StyledTextarea = styled.textarea`
   resize: none;
   background-color: var(--color-list-items-white);
   border: none;
-  border-radius: 2em;
+  border-radius: 1em;
   padding: 0.7em;
   box-shadow: var(--box-shadow-darkblue);
 `;
@@ -276,6 +276,12 @@ export const Subtitle = styled.h2`
       padding: 0 0 0 1em;
       font-size: 0.9em;
       font-weight: 300;
+    `}
+
+    ${({ variant }) =>
+    variant === "modal" &&
+    css`
+      text-align: center;
     `}
 `;
 

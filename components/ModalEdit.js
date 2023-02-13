@@ -45,10 +45,10 @@ export default function ModalEdit({
               setCount(event.target.value.length);
               setName(event.target.value);
             }}
-            maxLength="30"
+            maxLength="25"
             required
           />
-          <CharacterCounter maxLength={30} counter={count} />
+          <CharacterCounter maxLength={25} counter={count} />
           <label htmlFor="description">Description:</label>
           <StyledTextarea
             id="description"
@@ -88,7 +88,7 @@ export default function ModalEdit({
 
 const Form = styled.form`
   background-color: var(--color-background);
-  border-radius: 2em;
+  border-radius: 1em;
   padding: 1em;
   width: 95vw;
   height: 75vh;
