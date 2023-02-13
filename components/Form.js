@@ -28,11 +28,11 @@ export default function Form({ handleSubmit }) {
         name="name"
         type="text"
         pattern="^[a-zA-Z0-9äüöÄÜÖ][a-zA-Z0-9-_ äüöÄÜÖß.`'´]{1,}"
-        maxLength="30"
+        maxLength="25"
         onChange={(event) => setCount(event.target.value.length)}
         required
       />
-      <CharacterCounter maxLength={30} counter={count} />
+      <CharacterCounter maxLength={25} counter={count} />
       <Label htmlFor="description">Description:</Label>
       <StyledTextarea
         id="description"

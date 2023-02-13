@@ -9,7 +9,8 @@ export default createGlobalStyle`
   --color-buttons-yellow: #E6AC15;
   --color-icons-filling-black: #000;
   --color-list-items-white: #FFFEFE;
-  --color-background: #D9DDE9;
+  --color-background: #fff;
+  /* --color-background: #D9DDE9; */
   --color-project-active: #2C9E45;
   --color-project-inactive: #B20E0E;
   --color-status-active: #32A020;
@@ -17,9 +18,13 @@ export default createGlobalStyle`
 
   --border-yellow: 0.2em solid var(--color-buttons-yellow);
   --border-darkblue: 0.2em solid var(--color-darkblue);
-  --box-shadow-darkblue:  0 0.3em 0.5em 0 rgb(37, 93, 131, 0.8);
+  --box-shadow-darkblue:  0 0.3em 0.5em 0 rgb(37, 93, 131, 0.5);
   --box-shadow-black:  0 0.3em 0.5em 0 rgb(0, 0, 0, 0.3);
+  --box-shadow-card: inset 0 -3em 3em rgba(37, 93, 131, 0.1),
+    0 0 0 2px rgb(190, 190, 190), 0.3em 0.3em 1em rgba(37, 93, 131, 0.3);
+
 }
+
 
   *,
   *::before,

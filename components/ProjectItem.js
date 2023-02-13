@@ -57,8 +57,8 @@ const CategoryTitle = styled.li`
 `;
 
 const IconItem = styled.li`
-  width: 2em;
-  height: 2em;
+  width: 1.5em;
+  height: 1.5em;
   fill: ${({ isActive }) =>
     isActive ? "var(--color-project-active)" : "var(--color-project-inactive)"};
 `;

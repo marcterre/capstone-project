@@ -41,8 +41,8 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   background-color: var(--color-list-items-white);
-  border-radius: 2em;
-  box-shadow: var(--box-shadow-darkblue);
+  border-radius: 0.5em;
+  box-shadow: var(--box-shadow-card);
 
   ${({ variant }) =>
     variant === "mainListItem" &&
@@ -96,7 +96,7 @@ export const StyledButton = styled.button`
     variant === "submit" &&
     css`
       background-color: var(--color-buttons-yellow);
-      padding: 0.2em 2.5em;
+      padding: 0.5em 2.5em;
       font-size: 1em;
     `}
 
@@ -113,38 +113,37 @@ export const StyledButton = styled.button`
     ${({ variant }) =>
     variant === "status" &&
     css`
-      position: relative;
-      top: 6rem;
-      right: 1.5em;
-      grid-row: 2;
-      grid-column: 3;
-      justify-self: flex-end;
-      align-self: flex-start;
-      width: 5rem;
-      padding: 0.5em;
-      text-shadow: 1px 1px black;
-      color: var(--color-list-items-white);
-      background-color: ${({ isActive }) =>
+      border-radius: 0.2em;
+      grid-column: 1 / span 2;
+      background: none;
+      width: 100%;
+      height: 40%;
+      padding: 0.8em;
+      box-shadow: none;
+      color: ${({ isActive }) =>
         isActive
           ? "var(--color-status-active)"
           : "var(--color-status-inactive)"};
+      border: ${({ isActive }) =>
+        isActive
+          ? "0.1em solid var(--color-status-active)"
+          : "0.1em solid var(--color-status-inactive)"};
       &:active {
-        top: 7em;
+        top: 1px;
       }
     `}
 
     ${({ variant }) =>
     variant === "image" &&
     css`
-      width: 3.8em;
-      height: 3.5em;
-      top: 6.6em;
-      left: 24.3em;
-      border-radius: 2em 0;
-      box-shadow: none;
-      background-color: var(--color-background);
+      top: -2.5em;
+      right: -5.5em;
+      width: 3em;
+      height: 3em;
+      border-radius: 2em;
+      background-color: rgb(250, 250, 250);
       &:active {
-        top: 6.7em;
+        top: -2.4em;
       }
     `}
 
@@ -252,7 +251,6 @@ export const Subtitle = styled.h2`
   font-weight: 600;
   padding: 0.7em 0;
   font-size: 1.5em;
-  position: relative;
 
   ${({ variant }) =>
     variant === "views" &&
@@ -273,10 +271,9 @@ export const Subtitle = styled.h2`
     ${({ variant }) =>
     variant === "categories" &&
     css`
-      grid-column: 1 / span 2;
+      grid-row: 2;
       margin: 0;
-      top: 6.1rem;
-      padding: 0 0 1em 0;
+      padding: 0 0 0 1em;
       font-size: 0.9em;
       font-weight: 300;
     `}
@@ -288,11 +285,37 @@ export const Title = styled.h1`
   padding: 0.3em;
 `;
 
+export const GridWrapper = styled.div`
+  display: grid;
+
+  ${({ variant }) =>
+    variant === "title" &&
+    css`
+      grid-template-columns: fit-content(repeat(2, 1fr));
+      grid-template-rows: fit-content(repeat(3, 1fr));
+      align-items: center;
+      row-gap: 0.3em;
+      padding: 0.5em 1em 0 1em;
+      margin: 0;
+    `}
+`;
+
 export const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0;
   margin: 0;
+
+  ${({ variant }) =>
+    variant === "image" &&
+    css`
+      display: grid;
+      justify-self: flex-end;
+      height: 120px;
+      width: 120px;
+      grid-column: 2;
+      grid-row: 1;
+    `}
 
   ${({ variant }) =>
     variant === "button" &&

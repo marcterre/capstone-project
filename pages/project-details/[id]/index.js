@@ -154,7 +154,7 @@ export default function ProjectDetails({
           onClick={toggleActiveStatus}
           isActive={currentProject.isActive}
         >
-          {currentProject.isActive ? "active" : "inactive"}
+          <span>status: {currentProject.isActive ? "active" : "inactive"}</span>
         </StyledButton>
         {currentProject.categories !== "none" && (
           <Subtitle variant="categories">

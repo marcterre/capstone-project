@@ -2,8 +2,8 @@ import { useState } from "react";
 import { useAtom } from "jotai";
 import { showModalSketchAtom, settingsIconAtom } from "@/lib/atom.js";
 import { useRouter } from "next/router";
-import { StyledButton, Wrapper } from "./StyledComponents";
-import styled, { css } from "styled-components";
+import { StyledButton, Wrapper, GridWrapper } from "./StyledComponents";
+import styled from "styled-components";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import SvgIcon from "./SvgIcon";
@@ -85,35 +85,38 @@ export default function DetailsHeader({
           </StyledButton>
         </Wrapper>
       </Wrapper>
-      <StyledButton
-        variant="image"
-        type="button"
-        onClick={() => {
-          setShowModalSketch(!showModalSketch);
-        }}
-      >
-        {image.url ? (
-          <SvgIcon variant="arrowUnlarge" />
-        ) : (
-          <SvgIcon variant="addImage" />
-        )}
-      </StyledButton>
-      {image.url ? (
-        <>
-          <StyledImage
-            src={image.url}
-            alt={`here should be a sketch of your view`}
-            width="350"
-            height="180"
-          />
-        </>
-      ) : (
-        <EmptyImageText>There has no sketch been added yet.</EmptyImageText>
-      )}
-      <TitleWrapper>
+      <GridWrapper variant="title">
         <Title>{name}</Title>
         {children}
-      </TitleWrapper>
+        <Wrapper variant="image">
+          {image.url && (
+            <StyledImage
+              src={image.url}
+              alt={`here should be a sketch of your view`}
+              width="120"
+              height="120"
+            />
+          )}
+          {!image.url && <EmptyImageText>no image available</EmptyImageText>}
+          <StyledButton
+            variant="image"
+            type="button"
+            onClick={() => {
+              setShowModalSketch(!showModalSketch);
+            }}
+          >
+            {image.url ? (
+              <SvgIcon variant="arrowUnlarge" />
+            ) : (
+              <SvgIcon variant="addImage" />
+            )}
+          </StyledButton>
+          {/* </>
+          ) : (
+            <EmptyImageText>no image available</EmptyImageText>
+          )} */}
+        </Wrapper>
+      </GridWrapper>
       <ModalDelete
         entry={entry}
         showModalDelete={showModalDelete}
@@ -148,46 +151,35 @@ export default function DetailsHeader({
   );
 }
 
-const TitleWrapper = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 0 0 0 1em;
-`;
+// const TitleWrapper = styled.div`
+//   display: grid;
+//   grid-template-columns: fit-content(repeat(2, 1fr));
+//   grid-template-rows: fit-content(repeat(3, 1fr));
+//   align-items: center;
+//   row-gap: 0.3em;
+//   padding: 0.5em 1em 0 1em;
+//   margin: 0;
+// `;
 
 const Title = styled.h1`
-  grid-row: 2;
-  grid-column: 1 / span 2;
   overflow-wrap: break-word;
   overflow: hidden;
-  align-self: stretch;
+  grid-row: 1;
   font-size: 1.5em;
   font-weight: 700;
   margin: 0;
-  padding: 4em 0 0.5em 0;
-`;
-
-const ImageSection = css`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: -1;
-  box-shadow: var(--box-shadow-black);
+  padding: 0.5em;
 `;
 
 const StyledImage = styled(Image)`
-  ${ImageSection}
   object-fit: cover;
-  align-self: center;
-  background-color: var(--color-list-items-white);
-  border-radius: 0 0 2em 2em;
+  background-color: #d9dde9;
+  border-radius: 50%;
 `;
 
 const EmptyImageText = styled.p`
-  ${ImageSection}
-  height: 5em;
-  top: 5.5em;
+  margin: 0;
   text-align: center;
-  border-bottom: var(--border-darkblue);
-  border-radius: 0 0 2em 2em;
+  border-radius: 50%;
+  background-color: #d9dde9;
 `;
