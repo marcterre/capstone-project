@@ -11,6 +11,7 @@ import {
   Title,
   StyledInput,
   StyledTextarea,
+  GridWrapper,
 } from "./StyledComponents";
 
 export default function ModalEdit({
@@ -33,7 +34,7 @@ export default function ModalEdit({
     <Modal show={showModalEdit}>
       <Form onSubmit={handleChanges}>
         <Title>Edit your entries</Title>
-        <Wrapper variant="grid">
+        <GridWrapper variant="content-stretch">
           <label htmlFor="name">Name:</label>
           <StyledInput
             id="name"
@@ -72,8 +73,8 @@ export default function ModalEdit({
               <option>{currentEntry.viewSide}</option>
             </SelectViewSide>
           )}
-        </Wrapper>
-        <Wrapper variant="contentEvenly">
+        </GridWrapper>
+        <Wrapper variant="space-between">
           <StyledButton variant="cancel" type="button" onClick={handleClose}>
             Cancel
           </StyledButton>
@@ -86,7 +87,7 @@ export default function ModalEdit({
   );
 }
 
-const Form = styled.form`
+export const Form = styled.form`
   background-color: var(--color-background);
   border-radius: 1em;
   padding: 1em;

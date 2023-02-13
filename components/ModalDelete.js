@@ -14,7 +14,7 @@ export default function ModalDelete({
         <Subtitle variant="modal">
           Do you really want to delete your {entry}?
         </Subtitle>
-        <Wrapper variant="deleteButtons">
+        <Wrapper variant="gap">
           <StyledButton variant="cancel" onClick={handleClose}>
             No
           </StyledButton>

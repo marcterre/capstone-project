@@ -1,7 +1,6 @@
 import CharacterCounter from "./CharacterCounter";
 import SelectCategories from "./SelectCategories";
 import SelectViewSide from "./SelectViewSide";
-import SvgIcon from "./SvgIcon";
 import styled, { keyframes } from "styled-components";
 import { useState } from "react";
 import { useAtom } from "jotai";
@@ -12,6 +11,7 @@ import {
   StyledInput,
   StyledTextarea,
   StyledButton,
+  GridWrapper,
 } from "./StyledComponents";
 
 export default function Form({ handleSubmit }) {
@@ -52,7 +52,7 @@ export default function Form({ handleSubmit }) {
         size={10000}
         required
       />
-      <Wrapper variant="formButtons">
+      <Wrapper variant="space-evenly">
         <StyledButton
           variant="cancel"
           type="button"
@@ -82,19 +82,6 @@ const Label = styled.label`
   font-size: 1.2em;
   padding: 0.5em 0;
 `;
-
-// const StyledSvg = css`
-//   width: 2em;
-//   height: 2em;
-// `;
-
-// const StyledSaveIcon = styled(SaveIcon)`
-//   ${StyledSvg}
-// `;
-
-// const StyledCancelIcon = styled(CancelIcon)`
-//   ${StyledSvg}
-// `;
 
 const rotate360 = keyframes`
     from {

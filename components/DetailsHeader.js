@@ -11,10 +11,10 @@ import SvgIcon from "./SvgIcon";
 const ModalDelete = dynamic(() => import("../components/ModalDelete"), {
   ssr: false,
 });
-const ModalEdit = dynamic(() => import("../components/ModalEdit"), {
+const ModalEdit = dynamic(() => import("./ModalEdit"), {
   ssr: false,
 });
-const ModalSketch = dynamic(() => import("../components/ModalSketch"), {
+const ModalSketch = dynamic(() => import("./ModalSketch"), {
   ssr: false,
 });
 
@@ -53,7 +53,7 @@ export default function DetailsHeader({
         >
           <SvgIcon variant="backArrow" />
         </StyledButton>
-        <Wrapper variant="settings">
+        <Wrapper variant="gap">
           {popUpSettings && (
             <>
               <StyledButton
@@ -88,7 +88,7 @@ export default function DetailsHeader({
       <GridWrapper variant="title">
         <Title>{name}</Title>
         {children}
-        <Wrapper variant="image">
+        <GridWrapper variant="image">
           {image.url && (
             <StyledImage
               src={image.url}
@@ -111,11 +111,7 @@ export default function DetailsHeader({
               <SvgIcon variant="addImage" />
             )}
           </StyledButton>
-          {/* </>
-          ) : (
-            <EmptyImageText>no image available</EmptyImageText>
-          )} */}
-        </Wrapper>
+        </GridWrapper>
       </GridWrapper>
       <ModalDelete
         entry={entry}
@@ -151,16 +147,6 @@ export default function DetailsHeader({
   );
 }
 
-// const TitleWrapper = styled.div`
-//   display: grid;
-//   grid-template-columns: fit-content(repeat(2, 1fr));
-//   grid-template-rows: fit-content(repeat(3, 1fr));
-//   align-items: center;
-//   row-gap: 0.3em;
-//   padding: 0.5em 1em 0 1em;
-//   margin: 0;
-// `;
-
 const Title = styled.h1`
   overflow-wrap: break-word;
   overflow: hidden;
@@ -178,8 +164,12 @@ const StyledImage = styled(Image)`
 `;
 
 const EmptyImageText = styled.p`
+  display: flex;
+  align-items: center;
   margin: 0;
   text-align: center;
   border-radius: 50%;
+  height: 120px;
+  width: 120px;
   background-color: #d9dde9;
 `;

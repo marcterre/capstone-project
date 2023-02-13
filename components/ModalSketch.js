@@ -1,6 +1,6 @@
 import { useAtom } from "jotai";
 import { statusUploadAtom, showEditImageAtom } from "@/lib/atom";
-import { StyledButton, Wrapper } from "./StyledComponents";
+import { StyledButton, Wrapper, GridWrapper } from "./StyledComponents";
 import styled from "styled-components";
 import Modal from "./Modal";
 import Image from "next/image";
@@ -18,8 +18,8 @@ export default function ModalDelete({
 
   return (
     <Modal show={showModalSketch}>
-      <Wrapper variant="grid">
-        <Wrapper variant="contentEvenly">
+      <GridWrapper variant="modal">
+        <Wrapper variant="space-between">
           <h1>Your Sketch</h1>
           <StyledButton
             variant="close"
@@ -44,40 +44,50 @@ export default function ModalDelete({
           <TextWrapper>
             <p>
               You can add a new image by clicking the <br />{" "}
-              <SvgIcon variant="upload" />
+              <SvgIcon variant="upload" width={50} />
               <br /> below
             </p>
           </TextWrapper>
         )}
         {editImage && (
-          <form onSubmit={handleImageChange}>
+          <Form onSubmit={handleImageChange}>
             <p>{statusUpload}</p>
             <input type="file" name="imageFile" size={10000} />
             <button>upload</button>
-          </form>
+          </Form>
         )}
-        <button
-          onClick={() => {
-            setEditImage(!editImage);
-          }}
-        >
-          <SvgIcon variant="upload" width="30px" />
-        </button>
-        <button onClick={handleDeleteImage}>
-          <SvgIcon variant="bin" width="30px" />
-        </button>
-      </Wrapper>
+        <ButtonGridWrapper>
+          <button onClick={handleDeleteImage}>
+            <SvgIcon variant="bin" width="30px" />
+          </button>
+          <button
+            onClick={() => {
+              setEditImage(!editImage);
+            }}
+          >
+            <SvgIcon variant="upload" width="30px" />
+          </button>
+        </ButtonGridWrapper>
+      </GridWrapper>
     </Modal>
   );
 }
 
 const TextWrapper = styled.div`
-  padding: 10em 2em;
+  padding: 0;
   text-align: center;
 `;
 
 const StyledImage = styled(Image)`
   object-fit: contain;
   width: 95vw;
-  height: 70vh;
+  height: auto;
 `;
+
+const ButtonGridWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  grid-row: 4;
+`;
+
+const Form = styled.form``;

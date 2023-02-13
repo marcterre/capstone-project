@@ -51,13 +51,6 @@ export const ListItem = styled.li`
     `}
 
   ${({ variant }) =>
-    variant === "viewListItem" &&
-    css`
-      padding: 1em 0;
-      justify-self: center;
-    `}
-
-    ${({ variant }) =>
     variant === "icon" &&
     css`
       width: 1.5em;
@@ -72,9 +65,8 @@ export const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 0.5em;
-  margin: 0;
   border: none;
-  border-radius: 2em;
+  border-radius: 1em;
   cursor: pointer;
   box-shadow: var(--box-shadow-black);
   &:active {
@@ -87,8 +79,8 @@ export const StyledButton = styled.button`
     css`
       background-color: var(--color-list-items-white);
       color: var(--color-project-inactive);
-      fill: var(--color-project-inactive);
       padding: 0.2em 2em;
+      border-radius: 0.5em;
       font-size: 1em;
     `}
 
@@ -96,15 +88,16 @@ export const StyledButton = styled.button`
     variant === "submit" &&
     css`
       background-color: var(--color-buttons);
-      padding: 0.5em 2.5em;
+      padding: 0.2em 2.5em;
+      border-radius: 0.5em;
       font-size: 1em;
     `}
 
     ${({ variant }) =>
     variant === "settings" &&
     css`
-      width: 2.7em;
-      height: 2.7em;
+      width: 2.5em;
+      height: 2.5em;
       background-color: var(--color-buttons);
       fill: var(--color-icons-filling-black);
       border-radius: 50%;
@@ -137,9 +130,9 @@ export const StyledButton = styled.button`
     variant === "image" &&
     css`
       top: -2.5em;
-      right: -5.5em;
-      width: 3em;
-      height: 3em;
+      right: -6em;
+      width: 2.5em;
+      height: 2.5em;
       border-radius: 2em;
       background-color: rgb(250, 250, 250);
       &:active {
@@ -164,6 +157,7 @@ export const StyledButton = styled.button`
       fill: var(--color-project-inactive);
       outline: rgb(0, 0, 0, 0.2) solid 0.2em;
       align-self: center;
+      border-radius: 50%;
     `}
 `;
 
@@ -213,7 +207,7 @@ export const StyledLink = styled(Link)`
         css`
           position: relative;
           top: -0.5em;
-          background-color: var(--color-buttons-yellow);
+          background-color: var(--color-buttons);
         `};
     `}
 
@@ -250,7 +244,7 @@ export const Subtitle = styled.h2`
   margin: 0;
   font-weight: 600;
   padding: 0.7em 0;
-  font-size: 1.5em;
+  font-size: 1.4em;
 
   ${({ variant }) =>
     variant === "views" &&
@@ -304,6 +298,34 @@ export const GridWrapper = styled.div`
       padding: 0.5em 1em 0 1em;
       margin: 0;
     `}
+
+  ${({ variant }) =>
+    variant === "modal" &&
+    css`
+      width: 95vw;
+      height: 95vh;
+      border-radius: 1em;
+      align-items: flex-start;
+      background-color: var(--color-background);
+    `}
+
+    ${({ variant }) =>
+    variant === "content-stretch" &&
+    css`
+      display: grid;
+      justify-content: stretch;
+      background-color: var(--color-background);
+    `}
+
+  ${({ variant }) =>
+    variant === "image" &&
+    css`
+      justify-self: flex-end;
+      height: 120px;
+      width: 120px;
+      grid-column: 2;
+      grid-row: 1;
+    `}
 `;
 
 export const Wrapper = styled.div`
@@ -311,17 +333,6 @@ export const Wrapper = styled.div`
   justify-content: space-between;
   padding: 0;
   margin: 0;
-
-  ${({ variant }) =>
-    variant === "image" &&
-    css`
-      display: grid;
-      justify-self: flex-end;
-      height: 120px;
-      width: 120px;
-      grid-column: 2;
-      grid-row: 1;
-    `}
 
   ${({ variant }) =>
     variant === "button" &&
@@ -332,37 +343,23 @@ export const Wrapper = styled.div`
     `}
 
   ${({ variant }) =>
-    variant === "settings" &&
+    variant === "gap" &&
     css`
-      gap: 0.5em;
+      gap: 0.6em;
     `}
 
     ${({ variant }) =>
-    variant === "contentEvenly" &&
+    variant === "space-between" &&
+    css`
+      align-items: center;
+      padding: 0 0.5em;
+    `}
+
+    ${({ variant }) =>
+    variant === "space-evenly" &&
     css`
       justify-content: space-evenly;
-      align-self: center;
-    `}
-
-    ${({ variant }) =>
-    variant === "formButtons" &&
-    css`
-      gap: 1em;
       position: relative;
-      top: 3em;
-    `}
-
-    ${({ variant }) =>
-    variant === "grid" &&
-    css`
-      display: grid;
-      justify-content: stretch;
-      background-color: var(--color-background);
-    `}
-
-    ${({ variant }) =>
-    variant === "deleteButtons" &&
-    css`
-      gap: 3em;
+      top: 4em;
     `}
 `;
