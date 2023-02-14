@@ -22,11 +22,11 @@ export default function MaterialList({
               <Table>
                 <thead>
                   <tr>
-                    <TableHeading>p</TableHeading>
-                    <TableHeading>w</TableHeading>
-                    <TableHeading>h</TableHeading>
-                    <TableHeading>d</TableHeading>
-                    <TableHeading>unit</TableHeading>
+                    <th>p</th>
+                    <th>w</th>
+                    <th>h</th>
+                    <th>d</th>
+                    <th>unit</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -60,7 +60,7 @@ export default function MaterialList({
 }
 
 const Table = styled.table`
-  width: 100%;
+  width: 95vw;
   background-color: var(--color-background);
   padding: 0.7em 0;
   text-align: center;
@@ -72,10 +72,6 @@ const StyledList = styled.ul`
   list-style: none;
   padding: 0;
   background-color: white;
-`;
-
-const TableHeading = styled.th`
-  width: 25%;
 `;
 
 const TableData = styled.td`

@@ -257,9 +257,9 @@ export const StyledTextarea = styled.textarea`
 
 export const Subtitle = styled.h2`
   margin: 0;
-  font-weight: 600;
+  font-weight: 500;
   padding: 0.7em 0;
-  font-size: 1.4em;
+  font-size: 1.2rem;
 
   ${({ variant }) =>
     variant === "views" &&

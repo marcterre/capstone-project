@@ -31,7 +31,7 @@ export default createGlobalStyle`
 
   body {
     margin: 0;
-    padding: 0 0 3.5em 0;
+    padding: 0;
     background-color: var(--color-background);
     font-family: ${inter.style.fontFamily}, system-ui;
   }

@@ -177,8 +177,8 @@ const Title = styled.h1`
 `;
 
 const StyledImage = styled(Image)`
-  object-fit: cover;
-  background-color: #d9dde9;
+  object-fit: contain;
+  background-color: var(--color-background);
   border-radius: 50%;
   border: 0.1em solid rgb(0, 0, 0, 0.3);
 `;

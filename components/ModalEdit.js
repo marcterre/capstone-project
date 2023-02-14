@@ -56,7 +56,6 @@ export default function ModalEdit({
             type="text"
             name="description"
             value={description}
-            placeholder={"Enter a description"}
             onChange={(event) => {
               setCountDescription(event.target.value.length);
               setDescription(event.target.value);

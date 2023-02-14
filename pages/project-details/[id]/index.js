@@ -169,7 +169,7 @@ export default function ProjectDetails({
             <StyledText>{description}</StyledText>
           </>
         )}
-        <Wrapper>
+        <Wrapper variant="space-between">
           <StyledButton variant="tabBar" onClick={() => setActiveTabbar(true)}>
             <Subtitle activeTabbar={activeTabbar} variant="views">
               Project views
