@@ -12,7 +12,7 @@ export default function ViewItem({ views, currentProject }) {
     { name: "bottom", svg: <SvgIcon variant="bottomSide" /> },
     { name: "cut", svg: <SvgIcon variant="scissor" /> },
     { name: "detail", svg: <SvgIcon variant="magnifier" /> },
-    { name: "other", svg: <SvgIcon variant="star" /> },
+    { name: "other", svg: <SvgIcon variant="croco" /> },
   ];
   return (
     <List variant="outermost">

@@ -10,7 +10,7 @@ export default function ProjectItem({ projects }) {
     { name: "electricity", svg: <SvgIcon variant="lightning" /> },
     { name: "knitting/crocheting", svg: <SvgIcon variant="sheep" /> },
     { name: "stitching", svg: <SvgIcon variant="shirt" /> },
-    { name: "other", svg: <SvgIcon variant="star" /> },
+    { name: "other", svg: <SvgIcon variant="croco" /> },
   ];
 
   return (

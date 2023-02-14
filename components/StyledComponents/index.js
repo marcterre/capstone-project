@@ -126,6 +126,7 @@ export const StyledButton = styled.button`
       background: none;
       height: 40%;
       padding: 0.8em;
+      margin-top: 0.5em;
       box-shadow: none;
       color: ${({ isActive }) =>
         isActive

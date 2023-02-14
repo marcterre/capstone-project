@@ -23,7 +23,7 @@ export default function ModalEdit({
   const router = useRouter();
   const [count, setCount] = useState(currentEntry.name.length);
   const [countDescription, setCountDescription] = useState(
-    currentEntry.name.length
+    currentEntry.description.length
   );
 
   const [name, setName] = useState(currentEntry.name);
