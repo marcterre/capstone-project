@@ -1,6 +1,11 @@
 import { useAtom } from "jotai";
 import { statusUploadAtom, showEditImageAtom } from "@/lib/atom";
-import { StyledButton, Wrapper, GridWrapper } from "./StyledComponents";
+import {
+  StyledButton,
+  Wrapper,
+  GridWrapper,
+  Spinner,
+} from "./StyledComponents";
 import styled from "styled-components";
 import Modal from "./Modal";
 import Image from "next/image";
@@ -21,15 +26,15 @@ export default function ModalDelete({
       <GridWrapper variant="modal">
         <Wrapper variant="space-between">
           <h1>Your Sketch</h1>
-          <StyledButton
-            variant="close"
+          <Button
             onClick={() => {
               handleClose();
               setEditImage(false);
             }}
+            aria-label="close"
           >
-            <SvgIcon variant="aplhaX" width="30px" />
-          </StyledButton>
+            X
+          </Button>
         </Wrapper>
         {image.url ? (
           <>
@@ -41,53 +46,86 @@ export default function ModalDelete({
             />
           </>
         ) : (
-          <TextWrapper>
-            <p>
-              You can add a new image by clicking the <br />{" "}
-              <SvgIcon variant="upload" width={50} />
-              <br /> below
-            </p>
-          </TextWrapper>
+          <Text>
+            You can add a new image by clicking the
+            <br />
+            <SvgIcon variant="upload" width={50} aria-label="upload button" />
+            <br /> below
+          </Text>
         )}
-        {editImage && (
-          <Form onSubmit={handleImageChange}>
-            <p>{statusUpload}</p>
-            <input type="file" name="imageFile" size={10000} />
-            <button>upload</button>
-          </Form>
-        )}
+        <Wrapper variant="flex-start">
+          {statusUpload && <Spinner />}
+          {statusUpload}
+        </Wrapper>
         <ButtonGridWrapper>
-          <button onClick={handleDeleteImage}>
+          {editImage && (
+            <Form onSubmit={handleImageChange}>
+              <input type="file" name="imageFile" size={10000} />
+              <StyledButton variant="submit">upload</StyledButton>
+            </Form>
+          )}
+          <StyledButton
+            variant="settings"
+            onClick={handleDeleteImage}
+            aria-label="delete"
+          >
             <SvgIcon variant="bin" width="30px" />
-          </button>
-          <button
+          </StyledButton>
+          <StyledButton
+            variant="settings"
             onClick={() => {
               setEditImage(!editImage);
             }}
+            aria-label="new upload"
           >
             <SvgIcon variant="upload" width="30px" />
-          </button>
+          </StyledButton>
         </ButtonGridWrapper>
       </GridWrapper>
     </Modal>
   );
 }
 
-const TextWrapper = styled.div`
-  padding: 0;
+const P = styled.p`
+  position: absolute;
+  bottom: 5em;
+  left: 5em;
+`;
+
+const Text = styled.p`
   text-align: center;
 `;
 
 const StyledImage = styled(Image)`
   object-fit: contain;
   width: 95vw;
-  height: auto;
+  height: 50%;
 `;
 
 const ButtonGridWrapper = styled.div`
+  position: fixed;
+  bottom: 2.5em;
+  right: 0;
+  height: 5vh;
+  padding: 0 1em 0 0;
   display: flex;
   justify-content: flex-end;
-  grid-row: 4;
+  align-items: center;
+  gap: 1em;
 `;
 
-const Form = styled.form``;
+const Form = styled.form`
+  display: grid;
+  gap: 0.3em;
+`;
+
+const Button = styled.button`
+  cursor: pointer;
+  border: none;
+  width: 2em;
+  height: 2em;
+  background-color: var(--color-list-items-white);
+  color: var(--color-project-inactive);
+  outline: rgb(0, 0, 0, 0.2) solid 0.2em;
+  border-radius: 50%;
+`;

@@ -11,7 +11,7 @@ import {
   StyledInput,
   StyledTextarea,
   StyledButton,
-  GridWrapper,
+  Spinner,
 } from "./StyledComponents";
 
 export default function Form({ handleSubmit }) {
@@ -64,10 +64,10 @@ export default function Form({ handleSubmit }) {
           Save
         </StyledButton>
       </Wrapper>
-      <LoadingStatus>
+      <Wrapper variant="flex-start">
         {statusUpload && <Spinner />}
         {statusUpload}
-      </LoadingStatus>
+      </Wrapper>
     </StyledForm>
   );
 }
@@ -81,32 +81,4 @@ const Label = styled.label`
   font-weight: 600;
   font-size: 1.2em;
   padding: 0.5em 0;
-`;
-
-const rotate360 = keyframes`
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  `;
-
-const Spinner = styled.div`
-  animation: ${rotate360} 1s linear infinite;
-  border-top: 0.2em solid grey;
-  border-right: 0.2em solid grey;
-  border-bottom: 0.2em solid grey;
-  border-left: 0.3em solid black;
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-`;
-
-const LoadingStatus = styled.div`
-  display: flex;
-  gap: 1em;
-  padding: 0 1em;
-  position: relative;
-  bottom: 1.2em;
 `;

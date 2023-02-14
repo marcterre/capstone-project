@@ -184,7 +184,7 @@ export default function ProjectDetails({
         {activeTabbar && (
           <Section>
             <StyledLink
-              variant="addView"
+              variant="full-width"
               href={`/project-details/${currentProject.id}/add-new-view`}
             >
               add more project views

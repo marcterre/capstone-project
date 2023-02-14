@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import Link from "next/link";
 
 export const List = styled.ul`
@@ -66,7 +66,7 @@ export const StyledButton = styled.button`
   justify-content: center;
   gap: 0.5em;
   border: none;
-  border-radius: 1em;
+  border-radius: 0.5em;
   cursor: pointer;
   box-shadow: var(--box-shadow-black);
   &:active {
@@ -75,12 +75,20 @@ export const StyledButton = styled.button`
   }
 
   ${({ variant }) =>
+    variant === "full-width" &&
+    css`
+      width: 90vw;
+      font-size: 1em;
+      background-color: var(--color-buttons);
+      padding: 0.3em;
+    `}
+
+  ${({ variant }) =>
     variant === "cancel" &&
     css`
       background-color: var(--color-list-items-white);
       color: var(--color-project-inactive);
       padding: 0.2em 2em;
-      border-radius: 0.5em;
       font-size: 1em;
     `}
 
@@ -89,7 +97,6 @@ export const StyledButton = styled.button`
     css`
       background-color: var(--color-buttons);
       padding: 0.2em 2.5em;
-      border-radius: 0.5em;
       font-size: 1em;
     `}
 
@@ -106,10 +113,8 @@ export const StyledButton = styled.button`
     ${({ variant }) =>
     variant === "status" &&
     css`
-      border-radius: 0.3em;
       grid-column: 1 / span 2;
       background: none;
-      width: 100%;
       height: 40%;
       padding: 0.8em;
       box-shadow: none;
@@ -121,20 +126,17 @@ export const StyledButton = styled.button`
         isActive
           ? "0.1em solid var(--color-status-active)"
           : "0.1em solid var(--color-status-inactive)"};
-      &:active {
-        top: 1px;
-      }
     `}
 
     ${({ variant }) =>
-    variant === "image" &&
+    variant === "unlarge" &&
     css`
       top: -2.5em;
       right: -6em;
       width: 2.5em;
       height: 2.5em;
       border-radius: 2em;
-      background-color: rgb(250, 250, 250);
+      background-color: var(--color-background);
       &:active {
         top: -2.4em;
       }
@@ -146,18 +148,6 @@ export const StyledButton = styled.button`
       padding-bottom: 1em;
       background: none;
       box-shadow: none;
-    `}
-
-    ${({ variant }) =>
-    variant === "close" &&
-    css`
-      width: 2.7em;
-      height: 2.7em;
-      background-color: var(--color-list-items-white);
-      fill: var(--color-project-inactive);
-      outline: rgb(0, 0, 0, 0.2) solid 0.2em;
-      align-self: center;
-      border-radius: 50%;
     `}
 `;
 
@@ -180,6 +170,7 @@ export const StyledInput = styled.input`
 export const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
+  border-radius: 0.5em;
 
   ${({ variant }) =>
     variant === "home" &&
@@ -212,10 +203,9 @@ export const StyledLink = styled(Link)`
     `}
 
     ${({ variant }) =>
-    variant === "addView" &&
+    variant === "full-width" &&
     css`
       background-color: var(--color-buttons);
-      border-radius: 0.8em;
       padding: 0.3em;
       text-align: center;
       box-shadow: var(--box-shadow-black);
@@ -231,12 +221,10 @@ export const StyledText = styled.p`
 
 export const StyledTextarea = styled.textarea`
   min-height: 10vh;
-  padding: 1em;
   resize: none;
   background-color: var(--color-list-items-white);
   border: none;
-  border-radius: 1em;
-  padding: 0.7em;
+  border-radius: 0.8em;
   box-shadow: var(--box-shadow-darkblue);
 `;
 
@@ -266,14 +254,13 @@ export const Subtitle = styled.h2`
     variant === "categories" &&
     css`
       grid-row: 2;
-      margin: 0;
       padding: 0 0 0 1em;
       font-size: 0.9em;
       font-weight: 300;
     `}
 
     ${({ variant }) =>
-    variant === "modal" &&
+    variant === "center" &&
     css`
       text-align: center;
     `}
@@ -362,4 +349,34 @@ export const Wrapper = styled.div`
       position: relative;
       top: 4em;
     `}
+
+    ${({ variant }) =>
+    variant === "flex-start" &&
+    css`
+      position: absolute;
+      bottom: 9em;
+      left: 2em;
+      justify-content: flex-start;
+      gap: 1em;
+    `}
+`;
+
+const rotate360 = keyframes`
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  `;
+
+export const Spinner = styled.div`
+  animation: ${rotate360} 1s linear infinite;
+  border-top: 0.2em solid grey;
+  border-right: 0.2em solid grey;
+  border-bottom: 0.2em solid grey;
+  border-left: 0.3em solid black;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
 `;

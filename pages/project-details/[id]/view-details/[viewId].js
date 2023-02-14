@@ -133,14 +133,13 @@ export default function ViewDetails({
             <StyledText>{description}</StyledText>
           </>
         )}
-        {currentView.dimensions && (
-          <MaterialList
-            addNewMaterial={addNewMaterialView}
-            currentEntry={currentView}
-            entries={views}
-            handleMateriallistDelete={handleMateriallistDeleteViews}
-          />
-        )}
+        <Subtitle>Material list</Subtitle>
+        <MaterialList
+          addNewMaterial={addNewMaterialView}
+          currentEntry={currentView}
+          entries={views}
+          handleMateriallistDelete={handleMateriallistDeleteViews}
+        />
       </Main>
     </>
   );

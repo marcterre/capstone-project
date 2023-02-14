@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useAtom } from "jotai";
-import { showModalSketchAtom, settingsIconAtom } from "@/lib/atom.js";
+import {
+  showModalSketchAtom,
+  settingsIconAtom,
+  showSettingsAtom,
+} from "@/lib/atom.js";
 import { useRouter } from "next/router";
 import { StyledButton, Wrapper, GridWrapper } from "./StyledComponents";
 import styled from "styled-components";
@@ -30,7 +34,7 @@ export default function DetailsHeader({
   handleDeleteImage,
 }) {
   const router = useRouter();
-  const [popUpSettings, setPopUpSettings] = useState(false);
+  const [showSettings, setShowSettings] = useAtom(showSettingsAtom);
   const [showModalDelete, setShowModalDelete] = useState(false);
   const [showModalEdit, setShowModalEdit] = useState(false);
   const [showModalSketch, setShowModalSketch] = useAtom(showModalSketchAtom);
@@ -39,7 +43,7 @@ export default function DetailsHeader({
   function handleChanges(event) {
     handleDetailsChanges(event);
     setShowModalEdit(false);
-    setPopUpSettings(false);
+    setShowSettings(false);
     setSettingsIcon(<SvgIcon variant="settings" />);
   }
 
@@ -50,16 +54,18 @@ export default function DetailsHeader({
           variant="settings"
           type="button"
           onClick={() => router.back()}
+          aria-label="go back"
         >
           <SvgIcon variant="backArrow" />
         </StyledButton>
         <Wrapper variant="gap">
-          {popUpSettings && (
+          {showSettings && (
             <>
               <StyledButton
                 variant="settings"
                 type="button"
                 onClick={() => setShowModalEdit(!showModalEdit)}
+                aria-label="edit"
               >
                 <SvgIcon variant="pencil" />
               </StyledButton>
@@ -67,6 +73,7 @@ export default function DetailsHeader({
                 variant="settings"
                 type="button"
                 onClick={() => setShowModalDelete(!showModalDelete)}
+                aria-label="delete"
               >
                 <SvgIcon variant="bin" />
               </StyledButton>
@@ -76,10 +83,15 @@ export default function DetailsHeader({
             variant="settings"
             type="button"
             onClick={() => {
-              setPopUpSettings(!popUpSettings);
-              popUpSettings && setSettingsIcon(<SvgIcon variant="settings" />);
-              !popUpSettings && setSettingsIcon(<SvgIcon variant="aplhaX" />);
+              setShowSettings(!showSettings);
+              showSettings && setSettingsIcon(<SvgIcon variant="settings" />);
+              !showSettings && setSettingsIcon(<SvgIcon variant="aplhaX" />);
             }}
+            aria-label={
+              settingsIcon === <SvgIcon variant="settings" />
+                ? "settings"
+                : "close settings"
+            }
           >
             {settingsIcon}
           </StyledButton>
@@ -99,11 +111,18 @@ export default function DetailsHeader({
           )}
           {!image.url && <EmptyImageText>no image available</EmptyImageText>}
           <StyledButton
-            variant="image"
+            variant="unlarge"
             type="button"
             onClick={() => {
               setShowModalSketch(!showModalSketch);
             }}
+            aria-label={
+              <SvgIcon variant="arrowUnlarge" /> ? (
+                "click to view image in full size"
+              ) : (
+                "click to add a new image"
+              )
+            }
           >
             {image.url ? (
               <SvgIcon variant="arrowUnlarge" />
@@ -119,7 +138,7 @@ export default function DetailsHeader({
         handleDelete={handleDelete}
         handleClose={() => {
           setShowModalDelete(false);
-          setPopUpSettings(false);
+          setShowSettings(false);
           setSettingsIcon(<SvgIcon variant="settings" />);
         }}
       />
@@ -128,7 +147,7 @@ export default function DetailsHeader({
         currentEntry={currentEntry}
         handleClose={() => {
           setShowModalEdit(false);
-          setPopUpSettings(false);
+          setShowSettings(false);
           setSettingsIcon(<SvgIcon variant="settings" />);
         }}
         handleChanges={handleChanges}

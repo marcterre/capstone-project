@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import Modal from "./Modal";
 import { Wrapper, StyledButton, Subtitle } from "./StyledComponents";
+import { useAtom } from "jotai";
+import { settingsIconAtom, showSettingsAtom } from "@/lib/atom";
+import SvgIcon from "./SvgIcon";
 
 export default function ModalDelete({
   entry,
@@ -8,17 +11,27 @@ export default function ModalDelete({
   handleDelete,
   handleClose,
 }) {
+  const [settingsIcon, setSettingsIcon] = useAtom(settingsIconAtom);
+  const [showSettings, setShowSettings] = useAtom(showSettingsAtom);
+
   return (
     <Modal show={showModalDelete}>
       <GridWrapper>
-        <Subtitle variant="modal">
+        <Subtitle variant="center">
           Do you really want to delete your {entry}?
         </Subtitle>
         <Wrapper variant="gap">
           <StyledButton variant="cancel" onClick={handleClose}>
             No
           </StyledButton>
-          <StyledButton variant="submit" onClick={handleDelete}>
+          <StyledButton
+            variant="submit"
+            onClick={() => {
+              handleDelete();
+              setSettingsIcon(<SvgIcon variant="settings" />);
+              setShowSettings(false);
+            }}
+          >
             Yes
           </StyledButton>
         </Wrapper>
