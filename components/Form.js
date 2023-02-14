@@ -1,7 +1,7 @@
 import CharacterCounter from "./CharacterCounter";
 import SelectCategories from "./SelectCategories";
 import SelectViewSide from "./SelectViewSide";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { useState } from "react";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
@@ -79,6 +79,6 @@ const StyledForm = styled.form`
 
 const Label = styled.label`
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 0.9em;
   padding: 0.5em 0;
 `;

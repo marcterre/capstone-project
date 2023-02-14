@@ -50,7 +50,6 @@ const List = styled.ul`
   bottom: 0;
   display: flex;
   justify-content: space-between;
-  background-color: #3f618c;
-  /* background-color: var(--color-darkblue); */
+  background-color: var(--color-darkblue);
   list-style: none;
 `;

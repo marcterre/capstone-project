@@ -86,20 +86,14 @@ export default function ModalDelete({
   );
 }
 
-const P = styled.p`
-  position: absolute;
-  bottom: 5em;
-  left: 5em;
-`;
-
 const Text = styled.p`
   text-align: center;
 `;
 
 const StyledImage = styled(Image)`
   object-fit: contain;
-  width: 95vw;
-  height: 50%;
+  width: 90vw;
+  justify-self: center;
 `;
 
 const ButtonGridWrapper = styled.div`
@@ -111,7 +105,7 @@ const ButtonGridWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 1em;
+  gap: 0.5em;
 `;
 
 const Form = styled.form`

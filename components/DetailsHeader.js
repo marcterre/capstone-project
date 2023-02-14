@@ -180,6 +180,7 @@ const StyledImage = styled(Image)`
   object-fit: cover;
   background-color: #d9dde9;
   border-radius: 50%;
+  border: 0.1em solid rgb(0, 0, 0, 0.3);
 `;
 
 const EmptyImageText = styled.p`

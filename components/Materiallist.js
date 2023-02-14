@@ -22,11 +22,11 @@ export default function MaterialList({
               <Table>
                 <thead>
                   <tr>
-                    <th>p</th>
-                    <th>w</th>
-                    <th>h</th>
-                    <th>d</th>
-                    <th>unit</th>
+                    <TableHeading>p</TableHeading>
+                    <TableHeading>w</TableHeading>
+                    <TableHeading>h</TableHeading>
+                    <TableHeading>d</TableHeading>
+                    <TableHeading>unit</TableHeading>
                   </tr>
                 </thead>
                 <tbody>
@@ -72,6 +72,10 @@ const StyledList = styled.ul`
   list-style: none;
   padding: 0;
   background-color: white;
+`;
+
+const TableHeading = styled.th`
+  width: 25%;
 `;
 
 const TableData = styled.td`

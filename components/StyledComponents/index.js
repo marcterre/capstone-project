@@ -16,8 +16,6 @@ export const List = styled.ul`
     variant === "listItem" &&
     css`
       padding: 0 0.5em;
-      text-overflow: ellipsis;
-      overflow: hidden;
     `}
 
     ${({ variant }) =>
@@ -41,7 +39,7 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   background-color: var(--color-list-items-white);
-  border-radius: 1em;
+  border-radius: 0.3em;
   box-shadow: var(--box-shadow-darkblue);
 
   ${({ variant }) =>
@@ -57,6 +55,17 @@ export const ListItem = styled.li`
       height: 1.5em;
       box-shadow: none;
     `}
+
+    ${({ variant }) =>
+    variant === "name" &&
+    css`
+      font-weight: 600;
+      width: 60vw;
+      background: none;
+      box-shadow: none;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    `}
 `;
 
 export const StyledButton = styled.button`
@@ -66,7 +75,7 @@ export const StyledButton = styled.button`
   justify-content: center;
   gap: 0.5em;
   border: none;
-  border-radius: 0.5em;
+  border-radius: 0.2em;
   cursor: pointer;
   box-shadow: var(--box-shadow-black);
   &:active {
@@ -151,16 +160,32 @@ export const StyledButton = styled.button`
     `}
 `;
 
+export const Label = styled.label`
+  font-weight: 600;
+  font-size: 0.9em;
+  padding: 0.8em 0;
+`;
+
+export const Selection = styled.select`
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border-radius: 0.3em;
+  text-align: center;
+  cursor: pointer;
+  border: var(--border-yellow);
+`;
+
 export const StyledInput = styled.input`
   background-color: var(--color-list-items-white);
   border: none;
-  border-radius: 1em;
+  border-radius: 0.3em;
   padding: 0.7em;
   box-shadow: var(--box-shadow-darkblue);
 
   ${({ variant }) =>
     variant === "file" &&
     css`
+      padding: 0.5em 0;
       background: none;
       font-size: 0.9em;
       box-shadow: none;
@@ -170,7 +195,7 @@ export const StyledInput = styled.input`
 export const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
-  border-radius: 0.5em;
+  border-radius: 0.2em;
 
   ${({ variant }) =>
     variant === "home" &&
@@ -224,7 +249,8 @@ export const StyledTextarea = styled.textarea`
   resize: none;
   background-color: var(--color-list-items-white);
   border: none;
-  border-radius: 0.8em;
+  padding: 0.7em;
+  border-radius: 0.3em;
   box-shadow: var(--box-shadow-darkblue);
 `;
 
@@ -289,6 +315,7 @@ export const GridWrapper = styled.div`
   ${({ variant }) =>
     variant === "modal" &&
     css`
+      grid-template-rows: repeat(3, 1fr);
       width: 95vw;
       height: 95vh;
       border-radius: 1em;
@@ -347,7 +374,7 @@ export const Wrapper = styled.div`
     css`
       justify-content: space-evenly;
       position: relative;
-      top: 4em;
+      top: 9em;
     `}
 
     ${({ variant }) =>

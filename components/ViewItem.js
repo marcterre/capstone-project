@@ -36,7 +36,7 @@ export default function ViewItem({ views, currentProject }) {
                     )
                 )}
               </List>
-              <List> {view.name}</List>
+              <ListItem variant="name"> {view.name}</ListItem>
             </List>
           </StyledLink>
         </ListItem>

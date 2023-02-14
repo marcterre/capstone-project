@@ -20,7 +20,7 @@ export default function ProjectItem({ projects }) {
           <StyledLink href={`/project-details/${project.id}`}>
             <List variant="sublist">
               <List variant="listItem">
-                <ProjectName>{project.name}</ProjectName>
+                <ListItem variant="name">{project.name}</ListItem>
                 {project.categories !== "none" && (
                   <CategoryTitle>{project.categories}</CategoryTitle>
                 )}
