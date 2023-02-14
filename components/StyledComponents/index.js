@@ -374,7 +374,7 @@ export const Wrapper = styled.div`
     css`
       justify-content: space-evenly;
       position: relative;
-      top: 9em;
+      top: 8em;
     `}
 
     ${({ variant }) =>
