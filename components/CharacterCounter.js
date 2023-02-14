@@ -13,7 +13,7 @@ export default function CharacterCounter({ maxLength, counter }) {
 }
 
 const CounterLetters = styled.p`
-  font-size: 0.7em;
+  font-size: 0.8em;
   margin: 0;
   padding: 0.3em 0;
 `;
