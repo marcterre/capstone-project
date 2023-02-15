@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import SwipeToDeleteItem from "./SwipeToDelete";
 import MaterialListForm from "./MaterialListForm";
+import { List } from "./StyledComponents";
 
 export default function MaterialList({
   addNewMaterial,
@@ -10,14 +11,7 @@ export default function MaterialList({
   return (
     <>
       <MaterialListForm addNewMaterial={addNewMaterial} />
-      <FlexList>
-        <ListHeader>p</ListHeader>
-        <ListHeader>w</ListHeader>
-        <ListHeader>h</ListHeader>
-        <ListHeader>d</ListHeader>
-        <ListHeader>unit</ListHeader>
-      </FlexList>
-      <List>
+      <StyledList>
         {currentEntry.dimensions.map((dimension) => (
           <li key={dimension.id}>
             <SwipeToDeleteItem
@@ -25,97 +19,61 @@ export default function MaterialList({
                 handleMateriallistDelete(dimension.id)
               }
             >
-              <StyledList>
-                <StyledSubList>
-                  <ListItem>
-                    name: {dimension.name}
-                    <Tooltip>ᗏ Swipe left to delete</Tooltip>
-                  </ListItem>
-                  {dimension.material && (
-                    <ListItem>material: {dimension.material}</ListItem>
-                  )}
-                </StyledSubList>
-                <StyledSubListDimensions>
-                  <li>
-                    {dimension.numberOfPieces
-                      ? `${dimension.numberOfPieces}x`
-                      : "-"}
-                  </li>
-                  <li>{dimension.width ? dimension.width : "-"}</li>
-                  <li>{dimension.height ? dimension.height : "-"}</li>
-                  <li>{dimension.depth ? dimension.depth : "-"}</li>
-                  <li>{dimension.unit ? dimension.unit : "-"}</li>
-                </StyledSubListDimensions>
-              </StyledList>
+              <Table>
+                <thead>
+                  <tr>
+                    <th>p</th>
+                    <th>w</th>
+                    <th>h</th>
+                    <th>d</th>
+                    <th>unit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      {dimension.numberOfPieces
+                        ? `${dimension.numberOfPieces}x`
+                        : "-"}
+                    </td>
+                    <td>{dimension.width ? dimension.width : "-"}</td>
+                    <td>{dimension.height ? dimension.height : "-"}</td>
+                    <td>{dimension.depth ? dimension.depth : "-"}</td>
+                    <td>{dimension.unit ? dimension.unit : "-"}</td>
+                  </tr>
+                  <tr>
+                    <TableData colSpan="5">name: {dimension.name}</TableData>
+                  </tr>
+                  <tr>
+                    <TableData colSpan="5">
+                      {dimension.material && `material: ${dimension.material}`}
+                    </TableData>
+                  </tr>
+                </tbody>
+              </Table>
             </SwipeToDeleteItem>
           </li>
         ))}
-      </List>
+      </StyledList>
     </>
   );
 }
 
-const Tooltip = styled.span`
-  visibility: hidden;
-  text-align: end;
-  font-size: 0.7em;
-`;
-
-const ListHeader = styled.li`
-  padding: 0 0.5em;
-  margin: 0;
-  padding: 0.3em 0;
-`;
-
-const List = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  padding-bottom: 5em;
+const Table = styled.table`
+  width: 95vw;
+  background-color: var(--color-background);
+  padding: 0.7em 0.5em 0.7em 0;
+  text-align: center;
+  border-top: 0.05em solid black;
 `;
 
 const StyledList = styled.ul`
-  display: flex;
-  flex-direction: column-reverse;
   gap: 0.5em;
   list-style: none;
   padding: 0;
-  border: 0.1em solid black;
   background-color: white;
-  &:hover ${Tooltip} {
-    visibility: visible;
-  }
-  &:hover {
-    background-color: lightgreen;
-  }
 `;
 
-const StyledSubListDimensions = styled.ul`
-  list-style: none;
-  display: flex;
-  justify-content: space-evenly;
-  padding: 0;
-  margin: 0;
-`;
-
-const StyledSubList = styled.ul`
-  display: flex;
-  flex-direction: column;
-  padding: 0;
-  margin: 0;
-`;
-
-const ListItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0.2em;
-`;
-
-const FlexList = styled.ul`
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-evenly;
-  list-style: none;
+const TableData = styled.td`
+  text-align: start;
 `;

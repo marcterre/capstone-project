@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import { Label, Selection } from "./StyledComponents";
 
 export default function SelectCategories({ children }) {
   const categories = [
@@ -12,7 +12,7 @@ export default function SelectCategories({ children }) {
   return (
     <>
       <Label htmlFor="categories">Choose a view side</Label>
-      <Select name="categories" id="categories">
+      <Selection name="categories" id="categories">
         {children}
         <option value="none">- select a category -</option>
         {categories.map((category) => (
@@ -20,22 +20,7 @@ export default function SelectCategories({ children }) {
             {category.name}
           </option>
         ))}
-      </Select>
+      </Selection>
     </>
   );
 }
-
-const Label = styled.label`
-  font-weight: 600;
-  font-size: 1.2em;
-  padding: 0.5em 0;
-`;
-
-const Select = styled.select`
-  border: none;
-  padding: 0.5em 2em;
-  border-radius: 2em;
-  text-align: center;
-  cursor: pointer;
-  border: var(--border-yellow);
-`;

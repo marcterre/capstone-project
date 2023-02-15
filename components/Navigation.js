@@ -42,14 +42,15 @@ const StyledNavigation = styled.nav`
 `;
 
 const List = styled.ul`
-  padding: 0.3em 3.5em;
+  padding: 0 4em;
   margin: 0;
-  width: 95vw;
+  width: 100vw;
+  height: 8vh;
   position: fixed;
   bottom: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: var(--color-darkblue);
   list-style: none;
-  border-radius: 2em 2em 0 0;
 `;

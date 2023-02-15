@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import Link from "next/link";
 
 export const List = styled.ul`
@@ -16,8 +16,6 @@ export const List = styled.ul`
     variant === "listItem" &&
     css`
       padding: 0 0.5em;
-      text-overflow: ellipsis;
-      overflow: hidden;
     `}
 
     ${({ variant }) =>
@@ -41,7 +39,7 @@ export const List = styled.ul`
 
 export const ListItem = styled.li`
   background-color: var(--color-list-items-white);
-  border-radius: 2em;
+  border-radius: 0.3em;
   box-shadow: var(--box-shadow-darkblue);
 
   ${({ variant }) =>
@@ -51,18 +49,22 @@ export const ListItem = styled.li`
     `}
 
   ${({ variant }) =>
-    variant === "viewListItem" &&
-    css`
-      padding: 1em 0;
-      justify-self: center;
-    `}
-
-    ${({ variant }) =>
     variant === "icon" &&
     css`
       width: 1.5em;
       height: 1.5em;
       box-shadow: none;
+    `}
+
+    ${({ variant }) =>
+    variant === "name" &&
+    css`
+      font-weight: 600;
+      width: 60vw;
+      background: none;
+      box-shadow: none;
+      text-overflow: ellipsis;
+      overflow: hidden;
     `}
 `;
 
@@ -72,9 +74,8 @@ export const StyledButton = styled.button`
   align-items: center;
   justify-content: center;
   gap: 0.5em;
-  margin: 0;
   border: none;
-  border-radius: 2em;
+  border-radius: 0.2em;
   cursor: pointer;
   box-shadow: var(--box-shadow-black);
   &:active {
@@ -83,11 +84,19 @@ export const StyledButton = styled.button`
   }
 
   ${({ variant }) =>
+    variant === "full-width" &&
+    css`
+      width: 90vw;
+      font-size: 1em;
+      background-color: var(--color-buttons);
+      padding: 0.3em;
+    `}
+
+  ${({ variant }) =>
     variant === "cancel" &&
     css`
       background-color: var(--color-list-items-white);
       color: var(--color-project-inactive);
-      fill: var(--color-project-inactive);
       padding: 0.2em 2em;
       font-size: 1em;
     `}
@@ -95,7 +104,7 @@ export const StyledButton = styled.button`
   ${({ variant }) =>
     variant === "submit" &&
     css`
-      background-color: var(--color-buttons-yellow);
+      background-color: var(--color-buttons);
       padding: 0.2em 2.5em;
       font-size: 1em;
     `}
@@ -103,9 +112,9 @@ export const StyledButton = styled.button`
     ${({ variant }) =>
     variant === "settings" &&
     css`
-      width: 2.7em;
-      height: 2.7em;
-      background-color: var(--color-buttons-yellow);
+      width: 2.5em;
+      height: 2.5em;
+      background-color: var(--color-buttons);
       fill: var(--color-icons-filling-black);
       border-radius: 50%;
     `}
@@ -113,38 +122,33 @@ export const StyledButton = styled.button`
     ${({ variant }) =>
     variant === "status" &&
     css`
-      position: relative;
-      top: 6rem;
-      right: 1.5em;
-      grid-row: 2;
-      grid-column: 3;
-      justify-self: flex-end;
-      align-self: flex-start;
-      width: 5rem;
-      padding: 0.5em;
-      text-shadow: 1px 1px black;
-      color: var(--color-list-items-white);
-      background-color: ${({ isActive }) =>
+      grid-column: 1 / span 2;
+      background: none;
+      height: 40%;
+      padding: 0.8em;
+      margin-top: 0.5em;
+      box-shadow: none;
+      color: ${({ isActive }) =>
         isActive
           ? "var(--color-status-active)"
           : "var(--color-status-inactive)"};
-      &:active {
-        top: 7em;
-      }
+      border: ${({ isActive }) =>
+        isActive
+          ? "0.1em solid var(--color-status-active)"
+          : "0.1em solid var(--color-status-inactive)"};
     `}
 
     ${({ variant }) =>
-    variant === "image" &&
+    variant === "unlarge" &&
     css`
-      width: 3.8em;
-      height: 3.5em;
-      top: 6.6em;
-      left: 24.3em;
-      border-radius: 2em 0;
-      box-shadow: none;
+      top: -2.5em;
+      right: -6em;
+      width: 2.5em;
+      height: 2.5em;
+      border-radius: 2em;
       background-color: var(--color-background);
       &:active {
-        top: 6.7em;
+        top: -2.4em;
       }
     `}
 
@@ -155,29 +159,34 @@ export const StyledButton = styled.button`
       background: none;
       box-shadow: none;
     `}
+`;
 
-    ${({ variant }) =>
-    variant === "close" &&
-    css`
-      width: 2.7em;
-      height: 2.7em;
-      background-color: var(--color-list-items-white);
-      fill: var(--color-project-inactive);
-      outline: rgb(0, 0, 0, 0.2) solid 0.2em;
-      align-self: center;
-    `}
+export const Label = styled.label`
+  font-weight: 600;
+  font-size: 0.9em;
+  padding: 0.8em 0;
+`;
+
+export const Selection = styled.select`
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border-radius: 0.3em;
+  text-align: center;
+  cursor: pointer;
+  border: var(--border-yellow);
 `;
 
 export const StyledInput = styled.input`
   background-color: var(--color-list-items-white);
   border: none;
-  border-radius: 2em;
+  border-radius: 0.3em;
   padding: 0.7em;
   box-shadow: var(--box-shadow-darkblue);
 
   ${({ variant }) =>
     variant === "file" &&
     css`
+      padding: 0.5em 0;
       background: none;
       font-size: 0.9em;
       box-shadow: none;
@@ -187,22 +196,19 @@ export const StyledInput = styled.input`
 export const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
-  &:active {
-    position: relative;
-    top: 1px;
-  }
+  border-radius: 0.2em;
 
   ${({ variant }) =>
     variant === "home" &&
     css`
       display: flex;
       width: 2.8em;
-      height: 2.8em;
       border-radius: 50%;
-      background-color: ${({ isfocused }) =>
-        isfocused === "/"
-          ? "var( --color-background)"
-          : "var(--color-buttons-yellow)"};
+      ${({ isfocused }) =>
+        isfocused === "/" &&
+        css`
+          background-color: var(--color-buttons);
+        `};
     `}
 
   ${({ variant }) =>
@@ -210,20 +216,19 @@ export const StyledLink = styled(Link)`
     css`
       display: flex;
       width: 2.8em;
-      height: 2.8em;
       border-radius: 50%;
-      background-color: ${({ isfocused }) =>
-        isfocused === "/create-new-project"
-          ? "var( --color-background)"
-          : "var(--color-buttons-yellow)"};
+      ${({ isfocused }) =>
+        isfocused === "/create-new-project" &&
+        css`
+          background-color: var(--color-buttons);
+        `};
     `}
 
     ${({ variant }) =>
-    variant === "addView" &&
+    variant === "full-width" &&
     css`
-      background-color: var(--color-buttons-yellow);
-      border-radius: 2em;
-      padding: 0.5em;
+      background-color: var(--color-buttons);
+      padding: 0.3em;
       text-align: center;
       box-shadow: var(--box-shadow-black);
     `}
@@ -238,21 +243,19 @@ export const StyledText = styled.p`
 
 export const StyledTextarea = styled.textarea`
   min-height: 10vh;
-  padding: 1em;
   resize: none;
   background-color: var(--color-list-items-white);
   border: none;
-  border-radius: 2em;
   padding: 0.7em;
+  border-radius: 0.3em;
   box-shadow: var(--box-shadow-darkblue);
 `;
 
 export const Subtitle = styled.h2`
   margin: 0;
-  font-weight: 600;
+  font-weight: 500;
   padding: 0.7em 0;
-  font-size: 1.5em;
-  position: relative;
+  font-size: 1.2rem;
 
   ${({ variant }) =>
     variant === "views" &&
@@ -273,12 +276,16 @@ export const Subtitle = styled.h2`
     ${({ variant }) =>
     variant === "categories" &&
     css`
-      grid-column: 1 / span 2;
-      margin: 0;
-      top: 6.1rem;
-      padding: 0 0 1em 0;
+      grid-row: 2;
+      padding: 0 0 0 1em;
       font-size: 0.9em;
       font-weight: 300;
+    `}
+
+    ${({ variant }) =>
+    variant === "center" &&
+    css`
+      text-align: center;
     `}
 `;
 
@@ -286,6 +293,50 @@ export const Title = styled.h1`
   text-align: center;
   margin: 0;
   padding: 0.3em;
+`;
+
+export const GridWrapper = styled.div`
+  display: grid;
+
+  ${({ variant }) =>
+    variant === "title" &&
+    css`
+      grid-template-columns: fit-content(repeat(2, 1fr));
+      grid-template-rows: fit-content(repeat(3, 1fr));
+      align-items: center;
+      row-gap: 0.3em;
+      padding: 0.5em 1em 0 1em;
+      margin: 0;
+    `}
+
+  ${({ variant }) =>
+    variant === "modal" &&
+    css`
+      grid-template-rows: repeat(3, 1fr);
+      width: 95vw;
+      height: 95vh;
+      border-radius: 1em;
+      align-items: flex-start;
+      background-color: var(--color-background);
+    `}
+
+    ${({ variant }) =>
+    variant === "content-stretch" &&
+    css`
+      display: grid;
+      justify-content: stretch;
+      background-color: var(--color-background);
+    `}
+
+  ${({ variant }) =>
+    variant === "image" &&
+    css`
+      justify-self: flex-end;
+      height: 120px;
+      width: 120px;
+      grid-column: 2;
+      grid-row: 1;
+    `}
 `;
 
 export const Wrapper = styled.div`
@@ -303,37 +354,53 @@ export const Wrapper = styled.div`
     `}
 
   ${({ variant }) =>
-    variant === "settings" &&
+    variant === "gap" &&
     css`
-      gap: 0.5em;
+      gap: 0.6em;
     `}
 
     ${({ variant }) =>
-    variant === "contentEvenly" &&
+    variant === "space-between" &&
+    css`
+      align-items: center;
+      padding: 0 0.5em;
+    `}
+
+    ${({ variant }) =>
+    variant === "space-evenly" &&
     css`
       justify-content: space-evenly;
-      align-self: center;
-    `}
-
-    ${({ variant }) =>
-    variant === "formButtons" &&
-    css`
-      gap: 1em;
       position: relative;
-      top: 3em;
+      top: 8em;
     `}
 
     ${({ variant }) =>
-    variant === "grid" &&
+    variant === "flex-start" &&
     css`
-      display: grid;
-      justify-content: stretch;
-      background-color: var(--color-background);
+      position: absolute;
+      bottom: 9em;
+      left: 2em;
+      justify-content: flex-start;
+      gap: 1em;
     `}
+`;
 
-    ${({ variant }) =>
-    variant === "deleteButtons" &&
-    css`
-      gap: 3em;
-    `}
+const rotate360 = keyframes`
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  `;
+
+export const Spinner = styled.div`
+  animation: ${rotate360} 1s linear infinite;
+  border-top: 0.2em solid grey;
+  border-right: 0.2em solid grey;
+  border-bottom: 0.2em solid grey;
+  border-left: 0.3em solid black;
+  width: 1.5em;
+  height: 1.5em;
+  border-radius: 50%;
 `;

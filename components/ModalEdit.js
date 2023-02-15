@@ -11,6 +11,7 @@ import {
   Title,
   StyledInput,
   StyledTextarea,
+  GridWrapper,
 } from "./StyledComponents";
 
 export default function ModalEdit({
@@ -22,7 +23,7 @@ export default function ModalEdit({
   const router = useRouter();
   const [count, setCount] = useState(currentEntry.name.length);
   const [countDescription, setCountDescription] = useState(
-    currentEntry.name.length
+    currentEntry.description.length
   );
 
   const [name, setName] = useState(currentEntry.name);
@@ -33,7 +34,7 @@ export default function ModalEdit({
     <Modal show={showModalEdit}>
       <Form onSubmit={handleChanges}>
         <Title>Edit your entries</Title>
-        <Wrapper variant="grid">
+        <GridWrapper variant="content-stretch">
           <label htmlFor="name">Name:</label>
           <StyledInput
             id="name"
@@ -45,17 +46,16 @@ export default function ModalEdit({
               setCount(event.target.value.length);
               setName(event.target.value);
             }}
-            maxLength="30"
+            maxLength="25"
             required
           />
-          <CharacterCounter maxLength={30} counter={count} />
+          <CharacterCounter maxLength={25} counter={count} />
           <label htmlFor="description">Description:</label>
           <StyledTextarea
             id="description"
             type="text"
             name="description"
             value={description}
-            placeholder={"Enter a description"}
             onChange={(event) => {
               setCountDescription(event.target.value.length);
               setDescription(event.target.value);
@@ -72,8 +72,8 @@ export default function ModalEdit({
               <option>{currentEntry.viewSide}</option>
             </SelectViewSide>
           )}
-        </Wrapper>
-        <Wrapper variant="contentEvenly">
+        </GridWrapper>
+        <Wrapper variant="space-between">
           <StyledButton variant="cancel" type="button" onClick={handleClose}>
             Cancel
           </StyledButton>
@@ -86,9 +86,9 @@ export default function ModalEdit({
   );
 }
 
-const Form = styled.form`
+export const Form = styled.form`
   background-color: var(--color-background);
-  border-radius: 2em;
+  border-radius: 1em;
   padding: 1em;
   width: 95vw;
   height: 75vh;

@@ -154,7 +154,7 @@ export default function ProjectDetails({
           onClick={toggleActiveStatus}
           isActive={currentProject.isActive}
         >
-          {currentProject.isActive ? "active" : "inactive"}
+          <span>status: {currentProject.isActive ? "active" : "inactive"}</span>
         </StyledButton>
         {currentProject.categories !== "none" && (
           <Subtitle variant="categories">
@@ -169,7 +169,7 @@ export default function ProjectDetails({
             <StyledText>{description}</StyledText>
           </>
         )}
-        <Wrapper>
+        <Wrapper variant="space-between">
           <StyledButton variant="tabBar" onClick={() => setActiveTabbar(true)}>
             <Subtitle activeTabbar={activeTabbar} variant="views">
               Project views
@@ -184,7 +184,7 @@ export default function ProjectDetails({
         {activeTabbar && (
           <Section>
             <StyledLink
-              variant="addView"
+              variant="full-width"
               href={`/project-details/${currentProject.id}/add-new-view`}
             >
               add more project views

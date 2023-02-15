@@ -1,8 +1,7 @@
 import CharacterCounter from "./CharacterCounter";
 import SelectCategories from "./SelectCategories";
 import SelectViewSide from "./SelectViewSide";
-import SvgIcon from "./SvgIcon";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { useState } from "react";
 import { useAtom } from "jotai";
 import { statusUploadAtom } from "@/lib/atom";
@@ -12,6 +11,7 @@ import {
   StyledInput,
   StyledTextarea,
   StyledButton,
+  Spinner,
 } from "./StyledComponents";
 
 export default function Form({ handleSubmit }) {
@@ -28,11 +28,11 @@ export default function Form({ handleSubmit }) {
         name="name"
         type="text"
         pattern="^[a-zA-Z0-9äüöÄÜÖ][a-zA-Z0-9-_ äüöÄÜÖß.`'´]{1,}"
-        maxLength="30"
+        maxLength="25"
         onChange={(event) => setCount(event.target.value.length)}
         required
       />
-      <CharacterCounter maxLength={30} counter={count} />
+      <CharacterCounter maxLength={25} counter={count} />
       <Label htmlFor="description">Description:</Label>
       <StyledTextarea
         id="description"
@@ -52,11 +52,14 @@ export default function Form({ handleSubmit }) {
         size={10000}
         required
       />
-      <Wrapper variant="formButtons">
+      <Wrapper variant="space-evenly">
         <StyledButton
           variant="cancel"
           type="button"
-          onClick={() => router.back()}
+          onClick={() => {
+            router.back();
+            setStatusUpload("");
+          }}
         >
           Cancel
         </StyledButton>
@@ -64,10 +67,10 @@ export default function Form({ handleSubmit }) {
           Save
         </StyledButton>
       </Wrapper>
-      <LoadingStatus>
+      <Wrapper variant="flex-start">
         {statusUpload && <Spinner />}
         {statusUpload}
-      </LoadingStatus>
+      </Wrapper>
     </StyledForm>
   );
 }
@@ -79,47 +82,6 @@ const StyledForm = styled.form`
 
 const Label = styled.label`
   font-weight: 600;
-  font-size: 1.2em;
+  font-size: 0.9em;
   padding: 0.5em 0;
-`;
-
-// const StyledSvg = css`
-//   width: 2em;
-//   height: 2em;
-// `;
-
-// const StyledSaveIcon = styled(SaveIcon)`
-//   ${StyledSvg}
-// `;
-
-// const StyledCancelIcon = styled(CancelIcon)`
-//   ${StyledSvg}
-// `;
-
-const rotate360 = keyframes`
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  `;
-
-const Spinner = styled.div`
-  animation: ${rotate360} 1s linear infinite;
-  border-top: 0.2em solid grey;
-  border-right: 0.2em solid grey;
-  border-bottom: 0.2em solid grey;
-  border-left: 0.3em solid black;
-  width: 1.5em;
-  height: 1.5em;
-  border-radius: 50%;
-`;
-
-const LoadingStatus = styled.div`
-  display: flex;
-  gap: 1em;
-  padding: 0 1em;
-  position: relative;
-  bottom: 1.2em;
 `;

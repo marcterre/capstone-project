@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ProjectItem from "@/components/ProjectItem";
+import Logo from "@/assets/logo.svg";
 
 export default function HomePage({ projects, currentProject }) {
   const filteredActiveProjects = projects.filter((project) => project.isActive);
@@ -10,7 +11,7 @@ export default function HomePage({ projects, currentProject }) {
   return (
     <>
       <header>
-        <Title>Your Projects</Title>
+        <StyledLogo aria-label="Logo PocketBuilder" />
       </header>
       <main>
         {projects.length < 1 && (
@@ -45,10 +46,8 @@ export default function HomePage({ projects, currentProject }) {
   );
 }
 
-const Title = styled.h1`
-  margin: 0;
-  padding: 0.3em;
-  text-align: center;
+const StyledLogo = styled(Logo)`
+  width: 100vw;
 `;
 
 const Subtitle = styled.h2`

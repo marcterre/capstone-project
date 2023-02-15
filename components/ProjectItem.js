@@ -10,7 +10,7 @@ export default function ProjectItem({ projects }) {
     { name: "electricity", svg: <SvgIcon variant="lightning" /> },
     { name: "knitting/crocheting", svg: <SvgIcon variant="sheep" /> },
     { name: "stitching", svg: <SvgIcon variant="shirt" /> },
-    { name: "other", svg: <SvgIcon variant="star" /> },
+    { name: "other", svg: <SvgIcon variant="croco" /> },
   ];
 
   return (
@@ -20,7 +20,7 @@ export default function ProjectItem({ projects }) {
           <StyledLink href={`/project-details/${project.id}`}>
             <List variant="sublist">
               <List variant="listItem">
-                <ProjectName>{project.name}</ProjectName>
+                <ListItem variant="name">{project.name}</ListItem>
                 {project.categories !== "none" && (
                   <CategoryTitle>{project.categories}</CategoryTitle>
                 )}
@@ -57,8 +57,8 @@ const CategoryTitle = styled.li`
 `;
 
 const IconItem = styled.li`
-  width: 2em;
-  height: 2em;
+  width: 1.5em;
+  height: 1.5em;
   fill: ${({ isActive }) =>
     isActive ? "var(--color-project-active)" : "var(--color-project-inactive)"};
 `;
