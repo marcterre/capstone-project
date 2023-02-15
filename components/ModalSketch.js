@@ -93,6 +93,7 @@ const Text = styled.p`
 const StyledImage = styled(Image)`
   object-fit: contain;
   width: 90vw;
+  height: 100%;
   justify-self: center;
 `;
 
