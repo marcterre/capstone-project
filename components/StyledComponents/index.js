@@ -207,8 +207,6 @@ export const StyledLink = styled(Link)`
       ${({ isfocused }) =>
         isfocused === "/" &&
         css`
-          position: relative;
-          top: -0.5em;
           background-color: var(--color-buttons);
         `};
     `}
@@ -222,8 +220,6 @@ export const StyledLink = styled(Link)`
       ${({ isfocused }) =>
         isfocused === "/create-new-project" &&
         css`
-          position: relative;
-          top: -0.5em;
           background-color: var(--color-buttons);
         `};
     `}

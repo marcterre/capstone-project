@@ -45,11 +45,12 @@ const List = styled.ul`
   padding: 0 4em;
   margin: 0;
   width: 100vw;
-  height: 7vh;
+  height: 8vh;
   position: fixed;
   bottom: 0;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: var(--color-darkblue);
   list-style: none;
 `;

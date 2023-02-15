@@ -62,7 +62,7 @@ export default function MaterialList({
 const Table = styled.table`
   width: 95vw;
   background-color: var(--color-background);
-  padding: 0.7em 0;
+  padding: 0.7em 0.5em 0.7em 0;
   text-align: center;
   border-top: 0.05em solid black;
 `;

@@ -50,13 +50,15 @@ export default function Form({ handleSubmit }) {
         name="imageFile"
         id="imageFile"
         size={10000}
-        required
       />
       <Wrapper variant="space-evenly">
         <StyledButton
           variant="cancel"
           type="button"
-          onClick={() => router.back()}
+          onClick={() => {
+            router.back();
+            setStatusUpload("");
+          }}
         >
           Cancel
         </StyledButton>
