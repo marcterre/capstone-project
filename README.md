@@ -1,16 +1,19 @@
-# New Project
+# Capstone Project
 
-This project was created from the neue fische next template.
+This is my capstone-project for the web-development bootcamp at [neuefische](https://www.neuefische.de/en).
 
-## Development
+## PocketBuilder
 
-To run project commands locally, you need to install the dependencies using `npm i` first.
+My app is especially designed for all hobbyists and craftsmen who want to plan new projects and retrieve them at any time. 
+It is possible to create projects and adding a image for each one. You can create different views for your project, like a cut or detail view. Also you can add materials as many as you need and edit or delete your entries as you like.
+Special feature are the image upload, for that i implemented cloudinary, and the swipe-to-delete function for the material list. [Take a closer look](#have-a-closer-look).
 
-You can then use the following commands:
+### TechStack
 
-- `npm run dev` to start the development server
-- `npm run build` to create a production build
-- `npm run start` to start the production build
-- `npm run test` to run the tests in watch mode (if available)
+React, Next.js, Styled-components, Cloudinary, Figma
 
-> 💡 This project requires a bundler. You can use `npm run dev` to start the development server. You can then view the project in the browser at `http://localhost:3000`. The Live Preview Extension for Visual Studio Code will **not** work for this project.
+![PocketBuilder](https://user-images.githubusercontent.com/118189611/219324431-fa80c6a8-3078-415c-a573-8d98a988cb7b.png)
+
+### Take a closer look
+
+https://user-images.githubusercontent.com/118189611/219324484-36ba3c33-71f9-4ef7-be1e-f1a48c77c337.mp4
