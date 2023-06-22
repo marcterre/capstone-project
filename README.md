@@ -1,3 +1,10 @@
+```diff
+- This project is currently in progress. The following features and technologies will be implemented:
+- TypeScript migration
+- connection to MongoDB
+- Optimization of cloudinary image upload
+```
+
 # Capstone Project
 
 This is my capstone-project for the web-development bootcamp at [neuefische](https://www.neuefische.de/en).
