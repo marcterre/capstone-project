@@ -17,7 +17,7 @@ Special feature are the image upload, for that i implemented cloudinary, and the
 
 ### TechStack
 
-React, Next.js, Styled-components, Cloudinary, Figma
+React, Next.js, Jotai, Styled-components, Cloudinary, Figma
 
 ![PocketBuilder](https://user-images.githubusercontent.com/118189611/219324431-fa80c6a8-3078-415c-a573-8d98a988cb7b.png)
 
