@@ -1,26 +1,36 @@
-```diff
-- This project is currently in progress. The following features and technologies will be implemented:
-- TypeScript migration
-- connection to MongoDB
-- Optimization of cloudinary image upload
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-# Capstone Project
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-This is my capstone-project for the web-development bootcamp at [neuefische](https://www.neuefische.de/en).
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## PocketBuilder
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-My app is especially designed for all hobbyists and craftsmen who want to plan new projects and retrieve them at any time. 
-It is possible to create projects and adding a image for each one. You can create different views for your project, like a cut or detail view. Also you can add materials as many as you need and edit or delete your entries as you like.
-Special feature are the image upload, for that i implemented cloudinary, and the swipe-to-delete function for the material list. [Take a closer look](#have-a-closer-look).
+## Learn More
 
-### TechStack
+To learn more about Next.js, take a look at the following resources:
 
-React, Next.js, Styled-components, Cloudinary, Figma
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-![PocketBuilder](https://user-images.githubusercontent.com/118189611/219324431-fa80c6a8-3078-415c-a573-8d98a988cb7b.png)
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-### Take a closer look
+## Deploy on Vercel
 
-https://user-images.githubusercontent.com/118189611/219324484-36ba3c33-71f9-4ef7-be1e-f1a48c77c337.mp4
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
